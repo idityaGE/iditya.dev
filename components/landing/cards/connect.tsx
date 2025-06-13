@@ -53,7 +53,7 @@ const Icons = {
   ),
 };
 
-const SocialLinks = {
+export const SocialLinks = {
   GitHub: {
     name: "GitHub",
     url: LinkData.github,

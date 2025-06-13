@@ -11,7 +11,7 @@ const getTypeColor = (type: string): string => {
   return colorMap[type] || 'bg-neutral-600';
 };
 
-const BUTTON_CLASSES = "inline-flex items-center px-3 py-1.5 border border-input bg-background hover:bg-accent hover:text-accent-foreground text-sm font-medium rounded-md transition-colors";
+const BUTTON_CLASSES = "inline-flex items-center px-3 py-2 border border-input bg-background hover:bg-accent hover:text-accent-foreground text-sm font-medium rounded-md transition-colors";
 
 export const ProjectCard = ({
   title,
@@ -27,7 +27,7 @@ export const ProjectCard = ({
   const projectAriaLabel = `View details of ${title} project`;
 
   return (
-    <div className="flex p-3 md:p-6 flex-col-reverse justify-between gap-4 rounded-xl border overflow-hidden md:flex-row group shadow-sm hover:shadow-lg dark:shadow-[0px_0px_10px_rgba(255,255,255,0.05)] dark:hover:shadow-[0px_0px_20px_rgba(255,255,255,0.1)] transition-all duration-300 ease-in-out h-auto md:h-[280px]">
+    <div className="flex p-3 md:p-5 flex-col-reverse justify-between gap-4 rounded-xl border overflow-hidden md:flex-row group shadow-sm hover:shadow-lg dark:shadow-[0px_0px_10px_rgba(255,255,255,0.05)] dark:hover:shadow-[0px_0px_20px_rgba(255,255,255,0.1)] transition-all duration-300 ease-in-out h-auto md:h-[260px]">
 
       {/* Content Section - Fixed width ratio */}
       <div className="flex flex-col w-full md:w-3/5 min-h-0">
@@ -59,15 +59,24 @@ export const ProjectCard = ({
         {/* Tech Stack - Flexible height */}
         <div className="flex-1 min-h-0 mb-3">
           {techStack && techStack.length > 0 && (
-            <div className="flex items-start gap-2 flex-wrap">
-              {techStack.map((tag) => (
-                <span
-                  key={tag}
-                  className="px-2 py-1 rounded bg-muted text-muted-foreground text-xs cursor-default"
-                >
-                  {tag}
-                </span>
-              ))}
+            <div className="relative">
+              <div className="flex items-start gap-1.5 flex-wrap overflow-hidden">
+                {techStack.map((tag, index) => (
+                  index < 7 ? (
+                    <span
+                      key={tag}
+                      className="px-2 py-1 rounded bg-muted text-muted-foreground text-xs cursor-default mb-0.5"
+                    >
+                      {tag}
+                    </span>
+                  ) : null
+                ))}
+                {techStack.length > 7 && (
+                  <span className="px-2 py-1 bg-muted text-muted-foreground text-xs rounded mb-1">
+                    +{techStack.length - 7} more
+                  </span>
+                )}
+              </div>
             </div>
           )}
         </div>
@@ -82,7 +91,7 @@ export const ProjectCard = ({
               aria-label={`GitHub repository for ${title}`}
               className={BUTTON_CLASSES}
             >
-              <Github className="mr-2 h-4 w-4" />
+              <Github className="mr-2 h-5 w-4" />
               GitHub
             </Link>
           )}

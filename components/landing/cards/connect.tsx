@@ -78,8 +78,8 @@ const SocialLinks = {
 
 export function ConnectCard() {
   return (
-    <div className="flex flex-col items-center justify-center">
-      <Dock direction="middle">
+    <div className="relative mb-8">
+      <Dock direction="middle" className="border-0 bg-transparent flex gap-7">
         {Object.entries(SocialLinks).map(([name, social]) => (
           <DockIcon key={name}>
             <Link
@@ -87,10 +87,10 @@ export function ConnectCard() {
               aria-label={social.name}
               className={cn(
                 buttonVariants({ variant: "ghost", size: "icon" }),
-                "size-12 rounded-full",
+                "size-14 rounded-full",
               )}
             >
-              <social.icon className="size-4" />
+              <social.icon className="size-8" />
             </Link>
           </DockIcon>
         ))}

@@ -2,8 +2,9 @@ import { ConnectCard } from "./cards/connect"
 import { GlobeCard } from "./cards/globe"
 import { Projects } from "./cards/project"
 import { SkillCard } from "./cards/skills"
+import { BlogCard } from "./cards/blog"
 
-import { Layers, MapPin, Link, Atom } from 'lucide-react';
+import { Layers, MapPin, Link, Atom, BookIcon, Book } from 'lucide-react';
 import { BentoCard, BentoGrid } from "@/components/magicui/bento-grid";
 import { PersonalData } from "@/config/personal.config";
 
@@ -13,25 +14,31 @@ const features = [
     name: "Project",
     isIconHidden: true,
     background: <Projects />,
-    className: "lg:col-start-1 lg:col-end-5 lg:row-start-4 lg:row-end-5",
-  },
-  {
-    Icon: MapPin,
-    name: `${PersonalData.address.city}, ${PersonalData.address.country}`,
-    background: <GlobeCard />,
-    className: "lg:row-start-1 lg:row-end-3 lg:col-start-3 lg:col-end-5",
-  },
-  {
-    Icon: Layers,
-    name: "Tech Stack",
-    background: <SkillCard />,
-    className: "lg:col-start-1 lg:col-end-3 lg:row-start-1 lg:row-end-4",
+    className: "lg:col-start-1 lg:col-end-5 lg:row-start-1 lg:row-end-2",
   },
   {
     Icon: Link,
     name: "Connect",
     background: <ConnectCard />,
-    className: "lg:col-start-3 lg:col-end-5 lg:row-start-3 lg:row-end-4",
+    className: "lg:col-start-1 lg:col-end-3 lg:row-start-2 lg:row-end-3",
+  },
+  {
+    Icon: BookIcon,
+    name: "Blogs",
+    background: <BlogCard />,
+    className: "lg:col-start-3 lg:col-end-5 lg:row-start-2 lg:row-end-4",
+  },
+  {
+    Icon: MapPin,
+    name: `${PersonalData.address.city}, ${PersonalData.address.country}`,
+    background: <GlobeCard />,
+    className: "lg:row-start-4 lg:row-end-5 lg:col-start-3 lg:col-end-5",
+  },
+  {
+    Icon: Layers,
+    name: "Tech Stack",
+    background: <SkillCard />,
+    className: "lg:col-start-1 lg:col-end-3 lg:row-start-3 lg:row-end-5",
   },
 ]
 

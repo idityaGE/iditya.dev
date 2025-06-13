@@ -53,44 +53,44 @@ const Icons = {
   ),
 };
 
-export const SocialLinks = {
-  GitHub: {
+export const SocialLinks = [
+  {
     name: "GitHub",
     url: LinkData.github,
-    icon: Icons.github,
+    Icon: () => <Icons.github className="size-8" />,
   },
-  LinkedIn: {
+  {
     name: "LinkedIn",
     url: LinkData.linkedin,
-    icon: Icons.linkedin,
+    Icon: () => <Icons.linkedin className="size-8" />,
   },
-  X: {
+  {
     name: "X",
     url: LinkData.twitter,
-    icon: Icons.x,
+    Icon: () => <Icons.x className="size-8" />,
   },
-  email: {
+  {
     name: "Send Email",
     url: LinkData.mail,
-    icon: Icons.email,
+    Icon: () => <Icons.email className="size-8" />,
   },
-};
+]
 
 export function ConnectCard() {
   return (
     <div className="relative mb-8">
       <Dock direction="middle" className="border-0 bg-transparent flex gap-7">
-        {Object.entries(SocialLinks).map(([name, social]) => (
+        {SocialLinks.map(({ name, Icon, url }) => (
           <DockIcon key={name}>
             <Link
-              href={social.url}
-              aria-label={social.name}
+              href={url}
+              aria-label={name}
               className={cn(
                 buttonVariants({ variant: "ghost", size: "icon" }),
                 "size-14 rounded-full",
               )}
             >
-              <social.icon className="size-8" />
+              <Icon />
             </Link>
           </DockIcon>
         ))}

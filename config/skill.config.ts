@@ -6,7 +6,7 @@ export const skillList = {
     "Node.js", "Bun", "Deno", "Edge runtime (Vercel)", "CF Worker",
   ],
   Backend: [
-    "Hono js", "Express", "GraphQL", "Go", "Appwrite", "Supabase", "Swagger", "websocket", "WebRTC", "Appwrite"
+    "Hono js", "Express", "GraphQL", "Go", "Appwrite", "Supabase", "Swagger", "websocket", "WebRTC"
   ],
   Database: [
     "PostgreSQL", "MongoDB", "MySQL", "SQLite", "Redis", "ChromaDB", "Pinecone"

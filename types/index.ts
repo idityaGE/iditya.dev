@@ -8,3 +8,12 @@ export interface ProjectCardProps {
   techStack: string[]
   slug: string
 }
+
+export interface BlogPostMeta {
+  title: string;
+  date: string;
+  tags: string[];
+  author: string;
+  excerpt: string;
+  coverImage: string;
+};

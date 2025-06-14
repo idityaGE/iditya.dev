@@ -1,4 +1,4 @@
-import type { BlogPostMeta } from "@/types/mdx";
+import type { BlogPostMeta } from "@/types";
 import Link from "next/link";
 import Image from "next/image";
 

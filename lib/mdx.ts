@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import type { BlogPostMeta } from '@/types/mdx';
+import type { BlogPostMeta } from '@/types';
 
 
 type BlogPostMetaWithSlug = BlogPostMeta & {

@@ -7,6 +7,7 @@ export default async function Page({
 }) {
   const { slug } = await params
   const { default: Post, metadata } = await import(`@/content/blogs/${slug}.mdx`)
+  console.log("Post metadata:", metadata)
 
   return <Post />
 }

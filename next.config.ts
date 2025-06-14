@@ -1,7 +1,9 @@
 import type { NextConfig } from "next";
-import createMdx from '@next/mdx'
+import createMDX from '@next/mdx';
+import rehypeHighlight from 'rehype-highlight'
 import remarkGfm from 'remark-gfm'
-
+import remarkFrontmatter from 'remark-frontmatter'
+import remarkMdxFrontmatter from 'remark-mdx-frontmatter'
 
 const nextConfig: NextConfig = {
   pageExtensions: ['mdx', 'tsx', 'ts'],
@@ -13,16 +15,19 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  experimental: {
-    mdxRs: true
-  }
 };
 
-const mdx = createMdx({
+const withMDX = createMDX({
   options: {
-    remarkPlugins: [remarkGfm],
-    rehypePlugins: [],
+    remarkPlugins: [
+      remarkGfm,
+      remarkFrontmatter,
+      [remarkMdxFrontmatter, { name: "metadata" }]
+    ],
+    rehypePlugins: [
+      rehypeHighlight
+    ],
   },
 });
 
-export default mdx(nextConfig);
+export default withMDX(nextConfig);

@@ -1,0 +1,284 @@
+export const metadata = {
+  title: "Mastering React Hooks: Advanced Patterns and Best Practices",
+  date: "2025-06-12",
+  tags: ["React", "Hooks", "JavaScript", "Frontend", "Performance"],
+  author: "Sarah Frontend",
+  excerpt:
+    "Dive deep into advanced React Hooks patterns including custom hooks, optimization techniques, and common pitfalls to avoid. Learn how to write cleaner, more maintainable React code.",
+  coverImage: "/images/blog/react-hooks-patterns.jpg",
+};
+
+# Mastering React Hooks: Advanced Patterns and Best Practices
+
+React Hooks have transformed how we write React components, allowing us to use state and other React features without writing class components. However, mastering hooks goes beyond just using `useState` and `useEffect`. Let's explore advanced patterns that will make your React code more efficient and maintainable.
+
+## Understanding Hook Fundamentals
+
+Before diving into advanced patterns, let's review the core principles:
+
+### Rules of Hooks
+
+1. Only call hooks at the top level of your React function
+2. Only call hooks from React functions (components or custom hooks)
+
+```javascript
+// ❌ Wrong - conditional hook call
+function BadComponent({ condition }) {
+  if (condition) {
+    const [state, setState] = useState(null); // Don't do this!
+  }
+  return <div>Bad example</div>;
+}
+
+// ✅ Correct - hook at top level
+function GoodComponent({ condition }) {
+  const [state, setState] = useState(null);
+
+  if (condition) {
+    // Use the state conditionally, not the hook
+    return <div>{state}</div>;
+  }
+  return <div>Good example</div>;
+}
+```
+
+## Advanced Hook Patterns
+
+### 1. Custom Hooks for Data Fetching
+
+Create reusable data fetching logic with proper error handling and loading states:
+
+```typescript
+interface UseApiResponse<T> {
+  data: T | null;
+  loading: boolean;
+  error: string | null;
+  refetch: () => void;
+}
+
+function useApi<T>(url: string): UseApiResponse<T> {
+  const [data, setData] = useState<T | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  const fetchData = useCallback(async () => {
+    try {
+      setLoading(true);
+      setError(null);
+      const response = await fetch(url);
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const result = await response.json();
+      setData(result);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "An error occurred");
+    } finally {
+      setLoading(false);
+    }
+  }, [url]);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
+
+  return { data, loading, error, refetch: fetchData };
+}
+```
+
+### 2. State Management with useReducer
+
+For complex state logic, `useReducer` is often more suitable than `useState`:
+
+```typescript
+interface TodoState {
+  todos: Todo[];
+  filter: "all" | "active" | "completed";
+}
+
+type TodoAction =
+  | { type: "ADD_TODO"; payload: string }
+  | { type: "TOGGLE_TODO"; payload: number }
+  | { type: "SET_FILTER"; payload: TodoState["filter"] }
+  | { type: "DELETE_TODO"; payload: number };
+
+function todoReducer(state: TodoState, action: TodoAction): TodoState {
+  switch (action.type) {
+    case "ADD_TODO":
+      return {
+        ...state,
+        todos: [
+          ...state.todos,
+          { id: Date.now(), text: action.payload, completed: false },
+        ],
+      };
+    case "TOGGLE_TODO":
+      return {
+        ...state,
+        todos: state.todos.map((todo) =>
+          todo.id === action.payload
+            ? { ...todo, completed: !todo.completed }
+            : todo
+        ),
+      };
+    default:
+      return state;
+  }
+}
+```
+
+### 3. Performance Optimization with useMemo and useCallback
+
+<Callout type="warning">
+  Don't overuse memoization! Only optimize when you have a proven performance
+  problem.
+</Callout>
+
+```typescript
+function ExpensiveComponent({ items, onItemClick }) {
+  // Memoize expensive calculations
+  const expensiveValue = useMemo(() => {
+    return items.reduce((sum, item) => sum + item.value, 0);
+  }, [items]);
+
+  // Memoize callback functions
+  const handleClick = useCallback(
+    (id: number) => {
+      onItemClick(id);
+    },
+    [onItemClick]
+  );
+
+  return (
+    <div>
+      <p>Total: {expensiveValue}</p>
+      {items.map((item) => (
+        <ItemComponent key={item.id} item={item} onClick={handleClick} />
+      ))}
+    </div>
+  );
+}
+```
+
+## Custom Hook Examples
+
+### Local Storage Hook
+
+```typescript
+function useLocalStorage<T>(key: string, initialValue: T) {
+  const [storedValue, setStoredValue] = useState<T>(() => {
+    try {
+      const item = window.localStorage.getItem(key);
+      return item ? JSON.parse(item) : initialValue;
+    } catch (error) {
+      console.error(`Error reading localStorage key "${key}":`, error);
+      return initialValue;
+    }
+  });
+
+  const setValue = useCallback(
+    (value: T | ((val: T) => T)) => {
+      try {
+        const valueToStore =
+          value instanceof Function ? value(storedValue) : value;
+        setStoredValue(valueToStore);
+        window.localStorage.setItem(key, JSON.stringify(valueToStore));
+      } catch (error) {
+        console.error(`Error setting localStorage key "${key}":`, error);
+      }
+    },
+    [key, storedValue]
+  );
+
+  return [storedValue, setValue] as const;
+}
+```
+
+### Debounce Hook
+
+```typescript
+function useDebounce<T>(value: T, delay: number): T {
+  const [debouncedValue, setDebouncedValue] = useState<T>(value);
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedValue(value);
+    }, delay);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [value, delay]);
+
+  return debouncedValue;
+}
+```
+
+## Common Pitfalls to Avoid
+
+### 1. Dependency Array Issues
+
+Always include all dependencies in your `useEffect` dependency array:
+
+```typescript
+// ❌ Missing dependency
+useEffect(() => {
+  fetchUserData(userId);
+}, []); // userId is missing!
+
+// ✅ Correct
+useEffect(() => {
+  fetchUserData(userId);
+}, [userId]);
+```
+
+### 2. Infinite Re-renders
+
+Be careful with object and array dependencies:
+
+```typescript
+// ❌ Object recreated on every render
+const config = { apiKey: "abc123" };
+useEffect(() => {
+  fetchData(config);
+}, [config]); // This will cause infinite re-renders!
+
+// ✅ Memoize the object or use primitive values
+const config = useMemo(() => ({ apiKey: "abc123" }), []);
+```
+
+## Testing Custom Hooks
+
+Use `@testing-library/react-hooks` for testing:
+
+```typescript
+import { renderHook, act } from "@testing-library/react-hooks";
+import { useCounter } from "./useCounter";
+
+it("should increment counter", () => {
+  const { result } = renderHook(() => useCounter());
+
+  act(() => {
+    result.current.increment();
+  });
+
+  expect(result.current.count).toBe(1);
+});
+```
+
+## Conclusion
+
+Mastering React Hooks is about understanding when and how to use them effectively. Focus on:
+
+1. **Simplicity**: Start with simple hooks before moving to complex patterns
+2. **Reusability**: Extract common logic into custom hooks
+3. **Performance**: Only optimize when necessary
+4. **Testing**: Write tests for your custom hooks
+
+Remember, hooks are tools to solve problems. Don't use them just because they exist – use them when they make your code cleaner and more maintainable.
+
+---
+
+_Keep practicing these patterns, and you'll find yourself writing more elegant and efficient React code!_

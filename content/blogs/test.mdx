@@ -1,0 +1,220 @@
+export const metadata = {
+  title: "Building Modern Web Applications with Next.js and TypeScript",
+  date: "2025-06-14",
+  tags: ["Next.js", "TypeScript", "React", "Web Development"],
+  author: "John Developer",
+  excerpt: "Learn how to build scalable and performant web applications using Next.js 14 with TypeScript. This comprehensive guide covers best practices, optimization techniques, and modern development patterns.",
+  coverImage: "/images/blog/nextjs-typescript-cover.jpg"
+}
+
+# Main Heading (H1)
+
+<YouTube id="FUD3Ins4_io?si=D-VKmwmUhtuEitVu" />
+
+<CommandBtn
+  command={{
+    npm: "npm run shadcn add button",
+    yarn: "yarn shadcn add button",
+    pnpm: "pnpm dlx shadcn@latest add button",
+    bun: "bun x shadcn@latest add button",
+  }}
+/>
+
+This is a paragraph under the main heading. It should have proper spacing and typography. This paragraph tests the basic text rendering and line height.
+
+## Secondary Heading (H2)
+
+Here's another paragraph to test spacing between headings and content. This tests the `mt-10` spacing and `first:mt-0` modifier.
+
+### Tertiary Heading (H3)
+
+Testing the third level heading with some content below it.
+
+#### Fourth Level Heading (H4)
+
+Fourth level heading content goes here.
+
+##### Fifth Level Heading (H5)
+
+Fifth level heading with content.
+
+###### Sixth Level Heading (H6)
+
+The smallest heading level.
+
+## Text Formatting
+
+This paragraph contains **bold text**, _italic text_, and `inline code`. Here's a [link to Google](https://google.com) to test link styling and hover effects.
+
+Here's another paragraph to test the `[&:not(:first-child)]:mt-6` spacing rule.
+
+## Lists
+
+### Unordered List
+
+- First item in unordered list
+- Second item with some longer content to test wrapping
+- Third item
+  - Nested item one
+  - Nested item two
+- Fourth item
+
+### Ordered List
+
+1. First numbered item
+2. Second numbered item with longer content to see how it wraps
+3. Third numbered item
+   1. Nested numbered item
+   2. Another nested item
+4. Fourth numbered item
+
+## Blockquotes
+
+> This is a blockquote to test the styling with border-left and italic text.
+> It should have proper spacing and visual distinction from regular paragraphs.
+
+> Another blockquote to test spacing between multiple blockquotes.
+
+## Code Blocks
+
+Here's some JavaScript code:
+
+```javascript
+function testFunction() {
+  const message = "Hello, world!";
+  console.log(message);
+
+  // Testing syntax highlighting
+  const users = [
+    { name: "John", age: 30 },
+    { name: "Jane", age: 25 },
+  ];
+
+  return users.map((user) => ({
+    ...user,
+    greeting: `Hello, ${user.name}!`,
+  }));
+}
+```
+
+Here's some TypeScript:
+
+```typescript
+interface User {
+  id: number;
+  name: string;
+  email: string;
+}
+
+const createUser = (userData: Omit<User, "id">): User => {
+  return {
+    id: Math.random(),
+    ...userData,
+  };
+};
+```
+
+And some CSS:
+
+```css
+.component {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  background-color: var(--background);
+}
+
+.component:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+```
+
+## Tables
+
+| Name        | Age | City        | Occupation |
+| ----------- | --- | ----------- | ---------- |
+| John Doe    | 30  | New York    | Developer  |
+| Jane Smith  | 25  | Los Angeles | Designer   |
+| Bob Johnson | 35  | Chicago     | Manager    |
+| Alice Brown | 28  | Seattle     | Engineer   |
+
+## Images
+
+![Sample Image](https://picsum.photos/800/400?random=1)
+
+<Image
+  src="https://picsum.photos/600/300?random=2"
+  alt="Custom Image Component Test"
+  width={600}
+  height={300}
+/>
+
+## Horizontal Rules
+
+Content above the horizontal rule.
+
+---
+
+Content below the horizontal rule.
+
+## Callouts
+
+<Callout>
+  This is a default callout to test the Callout component styling and
+  functionality.
+</Callout>
+
+<Callout type="warning">
+  This is a warning callout to test different callout types if supported.
+</Callout>
+
+## Mixed Content Test
+
+Here's a more complex example mixing different components:
+
+### Project Structure
+
+```
+project/
+├── components/
+│   ├── ui/
+│   │   ├── button.tsx
+│   │   └── input.tsx
+│   └── mdx/
+│       ├── components.tsx
+│       ├── code-block.tsx
+│       └── callout.tsx
+├── lib/
+│   └── utils.ts
+└── app/
+    ├── layout.tsx
+    └── page.tsx
+```
+
+The project structure above shows how to organize your Next.js application with MDX components.
+
+> **Note**: Make sure to configure your `next.config.js` properly for MDX support.
+
+Here are the key steps:
+
+1. Install the required dependencies
+2. Configure your MDX setup
+3. Create your components
+4. Test everything works as expected
+
+For more information, visit the [Next.js documentation](https://nextjs.org/docs).
+
+## Final Test Section
+
+This is the final section to test that all spacing, typography, and component interactions work correctly together. The components should maintain consistent spacing and visual hierarchy throughout the document.
+
+### Inline Elements Test
+
+Testing `inline code`, **bold text**, _italic text_, and [links](https://example.com) all in one paragraph to ensure they work well together.
+
+---
+
+**End of test document** - All components should render correctly with proper styling and spacing.

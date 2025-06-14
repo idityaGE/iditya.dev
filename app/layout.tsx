@@ -1,15 +1,16 @@
-import { Poppins } from "next/font/google";
+import "@/styles/globals.css";
+import "@/styles/code.css"
 import { ThemeProvider } from "@/components/theme/theme-provider"
-import "./globals.css";
 import { Navbar } from "@/components/navbar/navbar";
 import Image from "next/image";
+import localFont from "next/font/local";
+// import { GeistSans } from "geist/font/sans";
+// import { GeistMono } from "geist/font/mono";
 
-
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-poppins"
-})
+const fontHeading = localFont({
+  src: "../assets/fonts/CalSans-SemiBold.woff2",
+  variable: "--font-heading",
+});
 
 export default function RootLayout({
   children,
@@ -19,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${poppins.variable} font-sans antialiased`}
+        className={`${fontHeading.variable} font-sans antialiased`}
       >
         <ThemeProvider
           attribute="class"

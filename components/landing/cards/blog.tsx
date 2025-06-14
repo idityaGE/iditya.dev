@@ -43,7 +43,7 @@ export const BlogCard = () => {
 
           <div className="relative z-10 flex items-center justify-between mt-4">
             <span className="text-sm text-primary font-medium">Read More</span>
-            <ArrowRight className="h-4 w-4 text-primary group-hover:translate-x-1 transition-transform duration-200" />
+            <ArrowRight className="h-6 w-6 text-primary group-hover:translate-x-2 transition-transform duration-200" />
           </div>
         </div>
       </Link>

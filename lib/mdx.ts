@@ -1,11 +1,14 @@
 import fs from 'fs';
 import path from 'path';
-import matter from 'gray-matter';
 import type { BlogPostMeta } from '@/types/mdx';
 
-const postsDirectory = path.join(process.cwd(), 'content/blogs');
 
-export async function getBlogPostSlugs() {
+type BlogPostMetaWithSlug = BlogPostMeta & {
+  slug: string
+}
+
+export async function getMDXSlugs(folder: string) {
+  const postsDirectory = path.join(process.cwd(), `content/${folder}`);
   if (!fs.existsSync(postsDirectory)) {
     console.warn(`Blog posts directory not found: ${postsDirectory}`);
     return [];
@@ -15,35 +18,36 @@ export async function getBlogPostSlugs() {
     .map(file => file.replace(/\.mdx$/, ''));
 }
 
-export async function getBlogPostMetaBySlug(slug: string): Promise<BlogPostMeta | null> {
-  const filePath = path.join(postsDirectory, `${slug}.mdx`);
-  if (!fs.existsSync(filePath)) {
+export async function getBlogPostMetaBySlug(slug: string): Promise<BlogPostMetaWithSlug | null> {
+  try {
+    const { metadata } = await import(`@/content/blogs/${slug}.mdx`);
+    if (!metadata) {
+      console.warn(`No metadata found for ${slug}`);
+      return null;
+    }
+
+    return {
+      slug,
+      title: metadata.title,
+      date: metadata.date,
+      tags: metadata.tags || [],
+      author: metadata.author || "",
+      excerpt: metadata.excerpt || '',
+      coverImage: metadata.coverImage || "",
+    };
+  } catch (error) {
+    console.error(`Failed to load metadata for ${slug}:`, error);
     return null;
   }
-  const fileContent = fs.readFileSync(filePath, 'utf8');
-  const data = await processMDX(fileContent);
-  return {
-    title: data.title,
-    date: data.date,
-    tags: data.tags || [],
-    author: data.author || "",
-    excerpt: data.excerpt || '',
-    coverImage: data.coverImage || "",
-  };
 }
 
 export async function getAllBlogPostsMeta() {
-  const slugs = await getBlogPostSlugs();
+  const slugs = await getMDXSlugs("blogs");
   const posts = await Promise.all(
     slugs.map(async (slug) => await getBlogPostMetaBySlug(slug))
   );
 
   return posts
-    .filter((post): post is BlogPostMeta => post !== null)
+    .filter((post): post is BlogPostMetaWithSlug => post !== null)
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-}
-
-async function processMDX(source: string) {
-  const { data } = matter(source);
-  return data
 }

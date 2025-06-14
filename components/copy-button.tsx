@@ -2,39 +2,31 @@
 
 import React, { useState } from "react";
 
-export const CopyButton = ({ children }: { children: React.ReactNode }) => {
+interface CopyButtonProps {
+  text: string;
+  className?: string;
+}
+
+export const CopyButton = ({ text, className }: CopyButtonProps) => {
   const [isCopied, setIsCopied] = useState(false);
 
-  const copy = async () => {
-    const sourceCode = extractSourceCode(children);
-    await navigator.clipboard.writeText(sourceCode);
-    setIsCopied(true);
-
-    setTimeout(() => {
-      setIsCopied(false);
-    }, 10000);
-  };
-
-  const extractSourceCode = (node: React.ReactNode): string => {
-    if (typeof node === "string") {
-      return node;
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(text);
+      setIsCopied(true);
+      setTimeout(() => setIsCopied(false), 2000);
+    } catch (error) {
+      console.error('Failed to copy text:', error);
     }
-    if (Array.isArray(node)) {
-      return node.map(extractSourceCode).join("");
-    }
-    if (React.isValidElement(node)) {
-      const { type, props } = node;
-      const children = React.Children.map(props.children, extractSourceCode)?.join("");
-      const propPairs = Object.entries(props)
-        .map(([key, value]) => `${key}={${JSON.stringify(value)}}`)
-        .join(" ");
-      return `${children}`;
-    }
-    return "";
   };
 
   return (
-    <button disabled={isCopied} onClick={copy}>
+    <button
+      onClick={handleCopy}
+      disabled={isCopied}
+      className={className}
+      type="button"
+    >
       {isCopied ? "Copied!" : "Copy"}
     </button>
   );

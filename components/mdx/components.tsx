@@ -1,9 +1,16 @@
 import { cn } from "@/lib/utils";
-import { CodeBlock } from "./code-block";
 import Image from "next/image";
 import { Callout } from "./callout";
 import { YouTube } from "./youtube";
 import { CommandBtn } from "./command-btn";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+
+type MarkdownComponentProps = {
+  node?: any;
+  children?: React.ReactNode;
+  className?: string;
+  [key: string]: any;
+};
 
 const headingClasses = {
   base: "scroll-m-20 font-semibold tracking-tight mdx-heading",
@@ -33,8 +40,6 @@ const OptimizedImage = ({
         height={height ? Number(height) : 600}
         className={cn("h-auto w-full object-cover", className)}
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-        placeholder="blur"
-        blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfASXWnydAEAAAbKpd"
         loading="lazy"
         {...restProps}
       />
@@ -79,6 +84,23 @@ export const mdxComponents = {
       {...props}
     />
   ),
+
+  table: ({ children }: MarkdownComponentProps) => (
+    <div className="w-full overflow-auto mb-4">
+      <Table>{children}</Table>
+    </div>
+  ),
+  thead: ({ children }: MarkdownComponentProps) =>
+    <TableHeader>{children}</TableHeader>,
+  tbody: ({ children }: MarkdownComponentProps) =>
+    <TableBody>{children}</TableBody>,
+  tr: ({ children }: MarkdownComponentProps) =>
+    <TableRow>{children}</TableRow>,
+  th: ({ children }: MarkdownComponentProps) =>
+    <TableHead className="font-bold">{children}</TableHead>,
+  td: ({ children }: MarkdownComponentProps) =>
+    <TableCell>{children}</TableCell>,
+
   a: ({ className, ...props }: React.HTMLAttributes<HTMLAnchorElement>) => (
     <a
       className={cn(
@@ -112,49 +134,33 @@ export const mdxComponents = {
       {...props}
     />
   ),
-  img: OptimizedImage,
   hr: ({ className, ...props }: React.HTMLAttributes<HTMLHRElement>) => (
     <hr className={cn("my-4 md:my-8", className)} {...props} />
   ),
-  table: ({ className, ...props }: React.HTMLAttributes<HTMLTableElement>) => (
-    <div className="my-6 w-full overflow-x-auto">
-      <table className={cn("w-full border-collapse", className)} {...props} />
-    </div>
-  ),
-  tr: ({ className, ...props }: React.HTMLAttributes<HTMLTableRowElement>) => (
-    <tr
-      className={cn("m-0 border-t p-0 even:bg-muted/50", className)}
-      {...props}
-    />
-  ),
-  th: ({ className, ...props }: React.HTMLAttributes<HTMLTableHeaderCellElement>) => (
-    <th
-      className={cn(
-        "border px-4 py-2 text-left font-bold [&[align=center]]:text-center [&[align=right]]:text-right",
+
+  // Code blocks with theme support
+  code: ({ node, inline, className, children, ...props }: MarkdownComponentProps) => {
+    const match = /language-(\w+)/.exec(className || '');
+    return !inline && match ? (
+      <pre className={cn(
+        "mb-4 mt-4 overflow-x-auto rounded-lg p-4",
+        "bg-muted font-mono text-sm"
+      )}>
+        <code className={cn(className, 'hljs', "rounded-lg")} {...props}>
+          {children}
+        </code>
+      </pre>
+    ) : (
+      <code className={cn(
+        "relative rounded px-[0.3rem] py-[0.2rem] font-mono text-sm",
+        "bg-muted text-muted-foreground",
         className
-      )}
-      {...props}
-    />
-  ),
-  td: ({ className, ...props }: React.HTMLAttributes<HTMLTableDataCellElement>) => (
-    <td
-      className={cn(
-        "border px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right",
-        className
-      )}
-      {...props}
-    />
-  ),
-  pre: CodeBlock,
-  code: ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => (
-    <code
-      className={cn(
-        "relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-medium",
-        className
-      )}
-      {...props}
-    />
-  ),
+      )} {...props}>
+        {children}
+      </code>
+    );
+  },
+
   Image: OptimizedImage,
   Callout,
   YouTube,

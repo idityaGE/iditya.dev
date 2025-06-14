@@ -1,7 +1,6 @@
 "use client";
 
 import { MailIcon } from "lucide-react";
-import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Dock, DockIcon } from "@/components/magicui/dock";
@@ -82,16 +81,19 @@ export function ConnectCard() {
       <Dock direction="middle" className="border-0 bg-transparent flex gap-7">
         {SocialLinks.map(({ name, Icon, url }) => (
           <DockIcon key={name}>
-            <Link
+            <a
               href={url}
               aria-label={name}
               className={cn(
                 buttonVariants({ variant: "ghost", size: "icon" }),
                 "size-14 rounded-full",
               )}
+              target="_blank"
+              rel="noopener noreferrer"
+              title={name}
             >
               <Icon />
-            </Link>
+            </a>
           </DockIcon>
         ))}
       </Dock>

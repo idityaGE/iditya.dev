@@ -1,16 +1,15 @@
 import "@/styles/globals.css";
-import "@/styles/code.css"
 import { ThemeProvider } from "@/components/theme/theme-provider"
 import { Navbar } from "@/components/navbar/navbar";
 import Image from "next/image";
-import localFont from "next/font/local";
-// import { GeistSans } from "geist/font/sans";
-// import { GeistMono } from "geist/font/mono";
+import { Inter } from "next/font/google";
 
-const fontHeading = localFont({
-  src: "../assets/fonts/CalSans-SemiBold.woff2",
+const fontHeading = Inter({
+  subsets: ["latin"],
   variable: "--font-heading",
+  display: "swap",
 });
+
 
 export default function RootLayout({
   children,

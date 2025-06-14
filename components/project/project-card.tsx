@@ -3,7 +3,7 @@ import type { ProjectCardProps } from "@/types";
 import Link from 'next/link';
 import Image from 'next/image';
 
-const getTypeColor = (type: string): string => {
+export const getTypeColor = (type: string): string => {
   const colorMap: Record<string, string> = {
     personal: 'bg-sky-600',
     freelance: 'bg-emerald-600',
@@ -84,7 +84,7 @@ export const ProjectCard = ({
         {/* Buttons - Always at bottom */}
         <div className="flex flex-wrap items-center gap-2 mt-auto flex-shrink-0">
           {githubLink && (
-            <Link
+            <a
               href={githubLink}
               target="_blank"
               rel="noopener noreferrer"
@@ -93,10 +93,10 @@ export const ProjectCard = ({
             >
               <Github className="mr-2 h-5 w-4" />
               GitHub
-            </Link>
+            </a>
           )}
           {liveLink && (
-            <Link
+            <a
               href={liveLink}
               target="_blank"
               rel="noopener noreferrer"
@@ -105,7 +105,7 @@ export const ProjectCard = ({
             >
               <ExternalLink className="mr-2 h-4 w-4 transition-transform duration-300 group-hover/demo:rotate-45" />
               Live Demo
-            </Link>
+            </a>
           )}
         </div>
       </div>

@@ -4,6 +4,7 @@ import rehypeHighlight from 'rehype-highlight'
 import remarkGfm from 'remark-gfm'
 import remarkFrontmatter from 'remark-frontmatter'
 import remarkMdxFrontmatter from 'remark-mdx-frontmatter'
+import { remarkMdxToc } from "remark-mdx-toc";
 
 const nextConfig: NextConfig = {
   pageExtensions: ['mdx', 'tsx', 'ts'],
@@ -22,7 +23,8 @@ const withMDX = createMDX({
     remarkPlugins: [
       remarkGfm,
       remarkFrontmatter,
-      [remarkMdxFrontmatter, { name: "metadata" }]
+      [remarkMdxFrontmatter, { name: "metadata" }],
+      [remarkMdxToc, { name: "toc" }]
     ],
     rehypePlugins: [
       rehypeHighlight

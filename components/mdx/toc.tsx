@@ -21,7 +21,7 @@ const TableOfContentsItem = memo(function TableOfContentsItem({
       <Link
         href={`#${id}`}
         className={cn(
-          "block transition-colors py-0.5 text-[0.85rem] leading-5",
+          "block transition-colors py-0.5 text-[0.85rem] leading-5 text-ellipsis",
           isActive
             ? "text-primary font-semibold"
             : "text-muted-foreground hover:text-primary",
@@ -44,9 +44,10 @@ const TableOfContentsItem = memo(function TableOfContentsItem({
           }
         }}
       >
-        {item.value.length > 40
+        {/* {item.value.length > 40
           ? `${item.value.slice(0, 40)}...`
-          : item.value}
+          : item.value} */}
+          {item.value}
       </Link>
 
       {item.children && item.children.length > 0 && (
@@ -116,7 +117,7 @@ export function TableOfContents({ toc }: { toc: TocEntry[] }) {
   }
 
   return (
-    <div>
+    <div className='max-w-[300px]'>
       <h2 className="text-md font-bold mb-3">Table of Contents</h2>
       <nav aria-label="Table of contents">
         <ul className="space-y-1 max-h-[70vh] overflow-y-auto pr-2">

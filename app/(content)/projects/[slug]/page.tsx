@@ -3,6 +3,51 @@ import { ProjectCard2 } from "@/components/project/project-card2"
 import { ArrowLeft } from 'lucide-react';
 import Link from "next/link";
 import { ProjectData } from '@/config/project.config';
+import type { Metadata } from "next";
+import { siteConfig } from "@/config/site.config";
+
+const getProjectFromSlug = (slug: string) => {
+  return ProjectData.find((project) => project.slug === slug);
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const project = getProjectFromSlug(slug);
+
+  if (!project) return {};
+
+  return {
+    title: `${project.title} | ${siteConfig.name} | ${siteConfig.creator.name}`,
+    description: project.description,
+    keywords: [...project.techStack, ...siteConfig.keywords, project.title],
+    openGraph: {
+      title: `${project.title} | ${siteConfig.name} | ${siteConfig.creator.name}`,
+      description: project.description,
+      images: [
+        {
+          url: project.images[0],
+          width: 1200,
+          height: 630,
+          alt: project.title,
+        },
+      ],
+    },
+    twitter: {
+      title: `${project.title} | ${siteConfig.name}`,
+      description: project.description,
+      images: [
+        {
+          url: project.images[0],
+          alt: project.title,
+        },
+      ],
+    },
+  };
+}
 
 export default async function Page({
   params,
@@ -12,7 +57,7 @@ export default async function Page({
   const { slug } = await params
   const { default: ProjectMDX } = await import(`@/content/projects/${slug}.mdx`)
 
-  const project = ProjectData.find((proj) => proj.slug === slug)
+  const project = getProjectFromSlug(slug)
 
   if (!project) {
     return (

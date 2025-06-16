@@ -1,8 +1,11 @@
-import "@/styles/globals.css";
+import type { Metadata } from "next/types";
 import { ThemeProvider } from "@/components/theme/theme-provider"
 import { Navbar } from "@/components/navbar/navbar";
 import Image from "next/image";
 import { Inter } from "next/font/google";
+import { siteConfig } from "@/config/site.config";
+import { Analytics } from '@vercel/analytics/next';
+import "@/styles/globals.css";
 
 const fontHeading = Inter({
   subsets: ["latin"],
@@ -10,6 +13,53 @@ const fontHeading = Inter({
   display: "swap",
 });
 
+export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.siteUrl),
+  title: siteConfig.title,
+  description: siteConfig.description,
+  keywords: siteConfig.keywords,
+  authors: [
+    {
+      name: siteConfig.creator.name,
+      url: siteConfig.creator.url,
+    },
+  ],
+  creator: siteConfig.creator.name,
+
+  icons: siteConfig.favicon,
+
+  // OpenGraph metadata
+  openGraph: {
+    title: siteConfig.title,
+    description: siteConfig.description,
+    url: siteConfig.siteUrl,
+    siteName: siteConfig.name,
+    images: [
+      {
+        url: siteConfig.ogImage,
+        width: 1800,
+        height: 1000,
+        alt: siteConfig.name,
+      },
+    ],
+    type: "website",
+    locale: "en_US",
+  },
+
+  // Twitter metadata
+  twitter: {
+    card: "summary_large_image",
+    site: siteConfig.creator.url,
+    title: siteConfig.title,
+    description: siteConfig.description,
+    images: {
+      url: siteConfig.ogImage,
+      width: 1800,
+      height: 1000,
+      alt: siteConfig.name,
+    },
+  },
+};
 
 export default function RootLayout({
   children,
@@ -42,6 +92,7 @@ export default function RootLayout({
             </div>
           </div>
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );

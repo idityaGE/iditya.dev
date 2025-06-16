@@ -3,6 +3,58 @@ import { TableOfContents } from '@/components/mdx/toc';
 import { SeeAllBlogs } from "@/components/blog/see-all-blogs";
 import Image from "next/image";
 import { Separator } from "@/components/ui/separator";
+import type { Metadata } from "next";
+import { siteConfig } from "@/config/site.config";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const { metadata } = await import(`@/content/blogs/${slug}.mdx`);
+
+  if (!metadata) return {};
+
+  return {
+    title: `${metadata.title} | ${siteConfig.name} | ${siteConfig.creator.name}`,
+    description: metadata.excerpt || metadata.description,
+    keywords: [...(metadata.tags || []), ...siteConfig.keywords],
+    authors: [
+      {
+        name: metadata.author || siteConfig.creator.name,
+        url: siteConfig.creator.url,
+      },
+    ],
+    openGraph: {
+      title: `${metadata.title} | ${siteConfig.name} | ${siteConfig.creator.name}`,
+      description: metadata.excerpt || metadata.description,
+      type: 'article',
+      publishedTime: metadata.date,
+      authors: [metadata.author || siteConfig.creator.name],
+      tags: metadata.tags,
+      images: [
+        {
+          url: metadata.coverImage || siteConfig.ogImage,
+          width: 1200,
+          height: 630,
+          alt: metadata.title,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${metadata.title} | ${siteConfig.name}`,
+      description: metadata.excerpt || metadata.description,
+      images: [
+        {
+          url: metadata.coverImage || siteConfig.ogImage,
+          alt: metadata.title,
+        },
+      ],
+    },
+  };
+}
 
 export default async function Page({
   params,

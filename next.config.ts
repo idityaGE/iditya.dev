@@ -28,7 +28,7 @@ const withMDX = createMDX({
       [remarkMdxToc, { name: "toc" }]
     ],
     rehypePlugins: [
-      rehypeHighlight
+      rehypeHighlight,
     ],
   },
 });

@@ -34,7 +34,7 @@ const socialLinks = [
 export function AboutPage() {
   return (
     <div className="min-h-screen pt-6 pb-12">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-1">
         {/* Hero Section */}
         <div className="flex flex-col md:flex-row gap-8 mb-12">
           <div className="md:w-1/3 flex flex-col items-center">

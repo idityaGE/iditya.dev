@@ -24,6 +24,7 @@ const withMDX = createMDX({
       remarkGfm,
       remarkFrontmatter,
       [remarkMdxFrontmatter, { name: "metadata" }],
+      //@ts-ignore
       [remarkMdxToc, { name: "toc" }]
     ],
     rehypePlugins: [

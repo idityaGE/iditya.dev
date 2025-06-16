@@ -23,6 +23,7 @@ export const siteConfig = {
   creator: {
     name: "Aditya",
     url: BASE_URL,
+    email: "adiimaurya02@gmail.com"
   },
   ogImage: "https://res.cloudinary.com/dwdbqwqxk/image/upload/v1732530896/Hi_vf73cf.png",
   links: {

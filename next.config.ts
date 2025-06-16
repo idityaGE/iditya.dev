@@ -15,7 +15,7 @@ const nextConfig: NextConfig = {
         hostname: "*",
       },
     ],
-  },
+  }
 };
 
 const withMDX = createMDX({

@@ -68,6 +68,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <link rel="alternate" type="application/rss+xml" title={`${siteConfig.name} RSS Feed`} href="/rss.xml" />
+        <link rel="alternate" type="application/atom+xml" title={`${siteConfig.name} Atom Feed`} href="/atom.xml" />
+        <link rel="alternate" type="application/json" title={`${siteConfig.name} JSON Feed`} href="/rss.json" />
+        <link rel="alternate" type="application/rss+xml" title={`${siteConfig.name} Blogs RSS Feed`} href="/blogs/rss.xml" />
+        <link rel="alternate" type="application/rss+xml" title={`${siteConfig.name} Projects RSS Feed`} href="/projects/rss.xml" />
+      </head>
       <body
         className={`${fontHeading.variable} font-sans antialiased`}
       >

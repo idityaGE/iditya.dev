@@ -22,6 +22,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cobe": "^0.6.4",
+    "feed": "^5.1.0",
     "lucide-react": "^0.515.0",
     "motion": "^12.18.1",
     "next": "15.3.3",

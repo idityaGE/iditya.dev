@@ -1,12 +1,4 @@
-import Link from "next/link"
-
-type EducationListProps = {
-  year: string
-  title: string
-  institution: string,
-  location: string
-  link?: string
-}
+import type { EducationListProps } from "@/types"
 
 export const EducationList = ({
   year,
@@ -22,9 +14,9 @@ export const EducationList = ({
       <h3 className="text-lg font-semibold mt-2">{title}</h3>
       <p className="text-base text-muted-foreground">
         {link ? (
-          <Link target="_blank" href={link} className="hover:text-primary transition-colors" about={title}>
+          <a target="_blank" href={link} className="hover:text-primary transition-colors" about={title} rel="noopener noreferrer">
             {institution}
-          </Link>
+          </a>
         ) : (
           institution
         )}

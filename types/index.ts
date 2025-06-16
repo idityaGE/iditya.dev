@@ -17,3 +17,11 @@ export interface BlogPostMeta {
   excerpt: string;
   coverImage: string;
 };
+
+export interface EducationListProps {
+  year: string
+  title: string
+  institution: string
+  location: string
+  link?: string
+}

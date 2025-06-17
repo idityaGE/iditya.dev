@@ -8,7 +8,7 @@ export function CommandBtn({
   className?: string;
 }) {
   return (
-    <div className={className}>
+    <div className={`flex-1 ${className}`}>
       <ScriptCopyBtn
         showMultiplePackageOptions={true}
         codeLanguage="shell"

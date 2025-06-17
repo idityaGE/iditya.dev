@@ -52,6 +52,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     em: ({ children }) => <em className={styles.em}>{children}</em>,
     del: ({ children }) => <del className={styles.del}>{children}</del>,
     pre: ({ children }) => <pre className={styles.pre}>{children}</pre>,
+    hr: () => <hr className="my-4" />,
 
     code: ({ children, className }) => {
       const isInlineCode = typeof children === 'string';

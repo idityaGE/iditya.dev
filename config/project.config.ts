@@ -5,6 +5,7 @@ export const ProjectData = [
     slug: "hyperdigital",
     description: "A full-service digital agency offering web development, mobile applications, UI/UX design, and digital marketing solutions. We help businesses transform their digital presence with cutting-edge technology and strategic expertise tailored to their unique needs and goals.",
     images: [
+      "https://ik.imagekit.io/nnp1iszdfe/Portfolio/project-media/hyper.png?updatedAt=1750187264242",
       "https://res.cloudinary.com/dwdbqwqxk/image/upload/v1743961458/Screenshot_2025-04-05_195352_txevuu.png",
       "https://res.cloudinary.com/dwdbqwqxk/image/upload/v1743961456/Screenshot_2025-04-05_195334_elsa83.png",
     ],
@@ -25,6 +26,7 @@ export const ProjectData = [
     slug: "blind-chat",
     description: "An open-source web app for college students to connect using their official email IDs. Easily customizable for any college with a simple config file.",
     images: [
+      "https://ik.imagekit.io/nnp1iszdfe/Portfolio/project-media/blindchat.png?updatedAt=1750187264225",
       "https://res.cloudinary.com/dwdbqwqxk/image/upload/v1735418264/Screenshot_2024-12-29_013419_wxu05k.png",
     ],
     githubLink: "https://github.com/idityaGE/Blind-Chat",
@@ -47,6 +49,7 @@ export const ProjectData = [
     slug: "solana-token-launchpad",
     description: "A powerful web application that enables users to launch their own tokens on the Solana blockchain with complete metadata support.",
     images: [
+      "https://ik.imagekit.io/nnp1iszdfe/Portfolio/project-media/solana.png?updatedAt=1750187263196",
       "https://res.cloudinary.com/dwdbqwqxk/image/upload/v1742220433/Screenshot_2025-03-17_142015_wbvw1o.png",
     ],
     githubLink: "https://github.com/idityaGE/Solana-Token-Lauchpad",
@@ -67,6 +70,7 @@ export const ProjectData = [
     slug: "bloomknot",
     description: "A comprehensive wedding planning platform where couples can explore a wide variety of options for their special day. From venues to vendors, customize every detail while our admin team handles all the logistics and coordination to ensure a stress-free wedding experience.",
     images: [
+      "https://ik.imagekit.io/nnp1iszdfe/Portfolio/project-media/bloom.png?updatedAt=1750187264785",
       "https://res.cloudinary.com/dwdbqwqxk/image/upload/v1743961520/Screenshot_2025-04-06_231456_vreduh.png",
     ],
     // githubLink: "https://github.com/idityaGE/BloomKnot",
@@ -89,6 +93,7 @@ export const ProjectData = [
     slug: "zapier",
     description: "An open-source app to automate workflows with a trigger-action framework. Easily connect apps, customize integrations, and boost productivity. Perfect for seamless task automation and workflow management.",
     images: [
+      "https://ik.imagekit.io/nnp1iszdfe/Portfolio/project-media/zapppp.png?updatedAt=1750187837025",
       "https://res.cloudinary.com/dwdbqwqxk/image/upload/v1735663950/Screenshot_2024-12-31_213824_jz4kh8.png",
     ],
     githubLink: "https://github.com/idityaGE/_zapier",
@@ -108,11 +113,31 @@ export const ProjectData = [
     ]
   },
   {
+    title: "Portfolio",
+    type: "personal",
+    slug: "portfolio",
+    description: "A sleek, minimalist portfolio template with dynamic animations, dark/light mode, and responsive design. Features include project showcases, interactive skill CLI and performance optimizations for lightning-fast load times.",
+    images: [
+      "https://ik.imagekit.io/nnp1iszdfe/images/yehhh.png?updatedAt=1750185325023",
+    ],
+    liveLink: "https://old.iditya.tech/",
+    githubLink: "https://github.com/idityaGE/old.iditya.tech",
+    techStack: [
+      "React",
+      "TailwindCSS",
+      "Shadcn UI",
+      "Motion",
+      "React Markdown",
+      "React Router Dom"
+    ]
+  },
+  {
     title: "LST Solana Demo",
     type: "personal",
     slug: "lst-solana-demo",
     description: "Stake SOL, get lSOL. Simple liquid staking with instant redemption.",
     images: [
+      "https://ik.imagekit.io/nnp1iszdfe/Portfolio/project-media/lst.png?updatedAt=1750188051386",
       "https://res.cloudinary.com/dwdbqwqxk/image/upload/v1746219693/Screenshot_2025-05-03_022609_pcimso.png",
     ],
     githubLink: "https://github.com/idityaGE/WEB-3/tree/main/13-LST/platform-code",
@@ -136,6 +161,7 @@ export const ProjectData = [
     slug: "github-bento-stats",
     description: "A React component to display GitHub stats in a bento-style layout.",
     images: [
+      "https://ik.imagekit.io/nnp1iszdfe/Portfolio/project-media/gwww.png?updatedAt=1750187680674",
       "https://res.cloudinary.com/dwdbqwqxk/image/upload/v1740995404/Screenshot_2025-03-03_030157_kq3hmb.png",
     ],
     githubLink: "https://github.com/idityaGE/Github-bento-stats.git",
@@ -154,6 +180,7 @@ export const ProjectData = [
     slug: "assignment-code-to-pdf",
     description: "Converts questions, codes and outputs to PDF with syntax highlighting. Built with Next.js, TypeScript, html2canvas, jsPDF, and Tailwind CSS.",
     images: [
+      "https://ik.imagekit.io/nnp1iszdfe/Portfolio/project-media/assign.png?updatedAt=1750187507765",
       "https://res.cloudinary.com/dwdbqwqxk/image/upload/v1735418523/Screenshot_2024-12-29_021122_ewow6o.png",
       "https://res.cloudinary.com/dwdbqwqxk/image/upload/v1730213842/img3_z2yp9j.png"
     ],

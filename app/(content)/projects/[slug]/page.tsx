@@ -56,7 +56,6 @@ export default async function Page({
 }) {
   const { slug } = await params
   const { default: ProjectMDX } = await import(`@/content/projects/${slug}.mdx`)
-
   const project = getProjectFromSlug(slug)
 
   if (!project) {

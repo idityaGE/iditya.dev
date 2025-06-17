@@ -3,6 +3,12 @@ import { ProjectData } from "@/config/project.config";
 import { LinkData } from "@/config/links.config";
 import { Mail, AlertTriangle } from "lucide-react";
 import Link from "next/link";
+import { Rss } from "lucide-react"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
 
 const getTwitterUsername = (url: string): string => {
   return url.split("/").pop() || "";
@@ -14,7 +20,20 @@ const Projects = () => {
   return (
     <div className="px-2">
       <header className="mb-9">
-        <h1 className="text-3xl font-bold mb-7">Projects</h1>
+
+        <div className="flex items-center justify-between mb-4">
+          <h1 className="text-3xl font-bold">Projects</h1>
+          <Tooltip delayDuration={200}>
+            <TooltipTrigger>
+              <Link href="/projects/rss.xml" target="_blank" rel="noopener noreferrer">
+                <Rss size={24} aria-hidden="true" />
+              </Link>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>Subscribe to RSS Feed</p>
+            </TooltipContent>
+          </Tooltip>
+        </div>
 
         <p className="text-base text-muted-foreground mb-5">
           I love building side projects that solve either my own or someone else's problems.

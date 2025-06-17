@@ -1,9 +1,10 @@
-"use client";
-
 import Link from "next/link";
 import { ArrowRight, Calendar, User } from "lucide-react";
+import { getAllBlogPostsMeta } from "@/lib/mdx";
 
-export const BlogCard = () => {
+export const BlogCard = async () => {
+  const blogs = await getAllBlogPostsMeta();
+  
   return (
     <div className="relative">
       <Link href="/blogs" className="h-full">
@@ -19,25 +20,19 @@ export const BlogCard = () => {
             </div>
 
             <div className="space-y-3">
-              <div className="border-l-2 border-primary/20 pl-3">
-                <h4 className="text-sm font-medium">Building Modern Web Applications</h4>
-                <div className="flex items-center gap-2 text-xs text-muted-foreground mt-1">
-                  <Calendar className="h-3 w-3" />
-                  <span>June 10, 2025</span>
-                  <User className="h-3 w-3 ml-2" />
-                  <span>5 min read</span>
-                </div>
-              </div>
 
-              <div className="border-l-2 border-primary/20 pl-3">
-                <h4 className="text-sm font-medium">React Best Practices</h4>
-                <div className="flex items-center gap-2 text-xs text-muted-foreground mt-1">
-                  <Calendar className="h-3 w-3" />
-                  <span>June 8, 2025</span>
-                  <User className="h-3 w-3 ml-2" />
-                  <span>3 min read</span>
+              {blogs.slice(0, 2).map(blog => (
+                <div key={blog.slug} className="border-l-2 border-primary/20 pl-3">
+                  <h4 className="text-sm font-medium">{blog.title.length > 40 ? blog.title.slice(0, 40) + "..." : blog.title}</h4>
+                  <div className="flex items-center gap-2 text-xs text-muted-foreground mt-1">
+                    <Calendar className="h-3 w-3" />
+                    <span>{new Date(blog.date).toLocaleDateString()}</span>
+                    <User className="h-3 w-3 ml-2" />
+                    <span>{blog.author}</span>
+                  </div>
                 </div>
-              </div>
+              ))}
+
             </div>
           </div>
 

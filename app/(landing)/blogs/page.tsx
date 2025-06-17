@@ -1,14 +1,28 @@
-import React from 'react'
 import { getAllBlogPostsMeta } from '@/lib/mdx'
 import { BlogCard } from '@/components/blog/blog-card'
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
+import { Rss } from 'lucide-react'
+import Link from 'next/link'
 
 const Blogs = async () => {
   const posts = await getAllBlogPostsMeta()
 
   return (
     <div className="container px-1.5">
-      <div className="max-w-3xl mb-8">
-        <h1 className="text-3xl md:text-4xl font-bold mb-3">Blog Posts</h1>
+      <div className="mb-8">
+        <div className="flex items-center justify-between mb-4">
+          <h1 className="text-3xl font-bold">Blogs</h1>
+          <Tooltip delayDuration={200}>
+            <TooltipTrigger>
+              <Link href="/blogs/rss.xml" target="_blank" rel="noopener noreferrer">
+                <Rss size={24} aria-hidden="true" />
+              </Link>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>Subscribe to RSS Feed</p>
+            </TooltipContent>
+          </Tooltip>
+        </div>
         <p className="text-md text-muted-foreground">
           I like to write when I get stuck into some problem or learn something new which might help others.
           Here you'll find my thoughts, solutions, and discoveries from my coding journey.

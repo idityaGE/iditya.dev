@@ -16,6 +16,7 @@ export interface BlogPostMeta {
   author: string;
   excerpt: string;
   coverImage: string;
+  published: boolean
 };
 
 export interface EducationListProps {

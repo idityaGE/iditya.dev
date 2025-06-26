@@ -34,6 +34,7 @@ export async function getBlogPostMetaBySlug(slug: string): Promise<BlogPostMetaW
       author: metadata.author || "",
       excerpt: metadata.excerpt || '',
       coverImage: metadata.coverImage || "",
+      published: metadata.published || false
     };
   } catch (error) {
     console.error(`Failed to load metadata for ${slug}:`, error);
@@ -48,6 +49,6 @@ export async function getAllBlogPostsMeta() {
   );
 
   return posts
-    .filter((post): post is BlogPostMetaWithSlug => post !== null)
+    .filter((post): post is BlogPostMetaWithSlug => post !== null && post.published == true)
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 }

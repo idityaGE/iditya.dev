@@ -57,7 +57,7 @@ export function OgLink({ url }: { url: string }) {
         href={url}
         target="_blank"
         rel="noopener noreferrer"
-        className="text-blue-500 hover:text-blue-700 underline flex items-center gap-1.5"
+        className="text-blue-500 hover:text-blue-700 underline flex items-center gap-2 my-6"
       >
         <Link2 size={16} />
         <span>{url}</span>
@@ -112,43 +112,45 @@ export function OgLink({ url }: { url: string }) {
 
 function OgLinkSkeleton({ url, domain }: { url: string; domain: string }) {
   return (
-    <Card className="overflow-hidden border my-6 animate-pulse">
-      <div className="flex items-stretch min-h-[80px] px-3 md:px-6">
-        <CardContent className="flex-1 min-w-0 py-2 px-1 flex flex-col justify-center">
-          <div className="space-y-1.5">
-            <div className="flex items-center text-xs text-muted-foreground">
-              <span className="flex items-center gap-1 truncate">
-                <Link2 size={12} />
-                <span className="truncate">{domain || url}</span>
-              </span>
-              <ExternalLink size={10} className="ml-1 opacity-70 flex-shrink-0" />
+    <a href={url} target="_blank" rel="noopener noreferrer" className="no-underline block">
+      <Card className="overflow-hidden border my-6 animate-pulse">
+        <div className="flex items-stretch min-h-[80px] px-3 md:px-6">
+          <CardContent className="flex-1 min-w-0 py-2 px-1 flex flex-col justify-center">
+            <div className="space-y-1.5">
+              <div className="flex items-center text-xs text-muted-foreground">
+                <span className="flex items-center gap-1 truncate">
+                  <Link2 size={12} />
+                  <span className="truncate">{domain || url}</span>
+                </span>
+                <ExternalLink size={10} className="ml-1 opacity-70 flex-shrink-0" />
+              </div>
+              <Skeleton className="h-4 w-full" />
+              <Skeleton className="h-3 w-5/6" />
+              <Skeleton className="h-3 w-4/5" />
             </div>
-            <Skeleton className="h-4 w-full" />
-            <Skeleton className="h-3 w-5/6" />
-            <Skeleton className="h-3 w-4/5" />
-          </div>
-        </CardContent>
+          </CardContent>
 
-        <div className="relative w-24 sm:w-28 md:w-32 lg:w-36 flex-shrink-0 m-2 ml-0 overflow-hidden rounded-md bg-muted">
-          <div className="absolute inset-0 flex items-center justify-center text-muted-foreground/30">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <rect width="18" height="18" x="3" y="3" rx="2" ry="2"></rect>
-              <circle cx="9" cy="9" r="2"></circle>
-              <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"></path>
-            </svg>
+          <div className="relative w-24 sm:w-28 md:w-32 lg:w-36 flex-shrink-0 m-2 ml-0 overflow-hidden rounded-md bg-muted">
+            <div className="absolute inset-0 flex items-center justify-center text-muted-foreground/30">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <rect width="18" height="18" x="3" y="3" rx="2" ry="2"></rect>
+                <circle cx="9" cy="9" r="2"></circle>
+                <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"></path>
+              </svg>
+            </div>
           </div>
         </div>
-      </div>
-    </Card>
+      </Card>
+    </a>
   );
 }

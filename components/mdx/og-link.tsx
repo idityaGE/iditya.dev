@@ -72,22 +72,22 @@ export function OgLink({ url }: { url: string }) {
       rel="noopener noreferrer"
       className="no-underline block my-6"
     >
-      <Card className="overflow-hidden border hover:border-muted-foreground/40 transition-colors duration-150">
-        <div className="flex flex-row items-center md:px-5">
-          <CardContent className="flex-1 flex flex-col justify-between px-4">
-            <div>
-              <div className="flex items-center text-sm text-muted-foreground mb-3">
-                <span className="flex items-center gap-1.5">
-                  <Link2 size={14} />
-                  {ogData.siteName || domain}
+      <Card className="overflow-hidden border hover:border-muted-foreground/40 hover:shadow-md transition-all duration-200">
+        <div className="flex items-stretch min-h-[80px] px-2 md:px-6">
+          <CardContent className="flex-1 min-w-0 px-1 flex flex-col justify-center">
+            <div className="space-y-1.5">
+              <div className="flex items-center text-xs text-muted-foreground">
+                <span className="flex items-center gap-1 truncate">
+                  <Link2 size={12} />
+                  <span className="truncate">{ogData.siteName || domain}</span>
                 </span>
-                <ExternalLink size={12} className="ml-1.5 opacity-70" />
+                <ExternalLink size={10} className="ml-1 opacity-70 flex-shrink-0" />
               </div>
-              <h3 className="font-medium text-lg mb-2 line-clamp-2">
+              <h3 className="font-semibold text-sm sm:text-base leading-tight line-clamp-1 text-foreground">
                 {ogData.title || url}
               </h3>
               {ogData.description && (
-                <p className="text-sm text-muted-foreground line-clamp-2">
+                <p className="text-xs sm:text-sm text-muted-foreground line-clamp-2 leading-relaxed">
                   {ogData.description}
                 </p>
               )}
@@ -95,7 +95,7 @@ export function OgLink({ url }: { url: string }) {
           </CardContent>
 
           {ogData.image && (
-            <div className="relative w-1/3 h-24 sm:h-32 mr-4 flex-shrink-0 overflow-hidden rounded-md">
+            <div className="relative w-24 sm:w-28 md:w-32 lg:w-36 flex-shrink-0 m-2 ml-1 overflow-hidden rounded-md">
               <Image
                 src={ogData.image}
                 alt={ogData.title || url}
@@ -113,27 +113,28 @@ export function OgLink({ url }: { url: string }) {
 function OgLinkSkeleton({ url, domain }: { url: string; domain: string }) {
   return (
     <Card className="overflow-hidden border my-6 animate-pulse">
-      <div className="flex flex-row items-center">
-        <CardContent className="flex-1 flex flex-col justify-between p-4">
-          <div>
-            <div className="flex items-center text-sm text-muted-foreground mb-3">
-              <span className="flex items-center gap-1.5">
-                <Link2 size={14} />
-                {domain || url}
+      <div className="flex items-stretch min-h-[80px] px-3 md:px-6">
+        <CardContent className="flex-1 min-w-0 py-2 px-1 flex flex-col justify-center">
+          <div className="space-y-1.5">
+            <div className="flex items-center text-xs text-muted-foreground">
+              <span className="flex items-center gap-1 truncate">
+                <Link2 size={12} />
+                <span className="truncate">{domain || url}</span>
               </span>
-              <ExternalLink size={12} className="ml-1.5 opacity-70" />
+              <ExternalLink size={10} className="ml-1 opacity-70 flex-shrink-0" />
             </div>
-            <Skeleton className="h-6 w-full mb-2" />
-            <Skeleton className="h-4 w-4/5" />
+            <Skeleton className="h-4 w-full" />
+            <Skeleton className="h-3 w-5/6" />
+            <Skeleton className="h-3 w-4/5" />
           </div>
         </CardContent>
 
-        <div className="relative w-1/3 h-24 sm:h-32 mr-4 flex-shrink-0 overflow-hidden rounded-md bg-muted">
+        <div className="relative w-24 sm:w-28 md:w-32 lg:w-36 flex-shrink-0 m-2 ml-0 overflow-hidden rounded-md bg-muted">
           <div className="absolute inset-0 flex items-center justify-center text-muted-foreground/30">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="32"
-              height="32"
+              width="24"
+              height="24"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"

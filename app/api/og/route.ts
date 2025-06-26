@@ -24,7 +24,6 @@ export async function GET(request: Request) {
     }
 
     const html = await response.text();
-    console.log("Html ", html)
     const root = parse(html);
 
     // Extract Open Graph metadata

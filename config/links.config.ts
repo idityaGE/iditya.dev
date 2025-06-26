@@ -5,7 +5,7 @@ export const LinkData = {
   },
   twitter: "https://twitter.com/idityage",
   github: "https://github.com/idityaGE",
-  linkedin: "https://www.linkedin.com/in/iditya/",
+  linkedin: "https://www.linkedin.com/in/idityage/",
   gmail: "adiimaurya02@gamil.com",
   mail: "mailto:am44910606@gmail.com?subject=Hello%20!"
 }

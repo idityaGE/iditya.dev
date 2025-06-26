@@ -4,8 +4,10 @@ import { YouTube } from "@/components/mdx/youtube";
 import { CommandBtn } from "@/components/mdx/command-btn";
 import Image from 'next/image'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import "@/styles/code.css"
 import { HeadingWithAnchor } from "@/components/mdx/heading-with-anchor";
+import { OgLink } from "@/components/mdx/og-link";
+
+import "@/styles/code.css"
 
 //* ref: https://www.gatsbyjs.com/docs/how-to/routing/customizing-components/
 
@@ -32,6 +34,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     Callout,
     YouTube,
     CommandBtn,
+    OgLink,
     h1: ({ children }) => <HeadingWithAnchor level={1} className={styles.h1}>{children}</HeadingWithAnchor>,
     h2: ({ children }) => <HeadingWithAnchor level={2} className={styles.h2}>{children}</HeadingWithAnchor>,
     h3: ({ children }) => <HeadingWithAnchor level={3} className={styles.h3}>{children}</HeadingWithAnchor>,

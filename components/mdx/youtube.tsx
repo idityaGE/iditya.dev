@@ -17,7 +17,7 @@ export const YouTube = ({ id }: { id: string }) => {
       >
         <iframe
           title="YouTube video"
-          src={`https://www.youtube.com/embed/${id}`}
+          src={`https://www.youtube.com/embed/${id}?autoplay=1&mute=1`}
           style={{
             position: "absolute",
             top: 0,
@@ -25,11 +25,10 @@ export const YouTube = ({ id }: { id: string }) => {
             width: "100%",
             height: "100%",
           }}
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; muted"
           allowFullScreen
         />
       </div>
     </div>
   );
 };
-

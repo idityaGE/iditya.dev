@@ -1,21 +1,9 @@
 import Image from "next/image"
-import { NotionAPI } from "notion-client"
-
-const getPage = async (pageId: string) => {
-  const notion = new NotionAPI()
-  try {
-    const page = await notion.getPage(pageId)
-    return page
-  } catch (error) {
-    console.error("Error fetching page:", error)
-    return null
-  }
-}
+import { convertPage } from "@/server/notion-to-mdx";
 
 const ToDoPage = async () => {
-  const pageId = "23967c3fabda806f826aef58366068e3"
-  const page = await getPage(pageId)
-  console.log("Fetched page:", JSON.stringify(page, null, 2))
+  const pageId = process.env.NOTION_PAGE_ID || '23967c3fabda806f826aef58366068e3';
+  const content = await convertPage(pageId);
 
   return (
     <div className="w-full max-w-3xl mx-auto">
@@ -26,7 +14,7 @@ const ToDoPage = async () => {
         height={630}
         className="w-full rounded-lg mb-6"
       />
-      <p className="px-3 py-1.5 font-semibold rounded text-xs bg-secondary inline-block self-start mb-2">
+      <p className="px-3 py-1.5 font-semibold rounded text-xs bg-secondary inline-block self-start mb-4">
         {new Date().toLocaleDateString("en-US", {
           month: "long",
           day: "numeric",

@@ -1,11 +1,23 @@
 import { convertPage } from "@/server/notion-to-mdx";
+import { MDXRemote } from 'next-mdx-remote-client/rsc'
+import { useMDXComponents } from "@/mdx-components";
+import type { MDXRemoteOptions } from "next-mdx-remote-client/rsc";
+import remarkGfm from 'remark-gfm'
+
 
 const ToDoPage = async () => {
   const pageId = process.env.NOTION_PAGE_ID || '23967c3fabda806f826aef58366068e3';
+  const components = useMDXComponents({});
+  const options: MDXRemoteOptions = {
+    mdxOptions: {
+      remarkPlugins: [
+        remarkGfm,
+      ],
+    }
+  }
 
   try {
-    const getComponent = await convertPage(pageId);
-    const Todo = await getComponent();
+    const content = await convertPage(pageId);
 
     return (
       <div className="w-full max-w-3xl mx-auto">
@@ -24,7 +36,11 @@ const ToDoPage = async () => {
           })}
         </p>
         <h1 className="text-4xl font-extrabold mb-4">To-Do</h1>
-        <Todo />
+        <MDXRemote
+          components={components}
+          source={content}
+          options={options}
+        />
       </div>
     );
   } catch (error) {

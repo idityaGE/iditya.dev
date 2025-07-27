@@ -5,6 +5,8 @@ import type { MDXRemoteOptions } from "next-mdx-remote-client/rsc";
 import remarkGfm from 'remark-gfm'
 // import Image from "next/image";
 
+export const revalidate = 60; // revalidate at most every minute
+
 
 const ToDoPage = async () => {
   const pageId = process.env.NOTION_PAGE_ID || '23967c3fabda806f826aef58366068e3';

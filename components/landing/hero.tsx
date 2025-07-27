@@ -36,7 +36,7 @@ export const Hero = () => {
       <div className='mt-4 flex flex-row'>
         <h6 className='text-base text-muted-foreground'>View my&nbsp;
           <a
-            href="/Adii_Resume.pdf"
+            href="/resume.pdf"
             download="Aditya_Resume.pdf"
             className='underline underline-offset-2 dark:hover:text-white hover:text-black duration-300 font-semibold'
             about="Resume Link"

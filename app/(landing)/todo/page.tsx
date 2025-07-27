@@ -6,7 +6,7 @@ import remarkGfm from 'remark-gfm'
 // import Image from "next/image";
 
 export const revalidate = 60; // revalidate at most every minute
-
+export const dynamic = 'force-dynamic'; // always re-render on request
 
 const ToDoPage = async () => {
   const pageId = process.env.NOTION_PAGE_ID || '23967c3fabda806f826aef58366068e3';

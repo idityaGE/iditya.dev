@@ -30,6 +30,7 @@ export function ScriptCopyBtn({
   const [highlightedCode, setHighlightedCode] = useState("");
   const { theme } = useTheme();
   const command = commandMap[packageManager];
+  const showPackageManagers = packageManagers.length > 1;
 
   useEffect(() => {
     async function loadHighlightedCode() {
@@ -62,13 +63,13 @@ export function ScriptCopyBtn({
   return (
     <div
       className={cn(
-        "mx-auto flex max-w-md items-center justify-center",
+        "flex items-center justify-center",
         className,
       )}
     >
       <div className="w-full space-y-2">
         <div className="mb-2 flex items-center justify-between">
-          {showMultiplePackageOptions && (
+          {showPackageManagers && showMultiplePackageOptions && (
             <div className="relative">
               <div className="inline-flex overflow-hidden rounded-md border border-border text-xs">
                 {packageManagers.map((pm, index) => (
@@ -79,11 +80,10 @@ export function ScriptCopyBtn({
                     <Button
                       variant="ghost"
                       size="sm"
-                      className={`relative rounded-none bg-background px-2 py-1 hover:bg-background ${
-                        packageManager === pm
-                          ? "text-primary"
-                          : "text-muted-foreground"
-                      }`}
+                      className={`relative rounded-none bg-background px-2 py-1 hover:bg-background ${packageManager === pm
+                        ? "text-primary"
+                        : "text-muted-foreground"
+                        }`}
                       onClick={() => setPackageManager(pm)}
                     >
                       {pm}
@@ -110,9 +110,8 @@ export function ScriptCopyBtn({
           <div className="min-w-[300px] grow font-mono">
             {highlightedCode ? (
               <div
-                className={`[&>pre]:overflow-x-auto [&>pre]:rounded-md [&>pre]:p-2 [&>pre]:px-4 [&>pre]:font-mono ${
-                  theme === "dark" ? "dark" : "light"
-                }`}
+                className={`[&>pre]:overflow-x-auto [&>pre]:rounded-md [&>pre]:p-2 [&>pre]:px-4 [&>pre]:font-mono ${theme === "dark" ? "dark" : "light"
+                  }`}
                 dangerouslySetInnerHTML={{ __html: highlightedCode }}
               />
             ) : (
@@ -130,14 +129,12 @@ export function ScriptCopyBtn({
           >
             <span className="sr-only">{copied ? "Copied" : "Copy"}</span>
             <Copy
-              className={`h-4 w-4 transition-all duration-300 ${
-                copied ? "scale-0" : "scale-100"
-              }`}
+              className={`h-4 w-4 transition-all duration-300 ${copied ? "scale-0" : "scale-100"
+                }`}
             />
             <Check
-              className={`absolute inset-0 m-auto h-4 w-4 transition-all duration-300 ${
-                copied ? "scale-100" : "scale-0"
-              }`}
+              className={`absolute inset-0 m-auto h-4 w-4 transition-all duration-300 ${copied ? "scale-100" : "scale-0"
+                }`}
             />
           </Button>
         </div>

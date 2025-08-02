@@ -5,14 +5,15 @@ export function CommandBtn({
   className = "",
 }: {
   command: Record<string, string>;
+  showPackageManager?: boolean;
   className?: string;
 }) {
   return (
-    <div className={`flex-1 ${className}`}>
+    <div className={`flex-1 ${className} my-4`}>
       <ScriptCopyBtn
         showMultiplePackageOptions={true}
         codeLanguage="shell"
-        lightTheme="nord"
+        lightTheme="monokai"
         darkTheme="vitesse-dark"
         commandMap={command}
       />

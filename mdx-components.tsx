@@ -24,11 +24,11 @@ const styles = {
   ol: 'list-decimal pl-6 mb-4',
   li: 'mb-1',
   blockquote: 'pl-4 border-l-4 border-gray-200 italic my-4',
-  pre: 'p-4 rounded-lg overflow-auto my-4 hljs',
+  pre: 'p-3 rounded-lg overflow-auto my-4 hljs',
   strong: 'font-bold text-primary',
   em: 'italic text-muted-foreground',
   del: 'line-through text-muted-foreground',
-  code: "px-1 py-0.5 bg-muted rounded font-mono text-sm",
+  code: "px-1.5 py-1 bg-muted rounded font-mono text-sm",
 }
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
@@ -76,9 +76,8 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     hr: () => <hr className="my-4" />,
 
     code: ({ children, className }) => {
-      const isInlineCode = typeof children === 'string';
-      if (isInlineCode) return <code className={styles.code}>{children}</code>;
-      return <code className={className}>{children}</code>;
+      if (className) return <code className={className}>{children}</code>;
+      return <code className={styles.code}>{children}</code>;
     },
 
     img: ({ src, alt, width, height }) => {

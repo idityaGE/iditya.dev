@@ -9,7 +9,7 @@ import { ListMinusIcon } from 'lucide-react';
 
 const DEPTH_STYLES = {
   1: "",
-  2: "pl-0",
+  2: "pl-2",
   3: "pl-4",
   4: "pl-8",
   5: "pl-10",

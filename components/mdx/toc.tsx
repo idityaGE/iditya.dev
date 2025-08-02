@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState, memo, useCallback, useMemo } from 'react';
+import { useEffect, useState, memo, useCallback, useMemo, useRef } from 'react';
 import type { TocEntry } from 'remark-mdx-toc';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
@@ -46,34 +46,35 @@ const TableOfContentsItem = memo(function TableOfContentsItem({
   activeItemId?: string;
   onItemClick: (id: string, event: React.MouseEvent) => void;
 }) {
-
   const id = useMemo(() => generateSlug(item.value), [item.value]);
   const isActive = activeItemId === id;
-
 
   const handleClick = useCallback((e: React.MouseEvent) => {
     onItemClick(id, e);
   }, [id, onItemClick]);
 
-
   const linkClassName = useMemo(() => cn(
-    "block transition-colors py-0.5 text-[0.85rem] leading-5 text-ellipsis",
+    "block transition-colors py-0.5 text-[0.85rem] leading-5",
+    "truncate max-w-[220px] hover:text-primary",
     isActive
       ? "text-primary font-semibold"
-      : "text-muted-foreground hover:text-primary",
+      : "text-muted-foreground",
     DEPTH_STYLES[item.depth as keyof typeof DEPTH_STYLES] || ""
   ), [isActive, item.depth]);
 
   return (
     <li>
-      <Link
-        href={`#${id}`}
-        className={linkClassName}
-        scroll={false}
-        onClick={handleClick}
-      >
-        {item.value}
-      </Link>
+      <div className="flex">
+        <Link
+          href={`#${id}`}
+          className={linkClassName}
+          scroll={false}
+          onClick={handleClick}
+          title={item.value}
+        >
+          {item.value}
+        </Link>
+      </div>
       {item.children?.length > 0 && (
         <ul className="space-y-1 mt-1">
           {item.children.map((child, index) => (
@@ -92,6 +93,7 @@ const TableOfContentsItem = memo(function TableOfContentsItem({
 
 export function TableOfContents({ toc }: { toc: TocEntry[] }) {
   const [activeId, setActiveId] = useState<string>('');
+  const tocListRef = useRef<HTMLUListElement>(null);
 
 
   const handleItemClick = useCallback((targetId: string, e: React.MouseEvent) => {
@@ -125,6 +127,36 @@ export function TableOfContents({ toc }: { toc: TocEntry[] }) {
       }
     }, 100);
   }, []);
+
+  const scrollActiveItemIntoView = useCallback(() => {
+    if (!tocListRef.current || !activeId) return;
+
+    const activeElement = tocListRef.current.querySelector(`a[href="#${activeId}"]`);
+    if (!activeElement) return;
+
+    const container = tocListRef.current;
+
+    const containerRect = container.getBoundingClientRect();
+    const activeElementRect = activeElement.getBoundingClientRect();
+
+    if (
+      activeElementRect.top < containerRect.top ||
+      activeElementRect.bottom > containerRect.bottom
+    ) {
+      const relativeTop = activeElementRect.top - containerRect.top;
+      const newScrollTop = container.scrollTop + relativeTop -
+        (containerRect.height / 2) + (activeElementRect.height / 2);
+
+      container.scrollTo({
+        top: newScrollTop,
+        behavior: 'smooth'
+      });
+    }
+  }, [activeId]);
+
+  useEffect(() => {
+    scrollActiveItemIntoView();
+  }, [activeId, scrollActiveItemIntoView]);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -163,7 +195,7 @@ export function TableOfContents({ toc }: { toc: TocEntry[] }) {
     }
 
     return () => observer.disconnect();
-  }, []);
+  }, [intersectionCallback]);
 
   const shouldRender = useMemo(() =>
     toc && Array.isArray(toc) && toc.length > 0, [toc]
@@ -180,7 +212,7 @@ export function TableOfContents({ toc }: { toc: TocEntry[] }) {
         Table of Contents
       </h2>
       <nav aria-label="Table of contents">
-        <ul className="space-y-1 max-h-[70vh] overflow-y-auto pr-2">
+        <ul className="space-y-1 max-h-[70vh] overflow-y-auto pr-2" ref={tocListRef}>
           {toc.map((item, index) => (
             <TableOfContentsItem
               key={`${item.value}-${index}`}

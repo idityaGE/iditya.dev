@@ -1,11 +1,11 @@
 ---
-title: "Docker -- Beginner"
+title: "Docker 🐳"
 date: "2025-06-20"
 tags: ["docker", "beginner", "containerization", "devops"]
 author: "Aditya"
 published: true
 excerpt: "A beginner's guide to understanding Docker, its architecture, and how to get started with containerization."
-coverImage: "https://download.logo.wine/logo/Docker_(software)/Docker_(software)-Logo.wine.png"
+coverImage: "https://www.zdnet.com/a/img/resize/9f5c9053bb832e62032dcddbf9a312cda2902829/2014/10/02/dc9a99e1-49e6-11e4-b6a0-d4ae52e95e57/docker-logo.png?auto=webp&width=1280"
 ---
 
 # What is Docker?
@@ -157,7 +157,7 @@ This command does the following:
 
 You should now be inside the Ubuntu container. Try running some commands:
 
-```
+```bash
 ls
 cat /etc/os-release
 ```
@@ -170,43 +170,43 @@ Understanding the container lifecycle is crucial. Here are the main states and c
 
 1.  Create a container (without starting it):
 
-```
+```bash
 docker create --name mycontainer ubuntu:latest
 ```
 
 2. Start a container:
 
-```
+```bash
 docker start mycontainer
 ```
 
 3. Stop a running container:
 
-```
+```bash
 docker stop mycontainer
 ```
 
 4. docker restart mycontainer
 
-```
+```bash
 docker restart mycontainer
 ```
 
 5. Pause a running container:
 
-```
+```bash
 docker pause mycontainer
 ```
 
 6. Unpause a paused container:
 
-```
+```bash
 docker unpause mycontainer
 ```
 
 7. Remove a container:
 
-```
+```bash
 docker rm mycontainer
 ```
 
@@ -216,19 +216,19 @@ Note: You can’t remove a running container unless you use the `-f` (force) opt
 
 1.  List running containers:
 
-```
+```bash
 docker ps
 ```
 
 2. List all containers (including stopped ones):
 
-```
+```bash
 docker ps -a
 ```
 
 3. Inspect a container:
 
-```
+```bash
 docker inspect mycontainer
 ```
 
@@ -236,7 +236,7 @@ This command provides detailed information about the container in JSON format.
 
 4. View container logs:
 
-```
+```bash
 docker logs mycontainer
 ```
 
@@ -246,7 +246,7 @@ Add the `-f` flag to follow the logs in real-time.
 
 So far, we’ve run containers in interactive mode. For long-running services, you’ll often want to run containers in detached mode:
 
-```
+```bash
 docker run -d --name mywebserver nginx
 ```
 
@@ -266,13 +266,13 @@ A Docker image is made up of multiple layers. Each layer represents an instructi
 
 1.  Search for images on Docker Hub:
 
-```
+```bash
 docker search nginx
 ```
 
 2. Pull an image:
 
-```
+```bash
 docker pull nginx:latest
 ```
 
@@ -300,7 +300,7 @@ exit
 
 2. Commit the changes to a new image:
 
-```
+```bash
 docker commit <container_id> my-nginx-image:v1
 ```
 
@@ -310,7 +310,7 @@ Replace `<container_id>` with the ID of the container you just exited.
 
 Create a file named `Dockerfile` with the following content:
 
-```
+```yml
 FROM ubuntu:latest
 RUN apt-get update && apt-get install -y nginx
 EXPOSE 80
@@ -319,7 +319,7 @@ CMD ["nginx", "-g", "daemon off;"]
 
 Build the image:
 
-```
+```bash
 docker build -t my-nginx-image:v2 .
 ```
 
@@ -329,25 +329,25 @@ The `-t` flag tags the image with a name and optional version.
 
 1.  List images:
 
-```
+```bash
 docker images
 ```
 
 2. Remove an image:
 
-```
+```bash
 docker rmi my-nginx-image:v1
 ```
 
 3. Tag an image:
 
-```
+```bash
 docker tag my-nginx-image:v2 my-dockerhub-username/my-nginx-image:v2
 ```
 
 4. Push an image to Docker Hub:
 
-```
+```bash
 docker push my-dockerhub-username/my-nginx-image:v2
 ```
 
@@ -359,7 +359,7 @@ Docker uses a layer cache to speed up builds. Each instruction in a Dockerfile c
 
 To see the layers of an image:
 
-```
+```bash
 docker history my-nginx-image:v2
 ```
 
@@ -375,19 +375,19 @@ We’ve already seen the basic `docker run` command, but there are many useful o
 
 1.  Run a container and automatically remove it when it exits:
 
-```
+```bash
 docker run --rm ubuntu:latest echo "Hello, World!"
 ```
 
 2. Run a container with a custom name:
 
-```
+```bash
 docker run --name my-custom-container ubuntu:latest
 ```
 
 3. Run a container and publish a port:
 
-```
+```bash
 docker run -p 8080:80 nginx
 ```
 
@@ -395,13 +395,13 @@ This maps port 8080 on the host to port 80 in the container.
 
 1.  Run a container with environment variables:
 
-```
+```bash
 docker run -e MY_VAR=my_value ubuntu:latest env
 ```
 
 5. Run a container with a limited amount of memory:
 
-```
+```bash
 docker run --memory=512m ubuntu:latest
 ```
 
@@ -409,7 +409,7 @@ docker run --memory=512m ubuntu:latest
 
 You can execute commands in a running container using `docker exec`:
 
-```
+```bash
 docker exec -it my-custom-container /bin/bash
 ```
 
@@ -421,13 +421,13 @@ To copy files between your host system and a container:
 
 1.  From host to container:
 
-```
+```bash
 docker cp ./myfile.txt my-custom-container:/path/in/container/
 ```
 
 2. From container to host:
 
-```
+```bash
 docker cp my-custom-container:/path/in/container/myfile.txt ./
 ```
 
@@ -435,13 +435,13 @@ docker cp my-custom-container:/path/in/container/myfile.txt ./
 
 1.  View container resource usage:
 
-```
+```bash
 docker stats
 ```
 
 2. View processes running in a container:
 
-```
+```bash
 docker top my-custom-container
 ```
 
@@ -451,7 +451,7 @@ Docker allows you to set resource constraints on containers:
 
 1.  Limit CPU:
 
-```
+```bash
 docker run --cpus=0.5 ubuntu:latest
 ```
 
@@ -459,7 +459,7 @@ This limits the container to use at most 50% of a CPU.
 
 2. Set CPU shares (relative weight):
 
-```
+```bash
 docker run --cpu-shares=512 ubuntu:latest
 ```
 
@@ -467,7 +467,7 @@ The default value is 1024, so this container would receive half the CPU time of 
 
 1.  Limit memory and enable swapping:
 
-```
+```bash
 docker run --memory=1g --memory-swap=2g ubuntu:latest
 ```
 
@@ -479,13 +479,13 @@ You can update the configuration of a running container:
 
 1.  Update container resources:
 
-```
+```bash
 docker update --cpus=1 --memory=2g my-custom-container
 ```
 
 2. Rename a container:
 
-```
+```bash
 docker rename my-custom-container my-new-container-name
 ```
 
@@ -493,7 +493,7 @@ docker rename my-custom-container my-new-container-name
 
 Docker provides restart policies to automatically restart containers under certain conditions:
 
-```
+```bash
 docker run --restart=always nginx
 ```
 
@@ -508,7 +508,7 @@ Restart policies:
 
 1.  Attach to a running container:
 
-```
+```bash
 docker attach my-custom-container
 ```
 
@@ -534,13 +534,13 @@ Docker supports several network drivers out of the box:
 
 1.  List networks:
 
-```
+```bash
 docker network ls
 ```
 
 2.Inspect a network:
 
-```
+```bash
 docker network inspect bridge
 ```
 
@@ -548,7 +548,7 @@ docker network inspect bridge
 
 Create a custom bridge network:
 
-```
+```bash
 docker network create --driver bridge my-custom-network
 ```
 
@@ -556,19 +556,19 @@ docker network create --driver bridge my-custom-network
 
 1.  Connect a running container to a network:
 
-```
+```bash
 docker network connect my-custom-network my-container
 ```
 
 2. Disconnect a container from a network:
 
-```
+```bash
 docker network disconnect my-custom-network my-container
 ```
 
 3. Run a new container and connect it to a network:
 
-```
+```bash
 docker run --network my-custom-network nginx
 ```
 
@@ -578,13 +578,13 @@ Containers on the same user-defined network can resolve each other by name. Let�
 
 1.  Create a network:
 
-```
+```bash
 docker network create my-app-network
 ```
 
 2. Run two containers on this network:
 
-```
+```bash
 docker run -d --name web --network my-app-network nginx
 docker run -d --name db --network my-app-network postgres
 ```
@@ -595,7 +595,7 @@ docker run -d --name db --network my-app-network postgres
 
 To make a container’s port accessible from the host:
 
-```
+```bash
 docker run -p 8080:80 nginx
 ```
 
@@ -603,7 +603,7 @@ This maps port 8080 on the host to port 80 in the container.
 
 You can also specify the IP address to bind to:
 
-```
+```bash
 docker run -p 127.0.0.1:8080:80 nginx
 ```
 
@@ -611,26 +611,26 @@ docker run -p 127.0.0.1:8080:80 nginx
 
 1.  Check container network settings:
 
-```
+```bash
 docker inspect --format '{{json .NetworkSettings.Networks}}' my-container
 ```
 
 2. Use the `docker exec` command to run network diagnostic tools inside a container:
 
-```
+```bash
 docker exec -it my-container ping google.com
 docker exec -it my-container netstat -tuln
 ```
 
 3. Use the `docker logs` command to check for network-related issues:
 
-```
+```bash
 docker logs my-container
 ```
 
 4. If you suspect DNS issues, check the container’s DNS configuration:
 
-```
+```bash
 docker exec -it my-container cat /etc/resolv.conf
 ```
 
@@ -638,20 +638,20 @@ docker exec -it my-container cat /etc/resolv.conf
 
 1.  **Exposing containers**: Use the `--expose` flag to expose ports without publishing them to the host:
 
-```
+```bash
 docker run --expose 80 nginx
 ```
 
 2. **Link containers** (Note: This is a legacy feature; use user-defined networks instead):
 
-```
+```bash
 docker run --name db postgres
 docker run --link db:database nginx
 ```
 
 3. **MacVLAN networks**: Create a network that allows containers to appear as physical devices on your network:
 
-```
+```bash
 docker network create -d macvlan \
   --subnet=192.168.1.0/24 \
   --gateway=192.168.1.1 \
@@ -674,31 +674,31 @@ Docker containers are ephemeral by nature, meaning any data created inside a con
 
 1.  Create a volume:
 
-```
+```bash
 docker volume create my-vol
 ```
 
 2. List volumes:
 
-```
+```bash
 docker volume ls
 ```
 
 3. Inspect a volume:
 
-```
+```bash
 docker volume inspect my-vol
 ```
 
 4. Remove a volume:
 
-```
+```bash
 docker volume rm my-vol
 ```
 
 5. Run a container with a volume:
 
-```
+```bash
 docker run -v my-vol:/app/data nginx
 ```
 
@@ -706,13 +706,13 @@ docker run -v my-vol:/app/data nginx
 
 Bind mounts allow you to mount a file or directory from the host into a container:
 
-```
+```bash
 docker run -v /host/path:/container/path nginx
 ```
 
 Use the `--mount` flag for more verbose and explicit volume mounting:
 
-```
+```bash
 docker run --mount type=bind,source=/host/path,target=/container/path nginx
 ```
 
@@ -720,7 +720,7 @@ docker run --mount type=bind,source=/host/path,target=/container/path nginx
 
 You can mount volumes or bind mounts as read-only:
 
-```
+```bash
 docker run -v /host/path:/container/path:ro nginx
 ```
 
@@ -728,14 +728,14 @@ docker run -v /host/path:/container/path:ro nginx
 
 1.  Using a named volume:
 
-```
+```bash
 docker run -v shared-data:/app/data --name container1 nginx
 docker run -v shared-data:/app/data --name container2 nginx
 ```
 
 2. Using the `--volumes-from` flag:
 
-```
+```bash
 docker run --name container1 -v /app/data nginx
 docker run --volumes-from container1 --name container2 nginx
 ```
@@ -744,13 +744,13 @@ docker run --volumes-from container1 --name container2 nginx
 
 1.  Backup a volume:
 
-```
+```bash
 docker run --rm -v my-vol:/source -v $(pwd):/backup ubuntu tar cvf /backup/backup.tar /source
 ```
 
 2. Restore a volume:
 
-```
+```bash
 docker run --rm -v my-vol:/target -v $(pwd):/backup ubuntu tar xvf /backup/backup.tar -C /target --strip-components=1
 ```
 
@@ -758,7 +758,7 @@ docker run --rm -v my-vol:/target -v $(pwd):/backup ubuntu tar xvf /backup/backu
 
 Docker supports volume drivers to enable volume management on different storage systems:
 
-```
+```bash
 docker volume create --driver local \
     --opt type=nfs \
     --opt o=addr=192.168.1.1,rw \
@@ -778,7 +778,7 @@ A Dockerfile is a text document containing instructions to build a Docker image 
 
 Here’s a simple Dockerfile:
 
-```
+```yml
 FROM ubuntu:20.04
 RUN apt-get update && apt-get install -y nginx
 COPY ./my-nginx.conf /etc/nginx/nginx.conf
@@ -801,7 +801,7 @@ Let’s break down the most common Dockerfile instructions:
 1.  **Use official base images** when possible.
 2.  **Minimize the number of layers** by combining commands:
 
-```
+```bash
 RUN apt-get update && \
     apt-get install -y \
     package1 \
@@ -814,7 +814,7 @@ RUN apt-get update && \
 
 **4. Use multi-stage builds** for smaller final images:
 
-```
+```yml
 FROM golang:1.16 AS builder
 WORKDIR /app
 COPY . .
@@ -826,21 +826,21 @@ CMD ["myapp"]
 
 5. **Set the WORKDIR** to organize your commands:
 
-```
+```bash
 WORKDIR /app
 COPY . .
 ```
 
 6.**Use environment variables** for configuration:
 
-```
+```bash
 ENV APP_HOME /app
 WORKDIR $APP_HOME
 ```
 
 7. **Use LABEL** for metadata:
 
-```
+```bash
 LABEL maintainer="your-email@example.com" \
       version="1.0" \
       description="This is my custom image"
@@ -850,7 +850,7 @@ LABEL maintainer="your-email@example.com" \
 
 To build an image from a Dockerfile:
 
-```
+```bash
 docker build -t my-image:v1 .
 ```
 
@@ -860,27 +860,27 @@ The `.` at the end specifies the build context (current directory in this case).
 
 1.  **HEALTHCHECK**: Tells Docker how to test if a container is still working:
 
-```
+```bash
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
   CMD curl -f http://localhost/ || exit 1
 ```
 
 **2. ARG**: Defines variables that users can pass at build-time:
 
-```
+```bash
 ARG VERSION=latest
 FROM ubuntu:${VERSION}
 ```
 
 3. **VOLUME**: Creates a mount point and marks it as holding externally mounted volumes:
 
-```
+```bash
 VOLUME /app/data
 ```
 
 4. **USER**: Sets the user name or UID to use when running the image:
 
-```
+```bash
 RUN groupadd -r mygroup && useradd -r -g mygroup myuser
 USER myuser
 ```
@@ -891,7 +891,7 @@ Multi-stage builds allow you to use multiple FROM statements in your Dockerfile.
 
 Example of a multi-stage build for a Go application:
 
-```
+```yml
 # Build stage
 FROM golang:1.16 AS builder
 WORKDIR /app
@@ -918,8 +918,8 @@ Docker Compose is a tool for defining and running multi-container Docker applica
 
 A simple `docker-compose.yml` file:
 
-```
-version: '3'
+```yml
+version: "3"
 services:
   web:
     image: nginx:alpine
@@ -941,37 +941,37 @@ services:
 
 1.  Start services:
 
-```
+```bash
 docker-compose up
 ```
 
 2. Start services in detached mode:
 
-```
+```bash
 docker-compose up -d
 ```
 
 3. Stop services:
 
-```
+```bash
 docker-compose down
 ```
 
 4. View running services:
 
-```
+```bash
 docker-compose ps
 ```
 
 5. View logs:
 
-```
+```bash
 docker-compose logs
 ```
 
 6. Run a command in a service:
 
-```
+```bash
 docker-compose exec web bash
 ```
 
@@ -979,8 +979,8 @@ docker-compose exec web bash
 
 A more complex `docker-compose.yml` example:
 
-```
-version: '3.8'
+```yaml
+version: "3.8"
 services:
   web:
     build: ./web
@@ -1009,14 +1009,14 @@ networks:
 
 1.  **Scaling services**:
 
-```
+```bash
 docker-compose up -d --scale web=3
 ```
 
 2. **Extending services**:
 
-```
-version: '3.8'
+```yaml
+version: "3.8"
 services:
   web:
     extends:
@@ -1032,8 +1032,8 @@ services:
 
 3. **Using profiles**:
 
-```
-version: '3.9'
+```yaml
+version: "3.9"
 services:
   web:
     image: nginx:alpine
@@ -1045,14 +1045,14 @@ services:
 
 Start only specific profiles:
 
-```
+```bash
 docker-compose --profile dev up
 ```
 
 4. **Health checks**:
 
-```
-version: '3.8'
+```yaml
+version: "3.8"
 services:
   web:
     image: nginx:alpine
@@ -1066,7 +1066,7 @@ services:
 
 Docker Compose is an essential tool for managing multi-container applications. It simplifies the process of defining, running, and scaling services. In the next section, we’ll explore Docker Swarm, which allows you to create and manage a cluster of Docker nodes.
 
-10. # Docker Swarm
+# Docker Swarm
 
 Docker Swarm is Docker’s native clustering and orchestration solution. It turns a group of Docker hosts into a single, virtual Docker host, allowing you to scale your application across multiple machines.
 
@@ -1080,19 +1080,19 @@ Docker Swarm is Docker’s native clustering and orchestration solution. It turn
 
 1.  Initialize a Swarm:
 
-```
+```bash
 docker swarm init --advertise-addr <MANAGER-IP>
 ```
 
 2. Join a worker node to the Swarm:
 
-```
+```bash
 docker swarm join --token <TOKEN> <MANAGER-IP>:2377
 ```
 
 3. List nodes in the Swarm:
 
-```
+```bash
 docker node ls
 ```
 
@@ -1100,31 +1100,31 @@ docker node ls
 
 1.  Create a service:
 
-```
+```bash
 docker service create --name my_web nginx
 ```
 
 2. List services:
 
-```
+```bash
 docker service ls
 ```
 
 3. Scale a service:
 
-```
+```bash
 docker service scale my_web=5
 ```
 
 4. Update a service:
 
-```
+```bash
 docker service update --image nginx:1.19 my_web
 ```
 
 5.Remove a service:
 
-```
+```bash
 docker service rm my_web
 ```
 
@@ -1132,7 +1132,7 @@ docker service rm my_web
 
 You can use Docker Compose files to deploy entire application stacks to a Swarm:
 
-```
+```bash
 docker stack deploy -c docker-compose.yml my_stack
 ```
 
@@ -1146,13 +1146,13 @@ Docker Swarm provides a secure way to manage sensitive data:
 
 1.  Create a secret:
 
-```
+```bash
 echo "my_secret_data" | docker secret create my_secret -
 ```
 
 2. Use the secret in a service:
 
-```
+```bash
 docker service create --name nginx --secret my_secret nginx
 ```
 
@@ -1160,13 +1160,13 @@ docker service create --name nginx --secret my_secret nginx
 
 Swarm supports rolling updates and rollbacks:
 
-```
+```bash
 docker service update --update-parallelism 2 --update-delay 10s my_web
 ```
 
 To rollback:
 
-```
+```bash
 docker service update --rollback my_web
 ```
 
@@ -1190,7 +1190,7 @@ Use official images from Docker Hub or trusted sources. These images are typical
 
 Use tools like Docker Scan, Clair, or Trivy to scan your images for known vulnerabilities:
 
-```
+```bash
 docker scan my-image:latest
 ```
 
@@ -1198,7 +1198,7 @@ docker scan my-image:latest
 
 Remove unnecessary capabilities from your containers:
 
-```
+```yml
 FROM ubuntu:20.04
 RUN apt-get update && apt-get install -y nginx
 RUN setcap cap_net_bind_service=+ep /usr/sbin/nginx
@@ -1209,7 +1209,7 @@ USER www-data
 
 Run containers as non-root users whenever possible:
 
-```
+```yml
 FROM ubuntu:20.04
 RUN groupadd -r myuser && useradd -r -g myuser myuser
 USER myuser
@@ -1219,7 +1219,7 @@ USER myuser
 
 Mount containers’ file systems as read-only:
 
-```
+```bash
 docker run --read-only ubuntu:20.04
 ```
 
@@ -1227,7 +1227,7 @@ docker run --read-only ubuntu:20.04
 
 Set resource limits for your containers:
 
-```
+```bash
 docker run --cpus=0.5 --memory=512m ubuntu:20.04
 ```
 
@@ -1235,7 +1235,7 @@ docker run --cpus=0.5 --memory=512m ubuntu:20.04
 
 Use Docker secrets or a third-party secrets management tool to handle sensitive data:
 
-```
+```bash
 docker secret create my_secret my_secret.txt
 docker service create --name nginx --secret my_secret nginx
 ```
@@ -1244,7 +1244,7 @@ docker service create --name nginx --secret my_secret nginx
 
 Use Docker networks to isolate containers and implement proper network segmentation:
 
-```
+```bash
 docker network create - driver overlay - attachable my_secure_network
 docker service create - name nginx - network my_secure_network nginx
 ```
@@ -1253,7 +1253,7 @@ docker service create - name nginx - network my_secure_network nginx
 
 Utilize Docker’s security options to enhance container isolation:
 
-```
+```bash
 docker run --security-opt=no-new-privileges ubuntu:20.04
 ```
 
@@ -1261,7 +1261,7 @@ docker run --security-opt=no-new-privileges ubuntu:20.04
 
 Set up proper logging and monitoring for your Docker environment:
 
-```
+```bash
 docker run --log-driver=syslog ubuntu:20.04
 ```
 
@@ -1269,7 +1269,7 @@ docker run --log-driver=syslog ubuntu:20.04
 
 Enable Docker Content Trust to ensure image integrity:
 
-```
+```bash
 export DOCKER_CONTENT_TRUST=1
 docker pull nginx:latest
 ```
@@ -1278,7 +1278,7 @@ docker pull nginx:latest
 
 Perform regular security audits of your Docker hosts, images, and containers. Tools like Docker Bench for Security can help:
 
-```
+```bash
 docker run -it --net host --pid host --userns host --cap-add audit_control \
     -e DOCKER_CONTENT_TRUST=$DOCKER_CONTENT_TRUST \
     -v /var/lib:/var/lib \
@@ -1292,7 +1292,7 @@ docker run -it --net host --pid host --userns host --cap-add audit_control \
 
 Multi-stage builds can help reduce the attack surface of your final image by including only necessary components:
 
-```
+```yml
 FROM golang:1.16 AS builder
 WORKDIR /app
 COPY . .
@@ -1320,7 +1320,7 @@ As you become more proficient with Docker, you’ll want to explore some advance
 
 Create your own base images to standardize your environment:
 
-```
+```yml
 FROM scratch
 ADD alpine-minirootfs-3.14.0-x86_64.tar.gz /
 CMD ["/bin/sh"]
@@ -1330,7 +1330,7 @@ CMD ["/bin/sh"]
 
 Use heredocs in Dockerfiles for better readability when dealing with multi-line commands:
 
-```
+```yml
 FROM ubuntu:20.04
 RUN <<EOF
 apt-get update
@@ -1343,24 +1343,24 @@ EOF
 
 Enable BuildKit to use advanced features like multi-platform builds and improved caching:
 
-```
+```bash
 export DOCKER_BUILDKIT=1
 ```
 
 Then use new Dockerfile syntax:
 
-```
+```yml
 # syntax=docker/dockerfile:1.2
 FROM ubuntu:20.04
 RUN --mount=type=cache,target=/var/cache/apt \
-    apt-get update && apt-get install -y nginx
+apt-get update && apt-get install -y nginx
 ```
 
 4. # Multi-arch builds
 
 Create images that can run on multiple architectures:
 
-```
+```bash
 docker buildx create --use
 docker buildx build --platform linux/amd64,linux/arm64 -t myimage:latest .
 ```
@@ -1369,7 +1369,7 @@ docker buildx build --platform linux/amd64,linux/arm64 -t myimage:latest .
 
 Use distroless images for minimal attack surface:
 
-```
+```yml
 FROM golang:1.16 AS builder
 WORKDIR /app
 COPY . .
@@ -1383,7 +1383,7 @@ CMD ["/main"]
 
 Squash image layers to reduce size and improve pull times:
 
-```
+```bash
 docker build --squash -t myimage:squashed .
 ```
 
@@ -1391,7 +1391,7 @@ docker build --squash -t myimage:squashed .
 
 Use tools like DockerSlim to automatically optimize your images:
 
-```
+```bash
 docker-slim build myimage:latest
 ```
 
@@ -1399,7 +1399,7 @@ docker-slim build myimage:latest
 
 Create networks with specific drivers for advanced networking scenarios:
 
-```
+```bash
 docker network create --driver macvlan \
   --subnet=192.168.1.0/24 \
   --gateway=192.168.1.1 \
@@ -1410,7 +1410,7 @@ docker network create --driver macvlan \
 
 Extend Docker’s functionality with plugins:
 
-```
+```bash
 docker plugin install vieux/sshfs
 docker volume create -d vieux/sshfs \
   -o sshcmd=user@host:/remote \
@@ -1422,7 +1422,7 @@ docker volume create -d vieux/sshfs \
 
 Create custom Docker commands using the plugin system:
 
-```
+```bash
 mkdir -p ~/.docker/cli-plugins
 cp ./my-custom-command ~/.docker/cli-plugins/docker-my-custom-command
 chmod +x ~/.docker/cli-plugins/docker-my-custom-command
@@ -1432,7 +1432,7 @@ chmod +x ~/.docker/cli-plugins/docker-my-custom-command
 
 Use Docker contexts to manage multiple Docker environments:
 
-```
+```bash
 docker context create my-remote-docker --docker "host=ssh://user@remote-host"
 docker context use my-remote-docker
 docker ps  # This will now run on the remote host
@@ -1442,8 +1442,8 @@ docker ps  # This will now run on the remote host
 
 Use the `extends` keyword in Docker Compose to share common configurations:
 
-```
-version: '3.8'
+```yml
+version: "3.8"
 services:
   web:
     extends:
@@ -1461,8 +1461,8 @@ services:
 
 Use YAML anchors and aliases to reduce repetition in your Docker Compose files:
 
-```
-version: '3.8'
+```yml
+version: "3.8"
 x-common-config: &common-config
   restart: always
   environment:
@@ -1504,7 +1504,7 @@ Implement comprehensive monitoring and logging for your containerized applicatio
 - Implement centralized logging with the ELK stack (Elasticsearch, Logstash, Kibana) or similar solutions
 - Use Docker’s logging drivers to send logs to your centralized logging system:
 
-```
+```bash
 docker run --log-driver=fluentd --log-opt fluentd-address=localhost:24224 my-app
 ```
 
@@ -1615,13 +1615,13 @@ When working with Docker, you’ll inevitably encounter issues that require trou
 
 The first step in troubleshooting is often to check the container logs:
 
-```
+```bash
 docker logs <container_id>
 ```
 
 For continuous log output:
 
-```
+```bash
 docker logs -f <container_id>
 ```
 
@@ -1629,13 +1629,13 @@ docker logs -f <container_id>
 
 Get detailed information about a container:
 
-```
+```bash
 docker inspect <container_id>
 ```
 
 You can use Go templates to filter specific information:
 
-```
+```bash
 docker inspect --format '{{.State.Status}}' <container_id>
 ```
 
@@ -1643,7 +1643,7 @@ docker inspect --format '{{.State.Status}}' <container_id>
 
 Run commands inside a running container for debugging:
 
-```
+```bash
 docker exec -it <container_id> /bin/bash
 ```
 
@@ -1651,7 +1651,7 @@ docker exec -it <container_id> /bin/bash
 
 View resource usage statistics for running containers:
 
-```
+```bash
 docker stats
 ```
 
@@ -1659,13 +1659,13 @@ docker stats
 
 Inspect the container’s network settings:
 
-```
+```bash
 docker network inspect <network_name>
 ```
 
 Use network troubleshooting tools inside the container:
 
-```
+```bash
 docker exec -it <container_id> ping google.com
 ```
 
@@ -1673,7 +1673,7 @@ docker exec -it <container_id> ping google.com
 
 View changes made to a container’s filesystem:
 
-```
+```bash
 docker diff <container_id>
 ```
 
@@ -1681,7 +1681,7 @@ docker diff <container_id>
 
 Use the `--progress=plain` flag to see detailed build output:
 
-```
+```bash
 docker build --progress=plain -t myimage .
 ```
 
@@ -1689,7 +1689,7 @@ docker build --progress=plain -t myimage .
 
 Monitor Docker events in real-time:
 
-```
+```bash
 docker events
 ```
 
@@ -1697,15 +1697,15 @@ docker events
 
 On Linux systems, check the Docker daemon logs:
 
-```
-journalctl -u docker.service
+```bash
+systemctl -u docker.service
 ```
 
 10. # Using debug mode
 
 Run the Docker daemon in debug mode:
 
-```
+```bash
 dockerd -D
 ```
 
@@ -1713,7 +1713,7 @@ dockerd -D
 
 For Docker Compose applications, use:
 
-```
+```bash
 docker-compose logs
 docker-compose ps
 docker-compose top
@@ -1731,7 +1731,7 @@ Several third-party tools can help with debugging:
 
 For issues that might be related to the kernel, check:
 
-```
+```bash
 dmesg | tail
 ```
 
@@ -1739,7 +1739,7 @@ dmesg | tail
 
 Enable experimental features for additional debugging capabilities:
 
-```
+```bash
 docker version -f '{{.Server.Experimental}}'
 ```
 
@@ -1747,7 +1747,7 @@ docker version -f '{{.Server.Experimental}}'
 
 For Swarm-specific issues:
 
-```
+```bash
 docker node ls
 docker service logs <service_name>
 docker service ps <service_name>

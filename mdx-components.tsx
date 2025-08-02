@@ -24,7 +24,7 @@ const styles = {
   ol: 'list-decimal pl-6 mb-4',
   li: 'mb-1',
   blockquote: 'pl-4 border-l-4 border-gray-200 italic my-4',
-  pre: 'p-3 rounded-lg overflow-auto my-4 hljs',
+  pre: 'p-4 rounded-lg overflow-auto my-4 hljs',
   strong: 'font-bold text-primary',
   em: 'italic text-muted-foreground',
   del: 'line-through text-muted-foreground',

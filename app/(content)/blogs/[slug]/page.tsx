@@ -98,7 +98,7 @@ export default async function Page({
         
         <Separator />
 
-        <article className="w-full">
+        <article className="w-full md:text-lg leading-relaxed mt-4">
           <Post />
         </article>
       </div>

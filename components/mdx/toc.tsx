@@ -46,16 +46,16 @@ const TableOfContentsItem = memo(function TableOfContentsItem({
   activeItemId?: string;
   onItemClick: (id: string, event: React.MouseEvent) => void;
 }) {
-  
+
   const id = useMemo(() => generateSlug(item.value), [item.value]);
   const isActive = activeItemId === id;
 
-  
+
   const handleClick = useCallback((e: React.MouseEvent) => {
     onItemClick(id, e);
   }, [id, onItemClick]);
 
-  
+
   const linkClassName = useMemo(() => cn(
     "block transition-colors py-0.5 text-[0.85rem] leading-5 text-ellipsis",
     isActive
@@ -69,7 +69,7 @@ const TableOfContentsItem = memo(function TableOfContentsItem({
       <Link
         href={`#${id}`}
         className={linkClassName}
-        scroll={false} 
+        scroll={false}
         onClick={handleClick}
       >
         {item.value}
@@ -93,13 +93,13 @@ const TableOfContentsItem = memo(function TableOfContentsItem({
 export function TableOfContents({ toc }: { toc: TocEntry[] }) {
   const [activeId, setActiveId] = useState<string>('');
 
-  
+
   const handleItemClick = useCallback((targetId: string, e: React.MouseEvent) => {
     e.preventDefault();
 
     const element = document.getElementById(targetId);
     if (element) {
-      
+
       requestAnimationFrame(() => {
         element.scrollIntoView({
           behavior: 'smooth',
@@ -129,7 +129,7 @@ export function TableOfContents({ toc }: { toc: TocEntry[] }) {
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
-    
+
     const headingElements = Array.from(
       document.querySelectorAll('h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]')
     ) as Element[];
@@ -138,13 +138,13 @@ export function TableOfContents({ toc }: { toc: TocEntry[] }) {
 
     const observer = new IntersectionObserver(intersectionCallback, {
       rootMargin: '-100px 0px -70% 0px',
-      threshold: [0, 0.1, 0.5] 
+      threshold: [0, 0.1, 0.5]
     });
 
-    
+
     headingElements.forEach(element => observer.observe(element));
 
-    
+
     const hash = window.location.hash.replace('#', '');
     if (hash) {
       setActiveId(hash);
@@ -163,7 +163,7 @@ export function TableOfContents({ toc }: { toc: TocEntry[] }) {
     }
 
     return () => observer.disconnect();
-  }, []); 
+  }, []);
 
   const shouldRender = useMemo(() =>
     toc && Array.isArray(toc) && toc.length > 0, [toc]

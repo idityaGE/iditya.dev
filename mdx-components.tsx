@@ -12,14 +12,14 @@ import "@/styles/code.css"
 //* ref: https://www.gatsbyjs.com/docs/how-to/routing/customizing-components/
 
 const styles = {
-  h1: 'text-3xl font-bold tracking-tight mb-4 mt-8 scroll-mt-20',
+  h1: 'text-3xl font-bold tracking-tight mb-4 mt-8 scroll-mt-20 group',
   h2: 'text-2xl font-bold tracking-tight mb-3 mt-6 scroll-mt-20 group',
   h3: 'text-xl font-bold tracking-tight mb-2 mt-5 scroll-mt-20 group',
   h4: 'text-lg font-bold tracking-tight mb-2 mt-4 scroll-mt-20 group',
   h5: 'text-base font-bold tracking-tight mb-2 mt-4 scroll-mt-20 group',
   h6: 'text-sm font-bold tracking-tight mb-2 mt-4 scroll-mt-20 group',
   p: 'leading-7 mb-4',
-  a: 'text-blue-500 hover:text-blue-700 underline',
+  a: 'text-muted-foreground hover:text-blue-700 underline',
   ul: 'list-disc pl-6 mb-4',
   ol: 'list-decimal pl-6 mb-4',
   li: 'mb-1',
@@ -37,6 +37,20 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     YouTube,
     CommandBtn,
     OgLink,
+    Image: ({ src, alt, width, height }) => {
+      if (!src) return null
+      return (
+        <Image
+          src={src}
+          alt={alt || ""}
+          width={Number(width) || 800}
+          height={Number(height) || 450}
+          className="rounded-lg my-4"
+          style={{ maxWidth: '100%', height: 'auto' }}
+          quality={90}
+        />
+      )
+    },
     h1: ({ children }) => <HeadingWithAnchor level={1} className={styles.h1}>{children}</HeadingWithAnchor>,
     h2: ({ children }) => <HeadingWithAnchor level={2} className={styles.h2}>{children}</HeadingWithAnchor>,
     h3: ({ children }) => <HeadingWithAnchor level={3} className={styles.h3}>{children}</HeadingWithAnchor>,
@@ -70,17 +84,15 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     img: ({ src, alt, width, height }) => {
       if (!src) return null
       return (
-        <div className="my-4">
-          <Image
-            src={src}
-            alt={alt || ""}
-            width={Number(width) || 800}
-            height={Number(height) || 450}
-            className="rounded-lg"
-            style={{ maxWidth: '100%', height: 'auto' }}
-            quality={90}
-          />
-        </div>
+        <Image
+          src={src}
+          alt={alt || ""}
+          width={Number(width) || 800}
+          height={Number(height) || 450}
+          className="rounded-lg my-4"
+          style={{ maxWidth: '100%', height: 'auto' }}
+          quality={90}
+        />
       )
     },
 

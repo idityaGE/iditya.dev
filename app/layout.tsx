@@ -77,6 +77,7 @@ export default function RootLayout({
       </head>
       <body
         className={`${fontHeading.variable} font-sans antialiased`}
+        suppressHydrationWarning
       >
         <ThemeProvider
           attribute="class"

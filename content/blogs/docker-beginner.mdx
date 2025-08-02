@@ -1,0 +1,103 @@
+---
+title: "Docker -- Beginner"
+date: "2025-06-20"
+tags: ["docker", "beginner", "containerization", "devops"]
+author: "Aditya"
+published: true
+excerpt: "A beginner's guide to understanding Docker, its architecture, and how to get started with containerization."
+coverImage: "https://download.logo.wine/logo/Docker_(software)/Docker_(software)-Logo.wine.png"
+---
+
+# What is Docker?
+
+Docker is an open-source\* platform that automates the deployment, scaling, and management of applications using **containerization**. Containers are lightweight, standalone executable packages that include everything needed to run a piece of software, including the code, runtime, system tools, libraries, and settings. they can communicate with each other through well-defined channels.
+
+> _Note: Docker is open-source, but it also offers commercial products and services for enterprise users._
+
+# Docker concepts
+
+Docker is a platform for developers and sysadmins to build, share, and run applications with containers. The use of containers to deploy applications is called containerisation. Containers are not new, but their use for easily deploying applications is.
+
+Containerisation is increasingly popular because containers are:
+
+1.  **Consistency**: Docker ensures that your application runs the same way in every environment, from development to production.
+2.  **Isolation**: Containers are isolated from each other and the host system, improving security and reducing conflicts.
+3.  **Portability**: Docker containers can run on any system that supports Docker, regardless of the underlying infrastructure.
+4.  **Efficiency**: Containers share the host OS kernel, making them more lightweight than traditional virtual machines.
+5.  **Scalability**: Docker makes it easy to scale applications up or down quickly.
+6.  **Version Control**: Docker images can be versioned, allowing you to roll back to previous versions easily.
+
+> **There is very famous meme:**> ![](https://i.programmerhumor.io/2024/03/programmerhumor-io-programming-memes-2fda9abcc7dc92e.jpe)
+
+# Images and containers
+
+Fundamentally, a container is nothing but a running process, with some added encapsulation features applied to it in order to keep it isolated from the host and from other containers. One of the most important aspects of container isolation is that each container interacts with its own, private filesystem; this filesystem is provided by a Docker image. An image includes everything needed to run an application — the code or binary, runtimes, dependencies, and any other filesystem objects required.
+
+# Containers and virtual machines
+
+A container runs natively on Linux and shares the kernel of the host machine with other containers. It runs a discrete process, taking no more memory than any other executable, making it lightweight.
+
+By contrast, a virtual machine (VM) runs a full-blown “guest” operating system with virtual access to host resources through a hypervisor. In general, VMs incur a lot of overhead beyond what is being consumed by your application logic.
+
+- Unlike VMs( Virtual Machines ) that run on a Guest OS, using a hypervisor, Docker containers run directly on a host server (for Linux), using a Docker engine, making it faster and lightweight.
+
+  <div className="flex justify-center gap-4 my-4">
+    <Image
+      src="https://miro.medium.com/v2/resize:fit:1002/format:webp/0*gaTTLY8hYl1_kxNR.png"
+      alt="Docker Container Architecture"
+    />
+    <Image
+      src="https://miro.medium.com/v2/resize:fit:1000/format:webp/0*oY3GJbGUX9qz65iN.png"
+      alt="Virtual Machine Architecture"
+    />
+  </div>
+
+- Unlike VMs there is no need to preallocate the RAM. Hence docker containers utilize less RAM compared to VMs. So only the amount of RAM that is required is used.
+  ![ram-usage](https://miro.medium.com/v2/resize:fit:1400/format:webp/0*cjzg5S18szBjfU1Q.png)
+
+In Linux, Docker host runs docker daemon and docker client can be accessed from the terminal.
+
+In Windows/OS X, there is an additional tool called Docker toolbox. This toolbox installs the docker environment on Win/OS system. This toolbox installs the following: Docker Client, Compose, Kitematic, Machine, and Virtual Box
+
+### Technology Used in Docker
+
+The programming language used in Docker is `GO`. Docker takes advantage of various features of Linux kernel like namespaces and cgroups.
+
+- **namespaces**: Docker uses namespaces to provide isolated workspace called containers. When a container is run, docker creates a set of namespaces for it, providing a layer of isolation. Each aspect of a container runs in a separate namespace and its access is limited to that namespace.
+
+- **cgroups**( control groups ): croups are used to limit and isolate the resource usage( CPU, memory, Disk I/O, network etc ) of a collection of processes. cgroups allow Docker engine to share the available hardware resources to containers and optionally enforce limit and constraints.
+
+- **UnionFS**( Union file systems ): are file systems that operate by creating layers, making them very lightweight and fast.It is used by Docker engine to provide the building blocks for containers.
+
+Docker Engine combines the namespaces, cgroups, and UnionFS into a wrapper called a container format. The default container format is libcontainer.
+
+## Docker Architecture
+
+Docker uses a client-server architecture. The Docker client communicates with the Docker daemon, which does the heavy lifting of building, running, and distributing Docker containers. The client and daemon can run on the same system, or you can connect a Docker client to a remote Docker daemon.
+
+![Docker-Architecture](https://miro.medium.com/v2/resize:fit:1400/1*2O2XM1Q_LhOWCDEhXScf8w.png)
+
+Key components of Docker architecture:
+
+- **Docker daemon**: The background service running on the host that manages building, running, and distributing Docker containers.
+- **Docker client**: The command-line tool that allows users to interact with the Docker daemon.
+- **Docker registries**: Repositories that store Docker images. Docker Hub is a public registry that anyone can use.
+- **Docker objects**: Images, containers, networks, volumes, plugins, and other objects.
+
+Now that we have a basic understanding of Docker, let’s dive into installation and usage.
+
+# Installing Docker
+
+The best way to get started developing containerized applications is with [Docker Desktop](https://docs.docker.com/desktop/), for Linux, Mac or Windows.
+
+- [Windows](https://docs.docker.com/desktop/setup/install/windows-install/)
+- [Linux](https://docs.docker.com/desktop/setup/install/linux/)
+- [Mac](https://docs.docker.com/desktop/setup/install/mac-install/)
+
+# Docker Basics
+
+Now that we have Docker installed, let’s start with some basic commands and concepts.
+
+## Docker CLI
+
+The Docker Command Line Interface (CLI) is the primary way to interact with Docker. Here are some essential commands:

@@ -19,7 +19,7 @@ export const HeadingWithAnchor = ({
   return (
     <Component id={slug} className={className}>
       {children}
-      {level > 1 && content && (
+      {level >= 1 && content && (
         <Link href={`#${slug}`} aria-label={`Link to ${content}`}>
           <span className="ml-2 opacity-0 group-hover:opacity-100 text-muted-foreground hover:text-primary">#</span>
         </Link>

@@ -12,13 +12,13 @@ export const skillList = {
     "PostgreSQL", "MongoDB", "MySQL", "SQLite", "Redis", "ChromaDB", "Pinecone"
   ],
   "Web 3": [
-    "Web3.js", "@solana/web3.js", "Solana", "Ethereum", "Solidity" 
+    "Web3.js", "@solana/web3.js", "Solana", "Ethereum", "Solidity"
   ],
   ORM: [
     "Prisma", "Mongoose", "Drizzle"
   ],
   DevOps: [
-    "AWS", "GCP", "Docker", "Kubernetes", "Vercel", "Cloudflare", "Netlify", "GitHub Actions", "GitLab CI/CD", "Nginx", "Apache Kafka", "Vertex AI", "AWS Bedrock"
+    "AWS", "GCP", "Docker", "Kubernetes", "Vercel", "Cloudflare", "Netlify", "GitHub Actions", "GitLab CI/CD", "Nginx", "Apache Kafka"
   ],
   Tools: [
     "Git", "GitHub", "Visual Studio Code", "Linux", "Bash"

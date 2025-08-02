@@ -12,7 +12,6 @@ export async function convertPage(pageId: string) {
     const n2m = new NotionConverter(notion);
     const result = await n2m.convert(pageId);
     return result.content;
-    
   } catch (error) {
     console.error('Notion-to-md Conversion failed:', error);
     throw error;

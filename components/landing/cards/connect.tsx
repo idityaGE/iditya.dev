@@ -54,6 +54,11 @@ const Icons = {
 
 export const SocialLinks = [
   {
+    name: "X",
+    url: LinkData.twitter,
+    Icon: () => <Icons.x className="size-8" />,
+  },
+  {
     name: "GitHub",
     url: LinkData.github,
     Icon: () => <Icons.github className="size-8" />,
@@ -62,11 +67,6 @@ export const SocialLinks = [
     name: "LinkedIn",
     url: LinkData.linkedin,
     Icon: () => <Icons.linkedin className="size-8" />,
-  },
-  {
-    name: "X",
-    url: LinkData.twitter,
-    Icon: () => <Icons.x className="size-8" />,
   },
   {
     name: "Send Email",

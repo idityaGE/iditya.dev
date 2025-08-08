@@ -1,5 +1,23 @@
 export const ProjectData = [
   {
+    title: "TypeCast",
+    type: "personal",
+    slug: "typecast",
+    description: "TypeCast is a lightweight, cross‑platform desktop overlay that shows your keystrokes while you record or present. Built with Tauri (Rust + React), it stays always‑on‑top, is click‑through, and appears on all workspaces without getting in your way.",
+    images: [
+      "https://ik.imagekit.io/nnp1iszdfe/typecast.png?updatedAt=1754679270290",
+      "https://ik.imagekit.io/nnp1iszdfe/typecast2.png?updatedAt=1754679273819",
+    ],
+    githubLink: "https://github.com/idityaGE/TypeCast",
+    techStack: [
+      "Tauri",
+      "React",
+      "TypeScript",
+      "Rust",
+      "TailwindCSS",
+    ]
+  },
+  {
     title: "Hyper Digital",
     type: "freelance",
     slug: "hyperdigital",

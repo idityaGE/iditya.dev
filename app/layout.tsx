@@ -76,7 +76,7 @@ export default function RootLayout({
         <link rel="alternate" type="application/rss+xml" title={`${siteConfig.name} Projects RSS Feed`} href="/projects/rss.xml" />
       </head>
       <body
-        className={`${fontHeading.variable} font-sans antialiased`}
+        className={`${fontHeading.variable} antialiased`}
         suppressHydrationWarning
       >
         <ThemeProvider

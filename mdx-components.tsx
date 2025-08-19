@@ -6,6 +6,9 @@ import Image from 'next/image'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { HeadingWithAnchor } from "@/components/mdx/heading-with-anchor";
 import { OgLink } from "@/components/mdx/og-link";
+import { Lora } from 'next/font/google'
+
+const lora = Lora({ subsets: ['latin'] })
 
 import "@/styles/code.css"
 
@@ -13,22 +16,22 @@ import "@/styles/code.css"
 
 const styles = {
   h1: 'text-3xl font-bold tracking-tight mb-4 mt-8 scroll-mt-20 group',
-  h2: 'text-2xl font-bold tracking-tight mb-3 mt-6 scroll-mt-20 group',
+  h2: 'text-2xl font-bold tracking-tight mb-4 mt-6 scroll-mt-20 group',
   h3: 'text-xl font-bold tracking-tight mb-2 mt-5 scroll-mt-20 group',
   h4: 'text-lg font-bold tracking-tight mb-2 mt-4 scroll-mt-20 group',
-  h5: 'text-base font-bold tracking-tight mb-2 mt-4 scroll-mt-20 group',
-  h6: 'text-sm font-bold tracking-tight mb-2 mt-4 scroll-mt-20 group',
-  p: 'leading-7 mb-4',
+  h5: 'text-md font-bold tracking-tight mb-2 mt-4 scroll-mt-20 group',
+  h6: 'text-base font-bold tracking-tight mb-2 mt-4 scroll-mt-20 group',
+  p: `leading-7.5 mb-6 md:mb-8 text-gray-700 dark:text-gray-300 ${lora.className} text-xl`,
   a: 'text-muted-foreground hover:text-blue-700 underline',
-  ul: 'list-disc pl-6 mb-4',
-  ol: 'list-decimal pl-6 mb-4',
-  li: 'mb-1',
+  ul: 'list-disc pl-8 mb-6',
+  ol: 'list-decimal pl-8 mb-8',
+  li: `mb-3 ${lora.className} text-gray-700 dark:text-gray-300`,
   blockquote: 'pl-4 border-l-4 border-gray-200 italic my-4',
-  pre: 'p-4 rounded-lg overflow-auto my-4 hljs',
-  strong: 'font-bold text-primary',
+  pre: 'p-4 ml-4 rounded-lg overflow-auto my-6 hljs',
+  strong: 'font-bold text-gray-900 dark:text-gray-100',
   em: 'italic text-muted-foreground',
   del: 'line-through text-muted-foreground',
-  code: "px-1.5 py-1 bg-muted rounded font-mono text-sm",
+  code: "px-1.5 py-1 bg-muted rounded font-mono text-base text-red-700",
 }
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {

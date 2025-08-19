@@ -14,7 +14,7 @@ Docker is an open-source\* platform that automates the deployment, scaling, and 
 
 > _Note: Docker is open-source, but it also offers commercial products and services for enterprise users._
 
-# Docker concepts
+## Docker concepts
 
 Docker is a platform for developers and sysadmins to build, share, and run applications with containers. The use of containers to deploy applications is called containerisation. Containers are not new, but their use for easily deploying applications is.
 
@@ -29,11 +29,11 @@ Containerisation is increasingly popular because containers are:
 
 > **There is very famous meme:**> ![](https://i.programmerhumor.io/2024/03/programmerhumor-io-programming-memes-2fda9abcc7dc92e.jpe)
 
-# Images and containers
+## Images and containers
 
 Fundamentally, a container is nothing but a running process, with some added encapsulation features applied to it in order to keep it isolated from the host and from other containers. One of the most important aspects of container isolation is that each container interacts with its own, private filesystem; this filesystem is provided by a Docker image. An image includes everything needed to run an application — the code or binary, runtimes, dependencies, and any other filesystem objects required.
 
-# Containers and virtual machines
+## Containers and virtual machines
 
 A container runs natively on Linux and shares the kernel of the host machine with other containers. It runs a discrete process, taking no more memory than any other executable, making it lightweight.
 
@@ -71,7 +71,7 @@ The programming language used in Docker is `GO`. Docker takes advantage of vario
 
 Docker Engine combines the namespaces, cgroups, and UnionFS into a wrapper called a container format. The default container format is libcontainer.
 
-# Docker Architecture
+## Docker Architecture
 
 Docker uses a client-server architecture. The Docker client communicates with the Docker daemon, which does the heavy lifting of building, running, and distributing Docker containers. The client and daemon can run on the same system, or you can connect a Docker client to a remote Docker daemon.
 
@@ -86,7 +86,7 @@ Key components of Docker architecture:
 
 Now that we have a basic understanding of Docker, let’s dive into installation and usage.
 
-# Installing Docker
+## Installing Docker
 
 The best way to get started developing containerized applications is with [Docker Desktop](https://docs.docker.com/desktop/), for Linux, Mac or Windows.
 
@@ -94,7 +94,7 @@ The best way to get started developing containerized applications is with [Docke
 - [Linux](https://docs.docker.com/desktop/setup/install/linux/)
 - [Mac](https://docs.docker.com/desktop/setup/install/mac-install/)
 
-# Docker Basics
+## Docker Basics
 
 Now that we have Docker installed, let’s start with some basic commands and concepts.
 
@@ -118,7 +118,7 @@ The Docker Command Line Interface (CLI) is the primary way to interact with Dock
   }}
 />
 
-# Docker images
+## Docker images
 
 Docker images are read-only templates used to create containers. They contain the application code, libraries, dependencies, tools, and other files needed for an application to run.
 
@@ -140,7 +140,7 @@ Docker images are read-only templates used to create containers. They contain th
 
 This command pulls the latest Ubuntu image from Docker Hub.
 
-# Running your first container
+## Running your first container
 
 Let’s run our first Docker container using the Ubuntu image we just pulled:
 
@@ -164,7 +164,7 @@ cat /etc/os-release
 
 To exit the container, type `exit` or press `Ctrl+D`.
 
-# Container lifecycle
+## Container lifecycle
 
 Understanding the container lifecycle is crucial. Here are the main states and commands:
 
@@ -212,21 +212,21 @@ docker rm mycontainer
 
 Note: You can’t remove a running container unless you use the `-f` (force) option.
 
-# Listing and inspecting containers
+## Listing and inspecting containers
 
-1.  List running containers:
+- List running containers:
 
 ```bash
 docker ps
 ```
 
-2. List all containers (including stopped ones):
+- List all containers (including stopped ones):
 
 ```bash
 docker ps -a
 ```
 
-3. Inspect a container:
+- Inspect a container:
 
 ```bash
 docker inspect mycontainer
@@ -234,7 +234,7 @@ docker inspect mycontainer
 
 This command provides detailed information about the container in JSON format.
 
-4. View container logs:
+- View container logs:
 
 ```bash
 docker logs mycontainer
@@ -242,7 +242,7 @@ docker logs mycontainer
 
 Add the `-f` flag to follow the logs in real-time.
 
-# Running containers in detached mode
+## Running containers in detached mode
 
 So far, we’ve run containers in interactive mode. For long-running services, you’ll often want to run containers in detached mode:
 
@@ -254,15 +254,15 @@ This starts an Nginx web server container in the background. You can still inter
 
 Now that we’ve covered the basics, let’s dive deeper into working with Docker images.
 
-4. # Working with Docker Images
+### Working with Docker Images
 
 Docker images are the building blocks of containers. Understanding how to work with images is crucial for mastering Docker.
 
-# Anatomy of a Docker image
+### Anatomy of a Docker image
 
 A Docker image is made up of multiple layers. Each layer represents an instruction in the image’s Dockerfile. Layers are stacked on top of each other, and each one is the difference between the current state and the previous state.
 
-# Finding and pulling images
+## Finding and pulling images
 
 1.  Search for images on Docker Hub:
 
@@ -278,7 +278,7 @@ docker pull nginx:latest
 
 You can specify a particular version by changing the tag (e.g., `nginx:1.19`).
 
-# Creating images
+## Creating images
 
 There are two main ways to create Docker images:
 
@@ -287,7 +287,7 @@ There are two main ways to create Docker images:
 
 Let’s look at both methods:
 
-# Committing changes
+### Committing changes
 
 1.  Run a container and make some changes:
 
@@ -306,7 +306,7 @@ docker commit <container_id> my-nginx-image:v1
 
 Replace `<container_id>` with the ID of the container you just exited.
 
-# Building from a Dockerfile
+### Building from a Dockerfile
 
 Create a file named `Dockerfile` with the following content:
 
@@ -325,7 +325,7 @@ docker build -t my-nginx-image:v2 .
 
 The `-t` flag tags the image with a name and optional version.
 
-# Managing images
+## Managing images
 
 1.  List images:
 
@@ -353,7 +353,7 @@ docker push my-dockerhub-username/my-nginx-image:v2
 
 Note: You need to be logged in to Docker Hub (`docker login`) before pushing.
 
-# Image layers and caching
+## Image layers and caching
 
 Docker uses a layer cache to speed up builds. Each instruction in a Dockerfile creates a new layer. If you haven’t changed the instruction and its previous layers, Docker will reuse the cached layer.
 
@@ -365,27 +365,27 @@ docker history my-nginx-image:v2
 
 Understanding layers helps in creating efficient Dockerfiles, which we’ll cover in more detail later.
 
-5. # Creating and Managing Docker Containers
+## Creating and Managing Docker Containers
 
 Now that we’re comfortable with Docker images, let’s dive deeper into working with containers.
 
-# Running containers
+### Running containers
 
 We’ve already seen the basic `docker run` command, but there are many useful options:
 
-1.  Run a container and automatically remove it when it exits:
+- Run a container and automatically remove it when it exits:
 
 ```bash
 docker run --rm ubuntu:latest echo "Hello, World!"
 ```
 
-2. Run a container with a custom name:
+- Run a container with a custom name:
 
 ```bash
 docker run --name my-custom-container ubuntu:latest
 ```
 
-3. Run a container and publish a port:
+- Run a container and publish a port:
 
 ```bash
 docker run -p 8080:80 nginx
@@ -393,19 +393,19 @@ docker run -p 8080:80 nginx
 
 This maps port 8080 on the host to port 80 in the container.
 
-1.  Run a container with environment variables:
+- Run a container with environment variables:
 
 ```bash
 docker run -e MY_VAR=my_value ubuntu:latest env
 ```
 
-5. Run a container with a limited amount of memory:
+- Run a container with a limited amount of memory:
 
 ```bash
 docker run --memory=512m ubuntu:latest
 ```
 
-# Executing commands in running containers
+## Executing commands in running containers
 
 You can execute commands in a running container using `docker exec`:
 
@@ -415,41 +415,41 @@ docker exec -it my-custom-container /bin/bash
 
 This opens an interactive shell in the running container.
 
-# Copying files between host and container
+## Copying files between host and container
 
 To copy files between your host system and a container:
 
-1.  From host to container:
+- From host to container:
 
 ```bash
 docker cp ./myfile.txt my-custom-container:/path/in/container/
 ```
 
-2. From container to host:
+- From container to host:
 
 ```bash
 docker cp my-custom-container:/path/in/container/myfile.txt ./
 ```
 
-# Monitoring containers
+## Monitoring containers
 
-1.  View container resource usage:
+- View container resource usage:
 
 ```bash
 docker stats
 ```
 
-2. View processes running in a container:
+- View processes running in a container:
 
 ```bash
 docker top my-custom-container
 ```
 
-# Container resource constraints
+## Container resource constraints
 
 Docker allows you to set resource constraints on containers:
 
-1.  Limit CPU:
+- Limit CPU:
 
 ```bash
 docker run --cpus=0.5 ubuntu:latest
@@ -457,7 +457,7 @@ docker run --cpus=0.5 ubuntu:latest
 
 This limits the container to use at most 50% of a CPU.
 
-2. Set CPU shares (relative weight):
+- Set CPU shares (relative weight):
 
 ```bash
 docker run --cpu-shares=512 ubuntu:latest
@@ -465,7 +465,7 @@ docker run --cpu-shares=512 ubuntu:latest
 
 The default value is 1024, so this container would receive half the CPU time of a default container.
 
-1.  Limit memory and enable swapping:
+- Limit memory and enable swapping:
 
 ```bash
 docker run --memory=1g --memory-swap=2g ubuntu:latest
@@ -473,23 +473,23 @@ docker run --memory=1g --memory-swap=2g ubuntu:latest
 
 This limits the container to 1GB of memory and 2GB of swap.
 
-# Updating containers
+## Updating containers
 
 You can update the configuration of a running container:
 
-1.  Update container resources:
+- Update container resources:
 
 ```bash
 docker update --cpus=1 --memory=2g my-custom-container
 ```
 
-2. Rename a container:
+- Rename a container:
 
 ```bash
 docker rename my-custom-container my-new-container-name
 ```
 
-# Container restart policies
+## Container restart policies
 
 Docker provides restart policies to automatically restart containers under certain conditions:
 
@@ -504,47 +504,47 @@ Restart policies:
 - `always`: Always restart the container regardless of the exit status
 - `unless-stopped`: Always restart the container unless it was explicitly stopped
 
-# Attaching to and detaching from containers
+## Attaching to and detaching from containers
 
-1.  Attach to a running container:
+- Attach to a running container:
 
 ```bash
 docker attach my-custom-container
 ```
 
-2. Detach from a container without stopping it: Press `Ctrl-p` followed by `Ctrl-q`.
+- Detach from a container without stopping it: Press `Ctrl-p` followed by `Ctrl-q`.
 
 Now that we’ve covered the essentials of working with containers, let’s move on to Docker networking.
 
-6. # Docker Networking
+## Docker Networking
 
 Docker networking allows containers to communicate with each other and with the outside world. Understanding Docker networking is crucial for building multi-container applications.
 
-# Network drivers
+## Network drivers
 
 Docker supports several network drivers out of the box:
 
-1.  **bridge**: The default network driver. It’s used for standalone containers that need to communicate.
-2.  **host**: Removes network isolation between the container and the Docker host.
-3.  **overlay**: Used for connecting multiple Docker daemons together (used in Swarm mode).
-4.  **macvlan**: Allows you to assign a MAC address to a container, making it appear as a physical device on your network.
-5.  **none**: Disables all networking for a container.
+- **bridge**: The default network driver It’s used for standalone containers that need to communicate.
+- **host**: Removes network isolation between the container and the Docker host.
+- **overlay**: Used for connecting multiple Docker daemons together (used in Swarm mode).
+- **macvlan**: Allows you to assign a MAC address to a container, making it appear as a physical device on your network.
+- **none**: Disables all networking for a container.
 
-# Listing and inspecting networks
+## Listing and inspecting networks
 
-1.  List networks:
+- List networks:
 
 ```bash
 docker network ls
 ```
 
-2.Inspect a network:
+- Inspect a network:
 
 ```bash
 docker network inspect bridge
 ```
 
-# Creating custom networks
+## Creating custom networks
 
 Create a custom bridge network:
 
@@ -552,46 +552,46 @@ Create a custom bridge network:
 docker network create --driver bridge my-custom-network
 ```
 
-# Connecting containers to networks
+## Connecting containers to networks
 
-1.  Connect a running container to a network:
+- Connect a running container to a network:
 
 ```bash
 docker network connect my-custom-network my-container
 ```
 
-2. Disconnect a container from a network:
+- Disconnect a container from a network:
 
 ```bash
 docker network disconnect my-custom-network my-container
 ```
 
-3. Run a new container and connect it to a network:
+- Run a new container and connect it to a network:
 
 ```bash
 docker run --network my-custom-network nginx
 ```
 
-# Container DNS
+## Container DNS
 
-Containers on the same user-defined network can resolve each other by name. Let’s demonstrate this:
+Containers on the same user-defined network can resolve each other by name Let’s demonstrate this:
 
-1.  Create a network:
+- Create a network:
 
 ```bash
 docker network create my-app-network
 ```
 
-2. Run two containers on this network:
+- Run two containers on this network:
 
 ```bash
 docker run -d --name web --network my-app-network nginx
 docker run -d --name db --network my-app-network postgres
 ```
 
-3. Now, the `web` container can communicate with the `db` container using the hostname `db`.
+- Now, the `web` container can communicate with the `db` container using the hostname `db`.
 
-# Port mapping
+## Port mapping
 
 To make a container’s port accessible from the host:
 
@@ -607,49 +607,49 @@ You can also specify the IP address to bind to:
 docker run -p 127.0.0.1:8080:80 nginx
 ```
 
-# Network troubleshooting
+## Network troubleshooting
 
-1.  Check container network settings:
+- Check container network settings:
 
 ```bash
 docker inspect --format '{{json .NetworkSettings.Networks}}' my-container
 ```
 
-2. Use the `docker exec` command to run network diagnostic tools inside a container:
+- Use the `docker exec` command to run network diagnostic tools inside a container:
 
 ```bash
 docker exec -it my-container ping google.com
 docker exec -it my-container netstat -tuln
 ```
 
-3. Use the `docker logs` command to check for network-related issues:
+- Use the `docker logs` command to check for network-related issues:
 
 ```bash
 docker logs my-container
 ```
 
-4. If you suspect DNS issues, check the container’s DNS configuration:
+- If you suspect DNS issues, check the container’s DNS configuration:
 
 ```bash
 docker exec -it my-container cat /etc/resolv.conf
 ```
 
-# Advanced networking topics
+## Advanced networking topics
 
-1.  **Exposing containers**: Use the `--expose` flag to expose ports without publishing them to the host:
+- **Exposing containers**: Use the `--expose` flag to expose ports without publishing them to the host:
 
 ```bash
 docker run --expose 80 nginx
 ```
 
-2. **Link containers** (Note: This is a legacy feature; use user-defined networks instead):
+- **Link containers** (Note: This is a legacy feature; use user-defined networks instead):
 
 ```bash
 docker run --name db postgres
 docker run --link db:database nginx
 ```
 
-3. **MacVLAN networks**: Create a network that allows containers to appear as physical devices on your network:
+- **MacVLAN networks**: Create a network that allows containers to appear as physical devices on your network:
 
 ```bash
 docker network create -d macvlan \
@@ -660,49 +660,49 @@ docker network create -d macvlan \
 
 Understanding Docker networking is crucial for building complex, multi-container applications. Now, let’s move on to another important topic: Docker volumes and data management.
 
-7. # Docker Volumes and Data Management
+## Docker Volumes and Data Management
 
 Docker containers are ephemeral by nature, meaning any data created inside a container is lost when the container is removed. Docker provides volumes and bind mounts to persist data and share it between containers.
 
-# Types of data persistence in Docker
+### Types of data persistence in Docker
 
-1.  **Volumes**: Managed by Docker and stored in a part of the host filesystem.
-2.  **Bind mounts**: File or directory on the host machine mounted into a container.
-3.  **tmpfs mounts**: Stored in the host system’s memory only.
+1. **Volumes**: Managed by Docker and stored in a part of the host filesystem.
+2. **Bind mounts**: File or directory on the host machine mounted into a container.
+3. **tmpfs mounts**: Stored in the host system’s memory only.
 
-# Working with Docker volumes
+## Working with Docker volumes
 
-1.  Create a volume:
+- Create a volume:
 
 ```bash
 docker volume create my-vol
 ```
 
-2. List volumes:
+- List volumes:
 
 ```bash
 docker volume ls
 ```
 
-3. Inspect a volume:
+- Inspect a volume:
 
 ```bash
 docker volume inspect my-vol
 ```
 
-4. Remove a volume:
+- Remove a volume:
 
 ```bash
 docker volume rm my-vol
 ```
 
-5. Run a container with a volume:
+- Run a container with a volume:
 
 ```bash
 docker run -v my-vol:/app/data nginx
 ```
 
-# Bind mounts
+## Bind mounts
 
 Bind mounts allow you to mount a file or directory from the host into a container:
 
@@ -716,7 +716,7 @@ Use the `--mount` flag for more verbose and explicit volume mounting:
 docker run --mount type=bind,source=/host/path,target=/container/path nginx
 ```
 
-# Read-only mounts
+## Read-only mounts
 
 You can mount volumes or bind mounts as read-only:
 
@@ -724,37 +724,37 @@ You can mount volumes or bind mounts as read-only:
 docker run -v /host/path:/container/path:ro nginx
 ```
 
-# Sharing data between containers
+## Sharing data between containers
 
-1.  Using a named volume:
+- Using a named volume:
 
 ```bash
 docker run -v shared-data:/app/data --name container1 nginx
 docker run -v shared-data:/app/data --name container2 nginx
 ```
 
-2. Using the `--volumes-from` flag:
+- Using the `--volumes-from` flag:
 
 ```bash
 docker run --name container1 -v /app/data nginx
 docker run --volumes-from container1 --name container2 nginx
 ```
 
-# Data backup and restore
+## Data backup and restore
 
-1.  Backup a volume:
+- Backup a volume:
 
 ```bash
 docker run --rm -v my-vol:/source -v $(pwd):/backup ubuntu tar cvf /backup/backup.tar /source
 ```
 
-2. Restore a volume:
+- Restore a volume:
 
 ```bash
 docker run --rm -v my-vol:/target -v $(pwd):/backup ubuntu tar xvf /backup/backup.tar -C /target --strip-components=1
 ```
 
-# Volume drivers
+## Volume drivers
 
 Docker supports volume drivers to enable volume management on different storage systems:
 
@@ -770,11 +770,11 @@ This creates an NFS volume using the local driver with specific options.
 
 Understanding Docker volumes and data management is crucial for maintaining data persistence in containerized applications. Next, we’ll dive into writing Dockerfiles to create custom images.
 
-8. # Writing Dockerfiles
+## Writing Dockerfiles
 
 A Dockerfile is a text document containing instructions to build a Docker image automatically. It’s a powerful tool for creating reproducible and version-controlled images.
 
-# Dockerfile basics
+## Dockerfile basics
 
 Here’s a simple Dockerfile:
 
@@ -796,10 +796,11 @@ Let’s break down the most common Dockerfile instructions:
 6.  **CMD**: Provides defaults for an executing container.
 7.  **ENTRYPOINT**: Configures a container to run as an executable.
 
-# Best practices for writing Dockerfiles
+## Best practices for writing Dockerfiles
 
-1.  **Use official base images** when possible.
-2.  **Minimize the number of layers** by combining commands:
+**1. Use official base images** when possible.
+
+**2. Minimize the number of layers** by combining commands:
 
 ```bash
 RUN apt-get update && \
@@ -824,21 +825,21 @@ COPY --from=builder /app/myapp /usr/local/bin/myapp
 CMD ["myapp"]
 ```
 
-5. **Set the WORKDIR** to organize your commands:
+**5. Set the WORKDIR** to organize your commands:
 
 ```bash
 WORKDIR /app
 COPY . .
 ```
 
-6.**Use environment variables** for configuration:
+**6. Use environment variables** for configuration:
 
 ```bash
 ENV APP_HOME /app
 WORKDIR $APP_HOME
 ```
 
-7. **Use LABEL** for metadata:
+**7. Use LABEL** for metadata:
 
 ```bash
 LABEL maintainer="your-email@example.com" \
@@ -846,7 +847,7 @@ LABEL maintainer="your-email@example.com" \
       description="This is my custom image"
 ```
 
-# Building images from Dockerfiles
+## Building images from Dockerfiles
 
 To build an image from a Dockerfile:
 
@@ -856,9 +857,9 @@ docker build -t my-image:v1 .
 
 The `.` at the end specifies the build context (current directory in this case).
 
-# Dockerfile instructions in depth
+## Dockerfile instructions in depth
 
-1.  **HEALTHCHECK**: Tells Docker how to test if a container is still working:
+**1. HEALTHCHECK**: Tells Docker how to test if a container is still working:
 
 ```bash
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
@@ -872,20 +873,20 @@ ARG VERSION=latest
 FROM ubuntu:${VERSION}
 ```
 
-3. **VOLUME**: Creates a mount point and marks it as holding externally mounted volumes:
+**3. VOLUME**: Creates a mount point and marks it as holding externally mounted volumes:
 
 ```bash
 VOLUME /app/data
 ```
 
-4. **USER**: Sets the user name or UID to use when running the image:
+**4. USER**: Sets the user name or UID to use when running the image:
 
 ```bash
 RUN groupadd -r mygroup && useradd -r -g mygroup myuser
 USER myuser
 ```
 
-# Multi-stage builds
+## Multi-stage builds
 
 Multi-stage builds allow you to use multiple FROM statements in your Dockerfile. Each FROM instruction can use a different base, and each begins a new stage of the build. You can selectively copy artifacts from one stage to another, leaving behind everything you don’t want in the final image.
 
@@ -910,11 +911,11 @@ This results in a much smaller final image, as it doesn’t include the Go compi
 
 Now that we’ve covered Dockerfiles in depth, let’s move on to Docker Compose, which allows you to define and run multi-container Docker applications.
 
-9. # Docker Compose
+## Docker Compose
 
 Docker Compose is a tool for defining and running multi-container Docker applications. It uses YAML files to configure application services and performs the creation and start-up of all the containers with a single command.
 
-# Docker Compose basics
+### Docker Compose basics
 
 A simple `docker-compose.yml` file:
 
@@ -931,51 +932,51 @@ services:
       POSTGRES_PASSWORD: example
 ```
 
-# Key concepts
+## Key concepts
 
 1.  **Services**: Containers that make up your application.
 2.  **Networks**: How services communicate with each other.
 3.  **Volumes**: Where services store and share data.
 
-# Common Docker Compose commands
+## Common Docker Compose commands
 
-1.  Start services:
+**1. Start services:**
 
 ```bash
 docker-compose up
 ```
 
-2. Start services in detached mode:
+**2. Start services in detached mode:**
 
 ```bash
 docker-compose up -d
 ```
 
-3. Stop services:
+**3. Stop services:**
 
 ```bash
 docker-compose down
 ```
 
-4. View running services:
+**4. View running services:**
 
 ```bash
 docker-compose ps
 ```
 
-5. View logs:
+**5. View logs:**
 
 ```bash
 docker-compose logs
 ```
 
-6. Run a command in a service:
+**6. Run a command in a service:**
 
 ```bash
 docker-compose exec web bash
 ```
 
-# Docker Compose file structure
+## Docker Compose file structure
 
 A more complex `docker-compose.yml` example:
 
@@ -1005,15 +1006,15 @@ networks:
     name: my_app_net
 ```
 
-# Advanced Docker Compose features
+## Advanced Docker Compose features
 
-1.  **Scaling services**:
+**1. Scaling services**:
 
 ```bash
 docker-compose up -d --scale web=3
 ```
 
-2. **Extending services**:
+**2. Extending services**:
 
 ```yaml
 version: "3.8"
@@ -1030,7 +1031,7 @@ services:
       service: database
 ```
 
-3. **Using profiles**:
+**3. Using profiles**:
 
 ```yaml
 version: "3.9"
@@ -1043,13 +1044,13 @@ services:
     profiles: ["backend", "dev"]
 ```
 
-Start only specific profiles:
+- Start only specific profiles:
 
 ```bash
 docker-compose --profile dev up
 ```
 
-4. **Health checks**:
+**4. Health checks**:
 
 ```yaml
 version: "3.8"

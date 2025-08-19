@@ -31,7 +31,7 @@ const styles = {
   strong: 'font-bold text-gray-900 dark:text-gray-100',
   em: 'italic text-muted-foreground',
   del: 'line-through text-muted-foreground',
-  code: "px-1.5 py-1 bg-muted rounded font-mono text-base text-red-700",
+  code: "px-1.5 py-1 bg-muted rounded font-mono! text-base text-red-700",
 }
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {

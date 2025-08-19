@@ -2,14 +2,14 @@ import type { Metadata } from "next/types";
 import { ThemeProvider } from "@/components/theme/theme-provider"
 import { Navbar } from "@/components/navbar/navbar";
 import Image from "next/image";
-import { Inter } from "next/font/google";
+import { Inter, Lexend } from "next/font/google";
 import { siteConfig } from "@/config/site.config";
 import { Analytics } from '@vercel/analytics/next';
 import "@/styles/globals.css";
 
-const fontHeading = Inter({
+const font = Inter({
   subsets: ["latin"],
-  variable: "--font-heading",
+  variable: "--font-sans",
   display: "swap",
 });
 
@@ -76,7 +76,7 @@ export default function RootLayout({
         <link rel="alternate" type="application/rss+xml" title={`${siteConfig.name} Projects RSS Feed`} href="/projects/rss.xml" />
       </head>
       <body
-        className={`${fontHeading.variable} antialiased`}
+        className={`${font.className} antialiased`}
         suppressHydrationWarning
       >
         <ThemeProvider

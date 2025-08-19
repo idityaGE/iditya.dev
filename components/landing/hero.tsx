@@ -5,7 +5,7 @@ import { LinkData } from "@/config/links.config"
 
 export const Hero = () => {
   return (
-    <div className='mb-10'>
+    <div className='ml-2 mb-10'>
       <h1 id="name" className='text-4xl font-bold leading-12'>I'm <br /> {PersonalData.name}</h1>
       <div>
         <h6 className='text-base text-muted-foreground pt-3'>{PersonalData.age}y/o Tech Enthusiast, {PersonalData.address.country}</h6>

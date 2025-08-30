@@ -18,7 +18,7 @@ export function BlogCard({
             width={200}
             height={111}
             alt={blog.title}
-            className="w-full aspect-[8/5] object-cover scale-105 group-hover/blog-card:scale-100 duration-300 transition-all ease-in-out"
+            className="w-full aspect-[8/5] object-fit scale-105 group-hover/blog-card:scale-100 duration-300 transition-all ease-in-out"
           />
         </div>
         <div className="p-3">
@@ -33,9 +33,9 @@ export function BlogCard({
               </p>
             ))}
           </div>
-            <p className="text-sm text-muted-foreground mt-2 line-clamp-2">
+          <p className="text-sm text-muted-foreground mt-2 line-clamp-2">
             {blog.excerpt}{blog.excerpt.split('\n').length > 2 ? '...' : ''}
-            </p>
+          </p>
           <div className="w-full flex justify-end">
             <p className="text-xs mt-2 px-2 py-1 rounded bg-secondary">
               {new Date(blog.date).toLocaleDateString("en-US", {

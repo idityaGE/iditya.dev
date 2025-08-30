@@ -31,7 +31,7 @@ const styles = {
   strong: 'font-bold text-gray-900 dark:text-gray-100',
   em: 'italic text-muted-foreground',
   del: 'line-through text-muted-foreground',
-  code: "px-1.5 py-1 bg-muted rounded font-mono! text-base text-red-700",
+  code: "px-1.5 py-0.5 bg-muted rounded font-mono! text-base text-red-700",
 }
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
@@ -76,7 +76,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     em: ({ children }) => <em className={styles.em}>{children}</em>,
     del: ({ children }) => <del className={styles.del}>{children}</del>,
     pre: ({ children }) => <pre className={styles.pre}>{children}</pre>,
-    hr: () => <hr className="my-4" />,
+    hr: () => <hr className="my-6" />,
 
     code: ({ children, className }) => {
       if (className) return <code className={className}>{children}</code>;

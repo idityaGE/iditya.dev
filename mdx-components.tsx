@@ -7,10 +7,9 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { HeadingWithAnchor } from "@/components/mdx/heading-with-anchor";
 import { OgLink } from "@/components/mdx/og-link";
 import { Lora } from 'next/font/google'
+import { Code } from "@/components/mdx/code";
 
 const lora = Lora({ subsets: ['latin'] })
-
-import "@/styles/code.css"
 
 //* ref: https://www.gatsbyjs.com/docs/how-to/routing/customizing-components/
 
@@ -27,7 +26,6 @@ const styles = {
   ol: 'list-decimal pl-8 mb-8',
   li: `my-3 ${lora.className} text-gray-700 dark:text-gray-300`,
   blockquote: 'pl-4 border-l-4 border-gray-200 italic my-4',
-  pre: 'p-4 ml-4 rounded-lg overflow-auto my-6 hljs',
   strong: 'font-bold text-gray-900 dark:text-gray-100',
   em: 'italic text-muted-foreground',
   del: 'line-through text-muted-foreground',
@@ -75,8 +73,9 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     strong: ({ children }) => <strong className={styles.strong}>{children}</strong>,
     em: ({ children }) => <em className={styles.em}>{children}</em>,
     del: ({ children }) => <del className={styles.del}>{children}</del>,
-    pre: ({ children }) => <pre className={styles.pre}>{children}</pre>,
     hr: () => <hr className="my-6" />,
+
+    pre: Code,
 
     code: ({ children, className }) => {
       if (className) return <code className={className}>{children}</code>;

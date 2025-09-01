@@ -43,9 +43,11 @@ export async function generateMetadata({
       ],
     },
     twitter: {
-      card: 'summary_large_image',
+      card: 'summary',
       title: `${metadata.title} | ${siteConfig.name}`,
       description: metadata.excerpt || metadata.description,
+      site: "@" + siteConfig.links.x.split('/').at(-1) || '@idityage',
+      creator: "@" + siteConfig.links.x.split('/').at(-1) || '@idityage',
       images: [
         {
           url: metadata.coverImage || siteConfig.ogImage,
@@ -95,7 +97,7 @@ export default async function Page({
             />
           )}
         </div>
-        
+
         <Separator />
 
         <article className="w-full md:text-lg leading-relaxed mt-4">

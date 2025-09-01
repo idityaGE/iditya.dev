@@ -37,8 +37,11 @@ export async function generateMetadata({
       ],
     },
     twitter: {
+      card: 'summary',
       title: `${project.title} | ${siteConfig.name}`,
       description: project.description,
+      site: "@" + siteConfig.links.x.split('/').at(-1) || '@idityage',
+      creator: "@" + siteConfig.links.x.split('/').at(-1) || '@idityage',
       images: [
         {
           url: project.images[0],

@@ -3,8 +3,9 @@ import { GlobeCard } from "./cards/globe"
 import { Projects } from "./cards/project"
 import { SkillCard } from "./cards/skills"
 import { BlogCard } from "./cards/blog"
+import { LeetCodeStatsCard } from "./cards/lc"
 
-import { Layers, MapPin, Link, Atom, BookIcon, Book } from 'lucide-react';
+import { Layers, MapPin, Link, Atom, BookIcon, LucideSheet } from 'lucide-react';
 import { BentoCard, BentoGrid } from "@/components/magicui/bento-grid";
 import { PersonalData } from "@/config/personal.config";
 
@@ -33,6 +34,12 @@ const features = [
     name: `${PersonalData.address.city}, ${PersonalData.address.country}`,
     background: <GlobeCard />,
     className: "lg:row-start-4 lg:row-end-5 lg:col-start-3 lg:col-end-5",
+  },
+  {
+    Icon: LucideSheet,
+    name: "Leetcode",
+    background: <LeetCodeStatsCard />,
+    className: "lg:col-start-1 lg:col-end-5 lg:row-start-5 lg:row-end-6",
   },
   {
     Icon: Layers,

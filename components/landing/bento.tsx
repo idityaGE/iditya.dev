@@ -35,12 +35,12 @@ const features = [
     background: <GlobeCard />,
     className: "lg:row-start-4 lg:row-end-5 lg:col-start-3 lg:col-end-5",
   },
-  {
-    Icon: LucideSheet,
-    name: "Leetcode",
-    background: <LeetCodeStatsCard />,
-    className: "lg:col-start-1 lg:col-end-5 lg:row-start-5 lg:row-end-6",
-  },
+  // {
+  //   Icon: LucideSheet,
+  //   name: "Leetcode",
+  //   background: <LeetCodeStatsCard />,
+  //   className: "lg:col-start-1 lg:col-end-5 lg:row-start-5 lg:row-end-6",
+  // },
   {
     Icon: Layers,
     name: "Tech Stack",

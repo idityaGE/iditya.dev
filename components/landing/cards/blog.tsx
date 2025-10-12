@@ -36,11 +36,11 @@ export const BlogCard = async () => {
 
           </div>
         </div>
-        
-        <Link href="/blogs" className="h-full">
+
+        <Link href="/blogs" className="h-full group/readmore">
           <div className="relative z-10 flex items-center mt-7">
-            <span className="text-base text-primary font-medium group-hover:underline">Read More</span>
-            <ArrowUpRight className="h-4 w-4 ml-1 text-primary hidden group-hover:block" />
+            <span className="text-base text-primary font-medium group-hover/readmore:underline">Read More</span>
+            <ArrowUpRight className="h-4 w-4 ml-1 text-primary hidden group-hover/readmore:block" />
           </div>
         </Link>
       </div>

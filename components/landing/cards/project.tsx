@@ -9,9 +9,9 @@ export function Projects() {
       className="z-10 whitespace-pre-wrap text-center text-5xl font-bold tracking-tighter text-slate-800 dark:text-white group"
     >
       <div className="relative flex h-56 w-full flex-col items-center justify-center md:shadow-xl hover:scale-125 hover:text-6xl duration-300 transform-gpu ease-in-out">
-        <div className="flex items-center gap-2">
+        <div className="relative flex items-center justify-center">
           <span>Projects</span>
-          <div className="group-hover:opacity-100 group-hover:translate-x-0 opacity-0 -translate-x-2 transition-all duration-300">
+          <div className="absolute -right-10 md:-right-12 group-hover:opacity-100 group-hover:translate-x-0 opacity-0 -translate-x-2 transition-all duration-300">
             <ArrowUpRight className="h-8 w-8 md:h-10 md:w-10" />
           </div>
         </div>

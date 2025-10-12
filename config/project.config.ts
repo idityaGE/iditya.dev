@@ -18,6 +18,28 @@ export const ProjectData = [
     ]
   },
   {
+    title: "Solana Token Launchpad",
+    type: "personal",
+    slug: "solana-token-launchpad",
+    description: "A powerful web application that enables users to launch their own tokens on the Solana blockchain with complete metadata support.",
+    images: [
+      "https://ik.imagekit.io/nnp1iszdfe/Portfolio/project-media/pika-1760295469463-1xn.png?updatedAt=1760295900444",
+      "https://ik.imagekit.io/nnp1iszdfe/Portfolio/project-media/solana.png?updatedAt=1750187263196",
+      "https://res.cloudinary.com/dwdbqwqxk/image/upload/v1742220433/Screenshot_2025-03-17_142015_wbvw1o.png",
+    ],
+    githubLink: "https://github.com/idityaGE/Solana-Token-Lauchpad",
+    liveLink: "https://solana-token-lauchpad.vercel.app/",
+    techStack: [
+      "React",
+      "TypeScript",
+      "TailwindCSS",
+      "Shadcn",
+      "Solana Web3.js",
+      "Solana SPL Token",
+      "Anza Wallet Adapter",
+    ]
+  },
+  {
     title: "Hyper Digital",
     type: "freelance",
     slug: "hyperdigital",
@@ -59,27 +81,6 @@ export const ProjectData = [
       "Prisma",
       "Postgres",
       "shadcn ui",
-    ]
-  },
-  {
-    title: "Solana Token Launchpad",
-    type: "personal",
-    slug: "solana-token-launchpad",
-    description: "A powerful web application that enables users to launch their own tokens on the Solana blockchain with complete metadata support.",
-    images: [
-      "https://ik.imagekit.io/nnp1iszdfe/Portfolio/project-media/solana.png?updatedAt=1750187263196",
-      "https://res.cloudinary.com/dwdbqwqxk/image/upload/v1742220433/Screenshot_2025-03-17_142015_wbvw1o.png",
-    ],
-    githubLink: "https://github.com/idityaGE/Solana-Token-Lauchpad",
-    liveLink: "https://solana-token-lauchpad.vercel.app/",
-    techStack: [
-      "React",
-      "TypeScript",
-      "TailwindCSS",
-      "Shadcn",
-      "Solana Web3.js",
-      "Solana SPL Token",
-      "Anza Wallet Adapter",
     ]
   },
   {

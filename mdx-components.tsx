@@ -58,7 +58,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     h4: ({ children }) => <HeadingWithAnchor level={4} className={styles.h4}>{children}</HeadingWithAnchor>,
     h5: ({ children }) => <HeadingWithAnchor level={5} className={styles.h5}>{children}</HeadingWithAnchor>,
     h6: ({ children }) => <HeadingWithAnchor level={6} className={styles.h6}>{children}</HeadingWithAnchor>,
-    p: ({ children }) => <div className={styles.p}>{children}</div>,
+    p: ({ children }) => <p className={styles.p}>{children}</p>,
     a: ({ href, children }) => <a href={href} className={styles.a}>{children}</a>,
     ul: ({ children }) => <ul className={styles.ul}>{children}</ul>,
     ol: ({ children }) => <ol className={styles.ol}>{children}</ol>,

@@ -1,4 +1,4 @@
-import { convertPage } from "@/server/notion-to-mdx";
+import { getNotionPage } from "@/server/notion-to-mdx";
 import { MDXRemote } from 'next-mdx-remote-client/rsc'
 import { useMDXComponents } from "@/mdx-components";
 import type { MDXRemoteOptions } from "next-mdx-remote-client/rsc";
@@ -6,7 +6,7 @@ import remarkGfm from 'remark-gfm'
 import { Suspense } from "react";
 import { LayoutListIcon, RefreshCw } from "lucide-react";
 
-export const revalidate = 60;
+export const revalidate = 60 * 5; // revalidate every 5 minutes
 export const dynamic = 'force-dynamic';
 
 const TodoSkeleton = () => (
@@ -24,7 +24,6 @@ const TodoSkeleton = () => (
   </div>
 );
 
-// Error state component
 const ErrorState = () => (
   <div className="flex flex-col items-center justify-center py-10 text-center">
     <div className="bg-red-100 dark:bg-red-900/30 p-4 rounded-full mb-4">
@@ -45,7 +44,13 @@ const ErrorState = () => (
 
 const ToDoPage = async () => {
   const pageId = process.env.NOTION_PAGE_ID || '23967c3fabda806f826aef58366068e3';
-  const components = useMDXComponents({});
+
+  const components = useMDXComponents({
+    ul: ({ children }) => <ul className="list-none pl-4">{children}</ul>,
+    li: ({ children }) => <li className="text-sm">{children}</li>,
+    p: ({ children }) => <p className="mb-4 text-base font-mono">{children}</p>
+  });
+
   const options: MDXRemoteOptions = {
     mdxOptions: {
       remarkPlugins: [
@@ -55,16 +60,8 @@ const ToDoPage = async () => {
   }
 
   try {
-    const content = await convertPage(pageId);
+    const content = await getNotionPage(pageId);
     const today = new Date();
-
-    // Get yesterday's date
-    const yesterday = new Date(today);
-    yesterday.setDate(yesterday.getDate() - 1);
-
-    // Get tomorrow's date
-    const tomorrow = new Date(today);
-    tomorrow.setDate(tomorrow.getDate() + 1);
 
     return (
       <div className="w-full max-w-3xl mx-auto px-3 py-8">
@@ -102,7 +99,7 @@ const ToDoPage = async () => {
           <p>Synced from Notion • Auto-updates every minute</p>
         </div>
       </div>
-      
+
     );
   } catch (error) {
     console.error("Error loading Notion content:", error);

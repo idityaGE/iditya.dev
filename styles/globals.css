@@ -41,13 +41,17 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
-  --animate-ripple: ripple var(--duration,2s) ease calc(var(--i, 0)*.2s) infinite;
+  --animate-ripple: ripple var(--duration, 2s) ease calc(var(--i, 0)*.2s) infinite;
+
   @keyframes ripple {
-  0%, 100% {
-    transform: translate(-50%, -50%) scale(1);
+
+    0%,
+    100% {
+      transform: translate(-50%, -50%) scale(1);
     }
-  50% {
-    transform: translate(-50%, -50%) scale(0.9);
+
+    50% {
+      transform: translate(-50%, -50%) scale(0.9);
     }
   }
 }
@@ -211,4 +215,45 @@
       mask-size: 350vmax;
     }
   }
+}
+
+/* MDX Details and Summary styling */
+details summary>* {
+  display: inline;
+  margin: 0;
+}
+
+details summary {
+  cursor: pointer;
+  list-style: none;
+  display: list-item;
+  position: relative;
+  padding-left: 1rem;
+}
+
+details summary::before {
+  content: '›';
+  position: absolute;
+  left: 0;
+  bottom: -0.25rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  transition: transform 0.2s ease;
+  color: var(--muted-foreground);
+}
+
+details[open] summary::before {
+  transform: rotate(90deg);
+}
+
+details summary::-webkit-details-marker {
+  display: none;
+}
+
+details {
+  margin-bottom: 1rem;
+}
+
+details[open] summary {
+  margin-bottom: 0.5rem;
 }

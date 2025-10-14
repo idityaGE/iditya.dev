@@ -6,7 +6,7 @@ import remarkGfm from 'remark-gfm'
 import { Suspense } from "react";
 import { LayoutListIcon, RefreshCw } from "lucide-react";
 
-export const revalidate = 60 * 5; // revalidate every 5 minutes
+export const revalidate = 300; // revalidate every 5 minutes
 export const dynamic = 'force-dynamic';
 
 const TodoSkeleton = () => (

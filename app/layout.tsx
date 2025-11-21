@@ -1,7 +1,6 @@
 import type { Metadata } from "next/types";
 import { ThemeProvider } from "@/components/theme/theme-provider";
 import { Navbar } from "@/components/navbar/navbar";
-import { BorderContainer } from "@/components/layout/border-container";
 import { Inter } from "next/font/google";
 import { siteConfig } from "@/config/site.config";
 import { Analytics } from "@vercel/analytics/next";
@@ -69,11 +68,36 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <link rel="alternate" type="application/rss+xml" title={`${siteConfig.name} RSS Feed`} href="/rss.xml" />
-        <link rel="alternate" type="application/atom+xml" title={`${siteConfig.name} Atom Feed`} href="/atom.xml" />
-        <link rel="alternate" type="application/json" title={`${siteConfig.name} JSON Feed`} href="/rss.json" />
-        <link rel="alternate" type="application/rss+xml" title={`${siteConfig.name} Blogs RSS Feed`} href="/blogs/rss.xml" />
-        <link rel="alternate" type="application/rss+xml" title={`${siteConfig.name} Projects RSS Feed`} href="/projects/rss.xml" />
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title={`${siteConfig.name} RSS Feed`}
+          href="/rss.xml"
+        />
+        <link
+          rel="alternate"
+          type="application/atom+xml"
+          title={`${siteConfig.name} Atom Feed`}
+          href="/atom.xml"
+        />
+        <link
+          rel="alternate"
+          type="application/json"
+          title={`${siteConfig.name} JSON Feed`}
+          href="/rss.json"
+        />
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title={`${siteConfig.name} Blogs RSS Feed`}
+          href="/blogs/rss.xml"
+        />
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title={`${siteConfig.name} Projects RSS Feed`}
+          href="/projects/rss.xml"
+        />
       </head>
       <body
         className={`${font.className} antialiased bg-background text-foreground`}
@@ -86,9 +110,7 @@ export default function RootLayout({
         >
           <div className="mx-auto min-h-screen flex flex-col">
             <Navbar />
-            <div className="flex-grow">
-              <BorderContainer>{children}</BorderContainer>
-            </div>
+            <div className="flex-grow">{children}</div>
           </div>
         </ThemeProvider>
         <Analytics />

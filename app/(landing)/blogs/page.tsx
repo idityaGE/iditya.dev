@@ -42,20 +42,33 @@ const Blogs = async () => {
 
       <div className="border-b w-full" />
 
-      {posts.length === 0 ? (
-        <div className="text-center py-12 text-gray-500">
-          <p className="text-lg">No blog posts available at the moment.</p>
-          <p className="mt-2">Check back soon for new content!</p>
-        </div>
-      ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 p-4">
-          {posts.map((post, idx) => (
-            <div key={idx} className="blog-grid-item">
-              <BlogCard blog={post} />
-            </div>
-          ))}
-        </div>
-      )}
+      <div
+        className="relative border-b"
+        style={{
+          backgroundImage: `repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 20px,
+            color-mix(in srgb, currentColor 10%, transparent) 20px,
+            color-mix(in srgb, currentColor 10%, transparent) 21px
+          )`,
+        }}
+      >
+        {posts.length === 0 ? (
+          <div className="text-center py-12 text-gray-500">
+            <p className="text-lg">No blog posts available at the moment.</p>
+            <p className="mt-2">Check back soon for new content!</p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4">
+            {posts.map((post, idx) => (
+              <div key={idx} className="blog-grid-item">
+                <BlogCard blog={post} />
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 };

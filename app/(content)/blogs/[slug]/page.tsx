@@ -71,7 +71,7 @@ export default async function Page({
   } = await import(`@/content/blogs/${slug}.mdx`);
 
   return (
-    <div className="relative flex flex-col md:flex-row gap-4">
+    <div className="flex flex-col md:flex-row p-4">
       <div className="fixed top-28 left-60 z-50 hidden lg:inline-flex">
         <BackButton href="/blogs" label="SEE ALL BLOGS" />
       </div>

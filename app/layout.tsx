@@ -103,11 +103,7 @@ export default function RootLayout({
         className={`${font.className} antialiased bg-background text-foreground`}
         suppressHydrationWarning
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          disableTransitionOnChange
-        >
+        <ThemeProvider attribute="class" defaultTheme="dark">
           <div className="mx-auto min-h-screen flex flex-col">
             <Navbar />
             <div className="flex-grow">{children}</div>

@@ -20,7 +20,7 @@ const Projects = () => {
   return (
     <div>
       <header className="mb-9">
-        <div className="px-3">
+        <div className="px-4">
           <div className="flex items-center justify-between mb-4">
             <h1 className="text-3xl font-bold">Projects</h1>
             <Tooltip delayDuration={200}>

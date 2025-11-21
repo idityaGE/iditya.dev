@@ -13,10 +13,6 @@ export const NavLinks: NavLinks[] = [
     label: "PROJECTS",
   },
   {
-    to: "/about",
-    label: "ABOUT",
-  },
-  {
     to: "/blogs",
     label: "BLOGS",
   },
@@ -63,7 +59,7 @@ export const NavItem = ({ to, label }: NavLinks) => {
   return (
     <Link
       href={to}
-      className="font-light text-sm flex gap-1 items-center hover:underline"
+      className="font-light text-xs flex gap-1 items-center hover:underline"
     >
       {label}
     </Link>

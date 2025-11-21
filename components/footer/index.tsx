@@ -7,7 +7,7 @@ import Link from 'next/link';
 
 export const Footer = () => {
   return (
-    <footer className="mt-5 text-sm px-1 md:px-5 w-full flex-shrink-0">
+    <footer className="mt-5 text-sm w-full flex-shrink-0">
       <Separator />
       <p className="font-[300] px-2 flex justify-between items-center h-8">
         <Link href={LinkData.twitter} className="hover:underline">

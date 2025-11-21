@@ -3,7 +3,7 @@ import { Hero } from '@/components/landing/hero'
 
 const Home = () => {
   return (
-    <div className=''>
+    <div>
       <Hero />
       <div className="border-b border-black/5 dark:border-white/10 w-full" />
       <Bento />

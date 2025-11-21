@@ -1,11 +1,10 @@
 import type { Metadata } from "next/types";
-import { ThemeProvider } from "@/components/theme/theme-provider"
+import { ThemeProvider } from "@/components/theme/theme-provider";
 import { Navbar } from "@/components/navbar/navbar";
 import { BorderContainer } from "@/components/layout/border-container";
-import Image from "next/image";
-import { Inter, Lexend } from "next/font/google";
+import { Inter } from "next/font/google";
 import { siteConfig } from "@/config/site.config";
-import { Analytics } from '@vercel/analytics/next';
+import { Analytics } from "@vercel/analytics/next";
 import "@/styles/globals.css";
 
 const font = Inter({
@@ -77,7 +76,7 @@ export default function RootLayout({
         <link rel="alternate" type="application/rss+xml" title={`${siteConfig.name} Projects RSS Feed`} href="/projects/rss.xml" />
       </head>
       <body
-        className={`${font.className} antialiased`}
+        className={`${font.className} antialiased bg-background text-foreground`}
         suppressHydrationWarning
       >
         <ThemeProvider
@@ -86,19 +85,9 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <div className="mx-auto min-h-screen flex flex-col">
-            <Image
-              src="https://res.cloudinary.com/dwdbqwqxk/image/upload/v1730213921/gradient_zecf4g.webp"
-              alt="Gradient IMG"
-              className="fixed left-0 sm:left-1/2 top-0 -z-10 -translate-x-1/2 lg:scale-100 object-cover"
-              fetchPriority="high"
-              width={1920}
-              height={1080}
-            />
             <Navbar />
             <div className="flex-grow">
-              <BorderContainer>
-                {children}
-              </BorderContainer>
+              <BorderContainer>{children}</BorderContainer>
             </div>
           </div>
         </ThemeProvider>

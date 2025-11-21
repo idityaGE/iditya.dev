@@ -1,7 +1,5 @@
 import { ModeToggle } from "@/components/theme/theme-toggle";
-import { CodeXml, Contact, BookOpen } from "lucide-react";
 import { MobileDropdown } from "@/components/navbar/mobile-dropdown";
-import { JSX } from "react";
 import Link from "next/link";
 
 interface NavLinks {
@@ -21,13 +19,13 @@ export const NavLinks: NavLinks[] = [
   {
     to: "/blogs",
     label: "BLOGS",
-  }
-]
+  },
+];
 
 export const Navbar = () => {
   return (
     <nav className="fixed left-1/2 -translate-x-1/2 w-full max-w-4xl z-50">
-      <div className="h-12 bg-white/30 dark:bg-black/30 backdrop-filter backdrop-blur-lg shadow-lg border border-black/5 dark:border-white/10">
+      <div className="h-12 bg-background border">
         <div className="h-full w-full mx-auto flex justify-between items-center px-4">
           <Logo />
           <div className="flex items-center space-x-5">
@@ -63,7 +61,10 @@ const DesktopLinks = () => {
 
 export const NavItem = ({ to, label }: NavLinks) => {
   return (
-    <Link href={to} className="font-light text-sm flex gap-1 items-center hover:underline">
+    <Link
+      href={to}
+      className="font-light text-sm flex gap-1 items-center hover:underline"
+    >
       {label}
     </Link>
   );

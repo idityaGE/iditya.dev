@@ -1,8 +1,13 @@
-import { StepForward } from 'lucide-react';
+import { StepForward } from "lucide-react";
 import type { ProjectCardProps } from "@/types";
-import Link from 'next/link';
-import Image from 'next/image';
-import { getTypeColor, ProjectTypeTag, ProjectButtons, TechStackList } from './project-card-utils';
+import Link from "next/link";
+import Image from "next/image";
+import {
+  getTypeColor,
+  ProjectTypeTag,
+  ProjectButtons,
+  TechStackList,
+} from "./project-card-utils";
 
 const ProjectCard = ({
   title,
@@ -12,13 +17,13 @@ const ProjectCard = ({
   liveLink,
   githubLink,
   techStack,
-  slug
+  slug,
 }: ProjectCardProps) => {
   const projectUrl = `/projects/${slug}`;
   const projectAriaLabel = `View details of ${title} project`;
 
   return (
-    <div className="flex p-3 md:p-5 flex-col-reverse justify-between gap-4 rounded-xl border overflow-hidden md:flex-row group shadow-sm hover:shadow-lg dark:shadow-[0px_0px_10px_rgba(255,255,255,0.05)] dark:hover:shadow-[0px_0px_20px_rgba(255,255,255,0.1)] transition-all duration-300 ease-in-out h-auto md:h-[260px]">
+    <div className="flex p-3 md:p-5 flex-col-reverse justify-between gap-4 border-t border-b overflow-hidden md:flex-row group transition-all duration-300 ease-in-out h-auto md:h-[260px] hover:bg-neutral-50 dark:hover:bg-neutral-900/20">
       {/* Content Section */}
       <div className="flex flex-col w-full md:w-3/5 min-h-0">
         <Link
@@ -28,10 +33,12 @@ const ProjectCard = ({
         >
           <div className="inline-flex items-center gap-1 mt-2 md:mt-0 mb-3">
             <div className="flex items-center gap-2 flex-wrap">
-              <h2 className="text-xl font-bold font-heading line-clamp-1">{title}</h2>
+              <h2 className="text-xl font-bold font-heading line-clamp-1 group-hover/link:underline">
+                {title}
+              </h2>
               {type && <ProjectTypeTag type={type} />}
             </div>
-            <span className="-translate-x-1 opacity-0 group-hover/link:translate-x-0 group-hover/link:opacity-100 transition-all duration-100 ease-in-out flex-shrink-0">
+            <span className="-translate-x-1 opacity-0 group-hover/link:translate-x-0 group-hover/link:opacity-100 transition-all flex-shrink-0">
               <StepForward size={12} />
             </span>
           </div>
@@ -55,8 +62,12 @@ const ProjectCard = ({
 
       {/* Image Section */}
       <div className="w-full md:w-2/5 h-48 md:h-full flex-shrink-0">
-        <div className="w-full h-full overflow-hidden rounded-xl transition-all duration-300 ease-in-out transform-gpu group-hover:scale-[1.02]">
-          <Link href={projectUrl} aria-label={projectAriaLabel} className="block w-full h-full">
+        <div className="w-full h-full overflow-hidden">
+          <Link
+            href={projectUrl}
+            aria-label={projectAriaLabel}
+            className="block w-full h-full"
+          >
             <div className="relative w-full h-full">
               <Image
                 src={images[0]}

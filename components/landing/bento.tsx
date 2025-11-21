@@ -1,11 +1,18 @@
-import { ConnectCard } from "./cards/connect"
-import { GlobeCard } from "./cards/globe"
-import { Projects } from "./cards/project"
-import { SkillCard } from "./cards/skills"
-import { BlogCard } from "./cards/blog"
-import { LeetCodeStatsCard } from "./cards/lc"
+import { ConnectCard } from "./cards/connect";
+import { GlobeCard } from "./cards/globe";
+import { Projects } from "./cards/project";
+import { SkillCard } from "./cards/skills";
+import { BlogCard } from "./cards/blog";
+import { LeetCodeStatsCard } from "./cards/lc";
 
-import { Layers, MapPin, Link, Atom, BookIcon, LucideSheet } from 'lucide-react';
+import {
+  Layers,
+  MapPin,
+  Link,
+  Atom,
+  BookIcon,
+  LucideSheet,
+} from "lucide-react";
 import { BentoCard, BentoGrid } from "@/components/magicui/bento-grid";
 import { PersonalData } from "@/config/personal.config";
 
@@ -47,11 +54,11 @@ const features = [
     background: <SkillCard />,
     className: "lg:col-start-1 lg:col-end-3 lg:row-start-3 lg:row-end-5",
   },
-]
+];
 
 export const Bento = () => {
   return (
-    <BentoGrid className='lg:grid-cols-4'>
+    <BentoGrid className="lg:grid-cols-4 border-t">
       {features.map((feature) => (
         <BentoCard
           key={feature.name}
@@ -63,5 +70,5 @@ export const Bento = () => {
         />
       ))}
     </BentoGrid>
-  )
-}
+  );
+};

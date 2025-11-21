@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import {
   DropdownMenu,
@@ -17,7 +17,10 @@ export const MobileDropdown = () => {
         <DropdownMenuTrigger className="w-12 h-12 flex items-center justify-center">
           <AlignJustify />
         </DropdownMenuTrigger>
-        <DropdownMenuContent align="end" className="backdrop-filter backdrop-blur-lg shadow-lg bg-white/30 dark:bg-black/30 border border-black/5 dark:border-white/10 rounded-none">
+        <DropdownMenuContent
+          align="end"
+          className="backdrop-filter backdrop-blur-lg shadow-lg bg-white/30 dark:bg-black/30 border rounded-none"
+        >
           {NavLinks.map((link, index) => (
             <div key={link.to}>
               <DropdownMenuItem>

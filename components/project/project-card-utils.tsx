@@ -9,7 +9,7 @@ export const getTypeColor = (type: string): string => {
   return colorMap[type] || 'bg-neutral-600';
 };
 
-const BUTTON_CLASSES = "inline-flex items-center px-3 py-2 border border-input bg-background hover:bg-accent hover:text-accent-foreground text-sm font-medium rounded-md transition-colors";
+const BUTTON_CLASSES = "inline-flex items-center px-3 py-1.5 border hover:underline text-sm font-medium transition-colors";
 
 interface ProjectTypeTagProps {
   type: string;
@@ -17,7 +17,7 @@ interface ProjectTypeTagProps {
 
 export const ProjectTypeTag: React.FC<ProjectTypeTagProps> = ({ type }) => (
   <span
-    className={`inline-flex items-center px-2 py-1 text-xs font-light rounded-full text-white ${getTypeColor(type)} bg-opacity-80 flex-shrink-0`}
+    className={`inline-flex items-center px-2 py-1 text-xs font-light rounded-sm text-white ${getTypeColor(type)} bg-opacity-80 flex-shrink-0`}
   >
     {type.charAt(0).toUpperCase() + type.slice(1)}
   </span>
@@ -78,14 +78,14 @@ export const TechStackList: React.FC<TechStackListProps> = ({
           (showAll || index < maxVisible) ? (
             <span
               key={tag}
-              className="px-2 py-1 rounded bg-muted text-muted-foreground text-xs cursor-default mb-0.5"
+              className="px-2 py-1 rounded-sm bg-muted text-muted-foreground text-xs cursor-default mb-0.5"
             >
               {tag}
             </span>
           ) : null
         ))}
         {!showAll && techStack.length > maxVisible && (
-          <span className="px-2 py-1 bg-muted text-muted-foreground text-xs rounded mb-1">
+          <span className="px-2 py-1 bg-muted text-muted-foreground text-xs rounded-sm mb-1">
             +{techStack.length - maxVisible} more
           </span>
         )}

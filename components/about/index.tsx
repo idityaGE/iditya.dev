@@ -1,12 +1,12 @@
-import { buttonVariants } from "@/components/ui/button"
-import { EducationList } from "./education-section"
-import { skillList } from "@/config/skill.config"
-import { PersonalData } from "@/config/personal.config"
-import { EducationData } from "@/config/education.config"
-import Image from "next/image"
-import Link from "next/link"
-import { Github, Linkedin, Twitter, Mail } from "lucide-react"
-import { LinkData } from "@/config/links.config"
+import { buttonVariants } from "@/components/ui/button";
+import { EducationList } from "./education-section";
+import { skillList } from "@/config/skill.config";
+import { PersonalData } from "@/config/personal.config";
+import { EducationData } from "@/config/education.config";
+import Image from "next/image";
+import Link from "next/link";
+import { Github, Linkedin, Twitter, Mail } from "lucide-react";
+import { LinkData } from "@/config/links.config";
 
 const socialLinks = [
   {
@@ -29,7 +29,7 @@ const socialLinks = [
     url: LinkData.mail,
     Icon: Mail,
   },
-]
+];
 
 export function AboutPage() {
   return (
@@ -56,7 +56,11 @@ export function AboutPage() {
             </p>
             <div className="flex space-x-6">
               {socialLinks.map(({ name, Icon, url }) => (
-                <Link href={url} key={name} target="_blank" rel="noopener noreferrer"
+                <Link
+                  href={url}
+                  key={name}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="flex items-center justify-center p-2 rounded-full hover:bg-accent/50 transition-colors duration-200 hover:text-primary"
                 >
                   <Icon className="w-6 h-6" />
@@ -71,13 +75,16 @@ export function AboutPage() {
             <h2 className="text-2xl font-bold mb-4">About Me</h2>
             <div className="space-y-4">
               {PersonalData.about.map((paragraph, index) => (
-                <p key={index} className="leading-relaxed text-muted-foreground">
-                  {paragraph.includes(':') ? (
+                <p
+                  key={index}
+                  className="leading-relaxed text-muted-foreground"
+                >
+                  {paragraph.includes(":") ? (
                     <>
                       <span className="font-semibold text-foreground">
-                        {paragraph.split(':')[0]}:
+                        {paragraph.split(":")[0]}:
                       </span>
-                      {paragraph.split(':').slice(1).join(':')}
+                      {paragraph.split(":").slice(1).join(":")}
                     </>
                   ) : (
                     paragraph
@@ -89,7 +96,7 @@ export function AboutPage() {
         </div>
       </div>
 
-      <div className="border-b border-black/5 dark:border-white/10 w-full mb-12" />
+      <div className="border-b w-full mb-12" />
 
       {/* Skills Section */}
       <div className="mb-12">
@@ -113,7 +120,7 @@ export function AboutPage() {
         </div>
       </div>
 
-      <div className="border-b border-black/5 dark:border-white/10 w-full mb-12" />
+      <div className="border-b w-full mb-12" />
 
       {/* Education Section */}
       <div className="mb-12">
@@ -125,5 +132,5 @@ export function AboutPage() {
         </ol>
       </div>
     </div>
-  )
+  );
 }

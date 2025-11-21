@@ -11,36 +11,36 @@ export function BlogCard({
 }) {
   return (
     <Link href={`/blogs/${blog.slug}`}>
-      <div className="w-full h-full max-w-lg rounded-xl overflow-hidden border group/blog-card bg-background hover:bg-muted/50 duration-100 transition-all ease-in-out">
-        <div className="w-full aspect-[8/5] overflow-hidden">
+      <div className="w-full h-full overflow-hidden border group/blog-card bg-background hover:bg-muted/30 transition-colors duration-200">
+        <div className="w-full aspect-[8/5] overflow-hidden border-b">
           <Image
             src={blog.coverImage}
             width={200}
             height={111}
             alt={blog.title}
-            className="w-full aspect-[8/5] object-fit scale-105 group-hover/blog-card:scale-100 duration-300 transition-all ease-in-out"
+            className="w-full aspect-[8/5] object-cover"
           />
         </div>
-        <div className="p-3">
-          <h1 className="text-xl font-semibold font-heading">{blog.title}</h1>
-          <div className="flex items-center gap-2 flex-wrap mt-2">
-            {blog.tags.map((tag) => (
-              <p
-                key={tag}
-                className="px-2 py-1 rounded-lg bg-muted text-muted-foreground text-xs cursor-pointer"
-              >
-                {tag}
-              </p>
-            ))}
-          </div>
-          <p className="text-sm text-muted-foreground mt-2 line-clamp-2">
-            {blog.excerpt}{blog.excerpt.split('\n').length > 2 ? '...' : ''}
+        <div className="p-4">
+          <h2 className="text-lg font-semibold mb-2">{blog.title}</h2>
+          <p className="text-sm text-muted-foreground mb-3 line-clamp-2">
+            {blog.excerpt}
           </p>
-          <div className="w-full flex justify-end">
-            <p className="text-xs mt-2 px-2 py-1 rounded bg-secondary">
+          <div className="flex items-center justify-between gap-2 flex-wrap">
+            <div className="flex items-center gap-2 flex-wrap">
+              {blog.tags.slice(0, 2).map((tag) => (
+                <span
+                  key={tag}
+                  className="px-2 py-0.5 text-xs bg-muted border text-muted-foreground"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+            <p className="text-xs text-muted-foreground">
               {new Date(blog.date).toLocaleDateString("en-US", {
                 year: "numeric",
-                month: "long",
+                month: "short",
                 day: "numeric",
               })}
             </p>

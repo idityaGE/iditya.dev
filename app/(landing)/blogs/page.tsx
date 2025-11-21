@@ -12,33 +12,35 @@ const Blogs = async () => {
   const posts = await getAllBlogPostsMeta();
 
   return (
-    <div className="container px-1.5">
+    <div>
       <div className="mb-8">
-        <div className="flex items-center justify-between mb-4">
-          <h1 className="text-3xl font-bold">Blogs</h1>
-          <Tooltip delayDuration={200}>
-            <TooltipTrigger>
-              <Link
-                href="/blogs/rss.xml"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Rss size={24} aria-hidden="true" />
-              </Link>
-            </TooltipTrigger>
-            <TooltipContent>
-              <p>Subscribe to RSS Feed</p>
-            </TooltipContent>
-          </Tooltip>
+        <div className="px-4">
+          <div className="flex items-center justify-between mb-4">
+            <h1 className="text-3xl font-bold">Blogs</h1>
+            <Tooltip delayDuration={200}>
+              <TooltipTrigger>
+                <Link
+                  href="/blogs/rss.xml"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Rss size={24} aria-hidden="true" />
+                </Link>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Subscribe to RSS Feed</p>
+              </TooltipContent>
+            </Tooltip>
+          </div>
+          <p className="text-md text-muted-foreground">
+            I like to write when I get stuck into some problem or learn
+            something new which might help others. Here you'll find my thoughts,
+            solutions, and discoveries from my coding journey.
+          </p>
         </div>
-        <p className="text-md text-muted-foreground">
-          I like to write when I get stuck into some problem or learn something
-          new which might help others. Here you'll find my thoughts, solutions,
-          and discoveries from my coding journey.
-        </p>
       </div>
 
-      <div className="border-b w-full mb-8" />
+      <div className="border-b w-full" />
 
       {posts.length === 0 ? (
         <div className="text-center py-12 text-gray-500">
@@ -46,9 +48,11 @@ const Blogs = async () => {
           <p className="mt-2">Check back soon for new content!</p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 p-4">
           {posts.map((post, idx) => (
-            <BlogCard key={idx} blog={post} />
+            <div key={idx} className="blog-grid-item">
+              <BlogCard blog={post} />
+            </div>
           ))}
         </div>
       )}

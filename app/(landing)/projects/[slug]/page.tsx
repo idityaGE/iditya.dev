@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ProjectData } from "@/config/project.config";
 import type { Metadata } from "next";
 import { siteConfig } from "@/config/site.config";
+import { BackButton } from "@/components/blog/back-button";
 
 const getProjectFromSlug = (slug: string) => {
   return ProjectData.find((project) => project.slug === slug);
@@ -72,22 +73,25 @@ export default async function Page({
 
   return (
     <main className="relative">
+      <div
+        className="h-10 border-t"
+        style={{
+          backgroundImage: `repeating-linear-gradient(
+              45deg,
+              transparent,
+              transparent 12px,
+              color-mix(in srgb, currentColor 10%, transparent) 12px,
+              color-mix(in srgb, currentColor 10%, transparent) 13px
+            )`,
+        }}
+      />
+      <div className="fixed top-28 left-56 z-50 hidden lg:inline-flex">
+        <BackButton href="/projects" label="SEE ALL PROJECTS" />
+      </div>
       <div className="w-full flex flex-col max-w-4xl mx-auto">
-        <div className="sticky top-12 z-40 bg-background border-b px-4 py-3">
-          <div className="flex items-center">
-            &lt;&nbsp;
-            <Link
-              href="/projects"
-              className="group/back text-xs hover:underline font-mono"
-              aria-label="Back to projects"
-            >
-              GO BACK
-            </Link>
-          </div>
-        </div>
         {project && <ProjectCard {...project} disableHover />}
         <div
-          className="h-12 border"
+          className="h-8 border-b"
           style={{
             backgroundImage: `repeating-linear-gradient(
               45deg,
@@ -105,16 +109,7 @@ export default async function Page({
         >
           <ProjectMDX />
           <div className="border-t pt-6 mt-8 flex justify-center">
-            <div className="flex items-center">
-              &lt;&nbsp;
-              <Link
-                href="/projects"
-                className="group/back text-xs hover:underline font-mono"
-                aria-label="Back to projects"
-              >
-                GO BACK
-              </Link>
-            </div>
+            <BackButton href="/projects" label="SEE ALL PROJECTS" />
           </div>
         </section>
       </div>

@@ -1,6 +1,6 @@
-import { getMDXSlugs } from "@/lib/mdx"
-import { TableOfContents } from '@/components/mdx/toc';
-import { SeeAllBlogs } from "@/components/blog/see-all-blogs";
+import { getMDXSlugs } from "@/lib/mdx";
+import { TableOfContents } from "@/components/mdx/toc";
+import { BackButton } from "@/components/blog/back-button";
 import Image from "next/image";
 import { Separator } from "@/components/ui/separator";
 import type { Metadata } from "next";
@@ -9,7 +9,7 @@ import { siteConfig } from "@/config/site.config";
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ slug: string }>
+  params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
   const { metadata } = await import(`@/content/blogs/${slug}.mdx`);
@@ -29,7 +29,7 @@ export async function generateMetadata({
     openGraph: {
       title: `${metadata.title} | ${siteConfig.name} | ${siteConfig.creator.name}`,
       description: metadata.excerpt || metadata.description,
-      type: 'article',
+      type: "article",
       publishedTime: metadata.date,
       authors: [metadata.author || siteConfig.creator.name],
       tags: metadata.tags,
@@ -43,11 +43,11 @@ export async function generateMetadata({
       ],
     },
     twitter: {
-      card: 'summary',
+      card: "summary",
       title: `${metadata.title} | ${siteConfig.name}`,
       description: metadata.excerpt || metadata.description,
-      site: "@" + siteConfig.links.x.split('/').at(-1) || '@idityage',
-      creator: "@" + siteConfig.links.x.split('/').at(-1) || '@idityage',
+      site: "@" + siteConfig.links.x.split("/").at(-1) || "@idityage",
+      creator: "@" + siteConfig.links.x.split("/").at(-1) || "@idityage",
       images: [
         {
           url: metadata.coverImage || siteConfig.ogImage,
@@ -61,15 +61,19 @@ export async function generateMetadata({
 export default async function Page({
   params,
 }: {
-  params: Promise<{ slug: string }>
+  params: Promise<{ slug: string }>;
 }) {
-  const { slug } = await params
-  const { default: Post, metadata, toc } = await import(`@/content/blogs/${slug}.mdx`)
+  const { slug } = await params;
+  const {
+    default: Post,
+    metadata,
+    toc,
+  } = await import(`@/content/blogs/${slug}.mdx`);
 
   return (
     <div className="relative flex flex-col md:flex-row gap-4">
-      <div className="absolute left-[-200px] top-2 hidden lg:inline-flex">
-        <SeeAllBlogs />
+      <div className="fixed top-28 left-60 z-50 hidden lg:inline-flex">
+        <BackButton href="/blogs" label="SEE ALL BLOGS" />
       </div>
       <aside className="hidden text-sm min-[1400px]:inline-flex">
         <div className="fixed top-28 right-[75px] h-full z-50">
@@ -105,14 +109,14 @@ export default async function Page({
         </article>
       </div>
     </div>
-  )
+  );
 }
 
 export async function generateStaticParams() {
-  const slugs = await getMDXSlugs("blogs")
+  const slugs = await getMDXSlugs("blogs");
   return slugs.map((slug: string) => ({
     slug,
-  }))
+  }));
 }
 
-export const dynamicParams = false
+export const dynamicParams = false;

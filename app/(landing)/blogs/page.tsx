@@ -13,7 +13,7 @@ const Blogs = async () => {
 
   return (
     <div>
-      <div className="mb-8">
+      <div className="mb-8 mt-10">
         <div className="px-4">
           <div className="flex items-center justify-between mb-4">
             <h1 className="text-3xl font-bold">Blogs</h1>

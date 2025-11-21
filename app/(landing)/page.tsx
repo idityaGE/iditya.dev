@@ -3,7 +3,7 @@ import { Hero } from "@/components/landing/hero";
 
 const Home = () => {
   return (
-    <div>
+    <div className="mt-10">
       <Hero />
       <Bento />
     </div>

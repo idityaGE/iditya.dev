@@ -7,6 +7,7 @@ export interface ProjectCardProps {
   githubLink?: string
   techStack: string[]
   slug: string
+  disableHover?: boolean
 }
 
 export interface BlogPostMeta {

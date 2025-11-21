@@ -73,7 +73,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     strong: ({ children }) => <strong className={styles.strong}>{children}</strong>,
     em: ({ children }) => <em className={styles.em}>{children}</em>,
     del: ({ children }) => <del className={styles.del}>{children}</del>,
-    hr: () => <hr className="my-6" />,
+    hr: () => <hr className="my-6 border" />,
 
     pre: Code,
 

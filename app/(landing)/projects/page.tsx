@@ -86,10 +86,19 @@ const Projects = () => {
         </aside>
       </header>
 
-      <div className="border-b w-full mb-8" />
-
       <main>
-        <div className="flex flex-col gap-4">
+        <div
+          className="flex flex-col gap-4"
+          style={{
+            backgroundImage: `repeating-linear-gradient(
+              45deg,
+              transparent,
+              transparent 12px,
+              color-mix(in srgb, currentColor 10%, transparent) 12px,
+              color-mix(in srgb, currentColor 10%, transparent) 13px
+            )`,
+          }}
+        >
           {ProjectData.map((project) => (
             <ProjectCard key={project.slug || project.title} {...project} />
           ))}

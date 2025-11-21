@@ -7,7 +7,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     <div className="px-3">
       <BorderContainer>
         <div className="flex flex-col min-h-screen max-w-4xl items-start mx-auto">
-          <div className="flex-grow mt-20 md:mt-20 w-full">{children}</div>
+          <div className="flex-grow mt-20 w-full">{children}</div>
           <Footer />
         </div>
       </BorderContainer>

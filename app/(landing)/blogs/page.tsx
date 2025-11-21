@@ -29,19 +29,23 @@ const Blogs = async () => {
         </p>
       </div>
 
-      {posts.length === 0 ? (
-        <div className="text-center py-12 text-gray-500">
-          <p className="text-lg">No blog posts available at the moment.</p>
-          <p className="mt-2">Check back soon for new content!</p>
-        </div>
-      ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {posts.map((post, idx) => (
-            <BlogCard key={idx} blog={post} />
-          ))}
-        </div>
-      )}
-    </div>
+      <div className="border-b border-black/5 dark:border-white/10 w-full mb-8" />
+
+      {
+        posts.length === 0 ? (
+          <div className="text-center py-12 text-gray-500">
+            <p className="text-lg">No blog posts available at the moment.</p>
+            <p className="mt-2">Check back soon for new content!</p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {posts.map((post, idx) => (
+              <BlogCard key={idx} blog={post} />
+            ))}
+          </div>
+        )
+      }
+    </div >
   )
 }
 

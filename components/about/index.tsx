@@ -55,14 +55,14 @@ export function AboutPage() {
               {PersonalData.title}
             </p>
             <div className="flex space-x-6">
-                {socialLinks.map(({ name, Icon, url }) => (
+              {socialLinks.map(({ name, Icon, url }) => (
                 <Link href={url} key={name} target="_blank" rel="noopener noreferrer"
                   className="flex items-center justify-center p-2 rounded-full hover:bg-accent/50 transition-colors duration-200 hover:text-primary"
                 >
                   <Icon className="w-6 h-6" />
                   <span className="sr-only">{name}</span>
                 </Link>
-                ))}
+              ))}
             </div>
           </div>
 
@@ -87,38 +87,42 @@ export function AboutPage() {
             </div>
           </div>
         </div>
+      </div>
 
-        {/* Skills Section */}
-        <div className="mb-12">
-          <h2 className="text-2xl font-bold mb-6">Skills</h2>
-          <div className="space-y-4">
-            {Object.entries(skillList).map(([category, skills]) => (
-              <div key={category}>
-                <div className="flex flex-wrap gap-1">
-                  <h3 className="text-md font-bold">{category}: </h3>
-                  {skills.map((skill) => (
-                    <span
-                      key={skill}
-                      className="px-1 py-1 rounded bg-muted text-muted-foreground text-xs cursor-default"
-                    >
-                      {skill}
-                    </span>
-                  ))}
-                </div>
+      <div className="border-b border-black/5 dark:border-white/10 w-full mb-12" />
+
+      {/* Skills Section */}
+      <div className="mb-12">
+        <h2 className="text-2xl font-bold mb-6">Skills</h2>
+        <div className="space-y-4">
+          {Object.entries(skillList).map(([category, skills]) => (
+            <div key={category}>
+              <div className="flex flex-wrap gap-1">
+                <h3 className="text-md font-bold">{category}: </h3>
+                {skills.map((skill) => (
+                  <span
+                    key={skill}
+                    className="px-1 py-1 rounded bg-muted text-muted-foreground text-xs cursor-default"
+                  >
+                    {skill}
+                  </span>
+                ))}
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
+      </div>
 
-        {/* Education Section */}
-        <div className="mb-12">
-          <h2 className="text-2xl font-bold mb-4">Education</h2>
-          <ol className="relative border-l border-primary/30 space-y-8 pl-5">
-            {EducationData.map((item, index) => (
-              <EducationList key={index} {...item} />
-            ))}
-          </ol>
-        </div>
+      <div className="border-b border-black/5 dark:border-white/10 w-full mb-12" />
+
+      {/* Education Section */}
+      <div className="mb-12">
+        <h2 className="text-2xl font-bold mb-4">Education</h2>
+        <ol className="relative border-l border-primary/30 space-y-8 pl-5">
+          {EducationData.map((item, index) => (
+            <EducationList key={index} {...item} />
+          ))}
+        </ol>
       </div>
     </div>
   )

@@ -77,6 +77,8 @@ const Projects = () => {
         </aside>
       </header>
 
+      <div className="border-b border-black/5 dark:border-white/10 w-full mb-8" />
+
       <main>
         <div className="flex flex-col gap-4">
           {ProjectData.map((project) => (

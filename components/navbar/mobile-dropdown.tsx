@@ -14,14 +14,14 @@ export const MobileDropdown = () => {
   return (
     <div className="sm:hidden">
       <DropdownMenu>
-        <DropdownMenuTrigger>
+        <DropdownMenuTrigger className="w-12 h-12 flex items-center justify-center">
           <AlignJustify />
         </DropdownMenuTrigger>
-        <DropdownMenuContent align="end" className="backdrop-filter backdrop-blur-lg shadow-lg bg-white/30 rounded-lg dark:bg-black/30">
+        <DropdownMenuContent align="end" className="backdrop-filter backdrop-blur-lg shadow-lg bg-white/30 dark:bg-black/30 border border-black/5 dark:border-white/10 rounded-none">
           {NavLinks.map((link, index) => (
             <div key={link.to}>
               <DropdownMenuItem>
-                <NavItem to={link.to} icon={link.icon} label={link.label} />
+                <NavItem to={link.to} label={link.label} />
               </DropdownMenuItem>
               {index < NavLinks.length - 1 && <DropdownMenuSeparator />}
             </div>

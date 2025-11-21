@@ -6,32 +6,28 @@ import Link from "next/link";
 
 interface NavLinks {
   to: string;
-  icon: JSX.Element;
   label: string;
 }
 
 export const NavLinks: NavLinks[] = [
   {
     to: "/projects",
-    icon: <CodeXml />,
-    label: "projects",
+    label: "PROJECTS",
   },
   {
     to: "/about",
-    icon: <Contact />,
-    label: "about",
+    label: "ABOUT",
   },
   {
     to: "/blogs",
-    icon: <BookOpen />,
-    label: "blogs",
+    label: "BLOGS",
   }
 ]
 
 export const Navbar = () => {
   return (
-    <nav className="fixed top-5 left-1/2 -translate-x-1/2 w-full max-w-4xl px-3 z-50">
-      <div className="h-12 bg-white/30 rounded-lg dark:bg-black/30 backdrop-filter backdrop-blur-lg shadow-lg">
+    <nav className="fixed left-1/2 -translate-x-1/2 w-full max-w-4xl z-50">
+      <div className="h-12 bg-white/30 dark:bg-black/30 backdrop-filter backdrop-blur-lg shadow-lg border border-black/5 dark:border-white/10">
         <div className="h-full w-full mx-auto flex justify-between items-center px-4">
           <Logo />
           <div className="flex items-center space-x-5">
@@ -59,16 +55,15 @@ const DesktopLinks = () => {
   return (
     <div className="space-x-5 hidden sm:flex">
       {NavLinks.map((link) => (
-        <NavItem key={link.to} to={link.to} icon={link.icon} label={link.label} />
+        <NavItem key={link.to} to={link.to} label={link.label} />
       ))}
     </div>
   );
 };
 
-export const NavItem = ({ to, icon, label }: NavLinks) => {
+export const NavItem = ({ to, label }: NavLinks) => {
   return (
-    <Link href={to} className="font-bold flex gap-1 items-center">
-      {icon}
+    <Link href={to} className="font-light text-sm flex gap-1 items-center hover:underline">
       {label}
     </Link>
   );

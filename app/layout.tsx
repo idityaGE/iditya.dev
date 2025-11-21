@@ -1,6 +1,7 @@
 import type { Metadata } from "next/types";
 import { ThemeProvider } from "@/components/theme/theme-provider"
 import { Navbar } from "@/components/navbar/navbar";
+import { BorderContainer } from "@/components/layout/border-container";
 import Image from "next/image";
 import { Inter, Lexend } from "next/font/google";
 import { siteConfig } from "@/config/site.config";
@@ -94,8 +95,10 @@ export default function RootLayout({
               height={1080}
             />
             <Navbar />
-            <div className="flex-grow mx-1">
-              {children}
+            <div className="flex-grow">
+              <BorderContainer>
+                {children}
+              </BorderContainer>
             </div>
           </div>
         </ThemeProvider>

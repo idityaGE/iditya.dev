@@ -3,8 +3,9 @@ import { Hero } from '@/components/landing/hero'
 
 const Home = () => {
   return (
-    <div className='px-2'>
+    <div className=''>
       <Hero />
+      <div className="border-b border-black/5 dark:border-white/10 w-full" />
       <Bento />
     </div>
   )

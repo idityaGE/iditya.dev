@@ -72,18 +72,18 @@ export default async function Page({
 
   return (
     <div className="flex flex-col md:flex-row p-4">
-      <div className="fixed top-28 left-60 z-50 hidden lg:inline-flex">
+      <div className="fixed top-24 border-t border-b border-l px-4 py-2 right-[calc(50%+28rem)] z-50 hidden lg:inline-flex">
         <BackButton href="/blogs" label="SEE ALL BLOGS" />
       </div>
       <aside className="hidden text-sm min-[1400px]:inline-flex">
-        <div className="fixed top-28 right-[75px] h-full z-50">
+        <div className="fixed top-24 left-[calc(50%+28rem)] h-full z-50 border-t border-b border-r p-4">
           <TableOfContents toc={toc} />
         </div>
       </aside>
 
       <div className="w-full flex flex-col mt-8">
         <div className="flex flex-col items-start gap-2 mb-6">
-          <p className="px-3 py-1.5 font-semibold rounded text-xs bg-secondary inline-block self-start mb-2">
+          <p className="px-3 py-1.5 font-semibold border text-xs bg-secondary inline-block self-start mb-2">
             {new Date(metadata.date).toLocaleDateString("en-US", {
               month: "long",
               day: "numeric",

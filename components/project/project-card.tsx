@@ -24,7 +24,7 @@ const ProjectCard = ({
 
   const cardContent = (
     <div
-      className={`relative flex p-3 md:p-5 flex-col-reverse justify-between gap-4 border overflow-hidden md:flex-row transition-all duration-300 ease-in-out h-auto md:h-[260px] bg-background ${
+      className={`relative flex p-3 md:p-5 flex-col-reverse justify-between gap-4 border-t border-b overflow-hidden md:flex-row transition-all duration-300 ease-in-out h-auto md:h-[260px] bg-background ${
         !disableHover
           ? "group-hover/project-card:-translate-x-1 group-hover/project-card:-translate-y-1"
           : ""

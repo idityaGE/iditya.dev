@@ -27,7 +27,7 @@ export const Navbar = () => {
           <div className="flex items-center space-x-5">
             <DesktopLinks />
             <div className="flex space-x-3 items-center">
-              {/* <ModeToggle /> */}
+              <ModeToggle />
               <MobileDropdown />
             </div>
           </div>

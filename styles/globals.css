@@ -38,7 +38,7 @@
   --sidebar-ring: oklch(0.3211 0 0);
   --font-sans: "Inter", sans-serif;
   --font-serif: "Times New Roman", serif;
-  --font-mono: "JetBrains Mono", monospace;
+  --font-mono: var(--font-mono);
   --radius: 0rem;
   --shadow-x: 0px;
   --shadow-y: 2px;
@@ -98,7 +98,7 @@
   --sidebar-ring: oklch(0.8452 0 0);
   --font-sans: "Inter", sans-serif;
   --font-serif: "Times New Roman", serif;
-  --font-mono: "JetBrains Mono", monospace;
+  --font-mono: var(--font-mono);
   --radius: 0rem;
   --shadow-x: 0px;
   --shadow-y: 6px;
@@ -192,7 +192,7 @@ body {
 .border-r,
 .border-x,
 .border-y {
-  border-color: rgb(0 0 0 / 0.15);
+  border-color: rgb(0 0 0 / 0.1);
 }
 
 .dark .border,
@@ -202,7 +202,7 @@ body {
 .dark .border-r,
 .dark .border-x,
 .dark .border-y {
-  border-color: rgb(255 255 255 / 0.15);
+  border-color: rgb(255 255 255 / 0.1);
 }
 
 *::-webkit-scrollbar {

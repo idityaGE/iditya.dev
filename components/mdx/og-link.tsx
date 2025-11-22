@@ -25,13 +25,13 @@ export function OgLink({ url }: { url: string }) {
         setLoading(true);
         const response = await fetch(`/api/og?url=${encodeURIComponent(url)}`);
 
-        if (!response.ok) throw new Error('Failed to fetch metadata');
+        if (!response.ok) throw new Error("Failed to fetch metadata");
 
         const data = await response.json();
         setOgData(data);
         setError(false);
       } catch (err) {
-        console.error('Error fetching OG data:', err);
+        console.error("Error fetching OG data:", err);
         setError(true);
       } finally {
         setLoading(false);
@@ -70,9 +70,12 @@ export function OgLink({ url }: { url: string }) {
       href={url}
       target="_blank"
       rel="noopener noreferrer"
-      className="no-underline block my-6"
+      className="group/og-link relative block my-6 no-underline"
     >
-      <Card className="overflow-hidden border hover:border-muted-foreground/40 hover:shadow-md transition-all duration-200">
+      {/* Shadow layer that stays in place */}
+      <div className="absolute inset-0 border bg-muted opacity-0 transition-opacity duration-200 group-hover/og-link:opacity-100" />
+
+      <Card className="relative overflow-hidden border transition-all duration-300 ease-in-out group-hover/og-link:-translate-x-1 group-hover/og-link:-translate-y-1">
         <div className="flex items-stretch min-h-[80px] px-2 md:px-6">
           <CardContent className="flex-1 min-w-0 px-1 flex flex-col justify-center">
             <div className="space-y-1.5">
@@ -81,7 +84,10 @@ export function OgLink({ url }: { url: string }) {
                   <Link2 size={12} />
                   <span className="truncate">{ogData.siteName || domain}</span>
                 </span>
-                <ExternalLink size={10} className="ml-1 opacity-70 flex-shrink-0" />
+                <ExternalLink
+                  size={10}
+                  className="ml-1 opacity-70 flex-shrink-0"
+                />
               </div>
               <h3 className="font-semibold text-sm sm:text-base leading-tight line-clamp-1 text-foreground">
                 {ogData.title || url}
@@ -112,7 +118,12 @@ export function OgLink({ url }: { url: string }) {
 
 function OgLinkSkeleton({ url, domain }: { url: string; domain: string }) {
   return (
-    <a href={url} target="_blank" rel="noopener noreferrer" className="no-underline block">
+    <a
+      href={url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="no-underline block"
+    >
       <Card className="overflow-hidden border my-6 animate-pulse">
         <div className="flex items-stretch min-h-[80px] px-3 md:px-6">
           <CardContent className="flex-1 min-w-0 py-2 px-1 flex flex-col justify-center">
@@ -122,7 +133,10 @@ function OgLinkSkeleton({ url, domain }: { url: string; domain: string }) {
                   <Link2 size={12} />
                   <span className="truncate">{domain || url}</span>
                 </span>
-                <ExternalLink size={10} className="ml-1 opacity-70 flex-shrink-0" />
+                <ExternalLink
+                  size={10}
+                  className="ml-1 opacity-70 flex-shrink-0"
+                />
               </div>
               <Skeleton className="h-4 w-full" />
               <Skeleton className="h-3 w-5/6" />

@@ -37,14 +37,14 @@ const BentoCard = ({
   >
     <div
       className={cn(
-        "pointer-events-none z-10 flex gap-2 px-5 pt-4 pb-2",
+        "pointer-events-none z-10 flex gap-2 px-3 pt-4 items-center border-b border-r py-1.5 w-fit",
         isIconHidden && "hidden"
       )}
     >
-      <Icon className="h-6 w-6 origin-left" />
-      <h3 className="text-base font-medium dark:text-neutral-300">{name}</h3>
+      <Icon className="h-4 w-4 origin-left" />
+      <h3 className="text-base dark:text-neutral-300">{name}</h3>
     </div>
-    <div>{background}</div>
+    <div className="flex-1">{background}</div>
   </div>
 );
 

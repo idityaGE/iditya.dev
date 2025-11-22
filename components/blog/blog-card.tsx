@@ -42,12 +42,14 @@ export function BlogCard({
                   </span>
                 ))}
               </div>
-              <p className="text-xs text-muted-foreground">
+              <p className="text-xs text-muted-foreground uppercase">
+                [&nbsp;
                 {new Date(blog.date).toLocaleDateString("en-US", {
                   year: "numeric",
                   month: "short",
                   day: "numeric",
                 })}
+                &nbsp;]
               </p>
             </div>
           </div>

@@ -19,7 +19,7 @@ export const MobileDropdown = () => {
         </DropdownMenuTrigger>
         <DropdownMenuContent
           align="end"
-          className="backdrop-filter backdrop-blur-lg shadow-lg bg-white/30 dark:bg-black/30 border rounded-none"
+          className="border rounded-none"
         >
           {NavLinks.map((link, index) => (
             <div key={link.to}>

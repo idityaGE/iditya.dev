@@ -8,7 +8,7 @@ export const BackButton = ({
   label: string;
 }) => {
   return (
-    <div className="flex items-center">
+    <div className="flex items-baseline">
       &lt;&nbsp;
       <Link href={href} className="text-xs hover:underline font-mono">
         {label}

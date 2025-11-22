@@ -4,7 +4,7 @@ import { LinkData } from "@/config/links.config";
 
 export const Hero = () => {
   return (
-    <div className="ml-4 mb-4 relative">
+    <div className="ml-4 mb-2 relative">
       <div className="absolute top-0 right-0 p-4">
         <div className="flex items-center gap-1.5">
           <div className="relative flex h-2.5 w-2.5">
@@ -17,9 +17,10 @@ export const Hero = () => {
         </div>
       </div>
 
-      <h1 id="name" className="text-4xl font-medium leading-12">
+      <h1 id="name" className="text-4xl font-semibold leading-11">
         I'm <br /> {PersonalData.name}
       </h1>
+
       <div>
         <h6 className="text-base text-muted-foreground pt-3 font-light">
           {PersonalData.age}y/o Tech Enthusiast, {PersonalData.address.country}
@@ -30,6 +31,7 @@ export const Hero = () => {
           {PersonalData.description}
         </h6>
       </div>
+
       <div className="mt-5">
         <h6 className="text-base text-muted-foreground font-light">
           Feel free to reach me out at&nbsp;
@@ -53,7 +55,7 @@ export const Hero = () => {
           .
         </h6>
       </div>
-      <div className="absolute bottom-0 right-4">
+      <div className="absolute bottom-2 right-4">
         <h6 className="text-sm text-muted-foreground font-light">
           /
           <a
@@ -66,9 +68,9 @@ export const Hero = () => {
           </a>
         </h6>
       </div>
-      <h1 id="name" className="text-4xl font-medium leading-12 pt-10">
+      <h2 id="name" className="text-3xl font-medium leading-12 pt-10">
         About me
-      </h1>
+      </h2>
     </div>
   );
 };

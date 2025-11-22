@@ -2,7 +2,6 @@ import { getMDXSlugs } from "@/lib/mdx";
 import { TableOfContents } from "@/components/mdx/toc";
 import { BackButton } from "@/components/blog/back-button";
 import Image from "next/image";
-import { Separator } from "@/components/ui/separator";
 import type { Metadata } from "next";
 import { siteConfig } from "@/config/site.config";
 
@@ -71,12 +70,12 @@ export default async function Page({
   } = await import(`@/content/blogs/${slug}.mdx`);
 
   return (
-    <div className="flex flex-col md:flex-row">
-      <div className="fixed top-24 border-t border-b border-l px-4 py-2 right-[calc(50%+28rem)] z-50 hidden lg:inline-flex">
+    <div className="flex flex-col">
+      <div className="fixed top-24 border-y border-l px-4 py-2 right-[calc(50%+28rem)] z-50 hidden lg:inline-flex">
         <BackButton href="/blogs" label="SEE ALL BLOGS" />
       </div>
       <aside className="hidden text-sm min-[1400px]:inline-flex">
-        <div className="fixed top-24 left-[calc(50%+28rem)] z-50 border-t border-b border-r p-4">
+        <div className="fixed top-24 left-[calc(50%+28rem)] z-50 border-y border-r p-4">
           <TableOfContents toc={toc} />
         </div>
       </aside>
@@ -103,7 +102,7 @@ export default async function Page({
         </div>
 
         <div
-          className="h-8 border-y w-4xl"
+          className="h-8 border-y w-full"
           style={{
             backgroundImage: `repeating-linear-gradient(
               45deg,

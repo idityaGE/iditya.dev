@@ -24,11 +24,10 @@ const ProjectCard = ({
 
   const cardContent = (
     <div
-      className={`relative flex p-3 md:p-5 flex-col-reverse justify-between gap-4 border-y overflow-hidden md:flex-row transition-all duration-300 ease-in-out h-auto md:h-[260px] bg-background ${
-        !disableHover
+      className={`relative flex p-3 md:p-5 flex-col-reverse justify-between gap-4 border-y overflow-hidden md:flex-row transition-all duration-300 ease-in-out h-auto md:h-[260px] bg-background ${!disableHover
           ? "group-hover/project-card:-translate-x-1 group-hover/project-card:-translate-y-1 group-hover/project-card:border-x"
           : ""
-      }`}
+        }`}
     >
       {/* Content Section */}
       <div className="flex flex-col w-full md:w-3/5 min-h-0">
@@ -77,7 +76,7 @@ const ProjectCard = ({
       </div>
 
       {/* Image Section */}
-      <div className="w-full md:w-2/5 h-48 md:h-full flex-shrink-0">
+      <div className="w-full md:w-2/5 h-56 md:h-full flex-shrink-0">
         <div className="w-full h-full overflow-hidden">
           {disableHover ? (
             <div className="block w-full h-full">

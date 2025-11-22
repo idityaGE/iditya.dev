@@ -17,17 +17,17 @@ export function BlogCard({
 
         {/* Main card that moves on hover */}
         <div className="relative w-full h-full overflow-hidden border bg-background transition-transform duration-200 group-hover/blog-card:-translate-x-1 group-hover/blog-card:-translate-y-1">
-          <div className="w-full aspect-[8/5] overflow-hidden border-b">
+          <div className="w-full aspect-[10/5] overflow-hidden border-b">
             <Image
               src={blog.coverImage}
               width={200}
               height={111}
               alt={blog.title}
-              className="w-full aspect-[8/5] object-cover"
+              className="w-full aspect-[10/5] object-cover"
             />
           </div>
           <div className="p-4">
-            <h2 className="text-lg font-semibold mb-2">{blog.title}</h2>
+            <h2 className="text-lg mb-2">{blog.title}</h2>
             <p className="text-sm text-muted-foreground mb-3 line-clamp-2">
               {blog.excerpt}
             </p>

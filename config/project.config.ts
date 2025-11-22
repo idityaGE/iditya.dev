@@ -107,7 +107,7 @@ export const ProjectData = [
     ]
   },
   {
-    title: "_Zapier ⚡",
+    title: "_Zapier",
     type: "personal",
     slug: "zapier",
     description: "An open-source app to automate workflows with a trigger-action framework. Easily connect apps, customize integrations, and boost productivity. Perfect for seamless task automation and workflow management.",

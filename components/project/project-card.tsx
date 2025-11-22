@@ -24,9 +24,9 @@ const ProjectCard = ({
 
   const cardContent = (
     <div
-      className={`relative flex p-3 md:p-5 flex-col-reverse justify-between gap-4 border-t border-b overflow-hidden md:flex-row transition-all duration-300 ease-in-out h-auto md:h-[260px] bg-background ${
+      className={`relative flex p-3 md:p-5 flex-col-reverse justify-between gap-4 border-y overflow-hidden md:flex-row transition-all duration-300 ease-in-out h-auto md:h-[260px] bg-background ${
         !disableHover
-          ? "group-hover/project-card:-translate-x-1 group-hover/project-card:-translate-y-1"
+          ? "group-hover/project-card:-translate-x-1 group-hover/project-card:-translate-y-1 group-hover/project-card:border-x"
           : ""
       }`}
     >
@@ -36,9 +36,7 @@ const ProjectCard = ({
           <div className="block mb-3 flex-shrink-0">
             <div className="inline-flex items-center gap-1 mt-2 md:mt-0 mb-3">
               <div className="flex items-center gap-2 flex-wrap">
-                <h2 className="text-xl font-bold font-heading line-clamp-1">
-                  {title}
-                </h2>
+                <h2 className="text-xl font-heading line-clamp-1">{title}</h2>
               </div>
             </div>
             <p className="text-sm text-secondary-foreground/80 font-light line-clamp-3">
@@ -53,9 +51,7 @@ const ProjectCard = ({
           >
             <div className="inline-flex items-center gap-1 mt-2 md:mt-0 mb-3">
               <div className="flex items-center gap-2 flex-wrap">
-                <h2 className="text-xl font-bold font-heading line-clamp-1 group-hover/link:underline">
-                  {title}
-                </h2>
+                <h2 className="text-xl font-heading line-clamp-1">{title}</h2>
               </div>
               <span className="-translate-x-1 opacity-0 group-hover/link:translate-x-0 group-hover/link:opacity-100 transition-all flex-shrink-0">
                 <StepForward size={12} />

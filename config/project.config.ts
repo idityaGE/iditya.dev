@@ -137,10 +137,10 @@ export const ProjectData = [
     slug: "portfolio",
     description: "A sleek, minimalist portfolio template with dynamic animations, dark/light mode, and responsive design. Features include project showcases, interactive skill CLI and performance optimizations for lightning-fast load times.",
     images: [
-      "https://ik.imagekit.io/nnp1iszdfe/images/yehhh.png?updatedAt=1750185325023",
+      "https://ik.imagekit.io/nnp1iszdfe/old-portfolio/images/yehhh.png?updatedAt=1750186732732",
     ],
-    liveLink: "https://old.iditya.tech/",
-    githubLink: "https://github.com/idityaGE/old.iditya.tech",
+    liveLink: "https://old.iditya.me/",
+    githubLink: "https://github.com/idityaGE/old.iditya.me",
     techStack: [
       "React",
       "TailwindCSS",

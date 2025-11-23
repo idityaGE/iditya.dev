@@ -16,7 +16,7 @@ export const renderCustomIcon = (icon: SimpleIcon, theme: string) => {
   const minContrastRatio = theme === "dark" ? 2 : 1.2;
 
   return renderSimpleIcon({
-    icon,
+    icon: { ...icon, hex: theme === "light" ? "#000000" : "#ffffff" },
     bgHex,
     fallbackHex,
     minContrastRatio,
@@ -39,7 +39,7 @@ type IconData = Awaited<ReturnType<typeof fetchSimpleIcons>>;
 export function IconCloud({ iconSlugs }: DynamicCloudProps) {
   const [data, setData] = useState<IconData | null>(null);
   const [mounted, setMounted] = useState(false);
-  const { theme } = useTheme();
+  const { theme, resolvedTheme } = useTheme();
 
   // Fix hydration by ensuring component only renders after mounting
   useEffect(() => {
@@ -61,9 +61,9 @@ export function IconCloud({ iconSlugs }: DynamicCloudProps) {
     if (!data || !mounted) return null;
 
     return Object.values(data.simpleIcons).map((icon) =>
-      renderCustomIcon(icon, theme || 'light'),
+      renderCustomIcon(icon, resolvedTheme || "light")
     );
-  }, [data, theme, mounted]);
+  }, [data, resolvedTheme, mounted]);
 
   const cloudProps: Omit<ICloud, "children"> = {
     containerProps: {
@@ -104,8 +104,7 @@ export function IconCloud({ iconSlugs }: DynamicCloudProps) {
           paddingTop: 14,
           minHeight: "400px",
         }}
-      >
-      </div>
+      ></div>
     );
   }
 

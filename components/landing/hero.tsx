@@ -56,7 +56,7 @@ export const Hero = () => {
         </h6>
       </div>
       <div className="absolute bottom-2 right-4">
-        <h6 className="text-sm text-muted-foreground font-light">
+        <h6 className="text-base text-muted-foreground font-light">
           /
           <a
             href="/resume.pdf"

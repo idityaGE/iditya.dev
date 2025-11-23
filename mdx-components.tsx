@@ -14,15 +14,15 @@ import {
 import { HeadingWithAnchor } from "@/components/mdx/heading-with-anchor";
 import { OgLink } from "@/components/mdx/og-link";
 import { Code } from "@/components/mdx/code";
-//* ref: https://www.gatsbyjs.com/docs/how-to/routing/customizing-components/
 
+//* ref: https://www.gatsbyjs.com/docs/how-to/routing/customizing-components/
 const styles = {
-  h1: "text-3xl font-bold tracking-tight mb-4 mt-8 scroll-mt-20 group font-mono",
-  h2: "text-2xl font-bold tracking-tight mb-4 mt-6 scroll-mt-20 group font-mono",
-  h3: "text-xl font-bold tracking-tight mb-2 mt-5 scroll-mt-20 group font-mono",
-  h4: "text-lg font-bold tracking-tight mb-2 mt-4 scroll-mt-20 group font-mono",
-  h5: "text-md font-bold tracking-tight mb-2 mt-4 scroll-mt-20 group font-mono",
-  h6: "text-base font-bold tracking-tight mb-2 mt-4 scroll-mt-20 group font-mono",
+  h1: "text-3xl tracking-tight mb-4 mt-8 scroll-mt-20 group font-semibold",
+  h2: "text-2xl tracking-tight mb-4 mt-6 scroll-mt-20 group font-semibold",
+  h3: "text-xl tracking-tight mb-2 mt-5 scroll-mt-20 group font-semibold",
+  h4: "text-lg tracking-tight mb-2 mt-4 scroll-mt-20 group font-semibold",
+  h5: "text-md tracking-tight mb-2 mt-4 scroll-mt-20 group font-semibold",
+  h6: "text-base tracking-tight mb-2 mt-4 scroll-mt-20 group font-semibold",
   p: "leading-7.5 mb-6 md:mb-8 text-gray-700 dark:text-gray-300 text-xl",
   a: "text-muted-foreground hover:text-blue-700 underline",
   ul: "list-disc pl-8 mb-6",

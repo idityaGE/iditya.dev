@@ -22,19 +22,19 @@ const features = [
     name: "Project",
     isIconHidden: true,
     background: <Projects />,
-    className: "lg:col-start-1 lg:col-end-5 lg:row-start-1 lg:row-end-2",
+    className: "lg:col-start-1 lg:col-end-5 lg:row-start-1 lg:row-end-2 border-b",
   },
   {
     Icon: Link,
     name: "Connect",
     background: <ConnectCard />,
-    className: "lg:col-start-1 lg:col-end-3 lg:row-start-2 lg:row-end-3",
+    className: "lg:col-start-1 lg:col-end-3 lg:row-start-2 lg:row-end-3 border-b border-r",
   },
   {
     Icon: BookIcon,
     name: "Blogs",
     background: <BlogCard />,
-    className: "lg:col-start-3 lg:col-end-5 lg:row-start-2 lg:row-end-4",
+    className: "lg:col-start-3 lg:col-end-5 lg:row-start-2 lg:row-end-4 border-b",
   },
   {
     Icon: MapPin,
@@ -52,7 +52,7 @@ const features = [
     Icon: Layers,
     name: "Tech Stack",
     background: <SkillCard />,
-    className: "lg:col-start-1 lg:col-end-3 lg:row-start-3 lg:row-end-5",
+    className: "lg:col-start-1 lg:col-end-3 lg:row-start-3 lg:row-end-5 border-r",
   },
 ];
 

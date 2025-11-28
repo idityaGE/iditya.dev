@@ -31,13 +31,13 @@ const BentoCard = ({
   <div
     key={name}
     className={cn(
-      "group relative col-span-3 flex flex-col justify-start overflow-hidden border-b border-r",
+      "group relative col-span-3 flex flex-col justify-start overflow-hidden",
       className
     )}
   >
     <div
       className={cn(
-        "pointer-events-none z-10 flex gap-2 px-3 pt-4 items-center border-b border-r py-1.5 w-fit",
+        "pointer-events-none z-10 flex gap-2 px-3 pt-4 items-center py-1.5 w-fit border-b border-r",
         isIconHidden && "hidden"
       )}
     >

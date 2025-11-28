@@ -40,6 +40,29 @@ export const ProjectData = [
     ]
   },
   {
+    title: "ExpTrack",
+    type: "personal",
+    slug: "exptrack",
+    description: "A simple Expense Tracker App built with Expo (React Native) for the frontend and Rust (Axum) for the backend. The app allows users to track their expenses by adding, viewing, and categorizing them.",
+    images: [
+      "https://github.com/idityaGE/ExpTrack/raw/master/.github/images/poster.png",
+    ],
+    githubLink: "https://github.com/idityaGE/ExpTrack",
+    techStack: [
+      "Expo",
+      "Axum",
+      "Rust",
+      "Nativewind",
+      "React Native Reusables",
+      "Tanstack Query",
+      "React Hook Form",
+      "Zod",
+      "Gifted Charts",
+      "SQLx",
+      "Postgres"
+    ]
+  },
+  {
     title: "Hyper Digital",
     type: "freelance",
     slug: "hyperdigital",

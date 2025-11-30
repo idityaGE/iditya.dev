@@ -1,0 +1,586 @@
+---
+title: "Linux Daemon"
+date: "2025-11-30"
+tags: ["linux", "daemon", "systemd"]
+author: "Aditya"
+published: true
+excerpt: "A beginner's guide to understanding Linux daemons, their role in system management, and how to create and manage them using systemd."
+coverImage: "https://miro.medium.com/v2/resize:fit:1400/1*lc2k3ffX3uKW7_mkvS6jow.png"
+---
+
+## Understanding Linux Daemons (with a simple Practical C Example)
+
+Linux systems rely heavily on background processes that run without direct user interaction. These long‑running background processes are called **daemons**. They typically detach from the controlling terminal and continue running independently, providing core services such as logging, scheduling, networking, and more.
+
+In this post, we will:
+
+- Implement a minimal daemon in C.
+- Walk through each step required to correctly daemonize a process.
+- Briefly discuss how this relates to modern `systemd` based service management.
+
+### Prerequisites
+
+To follow along with the code examples, you should have:
+
+- A basic understanding of C programming.
+- Familiarity with Linux command line and system calls. (e.g., `fork()`, `setsid()`, `chdir()`, `umask()`, `signal()`).
+- Understanding of process management in Linux.
+
+### Why Daemons Matter
+
+Daemons power many of the services users rely on every day. Examples include:
+
+- Web servers (e.g., Apache, Nginx)
+- Job schedulers (e.g., `cron`)
+- Logging services (e.g., `rsyslog`, `journald`)
+- Network and system services  (e.g., `sshd`, `NetworkManager`)
+
+```bash
+systemctl list-units -t service # list the active services (daemons) on a systemd-based Linux system
+```
+
+These processes are designed to be robust, long-lived, and independent of any interactive user session. A properly written daemon continues running even after the user who started it logs out or the terminal closes.
+
+### A Comprehensive Daemon in C
+
+This example demonstrates every major step of the daemonization process, including the famous **double fork**, detaching from terminals, writing a **PID file**, **signal handling**, and logging to a file.
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <signal.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <time.h>
+#include <fcntl.h>
+#include <string.h>
+
+// Global flag to signal the daemon to exit
+volatile sig_atomic_t terminate_daemon = 0;
+
+// Signal handler for clean shutdown
+void sig_handler(int signo) {
+    if (signo == SIGTERM || signo == SIGINT) {
+        terminate_daemon = 1;
+    }
+}
+
+int main(int argc, char *argv[]) {
+    pid_t pid;
+
+    // STEP 1: First Fork - Detach from the parent process
+    // We want to detach from the controlling terminal. The parent will exit,
+    // leaving the child to run independently. This is crucial.
+    // Think of it as the child saying, "Bye, mom and dad, I'm off to conquer
+    // the world (or at least log some messages)!"
+    pid = fork();
+    if (pid < 0) {
+        perror("First fork failed");
+        exit(EXIT_FAILURE);
+    }
+    // If we got a positive PID, it means we are the parent.
+    // The parent should exit immediately.
+    if (pid > 0) {
+        exit(EXIT_SUCCESS);  // Parent exits, child continues
+    }
+
+    // STEP 2: Create a new session and become a session leader
+    // `setsid()` makes the calling process a session leader and detaches it
+    // from the controlling terminal. It also creates a new process group.
+    // This prevents the daemon from getting any signals from the original
+    // terminal.
+    //
+    // UNDERSTANDING SESSIONS AND PROCESS GROUPS:
+    // - A session is a collection of one or more process groups.
+    // - By calling setsid(), the calling process becomes the session leader.
+    // - The session ID (SID) is set to the calling process's PID.
+    // - The calling process also becomes the leader of a new process group,
+    //   and the process group ID (PGID) equals the calling process's PID.
+    // - Most importantly: the process is disassociated from its controlling terminal.
+    //   This is crucial for creating daemons that should continue running even
+    //   after the user logs out or the terminal is closed.
+    if (setsid() < 0) {
+        perror("setsid failed");
+        exit(EXIT_FAILURE);
+    }
+
+    // STEP 3: Second Fork - Prevent re-acquiring a controlling terminal
+    // WHY A SECOND FORK?
+    // Even after calling setsid(), the process is still a session leader.
+    // On some Unix systems, a session leader can automatically re-acquire
+    // a controlling terminal by opening a terminal device.
+    // By forking again, the new child is no longer a session leader
+    // (its parent is the session leader), which prevents it from ever
+    // re-acquiring a controlling terminal accidentally.
+    // This is an extra safety measure to ensure true daemon behavior.
+    pid = fork();
+    if (pid < 0) {
+        perror("Second fork failed");
+        exit(EXIT_FAILURE);
+    }
+    if (pid > 0) {
+        exit(EXIT_SUCCESS);  // First child exits, second child continues
+    }
+
+    // STEP 4: Reset file mode mask
+    // `umask(0)` sets the file mode creation mask to 0 (000 in octal).
+    // This means that new files created by the daemon will have their
+    // permissions determined solely by the permissions specified in the
+    // `open()` or `creat()` call, not modified by the umask.
+    // This ensures predictable file permissions.
+    umask(0);
+
+    // STEP 5: Change the current working directory to the root
+    // This is good practice to prevent the daemon from holding open a
+    // directory on a mounted filesystem that could otherwise be unmounted.
+    // Imagine your daemon preventing you from unmounting a USB drive!
+    if (chdir("/") < 0) {
+        perror("chdir failed");
+        exit(EXIT_FAILURE);
+    }
+
+    // STEP 6: Write the daemon PID to a file
+    // PID files are used to:
+    // 1. Identify the running daemon process
+    // 2. Prevent multiple instances from running simultaneously
+    // 3. Allow management scripts to send signals to the daemon
+    //
+    // Standard locations: /var/run/ or /run/ (requires root/sudo)
+    // For testing without sudo, use /tmp/ instead
+    FILE *pidfile = fopen("/var/run/mydaemon.pid", "w");
+    if (pidfile) {
+        fprintf(pidfile, "%d\n", getpid());
+        fclose(pidfile);
+    } else {
+        // Fallback: if we can't write to /var/run (no sudo), inform via printf
+        // Note: This won't be visible after we close STDOUT, but it's here for
+        // early debugging before the daemon fully detaches
+        printf("Daemon PID: %d\n", getpid());
+        perror("Failed to write PID file to /var/run/mydaemon.pid");
+        // Not exiting - daemon can continue without PID file
+    }
+
+    // STEP 7: Register signal handlers for graceful shutdown
+    // We want our daemon to respond politely to signals like SIGTERM (terminate)
+    // and SIGINT (interrupt) so it can clean up before exiting.
+    signal(SIGTERM, sig_handler);
+    signal(SIGINT, sig_handler);
+
+    // STEP 8: Close standard file descriptors
+    // Daemons should not inherit open file descriptors from the parent.
+    // We want to ensure it has no ties to the original terminal.
+    // STDIN (0), STDOUT (1), and STDERR (2) are closed to fully detach
+    // from the terminal. This prevents accidental reads/writes to a
+    // nonexistent terminal and makes the daemon truly independent.
+    close(STDIN_FILENO);   // 0
+    close(STDOUT_FILENO);  // 1
+    close(STDERR_FILENO);  // 2
+
+    // STEP 9: Main daemon loop - Write timestamps to log file
+    // The daemon now enters its infinite loop where it performs its actual work.
+    // In this example, it writes a timestamp to a log file every 2 seconds.
+    while (!terminate_daemon) {
+        // Open log file in append mode with specific permissions
+        // O_WRONLY: write-only
+        // O_CREAT: create if doesn't exist
+        // O_APPEND: write at the end of the file
+        // 0644: rw-r--r-- (owner can read/write, others can read)
+        int fd = open("/tmp/mydaemon.log", O_WRONLY | O_CREAT | O_APPEND, 0644);
+        
+        if (fd != -1) {
+            // Get current time and convert to string
+            time_t now = time(NULL);
+            char *timestamp = ctime(&now);
+            
+            // Write timestamp to log file
+            write(fd, timestamp, strlen(timestamp));
+            close(fd);
+        }
+
+        sleep(2);  // Sleep for 2 seconds before next log entry
+    }
+
+    // Clean exit when terminate signal is received
+    // Optionally, you could log a shutdown message here
+    // and remove the PID file
+    unlink("/var/run/mydaemon.pid");  // Clean up PID file
+    exit(EXIT_SUCCESS);
+}
+```
+
+### Breaking Down the Daemonization Steps
+
+Each step in the code above corresponds to a well‑established pattern for turning a normal process into a daemon.
+#### 1. First `fork()` – Detach from the parent
+
+- **Concept:** `fork()` creates a child process. The parent exits, and the child continues execution.
+- **System call:** `pid_t fork(void);`
+- **Purpose:** Ensures the new process is not a process group leader, which is required before calling `setsid()`. It also detaches from the original shell/terminal.
+- **Effect:** The controlling terminal no longer manages the daemon's lifecycle.
+- **Return values:**
+  - `< 0`: Fork failed
+  - `0`: You are in the child process
+  - `> 0`: You are in the parent process, and the value is the child's PID
+
+#### 2. `setsid()` – Create a new session
+
+- **Concept:** `setsid()` creates a new session and makes the calling process the session leader of that session.
+- **System call:** `pid_t setsid(void);`
+- **Purpose:** Detaches the process from any controlling terminal and process group.
+- **What happens internally:**
+  - The calling process becomes a **session leader**
+  - The session ID (SID) is set to the calling process's PID
+  - A new **process group** is created with PGID = calling process PID
+  - The process is **disassociated from its controlling terminal**
+- **Effect:** The daemon is isolated from terminal signals such as `Ctrl+C` in the original shell.
+- **Why it matters:** This is crucial for creating daemons that continue running even after the user logs out or the terminal is closed.
+
+#### 3. Second `fork()` – Prevent re-acquiring a controlling terminal
+
+- **Concept:** Fork again after `setsid()` to ensure the process can never acquire a controlling terminal.
+- **System call:** `pid_t fork(void);` (called a second time)
+- **Purpose:** Even after `setsid()`, a session leader can still open a terminal device and automatically make it the controlling terminal. By forking again, the new child is no longer a session leader, preventing this behavior.
+- **Effect:** Guarantees true daemon behavior with no possibility of terminal reattachment.
+- **This is the "double fork" technique:** First fork detaches from parent, second fork prevents terminal acquisition.
+
+#### 4. `umask(0)` – Control file permissions
+
+- **Concept:** Sets the process's file mode creation mask to 0.
+- **System call:** `mode_t umask(mode_t mask);`
+- **Purpose:** Ensures file permissions for newly created files are determined explicitly by the program, rather than being further restricted by an inherited umask.
+- **Effect:** More predictable file and directory permissions.
+- **Example:** If you create a file with `open(path, O_CREAT, 0644)`:
+  - Without `umask(0)`: Final permissions depend on inherited umask (might be 0022, resulting in 0644 & ~0022 = 0644)
+  - With `umask(0)`: Final permissions are exactly 0644 (rw-r--r--)
+
+#### 5. `chdir("/")` – Change working directory
+
+- **Concept:** Changes the current working directory to root.
+- **System call:** `int chdir(const char *path);`
+- **Purpose:** Prevents the daemon from keeping any filesystem (e.g., a mounted volume) unnecessarily busy.
+- **Effect:** Ensures that unmount operations are not blocked by a daemon holding open a directory.
+- **Real-world scenario:** Imagine your daemon is started from `/mnt/usb/`. If it doesn't change directory, you can't unmount `/mnt/usb/` while the daemon runs.
+
+#### 6. Writing a PID File
+
+- **Concept:** Write the daemon's process ID to a file for management and monitoring.
+- **System calls:** `FILE *fopen(const char *pathname, const char *mode);`, `int fprintf(FILE *stream, const char *format, ...);`
+- **Purpose:** 
+  - Allows system administrators to identify the running daemon
+  - Prevents multiple instances from running simultaneously (by checking if PID file exists)
+  - Management scripts can read the PID to send signals (e.g., `kill -SIGTERM $(cat /var/run/mydaemon.pid)`)
+- **Standard locations:** 
+  - `/var/run/daemon-name.pid` (traditional, requires root)
+  - `/run/daemon-name.pid` (modern, symlink to `/var/run/`)
+  - `/tmp/daemon-name.pid` (for testing without root privileges)
+- **Effect:** Provides a reliable way to manage the daemon process.
+
+#### 7. Signal handling
+
+- **Concept:** Signals notify a process of asynchronous events, like termination requests.
+- **System call:** `void (*signal(int signum, void (*handler)(int)))(int);`
+- **Purpose:** Handle `SIGTERM`/`SIGINT` gracefully, allowing the daemon to perform cleanup before exiting.
+- **Common signals:**
+  - `SIGTERM` (15): Polite termination request (default for `kill`)
+  - `SIGINT` (2): Interrupt from keyboard (Ctrl+C)
+  - `SIGHUP` (1): Hangup detected, often used to reload configuration
+- **`volatile sig_atomic_t`:** This type ensures the variable can be safely accessed in both signal handlers and main code without data races.
+- **Effect:** More predictable shutdown behavior and resource cleanup.
+
+#### 8. Closing file descriptors
+
+- **Concept:** File descriptors represent open files, sockets, and other I/O resources.
+- **System calls:** `int close(int fd);`
+- **Purpose:** Daemons should not inherit open descriptors from their parent, especially the terminal descriptors (`stdin`, `stdout`, `stderr`).
+- **The three standard file descriptors:**
+  - `STDIN_FILENO` (0): Standard input
+  - `STDOUT_FILENO` (1): Standard output
+  - `STDERR_FILENO` (2): Standard error
+- **Effect:** Avoids unintended I/O and resource leaks tied to the original environment. Makes the daemon truly independent.
+
+#### 9. Daemon Main Loop – File Logging
+
+- **Concept:** The daemon performs its actual work in an infinite loop.
+- **System calls:** 
+  - `int open(const char *pathname, int flags, mode_t mode);`
+  - `ssize_t write(int fd, const void *buf, size_t count);`
+  - `time_t time(time_t *tloc);`
+  - `char *ctime(const time_t *timep);`
+- **Purpose:** Demonstrates continuous daemon operation with file-based logging.
+- **File open flags:**
+  - `O_WRONLY`: Open for writing only
+  - `O_CREAT`: Create file if it doesn't exist
+  - `O_APPEND`: Write data at the end of the file
+- **File permissions:** `0644` means `rw-r--r--` (owner read/write, group read, others read)
+- **Effect:** Creates a persistent log file that can be monitored to verify daemon operation.
+
+### Building and Running the Daemon
+
+1. **Save the code** as `my_daemon.c`.
+
+2. **Compile:**
+
+   ```bash
+   gcc my_daemon.c -o my_daemon
+   ```
+
+3. **Run:**
+
+   ```bash
+   ./my_daemon
+   ```
+
+   The process will daemonize immediately and the terminal will return control.
+
+4. **Verify that it is running:**
+
+   ```bash
+   ps aux | grep my_daemon
+   ```
+
+   You should see an entry showing the daemon process with its PID.
+
+5. **Monitor the log file in real-time:**
+
+   ```bash
+   tail -f /tmp/mydaemon.log
+   ```
+
+   This will show timestamps being written every 2 seconds. The `-f` flag makes `tail` continuously display new lines as they are added to the file.
+
+6. **Watch the log file with automatic refresh:**
+
+   ```bash
+   watch -n 1 'tail -10 /tmp/mydaemon.log'
+   ```
+
+   This uses the `watch` command to execute `tail -10` every 1 second, giving you a continuously updating view of the last 10 log entries.
+
+7. **Check the PID file (if running with sudo):**
+
+   ```bash
+   cat /var/run/mydaemon.pid
+   ```
+
+   Or without sudo:
+
+   ```bash
+   # The PID was printed to stdout before the daemon detached
+   ```
+
+8. **Stop the daemon gracefully:**
+
+   Using the PID file:
+
+   ```bash
+   kill -SIGTERM $(cat /var/run/mydaemon.pid)
+   # Or simply:
+   kill $(cat /var/run/mydaemon.pid)
+   ```
+
+   Or using process name:
+
+   ```bash
+   pkill my_daemon
+   # Or more specific:
+   killall my_daemon
+   ```
+
+   The daemon will handle the signal, clean up (remove PID file), and exit.
+
+9. **Force stop (if graceful stop fails):**
+
+   ```bash
+   kill -SIGKILL $(cat /var/run/mydaemon.pid)
+   # Or:
+   pkill -9 my_daemon
+   ```
+
+### Useful Commands for Daemon Management
+
+```bash
+# View all running daemons (background processes)
+ps aux | grep -E 'daemon|[d]$'
+
+# Monitor log file with color highlighting for timestamps
+watch -n 1 --color 'tail -10 /tmp/mydaemon.log'
+
+# Count log entries
+wc -l /tmp/mydaemon.log
+
+# View logs with timestamps in a more readable format
+tail -f /tmp/mydaemon.log | while read line; do echo "[$(date +%H:%M:%S)] $line"; done
+
+# Check if daemon is running and get its PID
+pgrep -l my_daemon
+
+# Get detailed process information
+ps -fp $(pgrep my_daemon)
+
+# View process tree to see daemon's isolation
+pstree -p $(pgrep my_daemon)
+```
+
+### Additional Topics for Further Exploration
+
+If you want to extend this example toward real‑world use cases, useful directions include:
+
+- More robust error handling and retries.
+- Configuration via files under etc.
+- Secure privilege handling (dropping privileges, running under a dedicated user).
+- Inter‑process communication (sockets, message queues, shared memory).
+- Understanding the `daemon()` library helper function where available.
+
+---
+
+## Appendix: Managing the Daemon with systemd
+
+The previous sections focused on the traditional, manual approach to daemonization. On modern Linux distributions, **systemd** is usually responsible for starting, supervising, and stopping services. In many production scenarios, you will let `systemd` handle daemonization and focus on your application logic.
+
+This section shows:
+
+- How to create a `systemd` unit for the example daemon.
+- What a “systemd‑native” daemon might look like.
+- How this changes your service configuration.
+
+### Running `my_daemon` Under systemd
+
+Assume `my_daemon` is compiled and copied to `/usr/local/bin/my_daemon`.
+
+1. **Create a systemd service unit:**
+
+   ```bash
+   sudo nano /etc/systemd/system/my_daemon.service
+   ```
+
+   Example unit file:
+
+   ```ini
+   [Unit]
+   Description=My Simple Daemon
+   After=network.target
+
+   [Service]
+   Type=forking
+   ExecStart=/usr/local/bin/my_daemon
+   ExecStop=/usr/bin/pkill my_daemon
+   Restart=on-failure
+   User=root
+   Group=root
+
+   [Install]
+   WantedBy=multi-user.target
+   ```
+
+   Key points:
+
+   - `Type=forking` is appropriate because the example program performs its own `fork()` and becomes a background process.
+   - `ExecStart` points to the compiled binary.
+   - `ExecStop` uses `pkill` for a simple, signal‑based stop. In more advanced cases, you may implement a dedicated shutdown mechanism.
+   - For production, replace `root` with a dedicated, unprivileged user and group.
+
+2. **Reload systemd configuration:**
+
+   ```bash
+   sudo systemctl daemon-reload
+   ```
+
+3. **Enable the service at boot:**
+
+   ```bash
+   sudo systemctl enable my_daemon.service
+   ```
+
+4. **Start the service:**
+
+   ```bash
+   sudo systemctl start my_daemon.service
+   ```
+
+5. **Check status:**
+
+   ```bash
+   sudo systemctl status my_daemon.service
+   ```
+
+6. **Inspect logs:**
+
+   ```bash
+   sudo journalctl -u my_daemon.service -f
+   ```
+
+7. **Stop and disable if needed:**
+
+   ```bash
+   sudo systemctl stop my_daemon.service
+   sudo systemctl disable my_daemon.service
+   ```
+
+### A Systemd‑Native Daemon
+
+When you design a daemon specifically for `systemd`, you typically avoid manual daemonization steps. `systemd` takes care of session management, working directory, file descriptors, and logging.
+
+Below is a simplified example that relies on `systemd` for process management:
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <signal.h>
+
+volatile sig_atomic_t terminate_daemon = 0;
+
+void sig_handler(int signo) {
+    if (signo == SIGTERM || signo == SIGINT) {
+        terminate_daemon = 1;
+    }
+}
+
+int main(void) {
+    signal(SIGTERM, sig_handler);
+    signal(SIGINT, sig_handler);
+
+    fprintf(stdout, "Systemd-native daemon started. PID: %d\n", getpid());
+    fflush(stdout);
+
+    while (!terminate_daemon) {
+        fprintf(stdout, "Systemd-native daemon is running. PID: %d\n", getpid());
+        fflush(stdout);
+        sleep(5);
+    }
+
+    fprintf(stdout, "Systemd-native daemon exiting.\n");
+    fflush(stdout);
+    return EXIT_SUCCESS;
+}
+```
+
+A corresponding `systemd` unit file for this style might look like:
+
+```ini
+[Unit]
+Description=My Systemd-Native Daemon
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/my_systemd_daemon
+Restart=on-failure
+User=daemonuser
+Group=daemonuser
+
+[Install]
+WantedBy=multi-user.target
+```
+
+Here:
+
+- `Type=simple` is appropriate because the process does not `fork()` itself into the background.
+- Logging is done via `stdout`/`stderr` and captured by `systemd`’s journal.
+
+### Summary
+
+- The main body of this post focused on the classic daemonization steps implemented directly in C.
+- In modern systems, `systemd` is typically responsible for supervising daemons, providing process lifecycle management, restart policies, and centralized logging.
+- Understanding both approaches helps when debugging existing services or designing new ones that integrate cleanly with the host system.

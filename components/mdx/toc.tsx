@@ -6,7 +6,6 @@ import { cn } from '@/lib/utils';
 import { generateSlug } from '@/utils';
 import { ListMinusIcon } from 'lucide-react';
 
-
 const DEPTH_STYLES = {
   1: "",
   2: "pl-2",
@@ -16,26 +15,7 @@ const DEPTH_STYLES = {
   6: "pl-12"
 } as const;
 
-
-const throttle = (func: Function, delay: number) => {
-  let timeoutId: NodeJS.Timeout;
-  let lastExecTime = 0;
-
-  return (...args: any[]) => {
-    const currentTime = Date.now();
-
-    if (currentTime - lastExecTime > delay) {
-      func(...args);
-      lastExecTime = currentTime;
-    } else {
-      clearTimeout(timeoutId);
-      timeoutId = setTimeout(() => {
-        func(...args);
-        lastExecTime = Date.now();
-      }, delay - (currentTime - lastExecTime));
-    }
-  };
-};
+const HEADER_OFFSET = 100; // Offset for fixed header
 
 const TableOfContentsItem = memo(function TableOfContentsItem({
   item,
@@ -94,38 +74,37 @@ const TableOfContentsItem = memo(function TableOfContentsItem({
 export function TableOfContents({ toc }: { toc: TocEntry[] }) {
   const [activeId, setActiveId] = useState<string>('');
   const tocListRef = useRef<HTMLUListElement>(null);
-
+  const observerRef = useRef<IntersectionObserver | null>(null);
+  const isClickScrollingRef = useRef(false);
+  const clickTimeoutRef = useRef<NodeJS.Timeout | undefined>(undefined);
 
   const handleItemClick = useCallback((targetId: string, e: React.MouseEvent) => {
     e.preventDefault();
 
+    // Disable intersection observer temporarily during click scroll
+    isClickScrollingRef.current = true;
+    clearTimeout(clickTimeoutRef.current);
+
     const element = document.getElementById(targetId);
     if (element) {
+      // Calculate offset from top accounting for fixed header
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - HEADER_OFFSET;
 
-      requestAnimationFrame(() => {
-        element.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start',
-          inline: 'nearest'
-        });
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
       });
 
+      // Update URL and active state
       window.history.pushState(null, '', `#${targetId}`);
       setActiveId(targetId);
+
+      // Re-enable intersection observer after scroll completes
+      clickTimeoutRef.current = setTimeout(() => {
+        isClickScrollingRef.current = false;
+      }, 1000);
     }
-  }, []);
-
-  const intersectionCallback = useMemo(() => {
-    return throttle((entries: IntersectionObserverEntry[]) => {
-      const visibleEntries = entries
-        .filter(entry => entry.isIntersecting)
-        .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
-
-      if (visibleEntries.length > 0) {
-        const newActiveId = visibleEntries[0].target.id;
-        setActiveId(prev => prev !== newActiveId ? newActiveId : prev);
-      }
-    }, 100);
   }, []);
 
   const scrollActiveItemIntoView = useCallback(() => {
@@ -135,10 +114,10 @@ export function TableOfContents({ toc }: { toc: TocEntry[] }) {
     if (!activeElement) return;
 
     const container = tocListRef.current;
-
     const containerRect = container.getBoundingClientRect();
     const activeElementRect = activeElement.getBoundingClientRect();
 
+    // Check if element is outside visible area
     if (
       activeElementRect.top < containerRect.top ||
       activeElementRect.bottom > containerRect.bottom
@@ -161,41 +140,76 @@ export function TableOfContents({ toc }: { toc: TocEntry[] }) {
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
-
     const headingElements = Array.from(
       document.querySelectorAll('h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]')
-    ) as Element[];
+    ) as HTMLElement[];
 
     if (headingElements.length === 0) return;
 
-    const observer = new IntersectionObserver(intersectionCallback, {
-      rootMargin: '-100px 0px -70% 0px',
-      threshold: [0, 0.1, 0.5]
+    // Create intersection observer
+    observerRef.current = new IntersectionObserver(
+      (entries) => {
+        // Skip if user is clicking/scrolling
+        if (isClickScrollingRef.current) return;
+
+        // Find all visible entries
+        const visibleEntries = entries
+          .filter(entry => entry.isIntersecting)
+          .sort((a, b) => {
+            // Sort by position on screen (top to bottom)
+            return a.boundingClientRect.top - b.boundingClientRect.top;
+          });
+
+        // Set the first visible heading as active
+        if (visibleEntries.length > 0) {
+          const newActiveId = visibleEntries[0].target.id;
+          setActiveId(prev => {
+            if (prev !== newActiveId) {
+              return newActiveId;
+            }
+            return prev;
+          });
+        }
+      },
+      {
+        rootMargin: `-${HEADER_OFFSET}px 0px -60% 0px`,
+        threshold: [0, 0.25, 0.5, 0.75, 1]
+      }
+    );
+
+    // Observe all headings
+    headingElements.forEach(element => {
+      if (observerRef.current) {
+        observerRef.current.observe(element);
+      }
     });
 
-
-    headingElements.forEach(element => observer.observe(element));
-
-
+    // Handle initial hash on page load
     const hash = window.location.hash.replace('#', '');
     if (hash) {
       setActiveId(hash);
+      // Scroll to element after a brief delay to ensure page is loaded
       const element = document.getElementById(hash);
       if (element) {
-        requestAnimationFrame(() => {
-          setTimeout(() => {
-            element.scrollIntoView({
-              behavior: 'smooth',
-              block: 'start',
-              inline: 'nearest'
-            });
-          }, 100);
-        });
+        setTimeout(() => {
+          const elementPosition = element.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - HEADER_OFFSET;
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+        }, 100);
       }
     }
 
-    return () => observer.disconnect();
-  }, [intersectionCallback]);
+    // Cleanup
+    return () => {
+      if (observerRef.current) {
+        observerRef.current.disconnect();
+      }
+      clearTimeout(clickTimeoutRef.current);
+    };
+  }, []); // Empty dependency array - only run once
 
   const shouldRender = useMemo(() =>
     toc && Array.isArray(toc) && toc.length > 0, [toc]

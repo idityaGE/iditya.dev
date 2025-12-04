@@ -1,15 +1,15 @@
-"use client"
+"use client";
 
-import { motion, MotionProps, useScroll } from "motion/react"
-import { useTheme } from "next-themes"
-import { useEffect, useState } from "react"
+import { motion, MotionProps, useScroll } from "motion/react";
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 
 interface ScrollProgressProps
   extends Omit<React.HTMLAttributes<HTMLElement>, keyof MotionProps> {
-  ref?: React.Ref<HTMLDivElement>
-  orientation?: "horizontal" | "vertical"
+  ref?: React.Ref<HTMLDivElement>;
+  orientation?: "horizontal" | "vertical";
 }
 
 export function ScrollProgress({
@@ -18,18 +18,18 @@ export function ScrollProgress({
   orientation = "horizontal",
   ...props
 }: ScrollProgressProps) {
-  const { scrollYProgress } = useScroll()
-  const { resolvedTheme } = useTheme()
-  const [mounted, setMounted] = useState(false)
+  const { scrollYProgress } = useScroll();
+  const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true)
-  }, [])
+    setMounted(true);
+  }, []);
 
-  const isDark = resolvedTheme === "dark"
+  const isDark = resolvedTheme === "dark";
 
   if (!mounted) {
-    return null
+    return null;
   }
 
   if (orientation === "vertical") {
@@ -37,7 +37,7 @@ export function ScrollProgress({
       <motion.div
         ref={ref}
         className={cn(
-          "fixed inset-y-0 left-0 z-50 w-px origin-top",
+          "fixed inset-y-0 left-0 z-50 w-[2px] origin-top",
           isDark ? "bg-white" : "bg-black",
           className
         )}
@@ -46,14 +46,14 @@ export function ScrollProgress({
         }}
         {...props}
       />
-    )
+    );
   }
 
   return (
     <motion.div
       ref={ref}
       className={cn(
-        "fixed inset-x-0 top-0 z-50 h-px origin-left",
+        "fixed inset-x-0 top-0 z-50 h-[2px] origin-left",
         isDark ? "bg-white" : "bg-black",
         className
       )}
@@ -62,5 +62,5 @@ export function ScrollProgress({
       }}
       {...props}
     />
-  )
+  );
 }

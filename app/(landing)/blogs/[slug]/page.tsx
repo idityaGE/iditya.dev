@@ -4,7 +4,7 @@ import { BackButton } from "@/components/blog/back-button";
 import Image from "next/image";
 import type { Metadata } from "next";
 import { siteConfig } from "@/config/site.config";
-import { ScrollProgress } from "@/components/magicui/scroll-progress"
+import { ScrollProgress } from "@/components/magicui/scroll-progress";
 
 export async function generateMetadata({
   params,
@@ -78,7 +78,10 @@ export default async function Page({
       </div>
       <aside className="hidden text-sm min-[1400px]:inline-flex">
         <div className="fixed top-24 left-[calc(50%+28rem)] z-50 border-y border-r p-4">
-          <ScrollProgress orientation="vertical" className="left-[calc(50%+28rem)]" />
+          <ScrollProgress
+            orientation="vertical"
+            className="left-[calc(49.9%+28rem)]"
+          />
           <TableOfContents toc={toc} />
         </div>
       </aside>

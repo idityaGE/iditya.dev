@@ -1,10 +1,10 @@
 import { getMDXSlugs } from "@/lib/mdx";
 import { ProjectCard } from "@/components/project/project-card";
-import Link from "next/link";
 import { ProjectData } from "@/config/project.config";
 import type { Metadata } from "next";
 import { siteConfig } from "@/config/site.config";
 import { BackButton } from "@/components/blog/back-button";
+import { ScrollProgress } from "@/components/magicui/scroll-progress"
 
 const getProjectFromSlug = (slug: string) => {
   return ProjectData.find((project) => project.slug === slug);
@@ -73,6 +73,7 @@ export default async function Page({
 
   return (
     <main className="relative">
+      <ScrollProgress className="min-[1400px]:hidden" />
       <div
         className="h-8"
         style={{
@@ -88,6 +89,7 @@ export default async function Page({
       <div className="fixed top-24 border-t border-b border-l px-4 py-2 right-[calc(50%+28rem)] z-50 hidden lg:inline-flex">
         <BackButton href="/projects" label="SEE ALL PROJECTS" />
       </div>
+      <ScrollProgress orientation="vertical" className="left-[calc(50%+28rem)]" />
       <div className="w-full flex flex-col max-w-4xl mx-auto">
         {project && <ProjectCard {...project} disableHover />}
         <div

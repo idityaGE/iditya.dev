@@ -29,7 +29,7 @@ export const Hero = () => {
       <div className="mt-4 xl:w-3/4">
         <h6 className="text-base text-muted-foreground font-light">
           {PersonalData.description.map((line, idx) => (
-            <p className="mb-1">
+            <p className="mb-1" key={idx}>
               {line}
             </p>
           ))}

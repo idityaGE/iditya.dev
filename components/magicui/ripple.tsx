@@ -24,10 +24,10 @@ export const Ripple = React.memo(function Ripple({
       {...props}
     >
       {Array.from({ length: numCircles }, (_, i) => {
-        const size = mainCircleSize + i * 70;
+        const size = mainCircleSize + i * 90;
         const opacity = mainCircleOpacity - i * 0.03;
         const animationDelay = `${i * 0.06}s`;
-        const borderStyle = "solid";
+        const borderStyle = "dashed";
 
         return (
           <div

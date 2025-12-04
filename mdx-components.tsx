@@ -17,22 +17,23 @@ import { Code } from "@/components/mdx/code";
 
 //* ref: https://www.gatsbyjs.com/docs/how-to/routing/customizing-components/
 const styles = {
-  h1: "text-3xl tracking-tight mb-4 mt-8 scroll-mt-20 group font-semibold",
-  h2: "text-2xl tracking-tight mb-4 mt-6 scroll-mt-20 group font-semibold",
-  h3: "text-xl tracking-tight mb-2 mt-5 scroll-mt-20 group font-semibold",
-  h4: "text-lg tracking-tight mb-2 mt-4 scroll-mt-20 group font-semibold",
-  h5: "text-md tracking-tight mb-2 mt-4 scroll-mt-20 group font-semibold",
-  h6: "text-base tracking-tight mb-2 mt-4 scroll-mt-20 group font-semibold",
-  p: "leading-7.5 mb-6 md:mb-8 text-gray-700 dark:text-gray-300 text-xl",
-  a: "text-muted-foreground hover:text-blue-700 underline",
-  ul: "list-disc pl-8 mb-6",
-  ol: "list-decimal pl-8 mb-8",
-  li: "my-3 text-gray-700 dark:text-gray-300",
-  blockquote: "pl-4 border-l-4 border-gray-200 italic my-4",
-  strong: "font-bold text-gray-900 dark:text-gray-100",
-  em: "italic text-muted-foreground",
-  del: "line-through text-muted-foreground",
-  code: "px-1.5 py-0.5 bg-muted rounded font-mono! text-base text-red-700",
+  h1: "text-4xl font-bold tracking-tight mt-10 mb-6 scroll-m-20 first:mt-0 group",
+  h2: "text-3xl font-semibold tracking-tight mt-10 mb-6 scroll-m-20 border-b pb-2 first:mt-0 group",
+  h3: "text-2xl font-semibold tracking-tight mt-8 mb-4 scroll-m-20 group",
+  h4: "text-xl font-semibold tracking-tight mt-6 mb-4 scroll-m-20 group",
+  h5: "text-lg font-semibold tracking-tight mt-6 mb-4 scroll-m-20 group",
+  h6: "text-base font-semibold tracking-tight mt-6 mb-4 scroll-m-20 group",
+  p: "leading-7 [&:not(:first-child)]:mt-6 text-base",
+  a: "font-medium underline underline-offset-4 decoration-primary/50 hover:decoration-primary transition-colors",
+  ul: "my-6 ml-6 list-disc [&>li]:mt-2",
+  ol: "my-6 ml-6 list-decimal [&>li]:mt-2",
+  li: "leading-7",
+  blockquote:
+    "mt-6 border-l-4 pl-6 py-2 pr-4 italic text-muted-foreground bg-muted/40 rounded-r-lg",
+  strong: "font-semibold",
+  em: "italic",
+  del: "line-through opacity-70",
+  code: "relative rounded bg-muted px-[0.25rem] py-[0.15rem] font-mono text-sm border",
 };
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {

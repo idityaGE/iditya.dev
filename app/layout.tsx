@@ -1,7 +1,7 @@
 import type { Metadata } from "next/types";
 import { ThemeProvider } from "@/components/theme/theme-provider";
 import { Navbar } from "@/components/navbar/navbar";
-import { Inter, IBM_Plex_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
 import { siteConfig } from "@/config/site.config";
 import { Analytics } from "@vercel/analytics/next";
 import "@/styles/globals.css";
@@ -9,13 +9,6 @@ import "@/styles/globals.css";
 const fontSans = Inter({
   subsets: ["latin"],
   variable: "--font-sans",
-  display: "swap",
-});
-
-const fontMono = IBM_Plex_Mono({
-  subsets: ["latin"],
-  variable: "--font-mono",
-  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
@@ -107,7 +100,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${fontSans.variable} ${fontMono.variable} font-sans antialiased bg-background text-foreground`}
+        className={`${fontSans.variable} font-sans antialiased bg-background text-foreground`}
         suppressHydrationWarning
       >
         <ThemeProvider attribute="class" defaultTheme="dark">

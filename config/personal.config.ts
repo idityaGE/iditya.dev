@@ -2,7 +2,11 @@ export const PersonalData = {
   name: "Aditya",
   nickname: "Adii",
   logo: "",
-  description: "I'm a software developer based in India. I have a passion for developing software that improves the lives of those around me. I specialize in building web applications and have professional experience working with JavaScript, TypeScript, React, and Node.js.",
+  description: [
+    "Just someone who loves coding, Linux, and breaking stuff to learn.",
+    "Exploring tech, devops, web3, and enjoying the chaos.",
+    "(you know what I'm talking about!)"
+  ],
   title: "Student / Coder",
   avatar: "https://i.pinimg.com/736x/35/2b/03/352b03faa5630e37e1efbb9798b633e1.jpg",
   favicon: "./favicon.ico",

@@ -58,11 +58,6 @@ export const metadata: Metadata = {
       alt: siteConfig.name,
     },
   },
-  
-  themeColor: [
-    { media: '(prefers-color-scheme: light)', color: 'oklch(1 0 0)' },
-    { media: '(prefers-color-scheme: dark)', color: 'oklch(0 0 0)' }
-  ],
 };
 
 export default function RootLayout({
@@ -103,6 +98,7 @@ export default function RootLayout({
           title={`${siteConfig.name} Projects RSS Feed`}
           href="/projects/rss.xml"
         />
+        
       </head>
       <body
         className={`${fontSans.variable} font-sans antialiased bg-background text-foreground`}

@@ -24,6 +24,7 @@ Before diving into Rust macros, it's essential to have a basic understanding of 
 ---
 
 > You can get the code of this blog here :
+
 <OgLink url="https://github.com/idityaGE/rust-macros/tree/master/rust_examples" />
 
 ---
@@ -51,6 +52,7 @@ Declarative macros are defined using the `macro_rules!` construct. They are esse
 **Syntax:**
 
 ```rust
+// title: macros/syntax.rs
 macro_rules! my_macro {
     // Rule 1: Pattern => Expansion
     ($input:expr) => {
@@ -80,6 +82,7 @@ Here are the common fragment specifiers:
 
 - **`ident`**: An identifier (e.g., variable name, function name, struct name).
   ```rust
+  // title: macros/identifiers.rs
   macro_rules! create_var {
       ($name:ident, $value:expr) => {
           let $name = $value;
@@ -89,6 +92,7 @@ Here are the common fragment specifiers:
   ```
 - **`expr`**: An expression (e.g., `1 + 2`, `my_func()`, `some_variable`).
   ```rust
+  // title: macros/expressions.rs
   macro_rules! print_expr {
       ($e:expr) => {
           println!("The expression evaluates to: {:?}", $e);
@@ -98,6 +102,7 @@ Here are the common fragment specifiers:
   ```
 - **`ty`**: A type (e.g., `i32`, `Vec<String>`, `MyStruct`).
   ```rust
+  // title: macros/types.rs
   macro_rules! create_vec {
       ($t:ty) => {
           Vec::<$t>::new()
@@ -107,6 +112,7 @@ Here are the common fragment specifiers:
   ```
 - **`block`**: A block of statements enclosed in curly braces (e.g., `{ let x = 5; x * 2 }`).
   ```rust
+  // title: macros/blocks.rs
   macro_rules! run_block {
       ($b:block) => {
           $b
@@ -116,6 +122,7 @@ Here are the common fragment specifiers:
   ```
 - **`pat`**: A pattern (e.g., `Some(x)`, `[a, b, ..]`, `_`).
   ```rust
+  // title: macros/patterns.rs
   macro_rules! match_option {
       ($option:expr, $pat:pat => $result:expr) => {
           match $option {
@@ -129,6 +136,7 @@ Here are the common fragment specifiers:
   ```
 - **`stmt`**: A statement (e.g., `let x = 5;`, `println!("hello");`).
   ```rust
+  // title: macros/statements.rs
   macro_rules! execute_stmt {
       ($s:stmt) => {
           $s
@@ -154,6 +162,7 @@ Macros can handle repetition using `$(...)` with a separator and a repetition op
 The standard library's `vec!` macro is a great example of declarative macros in action.
 
 ```rust
+// title: src/std/vec.rs
 macro_rules! vec {
     // Case 1: vec![elem; count]
     ($elem:expr; $count:expr) => ({
@@ -194,6 +203,7 @@ macro_rules! vec {
 You invoke declarative macros with an exclamation mark (`!`) after their name:
 
 ```rust
+// title: src/main.rs
 let my_vec = vec![1, 2, 3];
 let ten_zeros = vec![0; 10];
 ```
@@ -221,6 +231,7 @@ Procedural macros _must_ reside in their own crate with the `proc-macro` crate t
 **Cargo.toml for a procedural macro crate:**
 
 ```toml
+# title: Cargo.toml
 [lib]
 proc-macro = true
 
@@ -247,9 +258,8 @@ These are invoked like declarative macros (`my_macro!`) but are implemented as r
 
 Let's create a simple function-like macro that reverses the order of a list of expressions.
 
-**`my_proc_macro_crate/src/lib.rs`:**
-
 ```rust
+// title: my_proc_macro_crate/src/lib.rs
 use proc_macro::TokenStream;
 use quote::quote;
 use syn::{parse_macro_input, Expr};
@@ -278,9 +288,8 @@ pub fn reverse_exprs(input: TokenStream) -> TokenStream {
 }
 ```
 
-**`my_app_crate/src/main.rs`:**
-
 ```rust
+// title: my_app_crate/src/main.rs
 use my_proc_macro_crate::reverse_exprs;
 
 fn main() {
@@ -316,9 +325,8 @@ Derive macros generate code for `impl` blocks based on the definition of a struc
 
 Let's create a derive macro that automatically implements a `Debug` trait-like behavior, printing struct fields. (Note: `Debug` is already in std, this is just for demonstration.)
 
-**`my_derive_crate/src/lib.rs`:**
-
 ```rust
+// title: my_derive_crate/src/lib.rs
 use proc_macro::TokenStream;
 use quote::quote;
 use syn::{parse_macro_input, Data, Fields, Ident};
@@ -381,9 +389,8 @@ pub fn my_debug_derive(input: TokenStream) -> TokenStream {
 // And then in `my_derive_crate` you'd depend on `common_traits`.
 ```
 
-**`my_app_crate/src/main.rs`:**
-
 ```rust
+// title: my_app_crate/src/main.rs
 use my_derive_crate::MyDebug;
 
 // Assuming `MyDebug` trait is defined and imported
@@ -438,9 +445,8 @@ Attribute macros can attach to any item (function, struct, module, etc.) and get
 
 Let's create an attribute macro that logs when a function is called.
 
-**`my_attribute_crate/src/lib.rs`:**
-
 ```rust
+// title: my_attribute_crate/src/lib.rs
 use proc_macro::TokenStream;
 use quote::quote;
 use syn::{parse_macro_input, ItemFn};
@@ -473,9 +479,8 @@ pub fn log_calls(_attr: TokenStream, item: TokenStream) -> TokenStream {
 }
 ```
 
-**`my_app_crate/src/main.rs`:**
-
 ```rust
+// title: my_app_crate/src/main.rs
 use my_attribute_crate::log_calls;
 
 #[log_calls]

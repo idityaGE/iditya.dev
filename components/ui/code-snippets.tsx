@@ -54,7 +54,7 @@ const CopyButton = ({ value, className, ...props }: InlineCopyButtonProps) => {
     <Button
       variant="ghost"
       size="icon"
-      className={cn("h-8 w-8 backdrop-blur-sm border", className)}
+      className={cn("h-8 w-8 backdrop-blur-sm", className)}
       onClick={onCopy}
       aria-label={copied ? "Copied" : "Copy to clipboard"}
       {...props}
@@ -187,7 +187,10 @@ export const CodeSnippet: React.FC<CodeSnippetProps> = ({
         <div
           className="flex items-center justify-between border-b"
           style={{
-            backgroundColor: selectedTheme.plain?.backgroundColor || "#151515",
+            backgroundColor:
+              selectedTheme.plain?.backgroundColor?.toLowerCase() === "#ffffff"
+                ? "#f4f4f5"
+                : "#1e1e1e",
             borderBottomColor:
               selectedTheme.plain?.backgroundColor?.toLowerCase() === "#ffffff"
                 ? "#e5e5e5"
@@ -230,14 +233,10 @@ export const CodeSnippet: React.FC<CodeSnippetProps> = ({
             </div>
           ) : null}
 
-          <div className="mr-3">
+          <div className="mr-1">
             <CopyButton
               value={currentCode}
-              className={cn(
-                "backdrop-blur-sm hover:bg-accent/40 transition-colors",
-                selectedTheme.plain?.backgroundColor?.toLowerCase() ===
-                  "#ffffff" && "bg-black/5 hover:bg-black/10 border-black/10"
-              )}
+              className="backdrop-blur-sm hover:bg-accent/40 transition-colors"
             />
           </div>
         </div>
@@ -261,11 +260,7 @@ export const CodeSnippet: React.FC<CodeSnippetProps> = ({
           >
             <CopyButton
               value={currentCode}
-              className={cn(
-                "backdrop-blur-sm hover:bg-accent/40 transition-colors",
-                selectedTheme.plain?.backgroundColor?.toLowerCase() ===
-                  "#ffffff" && "bg-black/5 hover:bg-black/10 border-black/10"
-              )}
+              className="backdrop-blur-sm hover:bg-accent/40 transition-colors border"
             />
           </div>
         )}

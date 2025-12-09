@@ -24,8 +24,8 @@ const ProjectCard = ({
 
   const cardContent = (
     <div
-      className={`relative flex p-3 md:p-5 flex-col-reverse justify-between gap-4 border-y overflow-hidden md:flex-row transition-all duration-300 ease-in-out h-auto md:h-[260px] bg-background ${!disableHover
-        ? "group-hover/project-card:-translate-x-1 group-hover/project-card:-translate-y-1 group-hover/project-card:border-x group-hover/project-card:transition-transform group-hover/project-card:duration-300 group-hover/project-card:ease-in-out"
+      className={`relative flex px-[calc(0.75rem+1px)] md:px-[calc(1.25rem+1px)] py-3 md:py-5 flex-col-reverse justify-between gap-4 border-y overflow-hidden md:flex-row transition-all duration-300 ease-in-out h-auto md:h-[260px] bg-background ${!disableHover
+        ? "group-hover/project-card:-translate-x-1 group-hover/project-card:-translate-y-1 group-hover/project-card:border-x group-hover/project-card:px-3 md:group-hover/project-card:px-5 group-hover/project-card:transition-transform group-hover/project-card:duration-300 group-hover/project-card:ease-in-out"
         : ""
         }`}
     >

@@ -4,6 +4,7 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
+  scroll-behavior: smooth;
   --background: oklch(1 0 0);
   --foreground: oklch(0 0 0);
   --card: oklch(0.9791 0 0);
@@ -180,10 +181,10 @@
   --tracking-wider: calc(var(--tracking-normal) + 0.05em);
   --tracking-widest: calc(var(--tracking-normal) + 0.1em);
 
-  --animate-ripple: ripple var(--duration, 2s) ease calc(var(--i, 0) * 0.2s) infinite;
-    
-  @keyframes ripple {
+  --animate-ripple: ripple var(--duration, 2s) ease calc(var(--i, 0) * 0.2s)
+    infinite;
 
+  @keyframes ripple {
     0%,
     100% {
       transform: translate(-50%, -50%) scale(1);
@@ -309,4 +310,3 @@ details {
 details[open] summary {
   margin-bottom: 0.5rem;
 }
-

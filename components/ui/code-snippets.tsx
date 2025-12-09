@@ -3,6 +3,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Highlight, PrismTheme } from "prism-react-renderer";
 import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { Check, Copy } from "lucide-react";
 
 /* =========================
    Inline CopyButton (self-contained)
@@ -27,9 +29,9 @@ const CopyButton = ({ value, className, ...props }: InlineCopyButtonProps) => {
       await navigator.clipboard.writeText(value);
       setCopied(true);
       if (timerRef.current) window.clearTimeout(timerRef.current);
-      timerRef.current = window.setTimeout(() => setCopied(false), 1200);
+      timerRef.current = window.setTimeout(() => setCopied(false), 2000);
     } catch {
-      // Fallback for very old browsers
+      // Fallback
       const textarea = document.createElement("textarea");
       textarea.value = value;
       textarea.style.position = "fixed";
@@ -40,60 +42,35 @@ const CopyButton = ({ value, className, ...props }: InlineCopyButtonProps) => {
       try {
         document.execCommand("copy");
         setCopied(true);
-        if (timerRef.current) window.clearTimeout(timerRef.current);
-        timerRef.current = window.setTimeout(() => setCopied(false), 1200);
       } finally {
         document.body.removeChild(textarea);
+        if (timerRef.current) window.clearTimeout(timerRef.current);
+        timerRef.current = window.setTimeout(() => setCopied(false), 2000);
       }
     }
   };
 
   return (
-    <button
-      type="button"
+    <Button
+      variant="ghost"
+      size="icon"
+      className={cn("h-8 w-8 backdrop-blur-sm border", className)}
       onClick={onCopy}
       aria-label={copied ? "Copied" : "Copy to clipboard"}
-      title={copied ? "Copied!" : "Copy"}
-      className={cn(
-        "inline-flex items-center gap-1 rounded-md border px-2.5 py-1.5 text-xs transition-colors",
-        "focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
-        "border-transparent/0 hover:border-transparent/0", // let parent pass colors
-        className
-      )}
       {...props}
     >
       <span className="sr-only">{copied ? "Copied" : "Copy"}</span>
-      {/* icons inline to avoid imports */}
-      {copied ? (
-        <svg
-          viewBox="0 0 24 24"
-          className="h-4 w-4"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth={2}
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          aria-hidden="true"
-        >
-          <path d="M20 6 9 17l-5-5" />
-        </svg>
-      ) : (
-        <svg
-          viewBox="0 0 24 24"
-          className="h-4 w-4"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth={2}
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          aria-hidden="true"
-        >
-          <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
-          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
-        </svg>
-      )}
-      <span>{copied ? "Copied" : "Copy"}</span>
-    </button>
+      <Copy
+        className={`h-4 w-4 transition-all duration-300 ${
+          copied ? "scale-0" : "scale-100"
+        }`}
+      />
+      <Check
+        className={`absolute inset-0 m-auto h-4 w-4 transition-all duration-300 ${
+          copied ? "scale-100" : "scale-0"
+        }`}
+      />
+    </Button>
   );
 };
 
@@ -257,10 +234,9 @@ export const CodeSnippet: React.FC<CodeSnippetProps> = ({
             <CopyButton
               value={currentCode}
               className={cn(
-                "backdrop-blur-md bg-white/10 hover:bg-white/20 border-white/10 text-zinc-100",
+                "backdrop-blur-sm hover:bg-accent/40 transition-colors",
                 selectedTheme.plain?.backgroundColor?.toLowerCase() ===
-                  "#ffffff" &&
-                  "bg-black/5 hover:bg-black/10 border-black/10 text-zinc-600"
+                  "#ffffff" && "bg-black/5 hover:bg-black/10 border-black/10"
               )}
             />
           </div>
@@ -286,10 +262,9 @@ export const CodeSnippet: React.FC<CodeSnippetProps> = ({
             <CopyButton
               value={currentCode}
               className={cn(
-                "backdrop-blur-md bg-white/10 hover:bg-white/20 border-white/10 text-zinc-100 transition-all",
+                "backdrop-blur-sm hover:bg-accent/40 transition-colors",
                 selectedTheme.plain?.backgroundColor?.toLowerCase() ===
-                  "#ffffff" &&
-                  "bg-black/5 hover:bg-black/10 border-black/10 text-zinc-600"
+                  "#ffffff" && "bg-black/5 hover:bg-black/10 border-black/10"
               )}
             />
           </div>

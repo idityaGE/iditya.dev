@@ -13,7 +13,7 @@ export function CommandBtn({
       <ScriptCopyBtn
         showMultiplePackageOptions={true}
         codeLanguage="shell"
-        lightTheme="monokai"
+        lightTheme="min-light"
         darkTheme="vitesse-dark"
         commandMap={command}
       />

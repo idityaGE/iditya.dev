@@ -33,6 +33,7 @@
     "next-themes": "^0.4.6",
     "node-html-parser": "^7.0.1",
     "notion-to-md": "4.0.0-alpha.7",
+    "prism-react-renderer": "^2.4.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-icon-cloud": "4.1.7",

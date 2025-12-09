@@ -63,12 +63,12 @@ export function ScriptCopyBtn({
   return (
     <div
       className={cn(
-        "flex items-center justify-center",
-        className,
+        "flex flex-col justify-center", // Changed to column to stack tabs and code
+        className
       )}
     >
       <div className="w-full space-y-2">
-        <div className="mb-2 flex items-center justify-between">
+        <div className="flex items-center justify-between">
           {showPackageManagers && showMultiplePackageOptions && (
             <div className="relative">
               <div className="inline-flex overflow-hidden rounded-md border border-border text-xs">
@@ -80,10 +80,11 @@ export function ScriptCopyBtn({
                     <Button
                       variant="ghost"
                       size="sm"
-                      className={`relative rounded-none bg-background px-2 py-1 hover:bg-background ${packageManager === pm
-                        ? "text-primary"
-                        : "text-muted-foreground"
-                        }`}
+                      className={`relative rounded-none bg-background px-2 py-1 hover:bg-background ${
+                        packageManager === pm
+                          ? "text-primary"
+                          : "text-muted-foreground"
+                      }`}
                       onClick={() => setPackageManager(pm)}
                     >
                       {pm}
@@ -106,35 +107,39 @@ export function ScriptCopyBtn({
             </div>
           )}
         </div>
-        <div className="relative flex items-center">
-          <div className="min-w-[300px] grow font-mono">
+
+        {/* Code Container */}
+        <div className="relative group">
+          <div className="min-w-[300px] grow font-mono overflow-hidden rounded-md border border-border">
             {highlightedCode ? (
               <div
-                className={`[&>pre]:overflow-x-auto [&>pre]:rounded-md [&>pre]:p-2 [&>pre]:px-4 [&>pre]:font-mono ${theme === "dark" ? "dark" : "light"
-                  }`}
+                className={`[&>pre]:overflow-x-auto [&>pre]:py-4 [&>pre]:px-4 [&>pre]:font-mono text-sm [&>pre::-webkit-scrollbar]:hidden [&>pre]:[scrollbar-width:none] [&>pre]:[-ms-overflow-style:none]`}
                 dangerouslySetInnerHTML={{ __html: highlightedCode }}
               />
             ) : (
-              <pre className="rounded-md border border-border bg-white p-2 px-4 font-mono dark:bg-black">
+              <pre className="overflow-x-auto py-4 px-4 font-mono text-sm bg-background text-foreground border border-border [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
                 {command}
               </pre>
             )}
           </div>
+
           <Button
-            variant="outline"
+            variant="ghost"
             size="icon"
-            className="relative ml-2 rounded-md"
+            className="absolute right-2 top-2 h-8 w-8 backdrop-blur-sm"
             onClick={copyToClipboard}
             aria-label={copied ? "Copied" : "Copy to clipboard"}
           >
             <span className="sr-only">{copied ? "Copied" : "Copy"}</span>
             <Copy
-              className={`h-4 w-4 transition-all duration-300 ${copied ? "scale-0" : "scale-100"
-                }`}
+              className={`h-4 w-4 transition-all duration-300 ${
+                copied ? "scale-0" : "scale-100"
+              }`}
             />
             <Check
-              className={`absolute inset-0 m-auto h-4 w-4 transition-all duration-300 ${copied ? "scale-100" : "scale-0"
-                }`}
+              className={`absolute inset-0 m-auto h-4 w-4 transition-all duration-300 ${
+                copied ? "scale-100" : "scale-0"
+              }`}
             />
           </Button>
         </div>

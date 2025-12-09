@@ -7,15 +7,15 @@ import Image from 'next/image';
   height="100"
 />
 
-# \_Zapier ⚡
+# \_Zapier
 
 **Zapier Clone** is a microservices-based automation platform that simplifies and streamlines various workflows. The frontend is developed using Next.js, while Node.js handles the backend services. It features efficient code management with Turborepo, quick task processing with Kafka, and customizable workflows through webhooks, making the platform both powerful and user-friendly.
 
-## Demo 🎥
+## Demo
 
 <YouTube id="q4Qq5eNfR3k" />
 
-## Features 🌟
+## Features
 
 - **Microservices Architecture:** Utilizes Next.js for the frontend and Node.js for backend services, ensuring scalability and flexibility.
 
@@ -37,7 +37,7 @@ import Image from 'next/image';
 
 - **User-Friendly Automation:** Provides an intuitive interface for setting up and managing automation workflows, enhancing user experience.
 
-## Monorepo and Package Structure 📁
+## Monorepo and Package Structure
 
 This project uses a monorepo architecture managed by Turborepo. The repository is divided into the following apps and packages:
 
@@ -71,7 +71,7 @@ This project uses a monorepo architecture managed by Turborepo. The repository i
 
 - `@repo/zod-schemas`: Contains Zod schemas for data validation and type-safe parsing across the application.
 
-## Screenshots 📸
+## Screenshots
 
 ![App Screenshot](https://res.cloudinary.com/dwdbqwqxk/image/upload/v1735751890/Screenshot_2024-12-31_213824_scqnxm.png)
 
@@ -85,7 +85,7 @@ This project uses a monorepo architecture managed by Turborepo. The repository i
 
 <a name="environment-setup"></a>
 
-## Environment Setup 🛠️
+## Environment Setup
 
 You will need to obtain credentials from the respective services:
 
@@ -105,7 +105,7 @@ To run this project, you will need to add the following environment variables to
 
 - packages/mailer-config - `GMAIL` `MAIL_SERVICE` `MAIL_PORT` `MAIL_HOST` `MAIL_USER` `MAIL_PASS`
 
-## Installation 🔧
+## Installation
 
 **Docker Compose**
 
@@ -117,7 +117,7 @@ To run this project, you will need to add the following environment variables to
 
 **4.** Dockerize the Applications and start all the containers
 
-```
+```bash
 docker-compose up
 ```
 
@@ -153,19 +153,19 @@ The following containers will be build (if not built already) and started:
 
 **4.** In the root directory of the monorepo, install the dependencies for all packages using Turborepo
 
-```
+```bash
 npm install
 ```
 
 **5.** Start a PostgreSQL container
 
-```
+```bash
 docker run --name zapier-clone-db -e POSTGRES_PASSWORD=mysecretpassword -d -p 5432:5432 postgres
 ```
 
 - From the root directory of the monorepo run this command to automatically migrate our database and generate our type-safe Prisma client.
 
-```
+```bash
 turbo db:push db:generate
 ```
 
@@ -173,13 +173,13 @@ Note: If you need to seed data into the database, follow these steps:
 
 - From the root directory of the monorepo, navigate to the database package:
 
-```
+```bash
 cd packages/database
 ```
 
 - Run the following command to seed dummy data into the database:
 
-```
+```bash
 npx prisma db seed
 ```
 
@@ -187,31 +187,31 @@ This will seed a `webhook` trigger and `send-solana` as well as `send-email` act
 
 **6.** Start a Kafka container
 
-```
+```bash
 docker run --name zapier-processor-kafka -d -p 9092:9092 apache/kafka:3.7.1
 ```
 
 Docker exec into the kafka container
 
-```
+```bash
 docker exec -it <kafka-container-id> /bin/bash
 ```
 
 Navigate to the Kafka Binaries Directory
 
-```
+```bash
 cd /opt/kafka/bin
 ```
 
 Create the kafka topic
 
-```
+```bash
 ./kafka-topics.sh --create --topic zap-events --bootstrap-server localhost:9092
 ```
 
 **7.** Start the application in development mode
 
-```
+```bash
 npm run dev
 ```
 
@@ -219,23 +219,23 @@ Note:- You can run this command in the root directory to start the entire applic
 
 **8.** Once started, the terminal will display the URLs where each service is hosted on their respective ports.
 
-## Build ⚙️
+## Build
 
 To build all apps and packages navigate to the parent directory, run the following command:
 
-```
+```bash
 npm run build
 ```
 
 This will build the entire monorepo, ensuring that all services are compiled and ready for deployment.
 
-## Remote Caching 🧩
+## Remote Caching
 
 Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
 
 By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup), navigate to the parent directory of the turborepo then enter the following command:
 
-```
+```bash
 npx turbo login
 ```
 
@@ -243,15 +243,15 @@ This will authenticate the Turborepo CLI with your [Vercel account](https://verc
 
 Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
 
-```
+```bash
 npx turbo link
 ```
 
-## Authors ✍️
+## Authors
 
 - [idityage](https://github.com/idityaGE)
 
-## Tech Stack 💻
+## Tech Stack
 
 - **Languages:** TypeScript
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { CodeSnippet } from "@/components/ui/code-snippets-3";
+import { CodeSnippet } from "@/components/ui/code-snippets";
 import { CommandBtn } from "@/components/mdx/command-btn";
 import React, { isValidElement } from "react";
 

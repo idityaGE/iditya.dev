@@ -80,7 +80,7 @@ export function ScriptCopyBtn({
                     <Button
                       variant="ghost"
                       size="sm"
-                      className={`relative rounded-none bg-background px-2 py-1 hover:bg-background ${
+                      className={`relative rounded-none bg-background px-2 py-1 hover:bg-background font-mono ${
                         packageManager === pm
                           ? "text-primary"
                           : "text-muted-foreground"
@@ -113,11 +113,11 @@ export function ScriptCopyBtn({
           <div className="min-w-[300px] grow font-mono overflow-hidden rounded-md border border-border">
             {highlightedCode ? (
               <div
-                className={`[&>pre]:overflow-x-auto [&>pre]:py-4 [&>pre]:px-4 [&>pre]:font-mono text-sm [&>pre::-webkit-scrollbar]:hidden [&>pre]:[scrollbar-width:none] [&>pre]:[-ms-overflow-style:none]`}
+                className={`[&>pre]:overflow-x-auto [&>pre]:py-3 [&>pre]:px-4 [&>pre]:font-mono text-sm [&>pre::-webkit-scrollbar]:hidden [&>pre]:[scrollbar-width:none] [&>pre]:[-ms-overflow-style:none]`}
                 dangerouslySetInnerHTML={{ __html: highlightedCode }}
               />
             ) : (
-              <pre className="overflow-x-auto py-4 px-4 font-mono text-sm bg-background text-foreground border border-border [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+              <pre className="overflow-x-auto py-3 px-4 font-mono text-sm bg-background text-foreground border border-border [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
                 {command}
               </pre>
             )}
@@ -126,7 +126,7 @@ export function ScriptCopyBtn({
           <Button
             variant="ghost"
             size="icon"
-            className="absolute right-2 top-2 h-8 w-8 backdrop-blur-sm"
+            className="absolute right-2 top-2 h-8 w-8 backdrop-blur-sm border"
             onClick={copyToClipboard}
             aria-label={copied ? "Copied" : "Copy to clipboard"}
           >

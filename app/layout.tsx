@@ -1,7 +1,7 @@
 import type { Metadata } from "next/types";
 import { ThemeProvider } from "@/components/theme/theme-provider";
 import { Navbar } from "@/components/navbar/navbar";
-import { Inter } from "next/font/google";
+import { Inter, JetBrains_Mono } from "next/font/google";
 import { siteConfig } from "@/config/site.config";
 import { Analytics } from "@vercel/analytics/next";
 import "@/styles/globals.css";
@@ -9,6 +9,12 @@ import "@/styles/globals.css";
 const fontSans = Inter({
   subsets: ["latin"],
   variable: "--font-sans",
+  display: "swap",
+});
+
+const fontMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
   display: "swap",
 });
 
@@ -98,10 +104,9 @@ export default function RootLayout({
           title={`${siteConfig.name} Projects RSS Feed`}
           href="/projects/rss.xml"
         />
-        
       </head>
       <body
-        className={`${fontSans.variable} font-sans antialiased bg-background text-foreground`}
+        className={`${fontSans.variable} ${fontMono.variable} font-sans antialiased bg-background text-foreground`}
         suppressHydrationWarning
       >
         <ThemeProvider attribute="class" defaultTheme="dark">

@@ -201,7 +201,7 @@ export const CodeSnippet: React.FC<CodeSnippetProps> = ({
   return (
     <div
       className={cn(
-        "rounded-2xl overflow-hidden pointer-events-auto",
+        "overflow-hidden pointer-events-auto",
         border && "border border-border",
         className
       )}
@@ -219,7 +219,7 @@ export const CodeSnippet: React.FC<CodeSnippetProps> = ({
         >
           {title ? (
             <h3
-              className="text-sm font-medium pl-4 py-2"
+              className="text-sm font-medium pl-4 py-2 font-mono"
               style={{ color: selectedTheme.plain?.color || "#FFFFFF" }}
             >
               {title}
@@ -253,20 +253,22 @@ export const CodeSnippet: React.FC<CodeSnippetProps> = ({
             </div>
           ) : null}
 
-          <CopyButton
-            value={currentCode}
-            className={cn(
-              "mr-3",
-              selectedTheme.plain?.backgroundColor?.toLowerCase() === "#ffffff"
-                ? "text-zinc-600 hover:bg-zinc-200 hover:text-zinc-800"
-                : "text-zinc-50 hover:bg-zinc-700 hover:text-zinc-50"
-            )}
-          />
+          <div className="mr-3">
+            <CopyButton
+              value={currentCode}
+              className={cn(
+                "backdrop-blur-md bg-white/10 hover:bg-white/20 border-white/10 text-zinc-100",
+                selectedTheme.plain?.backgroundColor?.toLowerCase() ===
+                  "#ffffff" &&
+                  "bg-black/5 hover:bg-black/10 border-black/10 text-zinc-600"
+              )}
+            />
+          </div>
         </div>
       ) : null}
 
       <div
-        className="relative max-h-[calc(530px-44px)] py-4"
+        className="relative max-h-[650px] py-4"
         style={{
           backgroundColor: selectedTheme.plain?.backgroundColor || "#151515",
         }}
@@ -277,17 +279,18 @@ export const CodeSnippet: React.FC<CodeSnippetProps> = ({
               "absolute",
               lines.length === 1
                 ? "top-1/2 -translate-y-1/2 right-3"
-                : "top-4 right-3"
+                : "top-4 right-3",
+              "z-10"
             )}
           >
             <CopyButton
               value={currentCode}
-              className={
+              className={cn(
+                "backdrop-blur-md bg-white/10 hover:bg-white/20 border-white/10 text-zinc-100 transition-all",
                 selectedTheme.plain?.backgroundColor?.toLowerCase() ===
-                "#ffffff"
-                  ? "text-zinc-600 hover:bg-zinc-200 hover:text-zinc-800"
-                  : "text-zinc-50 hover:bg-zinc-700 hover:text-zinc-50"
-              }
+                  "#ffffff" &&
+                  "bg-black/5 hover:bg-black/10 border-black/10 text-zinc-600"
+              )}
             />
           </div>
         )}
@@ -299,7 +302,7 @@ export const CodeSnippet: React.FC<CodeSnippetProps> = ({
         >
           {({ className, style, tokens, getLineProps, getTokenProps }) => (
             <pre
-              className={`${className} text-[13px] overflow-x-auto overflow-y-auto max-h-[calc(530px-88px)] font-mono font-medium`}
+              className={`${className} text-[13px] overflow-x-auto overflow-y-auto max-h-[600px] font-mono font-normal`}
               style={style}
             >
               {tokens.map((line, i) => (
@@ -320,7 +323,7 @@ export const CodeSnippet: React.FC<CodeSnippetProps> = ({
                 >
                   {showLineNumbers && (
                     <span
-                      className="mr-4 select-none text-right text-[10px] items-center flex"
+                      className="mr-4 select-none text-right text-[10px] items-center flex shrink-0"
                       style={{
                         color:
                           selectedTheme.plain?.backgroundColor === "#FFFFFF"

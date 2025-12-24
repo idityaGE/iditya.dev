@@ -252,13 +252,27 @@ body {
 
 /* Selection css */
 ::-moz-selection {
-  color: var(--background);
-  background: var(--foreground);
+  background: rgba(45, 212, 191, 0.25); /* Teal 400 */
+  color: #0f172a; /* Slate 900 */
+  text-shadow: 0 0 8px rgba(45, 212, 191, 0.5);
 }
 
 ::selection {
-  color: var(--background);
-  background: var(--foreground);
+  background: rgba(45, 212, 191, 0.25);
+  color: #0f172a;
+  text-shadow: 0 0 8px rgba(45, 212, 191, 0.5);
+}
+
+.dark ::-moz-selection {
+  background: rgba(94, 234, 212, 0.35); /* Teal 300 (Lighter) */
+  color: #ffffff;
+  text-shadow: 0 0 15px rgba(94, 234, 212, 0.8);
+}
+
+.dark ::selection {
+  background: rgba(94, 234, 212, 0.35);
+  color: #ffffff;
+  text-shadow: 0 0 15px rgba(94, 234, 212, 0.8);
 }
 
 .page-transition {

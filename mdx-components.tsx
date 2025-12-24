@@ -14,6 +14,7 @@ import {
 import { HeadingWithAnchor } from "@/components/mdx/heading-with-anchor";
 import { OgLink } from "@/components/mdx/og-link";
 import { Code } from "@/components/mdx/code";
+import { MorphingImage } from "@/components/mdx/morphing-image";
 
 //* ref: https://www.gatsbyjs.com/docs/how-to/routing/customizing-components/
 const styles = {
@@ -123,14 +124,11 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     img: ({ src, alt, width, height }) => {
       if (!src) return null;
       return (
-        <Image
+        <MorphingImage
           src={src}
           alt={alt || ""}
           width={Number(width) || 800}
           height={Number(height) || 450}
-          className="rounded-lg my-4"
-          style={{ maxWidth: "100%", height: "auto" }}
-          quality={90}
         />
       );
     },

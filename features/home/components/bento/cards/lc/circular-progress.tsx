@@ -34,7 +34,7 @@ export function CircularProgress({
   const center = size / 2;
 
   // Gap between difficulty segments
-  const segmentGap = 10;
+  const segmentGap = 14;
 
   // 70% of the circle for the total arc
   const totalArcRatio = 0.7;
@@ -73,6 +73,7 @@ export function CircularProgress({
           stroke="currentColor"
           strokeWidth={strokeWidth}
           strokeDasharray={`${easyArcLength} ${circumference - easyArcLength}`}
+          strokeLinecap="round"
           className="text-muted-foreground/20"
           style={{
             transform: `rotate(${easyRotation}deg)`,
@@ -88,6 +89,7 @@ export function CircularProgress({
           stroke="currentColor"
           strokeWidth={strokeWidth}
           strokeDasharray={`${mediumArcLength} ${circumference - mediumArcLength}`}
+          strokeLinecap="round"
           className="text-muted-foreground/20"
           style={{
             transform: `rotate(${mediumRotation}deg)`,
@@ -103,6 +105,7 @@ export function CircularProgress({
           stroke="currentColor"
           strokeWidth={strokeWidth}
           strokeDasharray={`${hardArcLength} ${circumference - hardArcLength}`}
+          strokeLinecap="round"
           className="text-muted-foreground/20"
           style={{
             transform: `rotate(${hardRotation}deg)`,

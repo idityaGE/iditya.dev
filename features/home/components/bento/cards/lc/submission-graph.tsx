@@ -174,7 +174,7 @@ export function SubmissionGraph({ submissionCalendar, totalSubmissions, classNam
           ))}
         </div>
 
-        <div className="text-muted-foreground text-sm">
+        <div className="text-muted-foreground text-sm pl-0 md:pl-2">
           {totalSubmissions.toLocaleString("en")} submissions on{" "}
           <a
             className="font-medium underline underline-offset-4"

@@ -89,7 +89,7 @@ export const ModeToggle = ({
         return
       }
 
-      if (e.key === "m" || e.key === "M") {
+      if (e.key === "d" || e.key === "D") {
         toggleTheme()
       }
     }

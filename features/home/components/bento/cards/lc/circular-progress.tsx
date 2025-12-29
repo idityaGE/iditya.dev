@@ -27,14 +27,14 @@ export function CircularProgress({
   mediumSolved,
   hardSolved,
 }: CircularProgressProps) {
-  const size = 140;
-  const strokeWidth = 8;
+  const size = 180;
+  const strokeWidth = 10;
   const radius = (size - strokeWidth) / 2;
   const circumference = 2 * Math.PI * radius;
   const center = size / 2;
 
   // Gap between difficulty segments
-  const segmentGap = 6;
+  const segmentGap = 10;
 
   // 70% of the circle for the total arc
   const totalArcRatio = 0.7;
@@ -170,12 +170,8 @@ export function CircularProgress({
 
       {/* Center text */}
       <div className="absolute flex flex-col items-center justify-center">
-        <span className="text-2xl font-bold leading-none">{solved}</span>
-        <span className="text-[10px] text-muted-foreground">/ {total}</span>
-        <span className="mt-1 flex items-center gap-0.5 text-[10px] text-muted-foreground">
-          <Check className="h-3 w-3" />
-          Solved
-        </span>
+        <span className="text-3xl font-bold leading-none">{solved}</span>
+        <span className="text-md text-muted-foreground">/ {total}</span>
       </div>
     </div>
   );

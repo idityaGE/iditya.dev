@@ -24,7 +24,7 @@ export function BadgesSection({ badges }: BadgesSectionProps) {
   const displayBadges = sortedBadges.slice(0, 4);
 
   return (
-    <div className="flex flex-col gap-3 border-t p-4 sm:border-l sm:border-t-0">
+    <div className="flex flex-1 flex-col gap-3 border-t px-4 py-2 sm:border-l sm:border-t-0">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-1.5">
           <Trophy className="h-4 w-4" />
@@ -41,7 +41,7 @@ export function BadgesSection({ badges }: BadgesSectionProps) {
             <Tooltip key={badge.id}>
               <TooltipTrigger asChild>
                 <div className="relative flex flex-col items-center pt-4">
-                  <div className="relative h-10 w-10 sm:h-12 sm:w-12">
+                  <div className="relative h-14 w-14 sm:h-12 sm:w-12">
                     <Image
                       src={
                         badge.icon.startsWith("http")

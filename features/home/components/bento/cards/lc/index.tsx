@@ -34,40 +34,23 @@ function LeetCodeStatsDisplay({
   const hard = submitStats.find((s) => s.difficulty === "Hard")?.count ?? 0;
   const hardTotal = allQuestions.find((q) => q.difficulty === "Hard")?.count ?? 0;
 
+  const totalSubmissions = stats.matchedUser?.submitStats.totalSubmissionNum[0].submissions ?? 0;
+
   return (
-    <div className="flex h-full flex-col">
-      {/* Main content: Stats + Badges */}
-      <div className="flex flex-1 flex-col sm:flex-row">
-        {/* Stats Section */}
-        <StatsSection
-          solved={solved}
-          total={total}
-          easy={easy}
-          easyTotal={easyTotal}
-          medium={medium}
-          mediumTotal={mediumTotal}
-          hard={hard}
-          hardTotal={hardTotal}
-        />
+    <div className="flex h-full flex-col sm:flex-row">
+      <StatsSection
+        solved={solved}
+        total={total}
+        easy={easy}
+        easyTotal={easyTotal}
+        medium={medium}
+        mediumTotal={mediumTotal}
+        hard={hard}
+        hardTotal={hardTotal}
+        totalSubmissions={totalSubmissions}
+      />
 
-        {/* Badges Section */}
-        {badges && badges.length > 0 && <BadgesSection badges={badges} />}
-      </div>
-
-      {/* Footer */}
-      <div className="px-4 py-2.5">
-        <p className="text-sm text-muted-foreground">
-          <span className="font-semibold text-foreground">{stats.matchedUser?.submitStats.totalSubmissionNum[0].submissions}</span> submission on{" "}
-          <a
-            className="font-medium underline underline-offset-4"
-            href={`https://leetcode.com/u/${LEETCODE_USERNAME}`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            LeetCode
-          </a>
-        </p>
-      </div>
+      {badges && badges.length > 0 && <BadgesSection badges={badges} />}
     </div>
   );
 }

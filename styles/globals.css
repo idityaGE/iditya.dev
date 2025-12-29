@@ -230,6 +230,16 @@ body {
   width: 0.2rem;
 }
 
+/* Hide scrollbar utility class */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 #tab-section::-webkit-scrollbar {
   background: transparent;
   width: 0.2rem;

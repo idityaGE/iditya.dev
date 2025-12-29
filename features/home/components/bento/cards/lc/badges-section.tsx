@@ -24,7 +24,7 @@ export function BadgesSection({ badges }: BadgesSectionProps) {
   const displayBadges = sortedBadges.slice(0, 4);
 
   return (
-    <div className="flex flex-1 flex-col gap-3 border-t px-4 py-2 sm:border-l sm:border-t-0">
+    <div className="flex flex-1 flex-col gap-4 border-t px-4 py-3 sm:border-l sm:border-t-0">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-1.5">
           <Trophy className="h-4 w-4" />

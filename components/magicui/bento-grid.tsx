@@ -15,19 +15,23 @@ const BentoGrid = ({
   );
 };
 
+export interface BentoCardProps {
+  name: string;
+  className: string;
+  background: ReactNode;
+  Icon: any;
+  isIconHidden?: boolean;
+  makeAbsolute?: boolean
+}
+
 const BentoCard = ({
   name,
   className,
   background,
   Icon,
   isIconHidden = false,
-}: {
-  name: string;
-  className: string;
-  background: ReactNode;
-  Icon: any;
-  isIconHidden?: boolean;
-}) => (
+  makeAbsolute = false
+}: BentoCardProps) => (
   <div
     key={name}
     className={cn(
@@ -38,7 +42,8 @@ const BentoCard = ({
     <div
       className={cn(
         "pointer-events-none z-10 flex gap-2 px-3 pt-4 items-center py-1.5 w-fit border-b border-r",
-        isIconHidden && "hidden"
+        isIconHidden && "hidden",
+        makeAbsolute && "absolute"
       )}
     >
       <Icon className="h-4 w-4 origin-left" />

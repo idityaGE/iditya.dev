@@ -5,6 +5,7 @@ import { LoaderIcon } from "lucide-react";
 
 import { StatsSection } from "./stats-section";
 import { BadgesSection } from "./badges-section";
+import { SubmissionGraph } from "./submission-graph";
 import type { SubmissionStats, QuestionCount, Badge } from "./types";
 
 function LeetCodeStatsDisplay({
@@ -36,21 +37,33 @@ function LeetCodeStatsDisplay({
 
   const totalSubmissions = stats.matchedUser?.submitStats.totalSubmissionNum[0].submissions ?? 0;
 
-  return (
-    <div className="flex h-full flex-col sm:flex-row">
-      <StatsSection
-        solved={solved}
-        total={total}
-        easy={easy}
-        easyTotal={easyTotal}
-        medium={medium}
-        mediumTotal={mediumTotal}
-        hard={hard}
-        hardTotal={hardTotal}
-        totalSubmissions={totalSubmissions}
-      />
+  const submissionCalendar = stats.matchedUser?.submissionCalendar;
 
-      {badges && badges.length > 0 && <BadgesSection badges={badges} />}
+  return (
+    <div className="flex h-full flex-col justify-end">
+      <div className="flex flex-col sm:flex-row">
+        <StatsSection
+          solved={solved}
+          total={total}
+          easy={easy}
+          easyTotal={easyTotal}
+          medium={medium}
+          mediumTotal={mediumTotal}
+          hard={hard}
+          hardTotal={hardTotal}
+        />
+
+        {badges && badges.length > 0 && <BadgesSection badges={badges} />}
+      </div>
+
+      {submissionCalendar && (
+        <div className="border-t">
+          <SubmissionGraph
+            submissionCalendar={submissionCalendar}
+            totalSubmissions={totalSubmissions}
+          />
+        </div>
+      )}
     </div>
   );
 }

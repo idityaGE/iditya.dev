@@ -1,7 +1,7 @@
 import { getMDXSlugs } from "@/lib/mdx";
-import { ProjectCard } from "@/components/project/project-card";
+import { ProjectCard } from "@/features/project/components/project-card";
 import { ProjectData } from "@/config/project.config";
-import type { Metadata } from "next";
+import type { Metadata } from "next/types";
 import { siteConfig } from "@/config/site.config";
 import { BackButton } from "@/components/back-button";
 import { ScrollProgress } from "@/components/magicui/scroll-progress";

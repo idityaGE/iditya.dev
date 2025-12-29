@@ -19,9 +19,8 @@ export function StatsSection({
   totalSubmissions,
 }: StatsSectionProps) {
   return (
-    <div className="flex flex-col justify-between gap-3 px-4 py-2 sm:w-[60%] sm:shrink-0">
-      <div className="flex flex-1 items-center gap-4 sm:gap-6">
-        {/* Circular Progress */}
+    <div className="flex flex-col justify-between px-4 py-3 sm:w-[73%] sm:shrink-0">
+      <div className="flex flex-1 items-center gap-4 sm:gap-6 md:px-10">
         <div className="shrink-0">
           <CircularProgress
             solved={solved}
@@ -35,7 +34,6 @@ export function StatsSection({
           />
         </div>
 
-        {/* Difficulty breakdown */}
         <div className="flex flex-1 flex-col justify-center gap-2.5">
           <DifficultyBar label="Easy" solved={easy} total={easyTotal} />
           <DifficultyBar label="Medium" solved={medium} total={mediumTotal} />
@@ -43,7 +41,6 @@ export function StatsSection({
         </div>
       </div>
 
-      {/* Submissions footer */}
       <p className="text-sm text-muted-foreground">
         <span className="font-semibold text-foreground">{totalSubmissions}</span> submissions on{" "}
         <a

@@ -40,8 +40,8 @@ export function BadgesSection({ badges }: BadgesSectionProps) {
           {displayBadges.map((badge) => (
             <Tooltip key={badge.id}>
               <TooltipTrigger asChild>
-                <div className="relative flex flex-col items-center pt-4">
-                  <div className="relative h-14 w-14 sm:h-12 sm:w-12">
+                <div className="relative flex flex-col items-center">
+                  <div className="relative h-16 w-16 sm:h-16 sm:w-16">
                     <Image
                       src={
                         badge.icon.startsWith("http")
@@ -65,7 +65,7 @@ export function BadgesSection({ badges }: BadgesSectionProps) {
       </TooltipProvider>
 
       {sortedBadges[0] && (
-        <p className="text-center text-[10px] text-muted-foreground sm:text-xs">
+        <p className="mt-auto text-right text-[10px] text-muted-foreground sm:text-xs">
           Latest:{" "}
           <span className="font-medium text-foreground">
             {sortedBadges[0].displayName}

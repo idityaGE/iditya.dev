@@ -167,7 +167,7 @@ export function SubmissionGraph({ submissionCalendar, totalSubmissions, classNam
                   </div>
                 ))}
               </div>
-              <span className="text-center text-[9px] text-muted-foreground">
+              <span className="text-center text-[12px] text-muted-foreground">
                 {month.name}
               </span>
             </div>

@@ -2,7 +2,7 @@ import { getMDXSlugs } from "@/lib/mdx";
 import { TableOfContents } from "@/components/mdx/toc";
 import { BackButton } from "@/components/back-button";
 import Image from "next/image";
-import type { Metadata } from "next";
+import type { Metadata } from "next/types";
 import { siteConfig } from "@/config/site.config";
 import { ScrollProgress } from "@/components/magicui/scroll-progress";
 

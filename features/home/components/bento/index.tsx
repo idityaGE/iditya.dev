@@ -15,12 +15,12 @@ import {
   LucideSheet,
   Github,
 } from "lucide-react";
-import { BentoCard, BentoGrid } from "@/components/magicui/bento-grid";
+import { BentoCard, BentoGrid, BentoCardProps } from "@/components/magicui/bento-grid";
 import { PersonalData } from "@/config/personal.config";
 
 export const Bento = () => {
 
-  const features = [
+  const features: BentoCardProps[] = [
     {
       Icon: Atom,
       name: "Project",
@@ -61,7 +61,14 @@ export const Bento = () => {
       Icon: Github,
       name: "GitHub Contributions",
       background: <GitHubContributionsWithSuspense />,
-      className: "lg:col-start-1 lg:col-end-5 lg:row-start-5 lg:row-end-6",
+      className: "lg:col-start-1 lg:col-end-5 lg:row-start-5 lg:row-end-6 border-b",
+    },
+    {
+      Icon: LucideSheet,
+      makeAbsolute: true,
+      name: "Leetcode Stats",
+      background: <LeetCodeStatsCard />,
+      className: "lg:col-start-1 lg:col-end-5 lg:row-start-6 lg:row-end-7",
     },
   ];
 
@@ -75,6 +82,7 @@ export const Bento = () => {
           Icon={feature.Icon}
           className={feature.className}
           isIconHidden={feature.isIconHidden}
+          makeAbsolute={feature.makeAbsolute}
         />
       ))}
     </BentoGrid>

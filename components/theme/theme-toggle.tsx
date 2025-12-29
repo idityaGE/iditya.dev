@@ -7,6 +7,12 @@ import { flushSync } from "react-dom"
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
 
 interface AnimatedThemeTogglerProps
   extends React.ComponentPropsWithoutRef<"button"> {
@@ -71,33 +77,72 @@ export const ModeToggle = ({
     )
   }, [isDark, duration, setTheme, mounted])
 
+  // Global keyboard shortcut for theme toggle
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Ignore if user is typing in an input/textarea
+      if (
+        e.target instanceof HTMLInputElement ||
+        e.target instanceof HTMLTextAreaElement ||
+        (e.target as HTMLElement).isContentEditable
+      ) {
+        return
+      }
+
+      if (e.key === "d" || e.key === "D") {
+        toggleTheme()
+      }
+    }
+
+    window.addEventListener("keydown", handleKeyDown)
+    return () => window.removeEventListener("keydown", handleKeyDown)
+  }, [toggleTheme])
+
   // Prevent rendering during SSR to avoid hydration mismatch
   if (!mounted) {
     return (
-      <Button
-        size="icon"
-        variant="ghost"
-        className={cn(className)}
-        disabled
-        {...props}
-      >
-        <Sun className="opacity-0" />
-        <span className="sr-only">Toggle theme</span>
-      </Button>
+      <TooltipProvider>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button
+              size="icon"
+              variant="ghost"
+              className={cn(className)}
+              disabled
+              {...props}
+            >
+              <Sun className="opacity-0" />
+              <span className="sr-only">Toggle theme</span>
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent>
+            <p>Toggle theme <kbd className="ml-1 px-1.5 py-0.5 text-xs bg-muted rounded">M</kbd></p>
+          </TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
     )
   }
 
   return (
-    <Button
-      size="icon"
-      variant="ghost"
-      ref={buttonRef}
-      onClick={toggleTheme}
-      className={cn(className)}
-      {...props}
-    >
-      {isDark ? <Sun /> : <Moon />}
-      <span className="sr-only">Toggle theme</span>
-    </Button>
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <Button
+            size="icon"
+            variant="ghost"
+            ref={buttonRef}
+            onClick={toggleTheme}
+            className={cn(className)}
+            {...props}
+          >
+            {isDark ? <Sun /> : <Moon />}
+            <span className="sr-only">Toggle theme (M)</span>
+          </Button>
+        </TooltipTrigger>
+        <TooltipContent>
+          <p>Toggle theme <kbd className="ml-1 px-1.5 py-0.5 text-xs bg-accent text-foreground rounded">M</kbd></p>
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
   )
 }

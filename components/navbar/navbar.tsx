@@ -26,7 +26,7 @@ export const Navbar = () => {
           <Logo />
           <div className="flex items-center space-x-5">
             <DesktopLinks />
-            <div className="flex space-x-3 items-center">
+            <div className="flex items-center">
               <ModeToggle />
               <MobileDropdown />
             </div>

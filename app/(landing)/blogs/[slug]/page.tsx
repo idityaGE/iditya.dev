@@ -1,6 +1,6 @@
 import { getMDXSlugs } from "@/lib/mdx";
 import { TableOfContents } from "@/components/mdx/toc";
-import { BackButton } from "@/components/blog/back-button";
+import { BackButton } from "@/components/back-button";
 import Image from "next/image";
 import type { Metadata } from "next";
 import { siteConfig } from "@/config/site.config";

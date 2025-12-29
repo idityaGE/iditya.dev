@@ -3,7 +3,7 @@ import { ProjectCard } from "@/components/project/project-card";
 import { ProjectData } from "@/config/project.config";
 import type { Metadata } from "next";
 import { siteConfig } from "@/config/site.config";
-import { BackButton } from "@/components/blog/back-button";
+import { BackButton } from "@/components/back-button";
 import { ScrollProgress } from "@/components/magicui/scroll-progress";
 
 const getProjectFromSlug = (slug: string) => {

@@ -9,3 +9,5 @@ export const LinkData = {
   gmail: "adiimaurya02@gamil.com",
   mail: "mailto:am44910606@gmail.com?subject=Hello%20!"
 }
+
+export const GITHUB_USERNAME = "idityaGE";

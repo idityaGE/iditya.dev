@@ -1,7 +1,7 @@
 import { BASE_URL } from "@/utils"
 
 export const siteConfig = {
-  name: "iditya.tech",
+  name: "iditya.dev",
   title: "Adi 🍀",
   description: "Hi, I'm Adii, I'm a software developer based in India. I have a passion for developing software that improves the lives of those around me. Fun fact: Weeb by Heart, Athlete by Skill. Bridging the Gap Between Otaku Passion and Sporting Excellence. (I watch anime too)",
   keywords: [

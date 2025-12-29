@@ -11,3 +11,4 @@ export const LinkData = {
 }
 
 export const GITHUB_USERNAME = "idityaGE";
+export const LEETCODE_USERNAME = "idityage";

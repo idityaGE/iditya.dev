@@ -1,5 +1,5 @@
-import { Bento } from "@/components/landing/bento";
-import { Hero } from "@/components/landing/hero";
+import { Bento } from "@/features/home/components/bento";
+import { Hero } from "@/features/home/components/hero";
 
 const Home = () => {
   return (

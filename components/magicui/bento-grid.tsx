@@ -42,7 +42,7 @@ const BentoCard = ({
       )}
     >
       <Icon className="h-4 w-4 origin-left" />
-      <h3 className="text-base dark:text-neutral-300">{name}</h3>
+      <h3 className="text-sm dark:text-neutral-300 uppercase">{name}</h3>
     </div>
     <div className="flex-1">{background}</div>
   </div>

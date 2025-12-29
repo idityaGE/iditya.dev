@@ -1,4 +1,4 @@
-import { ProjectCard } from "@/components/project/project-card";
+import { ProjectCard } from "@/features/project/components/project-card";
 import { ProjectData } from "@/config/project.config";
 import { LinkData } from "@/config/links.config";
 import { Mail, AlertTriangle } from "lucide-react";

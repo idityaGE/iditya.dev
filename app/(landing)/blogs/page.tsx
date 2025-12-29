@@ -1,5 +1,5 @@
 import { getAllBlogPostsMeta } from "@/lib/mdx";
-import { BlogCard } from "@/components/blog/blog-card";
+import { BlogCard } from "@/features/blog/components/blog-card";
 import {
   Tooltip,
   TooltipContent,

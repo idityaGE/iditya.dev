@@ -6,7 +6,7 @@ import {
   getTypeColor,
   ProjectButtons,
   TechStackList,
-} from "./project-card-utils";
+} from "../utils/project-card-utils";
 
 const ProjectCard = ({
   title,

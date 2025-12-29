@@ -26,7 +26,7 @@ export function GitHubContributionGraph({ data }: { data: Activity[] }) {
       <ContributionGraph
         className="mx-auto py-2"
         data={data}
-        blockSize={11}
+        blockSize={13}
         blockMargin={3}
         blockRadius={0}
       >

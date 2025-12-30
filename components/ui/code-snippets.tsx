@@ -1,10 +1,101 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import { Highlight, PrismTheme } from "prism-react-renderer";
+import { Highlight, PrismTheme, Prism } from "prism-react-renderer";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Check, Copy } from "lucide-react";
+
+// Add HCL (Terraform) language definition
+// @ts-ignore
+Prism.languages.hcl = {
+  comment: [
+    {
+      pattern: /(^|[^\\])\/\*[\s\S]*?(?:\*\/|$)/,
+      lookbehind: true,
+    },
+    {
+      pattern: /(^|[^\\:])\/\/.*/,
+      lookbehind: true,
+      greedy: true,
+    },
+    {
+      pattern: /(^|[^\\:])#.*/,
+      lookbehind: true,
+      greedy: true,
+    },
+  ],
+  heredoc: {
+    pattern: /<<-?(\w+)[\s\S]*?^\s*\1/m,
+    greedy: true,
+    alias: "string",
+  },
+  keyword: [
+    {
+      pattern:
+        /(^|[\s{}])(?:resource|data|variable|output|module|provider|terraform|locals)(?=\s)/,
+      lookbehind: true,
+    },
+    {
+      pattern:
+        /(?:data|resource)\s+(?:"(?:\\[\s\S]|[^\\"])*")(?=\s+"[\w-]+"\s+\{)/i,
+      inside: {
+        type: {
+          pattern: /(resource|data|\s+)(?:"(?:\\[\s\S]|[^\\"])*")/i,
+          lookbehind: true,
+          alias: "variable",
+        },
+      },
+    },
+    {
+      pattern:
+        /(?:backend|module|output|provider|provisioner|variable)\s+(?:[\w-]+|"(?:\\[\s\S]|[^\\"])*")\s+(?=\{)/i,
+      inside: {
+        type: {
+          pattern:
+            /(backend|module|output|provider|provisioner|variable)\s+(?:[\w-]+|"(?:\\[\s\S]|[^\\"])*")\s+/i,
+          lookbehind: true,
+          alias: "variable",
+        },
+      },
+    },
+    /[\w-]+(?=\s+\{)/,
+  ],
+  property: [/[-\w\.]+(?=\s*=(?!=))/, /"(?:\\[\s\S]|[^\\"])+"(?=\s*[:=])/],
+  string: {
+    pattern:
+      /"(?:[^\\$"]|\\[\s\S]|\$(?:(?=")|\$+(?!\$)|[^"${])|\$\{(?:[^{}"]|"(?:[^\\"]|\\[\s\S])*")*\})*"/,
+    greedy: true,
+    inside: {
+      interpolation: {
+        pattern: /(^|[^$])\$\{(?:[^{}"]|"(?:[^\\"]|\\[\s\S])*")*\}/,
+        lookbehind: true,
+        inside: {
+          type: {
+            pattern:
+              /(\b(?:count|data|local|module|path|self|terraform|var)\b\.)[\w\*]+/i,
+            lookbehind: true,
+            alias: "variable",
+          },
+          keyword: /\b(?:count|data|local|module|path|self|terraform|var)\b/i,
+          function: /\w+(?=\()/,
+          string: {
+            pattern: /"(?:\\[\s\S]|[^\\"])*"/,
+            greedy: true,
+          },
+          number: /\b0x[\da-f]+\b|\b\d+(?:\.\d*)?(?:e[+-]?\d+)?/i,
+          punctuation: /[!\$#%&'()*+,.\/;<=>@\[\\\]^`{|}~?:]/,
+        },
+      },
+    },
+  },
+  number: /\b0x[\da-f]+\b|\b\d+(?:\.\d*)?(?:e[+-]?\d+)?/i,
+  boolean: /\b(?:false|true)\b/i,
+  punctuation: /[=\[\]{}]/,
+};
+
+// @ts-ignore
+Prism.languages.terraform = Prism.languages.hcl;
 
 /* =========================
    Inline CopyButton (self-contained)
@@ -85,11 +176,15 @@ const defaultTheme: PrismTheme = {
       types: ["keyword", "property", "property-access", "attr-name"],
       style: { color: "#77b7d7" },
     },
+    {
+      types: ["variable"],
+      style: { color: "#77b7d7" }, // Using same color as keywords for consistency
+    },
     { types: ["tag"], style: { color: "#dfab5c" } },
     { types: ["punctuation", "symbol", "dom"], style: { color: "#ffffff" } },
     { types: ["definition", "function"], style: { color: "#86d9ca" } },
     { types: ["string", "char", "attr-value"], style: { color: "#977cdc" } },
-    { types: ["static", "number"], style: { color: "#ff6658" } },
+    { types: ["static", "number", "boolean"], style: { color: "#ff6658" } },
   ],
 };
 
@@ -101,11 +196,15 @@ const lightTheme: PrismTheme = {
       types: ["keyword", "property", "property-access", "attr-name"],
       style: { color: "#d73a49" },
     },
+    {
+      types: ["variable"],
+      style: { color: "#d73a49" },
+    },
     { types: ["tag"], style: { color: "#22863a" } },
     { types: ["punctuation", "symbol", "dom"], style: { color: "#24292e" } },
     { types: ["definition", "function"], style: { color: "#6f42c1" } },
     { types: ["string", "char", "attr-value"], style: { color: "#032f62" } },
-    { types: ["static", "number"], style: { color: "#005cc5" } },
+    { types: ["static", "number", "boolean"], style: { color: "#005cc5" } },
   ],
 };
 

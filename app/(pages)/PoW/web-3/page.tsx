@@ -1,15 +1,6 @@
-import {
-  Github,
-  ExternalLink,
-  Sparkles,
-  BookOpen,
-  Code2,
-  Rocket,
-  FlaskConical,
-  Database,
-} from "lucide-react";
 import Link from "next/link";
 import type { Metadata } from "next";
+import { ExternalLink, Github } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Web3 Proof of Work",
@@ -21,7 +12,6 @@ interface PoWItem {
   title: string;
   description: string;
   github: string;
-  icon: React.ReactNode;
   tag: string;
 }
 
@@ -31,7 +21,6 @@ const powItems: PoWItem[] = [
     description:
       "A full-fledged token launchpad built on Solana for creating and deploying SPL tokens.",
     github: "https://github.com/idityaGE/Solana-Token-Lauchpad",
-    icon: <Rocket size={18} />,
     tag: "Project",
   },
   {
@@ -39,15 +28,13 @@ const powItems: PoWItem[] = [
     description:
       "Documentation and code from my Web3 learning path, covering concepts from basics to advanced.",
     github: "https://github.com/idityaGE/WEB-3",
-    icon: <BookOpen size={18} />,
     tag: "Learning",
   },
   {
-    title: "Solana Programs",
+    title: "Escrow Program",
     description:
       "Escrow program implementation demonstrating secure token swaps on Solana.",
     github: "https://github.com/idityaGE/solana-programs",
-    icon: <Code2 size={18} />,
     tag: "Program",
   },
   {
@@ -55,7 +42,6 @@ const powItems: PoWItem[] = [
     description:
       "Projects and assignments completed during YouTube bootcamp sessions.",
     github: "https://github.com/idityaGE/solana_bootcamp",
-    icon: <Sparkles size={18} />,
     tag: "Bootcamp",
   },
   {
@@ -63,7 +49,6 @@ const powItems: PoWItem[] = [
     description:
       "Experimental scaffold for building Solana Geyser plugins for real-time data streaming.",
     github: "https://github.com/idityaGE/solana-geyser-plugin-scaffold",
-    icon: <FlaskConical size={18} />,
     tag: "Experiment",
   },
   {
@@ -71,7 +56,6 @@ const powItems: PoWItem[] = [
     description:
       "Experiment exploring cost-effective data storage solutions on the Solana blockchain.",
     github: "https://github.com/idityaGE/cheap-data-store-on-solana",
-    icon: <Database size={18} />,
     tag: "Experiment",
   },
 ];
@@ -117,11 +101,6 @@ const PoWCard = ({ item, isLast }: { item: PoWItem; isLast: boolean }) => {
         !isLast ? "" : "border-b"
       } hover:bg-muted/30 transition-colors duration-200`}
     >
-      {/* Icon */}
-      <div className="flex-shrink-0 p-2 rounded-md bg-muted text-muted-foreground group-hover:text-foreground transition-colors">
-        {item.icon}
-      </div>
-
       {/* Content */}
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-2 mb-1">

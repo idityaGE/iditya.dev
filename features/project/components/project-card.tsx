@@ -36,12 +36,12 @@ const ProjectCard = ({
           <div className="block mb-1.5 flex-shrink-0">
             <div className="inline-flex items-center gap-1 mb-1">
               <div className="flex items-center gap-1.5 flex-wrap">
-                <h2 className="text-sm font-heading line-clamp-1 font-mono">
+                <h2 className="text-base font-heading line-clamp-1 font-mono">
                   {title}
                 </h2>
               </div>
             </div>
-            <p className="text-xs text-secondary-foreground/80 font-light line-clamp-2">
+            <p className="text-sm text-secondary-foreground/80 font-light line-clamp-2">
               {description}
             </p>
           </div>
@@ -53,15 +53,15 @@ const ProjectCard = ({
           >
             <div className="inline-flex items-center gap-1 mb-1">
               <div className="flex items-center gap-1.5 flex-wrap">
-                <h2 className="text-sm font-heading line-clamp-1 font-mono">
+                <h2 className="text-base font-heading line-clamp-1 font-mono">
                   {title}
                 </h2>
               </div>
               <span className="-translate-x-1 opacity-0 group-hover/link:translate-x-0 group-hover/link:opacity-100 transition-all flex-shrink-0">
-                <StepForward size={10} />
+                <StepForward size={12} />
               </span>
             </div>
-            <p className="text-xs text-secondary-foreground/80 font-light line-clamp-2">
+            <p className="text-sm text-secondary-foreground/80 font-light line-clamp-2">
               {description}
             </p>
           </Link>

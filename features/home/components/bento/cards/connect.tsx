@@ -6,7 +6,6 @@ import { cn } from "@/lib/utils";
 import { Dock, DockIcon } from "@/components/magicui/dock";
 import { LinkData } from "@/config/links.config";
 
-
 export type IconProps = React.HTMLAttributes<SVGElement>;
 
 const Icons = {
@@ -73,11 +72,11 @@ export const SocialLinks = [
     url: LinkData.mail,
     Icon: () => <Icons.email className="size-8" />,
   },
-]
+];
 
 export function ConnectCard() {
   return (
-    <div className="relative mb-8">
+    <div className="relative">
       <Dock direction="middle" className="border-0 bg-transparent flex gap-7">
         {SocialLinks.map(({ name, Icon, url }) => (
           <DockIcon key={name}>
@@ -86,7 +85,7 @@ export function ConnectCard() {
               aria-label={name}
               className={cn(
                 buttonVariants({ variant: "ghost", size: "icon" }),
-                "size-14 rounded-full",
+                "size-14 rounded-full"
               )}
               target="_blank"
               rel="noopener noreferrer"

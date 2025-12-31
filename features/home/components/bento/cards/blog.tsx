@@ -7,13 +7,10 @@ export const BlogCard = async () => {
 
   return (
     <div className="h-full w-full relative">
-      <div className="p-4 pb-12 h-full flex flex-col justify-between">
+      <div className="p-4 pb-10 h-full flex flex-col justify-between">
         <div className="relative z-10 cursor-default">
-          <div className="mb-6">
-            <h3 className="text-xl mb-1 font-grid">Latest Blog Posts</h3>
-            <p className="text-sm text-muted-foreground">
-              Explore my thoughts on web development and technology
-            </p>
+          <div className="mb-4">
+            <h3 className="text-xl font-grid">Latest Blog Posts</h3>
           </div>
 
           <div className="flex flex-col space-y-4">

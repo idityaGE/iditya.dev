@@ -1,22 +1,22 @@
-"use client"
+"use client";
 
-import { useCallback, useEffect, useRef, useState } from "react"
-import { Moon, Sun } from "lucide-react"
-import { useTheme } from "next-themes"
-import { flushSync } from "react-dom"
+import { useCallback, useEffect, useRef, useState } from "react";
+import { Moon, Sun } from "lucide-react";
+import { useTheme } from "next-themes";
+import { flushSync } from "react-dom";
 
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@/components/ui/tooltip"
+} from "@/components/ui/tooltip";
 
 interface AnimatedThemeTogglerProps
   extends React.ComponentPropsWithoutRef<"button"> {
-  duration?: number
+  duration?: number;
 }
 
 export const ModeToggle = ({
@@ -24,43 +24,43 @@ export const ModeToggle = ({
   duration = 400,
   ...props
 }: AnimatedThemeTogglerProps) => {
-  const { theme, setTheme, resolvedTheme } = useTheme()
-  const [mounted, setMounted] = useState(false)
-  const buttonRef = useRef<HTMLButtonElement>(null)
+  const { theme, setTheme, resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  const buttonRef = useRef<HTMLButtonElement>(null);
 
   // Prevent hydration mismatch
   useEffect(() => {
-    setMounted(true)
-  }, [])
+    setMounted(true);
+  }, []);
 
-  const isDark = resolvedTheme === "dark"
+  const isDark = resolvedTheme === "dark";
 
   const toggleTheme = useCallback(async () => {
-    if (!buttonRef.current || !mounted) return
+    if (!buttonRef.current || !mounted) return;
 
-    const newTheme = isDark ? "light" : "dark"
+    const newTheme = isDark ? "light" : "dark";
 
     // Check if View Transitions API is supported
     if (!document.startViewTransition) {
       // Fallback for browsers that don't support View Transitions
-      setTheme(newTheme)
-      return
+      setTheme(newTheme);
+      return;
     }
 
     await document.startViewTransition(() => {
       flushSync(() => {
-        setTheme(newTheme)
-      })
-    }).ready
+        setTheme(newTheme);
+      });
+    }).ready;
 
     const { top, left, width, height } =
-      buttonRef.current.getBoundingClientRect()
-    const x = left + width / 2
-    const y = top + height / 2
+      buttonRef.current.getBoundingClientRect();
+    const x = left + width / 2;
+    const y = top + height / 2;
     const maxRadius = Math.hypot(
       Math.max(left, window.innerWidth - left),
       Math.max(top, window.innerHeight - top)
-    )
+    );
 
     document.documentElement.animate(
       {
@@ -74,8 +74,8 @@ export const ModeToggle = ({
         easing: "ease-in-out",
         pseudoElement: "::view-transition-new(root)",
       }
-    )
-  }, [isDark, duration, setTheme, mounted])
+    );
+  }, [isDark, duration, setTheme, mounted]);
 
   // Global keyboard shortcut for theme toggle
   useEffect(() => {
@@ -86,17 +86,17 @@ export const ModeToggle = ({
         e.target instanceof HTMLTextAreaElement ||
         (e.target as HTMLElement).isContentEditable
       ) {
-        return
+        return;
       }
 
       if (e.key === "d" || e.key === "D") {
-        toggleTheme()
+        toggleTheme();
       }
-    }
+    };
 
-    window.addEventListener("keydown", handleKeyDown)
-    return () => window.removeEventListener("keydown", handleKeyDown)
-  }, [toggleTheme])
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [toggleTheme]);
 
   // Prevent rendering during SSR to avoid hydration mismatch
   if (!mounted) {
@@ -116,11 +116,16 @@ export const ModeToggle = ({
             </Button>
           </TooltipTrigger>
           <TooltipContent>
-            <p>Toggle theme <kbd className="ml-1 px-1.5 py-0.5 text-xs bg-muted rounded">D</kbd></p>
+            <p>
+              Toggle theme{" "}
+              <kbd className="ml-1 px-1.5 py-0.5 text-xs bg-muted rounded">
+                D
+              </kbd>
+            </p>
           </TooltipContent>
         </Tooltip>
       </TooltipProvider>
-    )
+    );
   }
 
   return (
@@ -136,13 +141,18 @@ export const ModeToggle = ({
             {...props}
           >
             {isDark ? <Sun /> : <Moon />}
-            <span className="sr-only">Toggle theme (M)</span>
+            <span className="sr-only">Toggle theme (D)</span>
           </Button>
         </TooltipTrigger>
         <TooltipContent>
-          <p>Toggle theme <kbd className="ml-1 px-1.5 py-0.5 text-xs bg-accent text-foreground rounded">M</kbd></p>
+          <p>
+            Toggle theme{" "}
+            <kbd className="ml-1 px-1.5 py-0.5 text-xs bg-accent text-foreground rounded">
+              D
+            </kbd>
+          </p>
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>
-  )
-}
+  );
+};

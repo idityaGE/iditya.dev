@@ -30,54 +30,54 @@ export const Bento = () => {
       isIconHidden: true,
       background: <Projects />,
       className:
-        "lg:col-start-1 lg:col-end-5 lg:row-start-1 lg:row-end-2 border-b",
+        "md:col-start-1 md:col-end-5 md:row-start-1 md:row-end-2 border-b",
     },
     {
       Icon: Link,
       name: "Connect",
       background: <ConnectCard />,
       className:
-        "lg:col-start-1 lg:col-end-3 lg:row-start-2 lg:row-end-3 border-r-0 md:border-r border-b",
+        "md:col-start-1 md:col-end-3 md:row-start-2 md:row-end-3 border-r-0 md:border-r border-b",
     },
     {
       Icon: BookIcon,
       name: "Blogs",
       background: <BlogCard />,
       className:
-        "lg:col-start-3 lg:col-end-5 lg:row-start-2 lg:row-end-4 border-b",
+        "md:col-start-3 md:col-end-5 md:row-start-2 md:row-end-4 border-b",
     },
     {
       Icon: MapPin,
       name: `${PersonalData.address.city}, ${PersonalData.address.country}`,
       background: <GlobeCard />,
       className:
-        "lg:row-start-4 lg:row-end-5 lg:col-start-3 lg:col-end-5 border-b",
+        "md:row-start-4 md:row-end-5 md:col-start-3 md:col-end-5 border-b",
     },
     {
       Icon: Layers,
       name: "Tech Stack",
       background: <SkillCard />,
       className:
-        "lg:col-start-1 lg:col-end-3 lg:row-start-3 lg:row-end-5 border-r-0 md:border-r md:border-r-[rgb(0_0_0/0.15)] md:dark:border-r-[rgb(255_255_255/0.18)] border-b",
+        "md:col-start-1 md:col-end-3 md:row-start-3 md:row-end-5 border-r-0 md:border-r md:border-r-[rgb(0_0_0/0.15)] md:dark:border-r-[rgb(255_255_255/0.18)] border-b",
     },
     {
       Icon: Github,
       name: "GitHub Contributions",
       background: <GitHubContributionsWithSuspense />,
       className:
-        "lg:col-start-1 lg:col-end-5 lg:row-start-5 lg:row-end-6 border-b pb-2",
+        "md:col-start-1 md:col-end-5 md:row-start-5 md:row-end-6 border-b pb-2",
     },
     {
       Icon: LucideSheet,
       makeAbsolute: true,
       name: "Leetcode Stats",
       background: <LeetCodeStatsCard />,
-      className: "lg:col-start-1 lg:col-end-5 lg:row-start-6 lg:row-end-7",
+      className: "md:col-start-1 md:col-end-5 md:row-start-6 md:row-end-7",
     },
   ];
 
   return (
-    <BentoGrid className="lg:grid-cols-4 border-y">
+    <BentoGrid className="md:grid-cols-4 border-y">
       {features.map((feature) => (
         <BentoCard
           key={feature.name}

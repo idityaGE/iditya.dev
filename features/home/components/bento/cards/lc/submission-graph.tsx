@@ -24,6 +24,7 @@ type DayData = {
 
 type MonthData = {
   name: string;
+  year: number;
   weeks: (DayData | null)[][];
 };
 
@@ -72,8 +73,10 @@ function getLevel(count: number, maxCount: number): number {
 
 function generateYearData(submissionMap: Map<string, number>): MonthData[] {
   const now = new Date();
-  const currentYear = now.getFullYear();
-  const months: MonthData[] = [];
+  now.setHours(0, 0, 0, 0);
+
+  const oneYearAgo = new Date(now);
+  oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 1);
 
   // Find max count for level calculation
   let maxCount = 0;
@@ -81,51 +84,75 @@ function generateYearData(submissionMap: Map<string, number>): MonthData[] {
     if (count > maxCount) maxCount = count;
   });
 
-  for (let month = 0; month < 12; month++) {
-    const firstDay = new Date(currentYear, month, 1);
-    const lastDay = new Date(currentYear, month + 1, 0);
-    const daysInMonth = lastDay.getDate();
+  // Group days by month
+  const monthsMap = new Map<
+    string,
+    { year: number; month: number; days: DayData[] }
+  >();
+  const currentDate = new Date(oneYearAgo);
 
-    // Get the day of week for the first day (0 = Sunday)
-    const startDayOfWeek = firstDay.getDay();
+  while (currentDate <= now) {
+    const dateKey = currentDate.toISOString().split("T")[0];
+    const count = submissionMap.get(dateKey) || 0;
+    const monthKey = `${currentDate.getFullYear()}-${currentDate.getMonth()}`;
 
-    // Calculate weeks needed for this month
-    const totalSlots = startDayOfWeek + daysInMonth;
+    if (!monthsMap.has(monthKey)) {
+      monthsMap.set(monthKey, {
+        year: currentDate.getFullYear(),
+        month: currentDate.getMonth(),
+        days: [],
+      });
+    }
+
+    monthsMap.get(monthKey)!.days.push({
+      date: new Date(currentDate),
+      count,
+      level: getLevel(count, maxCount),
+    });
+
+    currentDate.setDate(currentDate.getDate() + 1);
+  }
+
+  // Sort months chronologically (oldest first)
+  const sortedMonths = Array.from(monthsMap.values()).sort((a, b) => {
+    if (a.year !== b.year) return a.year - b.year;
+    return a.month - b.month;
+  });
+
+  return sortedMonths.map((monthData) => {
+    const firstDataDay = monthData.days[0].date;
+    const startDayOfWeek = firstDataDay.getDay();
+    const totalSlots = startDayOfWeek + monthData.days.length;
     const weeksNeeded = Math.ceil(totalSlots / 7);
 
     const weeks: (DayData | null)[][] = [];
+    let dayIndex = 0;
 
     for (let week = 0; week < weeksNeeded; week++) {
       const weekDays: (DayData | null)[] = [];
 
       for (let dayOfWeek = 0; dayOfWeek < 7; dayOfWeek++) {
-        const dayIndex = week * 7 + dayOfWeek - startDayOfWeek;
+        const slotIndex = week * 7 + dayOfWeek;
 
-        if (dayIndex < 0 || dayIndex >= daysInMonth) {
+        if (slotIndex < startDayOfWeek) {
           weekDays.push(null);
+        } else if (dayIndex < monthData.days.length) {
+          weekDays.push(monthData.days[dayIndex]);
+          dayIndex++;
         } else {
-          const date = new Date(currentYear, month, dayIndex + 1);
-          const dateKey = date.toISOString().split("T")[0];
-          const count = submissionMap.get(dateKey) || 0;
-
-          weekDays.push({
-            date,
-            count,
-            level: getLevel(count, maxCount),
-          });
+          weekDays.push(null);
         }
       }
 
       weeks.push(weekDays);
     }
 
-    months.push({
-      name: MONTH_NAMES[month],
+    return {
+      name: MONTH_NAMES[monthData.month],
+      year: monthData.year,
       weeks,
-    });
-  }
-
-  return months;
+    };
+  });
 }
 
 export function SubmissionGraph({
@@ -150,7 +177,10 @@ export function SubmissionGraph({
       >
         <div className="flex gap-1 overflow-x-auto no-scrollbar sm:justify-center">
           {monthsData.map((month) => (
-            <div key={month.name} className="flex flex-col gap-1 shrink-0">
+            <div
+              key={`${month.year}-${month.name}`}
+              className="flex flex-col gap-1 shrink-0"
+            >
               <div className="flex gap-[2px]">
                 {month.weeks.map((week, weekIndex) => (
                   <div key={weekIndex} className="flex flex-col gap-[2px]">

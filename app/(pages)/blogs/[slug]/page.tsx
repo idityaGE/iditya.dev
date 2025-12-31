@@ -87,7 +87,7 @@ export default async function Page({
       </aside>
 
       <div className="w-full flex flex-col mt-8">
-        <div className="flex flex-col items-start gap-2 mb-6 px-4">
+        <div className="flex flex-col items-start gap-2 mb-4 px-4">
           <p className="px-3 py-1.5 font-semibold border text-xs bg-secondary inline-block self-start mb-2">
             {new Date(metadata.date).toLocaleDateString("en-US", {
               month: "long",
@@ -95,14 +95,14 @@ export default async function Page({
               year: "numeric",
             })}
           </p>
-          <h1 className="text-4xl font-extrabold mb-4">{metadata.title}</h1>
+          <h1 className="text-4xl mb-2 font-grid">{metadata.title}</h1>
           {metadata.coverImage && (
             <Image
               src={metadata.coverImage}
               alt={metadata.title}
               width={1200}
               height={630}
-              className="w-full rounded-lg mb-6"
+              className="w-full rounded-lg mb-2"
             />
           )}
         </div>

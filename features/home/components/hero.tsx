@@ -61,7 +61,7 @@ export const Hero = () => {
         <a
           href="/resume.pdf"
           download="Aditya_Resume.pdf"
-          className="font-light decoration-1 underline-offset-4 hover:text-primary hover:underline text-muted-foreground"
+          className="text-xs font-light decoration-1 underline-offset-4 hover:text-primary hover:underline text-muted-foreground"
           about="Resume Link"
         >
           /resume.pdf

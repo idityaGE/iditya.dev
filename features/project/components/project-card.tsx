@@ -24,47 +24,52 @@ const ProjectCard = ({
 
   const cardContent = (
     <div
-      className={`relative flex px-[calc(0.75rem+1px)] md:px-[calc(1.25rem+1px)] py-3 md:py-5 flex-col-reverse justify-between gap-4 border-y overflow-hidden md:flex-row transition-all duration-300 ease-in-out h-auto md:h-[260px] bg-background ${!disableHover
-        ? "group-hover/project-card:-translate-x-1 group-hover/project-card:-translate-y-1 group-hover/project-card:border-x group-hover/project-card:px-3 md:group-hover/project-card:px-5 group-hover/project-card:transition-transform group-hover/project-card:duration-300 group-hover/project-card:ease-in-out"
-        : ""
-        }`}
+      className={`relative flex flex-col-reverse md:flex-row border-y overflow-hidden transition-all duration-300 ease-in-out h-auto md:h-[160px] bg-background ${
+        !disableHover
+          ? "group-hover/project-card:-translate-x-1 group-hover/project-card:-translate-y-1 group-hover/project-card:border-x group-hover/project-card:transition-transform group-hover/project-card:duration-300 group-hover/project-card:ease-in-out"
+          : ""
+      }`}
     >
       {/* Content Section */}
-      <div className="flex flex-col w-full md:w-3/5 min-h-0">
+      <div className="flex flex-col w-full md:w-2/3 min-h-0 px-3 md:px-4 py-2 md:py-3">
         {disableHover ? (
-          <div className="block mb-3 flex-shrink-0">
-            <div className="inline-flex items-center gap-1 mt-2 md:mt-0 mb-3">
-              <div className="flex items-center gap-2 flex-wrap">
-                <h2 className="text-xl font-heading line-clamp-1">{title}</h2>
+          <div className="block mb-1.5 flex-shrink-0">
+            <div className="inline-flex items-center gap-1 mb-1">
+              <div className="flex items-center gap-1.5 flex-wrap">
+                <h2 className="text-sm font-heading line-clamp-1 font-mono">
+                  {title}
+                </h2>
               </div>
             </div>
-            <p className="text-sm text-secondary-foreground/80 font-light line-clamp-3">
+            <p className="text-xs text-secondary-foreground/80 font-light line-clamp-2">
               {description}
             </p>
           </div>
         ) : (
           <Link
             href={projectUrl}
-            className="block mb-3 group/link flex-shrink-0"
+            className="block mb-1.5 group/link flex-shrink-0"
             aria-label={projectAriaLabel}
           >
-            <div className="inline-flex items-center gap-1 mt-2 md:mt-0 mb-3">
-              <div className="flex items-center gap-2 flex-wrap">
-                <h2 className="text-xl font-heading line-clamp-1">{title}</h2>
+            <div className="inline-flex items-center gap-1 mb-1">
+              <div className="flex items-center gap-1.5 flex-wrap">
+                <h2 className="text-sm font-heading line-clamp-1 font-mono">
+                  {title}
+                </h2>
               </div>
               <span className="-translate-x-1 opacity-0 group-hover/link:translate-x-0 group-hover/link:opacity-100 transition-all flex-shrink-0">
-                <StepForward size={12} />
+                <StepForward size={10} />
               </span>
             </div>
-            <p className="text-sm text-secondary-foreground/80 font-light line-clamp-3">
+            <p className="text-xs text-secondary-foreground/80 font-light line-clamp-2">
               {description}
             </p>
           </Link>
         )}
 
         {/* Tech Stack */}
-        <div className="flex-1 min-h-0 mb-3">
-          <TechStackList techStack={techStack} maxVisible={7} />
+        <div className="flex-1 min-h-0 mb-1.5">
+          <TechStackList techStack={techStack} maxVisible={4} />
         </div>
 
         {/* Buttons */}
@@ -75,9 +80,9 @@ const ProjectCard = ({
         />
       </div>
 
-      {/* Image Section */}
-      <div className="w-full md:w-2/5 h-56 md:h-full flex-shrink-0">
-        <div className="w-full h-full overflow-hidden">
+      {/* Image Section - Full height, no padding */}
+      <div className="w-full md:w-1/3 h-56 md:h-full flex-shrink-0">
+        <div className="w-full h-full">
           {disableHover ? (
             <div className="block w-full h-full">
               <div className="relative w-full h-full">

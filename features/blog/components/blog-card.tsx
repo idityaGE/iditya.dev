@@ -27,7 +27,7 @@ export function BlogCard({
             />
           </div>
           <div className="p-4">
-            <h2 className="text-lg mb-2">{blog.title}</h2>
+            <h2 className="text-lg mb-2 font-mono">{blog.title}</h2>
             <p className="text-sm text-muted-foreground mb-3 line-clamp-2">
               {blog.excerpt}
             </p>

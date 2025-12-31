@@ -10,7 +10,7 @@ export const BlogCard = async () => {
       <div className="p-4 pb-12 h-full flex flex-col justify-between">
         <div className="relative z-10 cursor-default">
           <div className="mb-6">
-            <h3 className="text-xl mb-1">Latest Blog Posts</h3>
+            <h3 className="text-xl mb-1 font-grid">Latest Blog Posts</h3>
             <p className="text-sm text-muted-foreground">
               Explore my thoughts on web development and technology
             </p>
@@ -20,7 +20,7 @@ export const BlogCard = async () => {
             {blogs.slice(0, 3).map((blog) => (
               <Link href={`/blogs/${blog.slug}`} key={blog.slug}>
                 <div className="border-l-2 border-primary/20 hover:border-l-4 hover:border-primary/60 pl-3 transition-all duration-300 ease-in-out">
-                  <h4 className="text-sm font-medium">
+                  <h4 className="text-sm font-medium font-mono">
                     {blog.title.length > 40
                       ? blog.title.slice(0, 40) + "..."
                       : blog.title}
@@ -43,7 +43,7 @@ export const BlogCard = async () => {
         className="absolute bottom-0 right-0 p-4 group/readmore z-20"
       >
         <div className="flex font-light items-baseline gap-1">
-          <span className="text-sm text-primary group-hover/readmore:underline">
+          <span className="text-xs text-primary group-hover/readmore:underline">
             READ MORE
           </span>
           <span>&gt;</span>

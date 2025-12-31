@@ -4,7 +4,7 @@ import { Projects } from "./cards/project";
 import { SkillCard } from "./cards/skills";
 import { BlogCard } from "./cards/blog";
 import { LeetCodeStatsCard } from "./cards/lc";
-import { GitHubContributionsWithSuspense } from "./cards/gh"
+import { GitHubContributionsWithSuspense } from "./cards/gh";
 
 import {
   Layers,
@@ -15,11 +15,14 @@ import {
   LucideSheet,
   Github,
 } from "lucide-react";
-import { BentoCard, BentoGrid, BentoCardProps } from "@/components/magicui/bento-grid";
+import {
+  BentoCard,
+  BentoGrid,
+  BentoCardProps,
+} from "@/components/magicui/bento-grid";
 import { PersonalData } from "@/config/personal.config";
 
 export const Bento = () => {
-
   const features: BentoCardProps[] = [
     {
       Icon: Atom,
@@ -61,7 +64,8 @@ export const Bento = () => {
       Icon: Github,
       name: "GitHub Contributions",
       background: <GitHubContributionsWithSuspense />,
-      className: "lg:col-start-1 lg:col-end-5 lg:row-start-5 lg:row-end-6 border-b",
+      className:
+        "lg:col-start-1 lg:col-end-5 lg:row-start-5 lg:row-end-6 border-b pb-2",
     },
     {
       Icon: LucideSheet,

@@ -395,6 +395,7 @@ export const ContributionGraphCalendar = ({
                 dominantBaseline="hanging"
                 key={weekIndex}
                 x={(blockSize + blockMargin) * weekIndex}
+                className="text-muted-foreground text-xs translate-y-1 translate-x-1"
               >
                 {label}
               </text>
@@ -456,8 +457,8 @@ export const ContributionGraphTotalCount = ({
     <div className={cn("text-muted-foreground", className)} {...props}>
       {labels.totalCount
         ? labels.totalCount
-          .replace("{{count}}", String(totalCount))
-          .replace("{{year}}", String(year))
+            .replace("{{count}}", String(totalCount))
+            .replace("{{year}}", String(year))
         : `${totalCount} activities in ${year}`}
     </div>
   );

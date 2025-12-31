@@ -28,8 +28,18 @@ type MonthData = {
 };
 
 const MONTH_NAMES = [
-  "Jan", "Feb", "Mar", "Apr", "May", "Jun",
-  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
 ];
 
 function parseSubmissionCalendar(calendar: string): Map<string, number> {
@@ -118,7 +128,11 @@ function generateYearData(submissionMap: Map<string, number>): MonthData[] {
   return months;
 }
 
-export function SubmissionGraph({ submissionCalendar, totalSubmissions, className }: SubmissionGraphProps) {
+export function SubmissionGraph({
+  submissionCalendar,
+  totalSubmissions,
+  className,
+}: SubmissionGraphProps) {
   const { monthsData } = useMemo(() => {
     const submissionMap = parseSubmissionCalendar(submissionCalendar);
     return {
@@ -128,7 +142,12 @@ export function SubmissionGraph({ submissionCalendar, totalSubmissions, classNam
 
   return (
     <TooltipProvider delayDuration={100}>
-      <div className={cn("flex w-full max-w-full flex-col gap-2 mx-auto py-3 px-4", className)}>
+      <div
+        className={cn(
+          "flex w-full max-w-full flex-col gap-2 mx-auto pt-3 pb-2 px-4",
+          className
+        )}
+      >
         <div className="flex gap-1 overflow-x-auto no-scrollbar sm:justify-center">
           {monthsData.map((month) => (
             <div key={month.name} className="flex flex-col gap-1 shrink-0">
@@ -140,7 +159,7 @@ export function SubmissionGraph({ submissionCalendar, totalSubmissions, classNam
                         <TooltipTrigger asChild>
                           <div
                             className={cn(
-                              "h-[11px] w-[11px] transition-colors",
+                              "h-[9px] w-[9px] transition-colors",
                               day === null && "invisible",
                               day?.level === 0 && "bg-muted",
                               day?.level === 1 && "bg-muted-foreground/40",
@@ -151,9 +170,13 @@ export function SubmissionGraph({ submissionCalendar, totalSubmissions, classNam
                           />
                         </TooltipTrigger>
                         {day && (
-                          <TooltipContent side="top" className="text-xs font-sans">
+                          <TooltipContent
+                            side="top"
+                            className="text-xs font-sans"
+                          >
                             <p>
-                              {day.count} submission{day.count !== 1 ? "s" : ""} on{" "}
+                              {day.count} submission{day.count !== 1 ? "s" : ""}{" "}
+                              on{" "}
                               {day.date.toLocaleDateString("en-US", {
                                 month: "short",
                                 day: "numeric",

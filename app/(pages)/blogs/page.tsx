@@ -16,7 +16,7 @@ const Blogs = async () => {
       <div className="mb-8 mt-10 font-light">
         <div className="px-4">
           <div className="flex items-center justify-between mb-4">
-            <h1 className="text-3xl font-semibold">Blogs</h1>
+            <h1 className="text-3xl font-medium font-grid">Blogs</h1>
             <Tooltip delayDuration={200}>
               <TooltipTrigger>
                 <Link

@@ -1,6 +1,7 @@
 import { IconCloud } from "@/components/magicui/icon-cloud";
 
-const slugs = ["typescript",
+const slugs = [
+  "typescript",
   "javascript",
   "c",
   "cplusplus",
@@ -52,12 +53,12 @@ const slugs = ["typescript",
   "go",
   "graphql",
   "solana",
-  "ethereum"
+  "ethereum",
 ];
 
 export function SkillCard() {
   return (
-    <div className="pb-6 w-96 mx-auto">
+    <div className="pb-4 w-96 mx-auto">
       <IconCloud iconSlugs={slugs} />
     </div>
   );

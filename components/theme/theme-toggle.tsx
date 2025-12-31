@@ -116,7 +116,7 @@ export const ModeToggle = ({
             </Button>
           </TooltipTrigger>
           <TooltipContent>
-            <p>Toggle theme <kbd className="ml-1 px-1.5 py-0.5 text-xs bg-muted rounded">M</kbd></p>
+            <p>Toggle theme <kbd className="ml-1 px-1.5 py-0.5 text-xs bg-muted rounded">D</kbd></p>
           </TooltipContent>
         </Tooltip>
       </TooltipProvider>

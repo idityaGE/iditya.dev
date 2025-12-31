@@ -10,7 +10,7 @@ coverImage: "/images/terraform_localstack.png"
 
 # Back Story
 
-I was learning Terraform and wanted to test my configurations without racking up AWS bills. That's when I discovered LocalStack — it simulates AWS services right on your machine! Perfect for development and testing without spending a dime. This post documents my journey of getting Terraform and LocalStack to play nicely together.
+I was learning Terraform and wanted to test my configurations without racking up AWS bills. That's when I discovered LocalStack - it simulates AWS services right on your machine! Perfect for development and testing without spending a dime. This post documents my journey of getting Terraform and LocalStack to play nicely together.
 
 ## What We'll Build
 
@@ -21,15 +21,15 @@ By the end of this tutorial, you'll have:
 
 ## Introduction
 
-In this guide, we'll use [Terraform](https://developer.hashicorp.com/terraform) with [LocalStack](https://www.localstack.cloud) to create and manage cloud infrastructure — all without touching real AWS. LocalStack is basically a fake AWS that runs in Docker, letting you test your infrastructure code for free.
+In this guide, we'll use [Terraform](https://developer.hashicorp.com/terraform) with [LocalStack](https://www.localstack.cloud) to create and manage cloud infrastructure - all without touching real AWS. LocalStack is basically a fake AWS that runs in Docker, letting you test your infrastructure code for free.
 
 ## Prerequisites
 
 Before we dive in, make sure you have these installed:
-- [Docker](https://docs.docker.com/get-started/get-docker/) — LocalStack runs inside a container
-- [Terraform](https://developer.hashicorp.com/terraform/install) — our infrastructure-as-code tool
-- [LocalStack CLI](https://docs.localstack.cloud/aws/getting-started/installation/) — makes managing LocalStack easier
-- [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html#getting-started-install-instructions) — for verifying our resources
+- [Docker](https://docs.docker.com/get-started/get-docker/) - LocalStack runs inside a container
+- [Terraform](https://developer.hashicorp.com/terraform/install) - our infrastructure-as-code tool
+- [LocalStack CLI](https://docs.localstack.cloud/aws/getting-started/installation/) - makes managing LocalStack easier
+- [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html#getting-started-install-instructions) - for verifying our resources
 
 ## Setting Up LocalStack
 
@@ -37,7 +37,7 @@ First, let's configure AWS CLI to talk to LocalStack instead of real AWS.
 
 1. **Set up credentials for LocalStack:**
 
-    Add the following to your AWS credentials and config files. Create them if they don't exist — they live in your home directory under `~/.aws/`.
+    Add the following to your AWS credentials and config files. Create them if they don't exist - they live in your home directory under `~/.aws/`.
 
    ```toml
    // title: ~/.aws/credentials
@@ -52,7 +52,7 @@ First, let's configure AWS CLI to talk to LocalStack instead of real AWS.
    output=json
    ```
 
-    > Don't worry about the `test` values — LocalStack accepts any credentials. It's just for compatibility with AWS tools.
+    > Don't worry about the `test` values - LocalStack accepts any credentials. It's just for compatibility with AWS tools.
 
 2. **Start LocalStack:**
    ```bash
@@ -64,7 +64,7 @@ First, let's configure AWS CLI to talk to LocalStack instead of real AWS.
     localstack status
     ```
 
-    You can also check the [LocalStack Dashboard](https://app.localstack.cloud/inst/default/status) in your browser — it's a nice way to see what's running.
+    You can also check the [LocalStack Dashboard](https://app.localstack.cloud/inst/default/status) in your browser - it's a nice way to see what's running.
 
 That's it! LocalStack is now up and running. You've got your own little AWS cloud on your machine.
 
@@ -72,7 +72,7 @@ Now let's put it to work with Terraform!
 
 ## Creating an EC2 Instance with Terraform
 
-Here's the fun part — we'll spin up an EC2 instance using Terraform, complete with SSH access and security groups.
+Here's the fun part - we'll spin up an EC2 instance using Terraform, complete with SSH access and security groups.
 
 1. **Create a project directory:**
     ```bash
@@ -142,7 +142,7 @@ Here's the fun part — we'll spin up an EC2 instance using Terraform, complete 
       ip_protocol       = "tcp"
     }
 
-    # Allow SSH traffic (port 22) — so we can connect!
+    # Allow SSH traffic (port 22) - so we can connect!
     resource "aws_vpc_security_group_ingress_rule" "allow_ssh" {
       security_group_id = aws_security_group.allow_tls.id
       cidr_ipv4         = "0.0.0.0/0"  # from anywhere (fine for local dev)
@@ -161,9 +161,9 @@ Here's the fun part — we'll spin up an EC2 instance using Terraform, complete 
     # =============================================
     # EC2 INSTANCE
     # =============================================
-    # Finally, the star of the show — our virtual machine!
+    # Finally, the star of the show - our virtual machine!
     resource "aws_instance" "ec2_machine" {
-      # LocalStack's special AMI ID (see: https://docs.localstack.cloud/user-guide/aws/ec2/)
+      # LocalStack's special AMI ID (see: https://docs.localstack.cloud/aws/services/ec2/#amis)
       ami           = "ami-df5de72bdb3b"
       instance_type = "a1.medium"
 
@@ -214,7 +214,7 @@ Nice! Your EC2 instance should now be running. Let's verify and connect to it.
 aws --endpoint-url=http://localhost:4566 ec2 describe-instances --profile localstack
 ```
 
-You can also see it in the [LocalStack Dashboard](https://app.localstack.cloud/inst/default/resources) — look for your instance under EC2.
+You can also see it in the [LocalStack Dashboard](https://app.localstack.cloud/inst/default/resources) - look for your instance under EC2.
 
 > **Tip:** Run `docker ps` to see the LocalStack container. Everything is running locally inside Docker!
 
@@ -232,7 +232,7 @@ ssh -i ./terra-key root@<instance-public-dns>
 
 Replace `<instance-public-dns>` with the DNS from the `describe-instances` output, or grab it from the LocalStack Dashboard.
 
-You're now inside your "cloud" instance — running entirely on your machine!
+You're now inside your "cloud" instance - running entirely on your machine!
 
 ## Cleaning Up
 
@@ -252,11 +252,11 @@ And that's it! You've successfully:
 - Connected to your local "cloud" instance
 
 This setup is great for:
-- **Learning** — experiment without fear of AWS bills
-- **Testing** — validate your Terraform configs before deploying to real AWS
-- **Development** — build cloud-native apps without internet dependency
+- **Learning** - experiment without fear of AWS bills
+- **Testing** - validate your Terraform configs before deploying to real AWS
+- **Development** - build cloud-native apps without internet dependency
 
-Feel free to explore other AWS services that LocalStack supports — S3, Lambda, DynamoDB, and more!
+Feel free to explore other AWS services that LocalStack supports - S3, Lambda, DynamoDB, and more!
 
 ## Resources
 

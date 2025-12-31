@@ -11,7 +11,7 @@ export const BorderContainer = ({
   className,
 }: BorderContainerProps) => {
   return (
-    <div className={cn("mx-auto max-w-4xl border-x min-h-screen", className)}>
+    <div className={cn("mx-auto max-w-3xl border-x min-h-screen", className)}>
       {children}
     </div>
   );

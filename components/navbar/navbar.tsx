@@ -20,7 +20,7 @@ export const NavLinks: NavLinks[] = [
 
 export const Navbar = () => {
   return (
-    <nav className="fixed left-1/2 -translate-x-1/2 w-full max-w-4xl z-50">
+    <nav className="fixed left-1/2 -translate-x-1/2 w-full max-w-3xl z-50">
       <div className="h-12 bg-background border">
         <div className="h-full w-full mx-auto flex justify-between items-center px-4">
           <Logo />

@@ -73,14 +73,14 @@ export default async function Page({
   return (
     <div className="flex flex-col">
       <ScrollProgress className="min-[1400px]:hidden" />
-      <div className="fixed top-24 border-y border-l px-4 py-2 right-[calc(50%+28rem)] z-50 hidden lg:inline-flex">
+      <div className="fixed top-24 border-y border-l px-4 py-2 right-[calc(50%+24rem)] z-50 hidden lg:inline-flex">
         <BackButton href="/blogs" label="SEE ALL BLOGS" />
       </div>
       <aside className="hidden text-sm min-[1400px]:inline-flex">
-        <div className="fixed top-24 left-[calc(50%+28rem)] z-50 border-y border-r p-4">
+        <div className="fixed top-24 left-[calc(50%+24rem)] z-50 border-y border-r p-4">
           <ScrollProgress
             orientation="vertical"
-            className="left-[calc(49.9%+28rem)]"
+            className="left-[calc(49.9%+24rem)]"
           />
           <TableOfContents toc={toc} />
         </div>

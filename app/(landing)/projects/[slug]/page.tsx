@@ -86,12 +86,12 @@ export default async function Page({
             )`,
         }}
       />
-      <div className="fixed top-24 border-t border-b border-l px-4 py-2 right-[calc(50%+28rem)] z-50 hidden lg:inline-flex">
+      <div className="fixed top-24 border-t border-b border-l px-4 py-2 right-[calc(50%+24rem)] z-50 hidden lg:inline-flex">
         <BackButton href="/projects" label="SEE ALL PROJECTS" />
       </div>
       <ScrollProgress
         orientation="vertical"
-        className="left-[calc(49.9%+28rem)]"
+        className="left-[calc(49.9%+24rem)]"
       />
       <div className="w-full flex flex-col max-w-4xl mx-auto">
         {project && <ProjectCard {...project} disableHover />}

@@ -6,7 +6,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="px-3">
       <BorderContainer>
-        <div className="flex flex-col min-h-screen max-w-4xl items-start mx-auto">
+        <div className="flex flex-col min-h-screen max-w-3xl items-start mx-auto">
           <div className="flex-grow mt-12 w-full">{children}</div>
           <Footer />
         </div>

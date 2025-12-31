@@ -3,25 +3,21 @@ export const ProjectData = [
     title: "TypeCast",
     type: "personal",
     slug: "typecast",
-    description: "TypeCast is a lightweight, cross‑platform desktop overlay that shows your keystrokes while you record or present. Built with Tauri (Rust + React), it stays always‑on‑top, is click‑through, and appears on all workspaces without getting in your way.",
+    description:
+      "TypeCast is a lightweight, cross‑platform desktop overlay that shows your keystrokes while you record or present. Built with Tauri (Rust + React), it stays always‑on‑top, is click‑through, and appears on all workspaces without getting in your way.",
     images: [
       "https://ik.imagekit.io/nnp1iszdfe/typecast.png?updatedAt=1754679270290",
       "https://ik.imagekit.io/nnp1iszdfe/typecast2.png?updatedAt=1754679273819",
     ],
     githubLink: "https://github.com/idityaGE/TypeCast",
-    techStack: [
-      "Tauri",
-      "React",
-      "TypeScript",
-      "Rust",
-      "TailwindCSS",
-    ]
+    techStack: ["Tauri", "React", "TypeScript", "Rust", "TailwindCSS"],
   },
   {
     title: "Solana Token Launchpad",
     type: "personal",
     slug: "solana-token-launchpad",
-    description: "A powerful web application that enables users to launch their own tokens on the Solana blockchain with complete metadata support.",
+    description:
+      "A powerful web application that enables users to launch their own tokens on the Solana blockchain with complete metadata support.",
     images: [
       "https://ik.imagekit.io/nnp1iszdfe/Portfolio/project-media/pika-1760295469463-1xn.png?updatedAt=1760295900444",
       "https://ik.imagekit.io/nnp1iszdfe/Portfolio/project-media/solana.png?updatedAt=1750187263196",
@@ -37,13 +33,14 @@ export const ProjectData = [
       "Solana Web3.js",
       "Solana SPL Token",
       "Anza Wallet Adapter",
-    ]
+    ],
   },
   {
     title: "ExpTrack",
     type: "personal",
     slug: "exptrack",
-    description: "A simple Expense Tracker App built with Expo (React Native) for the frontend and Rust (Axum) for the backend. The app allows users to track their expenses by adding, viewing, and categorizing them.",
+    description:
+      "A simple Expense Tracker App built with Expo (React Native) for the frontend and Rust (Axum) for the backend. The app allows users to track their expenses by adding, viewing, and categorizing them.",
     images: [
       "https://github.com/idityaGE/ExpTrack/raw/master/.github/images/poster.png",
     ],
@@ -59,14 +56,15 @@ export const ProjectData = [
       "Zod",
       "Gifted Charts",
       "SQLx",
-      "Postgres"
-    ]
+      "Postgres",
+    ],
   },
   {
     title: "Hyper Digital",
     type: "freelance",
     slug: "hyperdigital",
-    description: "A full-service digital agency offering web development, mobile applications, UI/UX design, and digital marketing solutions. We help businesses transform their digital presence with cutting-edge technology and strategic expertise tailored to their unique needs and goals.",
+    description:
+      "A full-service digital agency offering web development, mobile applications, UI/UX design, and digital marketing solutions. We help businesses transform their digital presence with cutting-edge technology and strategic expertise tailored to their unique needs and goals.",
     images: [
       "https://ik.imagekit.io/nnp1iszdfe/Portfolio/project-media/hyper.png?updatedAt=1750187264242",
       "https://res.cloudinary.com/dwdbqwqxk/image/upload/v1743961458/Screenshot_2025-04-05_195352_txevuu.png",
@@ -81,13 +79,14 @@ export const ProjectData = [
       "Nodemailer",
       "Motion",
       "shadcn ui",
-    ]
+    ],
   },
   {
     title: "Blind Chat",
     type: "personal",
     slug: "blind-chat",
-    description: "An open-source web app for college students to connect using their official email IDs. Easily customizable for any college with a simple config file.",
+    description:
+      "An open-source web app for college students to connect using their official email IDs. Easily customizable for any college with a simple config file.",
     images: [
       "https://ik.imagekit.io/nnp1iszdfe/Portfolio/project-media/blindchat.png?updatedAt=1750187264225",
       "https://res.cloudinary.com/dwdbqwqxk/image/upload/v1735418264/Screenshot_2024-12-29_013419_wxu05k.png",
@@ -104,36 +103,38 @@ export const ProjectData = [
       "Prisma",
       "Postgres",
       "shadcn ui",
-    ]
-  },
-  {
-    title: "BloomKnot",
-    type: "freelance",
-    slug: "bloomknot",
-    description: "A comprehensive wedding planning platform where couples can explore a wide variety of options for their special day. From venues to vendors, customize every detail while our admin team handles all the logistics and coordination to ensure a stress-free wedding experience.",
-    images: [
-      "https://ik.imagekit.io/nnp1iszdfe/Portfolio/project-media/bloom.png?updatedAt=1750187264785",
-      "https://res.cloudinary.com/dwdbqwqxk/image/upload/v1743961520/Screenshot_2025-04-06_231456_vreduh.png",
     ],
-    // githubLink: "https://github.com/idityaGE/BloomKnot",
-    liveLink: "https://bloomknot.in",
-    techStack: [
-      "Next.js",
-      "Cal.com",
-      "Better auth",
-      "TypeScript",
-      "Node.js",
-      "Nodemailer",
-      "Prisma",
-      "Postgres",
-      "shadcn ui",
-    ]
   },
+  // {
+  //   title: "BloomKnot",
+  //   type: "freelance",
+  //   slug: "bloomknot",
+  //   description:
+  //     "A comprehensive wedding planning platform where couples can explore a wide variety of options for their special day. From venues to vendors, customize every detail while our admin team handles all the logistics and coordination to ensure a stress-free wedding experience.",
+  //   images: [
+  //     "https://ik.imagekit.io/nnp1iszdfe/Portfolio/project-media/bloom.png?updatedAt=1750187264785",
+  //     "https://res.cloudinary.com/dwdbqwqxk/image/upload/v1743961520/Screenshot_2025-04-06_231456_vreduh.png",
+  //   ],
+  //   // githubLink: "https://github.com/idityaGE/BloomKnot",
+  //   liveLink: "https://bloomknot.in",
+  //   techStack: [
+  //     "Next.js",
+  //     "Cal.com",
+  //     "Better auth",
+  //     "TypeScript",
+  //     "Node.js",
+  //     "Nodemailer",
+  //     "Prisma",
+  //     "Postgres",
+  //     "shadcn ui",
+  //   ],
+  // },
   {
     title: "_Zapier",
     type: "personal",
     slug: "zapier",
-    description: "An open-source app to automate workflows with a trigger-action framework. Easily connect apps, customize integrations, and boost productivity. Perfect for seamless task automation and workflow management.",
+    description:
+      "An open-source app to automate workflows with a trigger-action framework. Easily connect apps, customize integrations, and boost productivity. Perfect for seamless task automation and workflow management.",
     images: [
       "https://ik.imagekit.io/nnp1iszdfe/Portfolio/project-media/zapppp.png?updatedAt=1750187837025",
       "https://res.cloudinary.com/dwdbqwqxk/image/upload/v1735663950/Screenshot_2024-12-31_213824_jz4kh8.png",
@@ -152,13 +153,14 @@ export const ProjectData = [
       "Postgres",
       "shadcn ui",
       "zod",
-    ]
+    ],
   },
   {
     title: "Portfolio",
     type: "personal",
     slug: "portfolio",
-    description: "A sleek, minimalist portfolio template with dynamic animations, dark/light mode, and responsive design. Features include project showcases, interactive skill CLI and performance optimizations for lightning-fast load times.",
+    description:
+      "A sleek, minimalist portfolio template with dynamic animations, dark/light mode, and responsive design. Features include project showcases, interactive skill CLI and performance optimizations for lightning-fast load times.",
     images: [
       "https://ik.imagekit.io/nnp1iszdfe/old-portfolio/images/yehhh.png?updatedAt=1750186732732",
     ],
@@ -170,74 +172,76 @@ export const ProjectData = [
       "Shadcn UI",
       "Motion",
       "React Markdown",
-      "React Router Dom"
-    ]
-  },
-  {
-    title: "LST Solana Demo",
-    type: "personal",
-    slug: "lst-solana-demo",
-    description: "Stake SOL, get lSOL. Simple liquid staking with instant redemption.",
-    images: [
-      "https://ik.imagekit.io/nnp1iszdfe/Portfolio/project-media/lst.png?updatedAt=1750188051386",
-      "https://res.cloudinary.com/dwdbqwqxk/image/upload/v1746219693/Screenshot_2025-05-03_022609_pcimso.png",
+      "React Router Dom",
     ],
-    githubLink: "https://github.com/idityaGE/WEB-3/tree/main/13-LST/platform-code",
-    techStack: [
-      "Next.js",
-      "Turborepo",
-      "Express js",
-      "TypeScript",
-      "Tanstack Query",
-      "Helius Webhook",
-      "TailwindCSS",
-      "Shadcn",
-      "Solana Web3.js",
-      "Solana SPL Token",
-      "bs58",
-    ]
   },
-  {
-    title: "GitHub Bento Stats",
-    type: "personal",
-    slug: "github-bento-stats",
-    description: "A React component to display GitHub stats in a bento-style layout.",
-    images: [
-      "https://ik.imagekit.io/nnp1iszdfe/Portfolio/project-media/gwww.png?updatedAt=1750187680674",
-      "https://res.cloudinary.com/dwdbqwqxk/image/upload/v1740995404/Screenshot_2025-03-03_030157_kq3hmb.png",
-    ],
-    githubLink: "https://github.com/idityaGE/Github-bento-stats.git",
-    liveLink: "https://gitwrapped-psi.vercel.app/",
-    techStack: [
-      "Next.js",
-      "TypeScript",
-      "Tailwind",
-      "shadcn ui",
-      "graphQL",
-    ]
-  },
-  {
-    title: "Assignment Code to PDF",
-    type: "personal",
-    slug: "assignment-code-to-pdf",
-    description: "Converts questions, codes and outputs to PDF with syntax highlighting. Built with Next.js, TypeScript, html2canvas, jsPDF, and Tailwind CSS.",
-    images: [
-      "https://ik.imagekit.io/nnp1iszdfe/Portfolio/project-media/assign.png?updatedAt=1750187507765",
-      "https://res.cloudinary.com/dwdbqwqxk/image/upload/v1735418523/Screenshot_2024-12-29_021122_ewow6o.png",
-      "https://res.cloudinary.com/dwdbqwqxk/image/upload/v1730213842/img3_z2yp9j.png"
-    ],
-    liveLink: "https://assignment-code-to-pdf.vercel.app/",
-    githubLink: "https://github.com/idityaGE/Assignment-Code-to-PDF",
-    techStack: [
-      "Next.js",
-      "TypeScript",
-      "html2canvas",
-      "jsPDF",
-      "Tailwind CSS",
-      "Shadcn UI",
-      "react-syntax-highlighter"
-    ]
-  },
+  // {
+  //   title: "LST Solana Demo",
+  //   type: "personal",
+  //   slug: "lst-solana-demo",
+  //   description:
+  //     "Stake SOL, get lSOL. Simple liquid staking with instant redemption.",
+  //   images: [
+  //     "https://ik.imagekit.io/nnp1iszdfe/Portfolio/project-media/lst.png?updatedAt=1750188051386",
+  //     "https://res.cloudinary.com/dwdbqwqxk/image/upload/v1746219693/Screenshot_2025-05-03_022609_pcimso.png",
+  //   ],
+  //   githubLink:
+  //     "https://github.com/idityaGE/WEB-3/tree/main/13-LST/platform-code",
+  //   techStack: [
+  //     "Next.js",
+  //     "Turborepo",
+  //     "Express js",
+  //     "TypeScript",
+  //     "Tanstack Query",
+  //     "Helius Webhook",
+  //     "TailwindCSS",
+  //     "Shadcn",
+  //     "Solana Web3.js",
+  //     "Solana SPL Token",
+  //     "bs58",
+  //   ],
+  // },
+  // {
+  //   title: "GitHub Bento Stats",
+  //   type: "personal",
+  //   slug: "github-bento-stats",
+  //   description: "A React component to display GitHub stats in a bento-style layout.",
+  //   images: [
+  //     "https://ik.imagekit.io/nnp1iszdfe/Portfolio/project-media/gwww.png?updatedAt=1750187680674",
+  //     "https://res.cloudinary.com/dwdbqwqxk/image/upload/v1740995404/Screenshot_2025-03-03_030157_kq3hmb.png",
+  //   ],
+  //   githubLink: "https://github.com/idityaGE/Github-bento-stats.git",
+  //   liveLink: "https://gitwrapped-psi.vercel.app/",
+  //   techStack: [
+  //     "Next.js",
+  //     "TypeScript",
+  //     "Tailwind",
+  //     "shadcn ui",
+  //     "graphQL",
+  //   ]
+  // },
+  // {
+  //   title: "Assignment Code to PDF",
+  //   type: "personal",
+  //   slug: "assignment-code-to-pdf",
+  //   description: "Converts questions, codes and outputs to PDF with syntax highlighting. Built with Next.js, TypeScript, html2canvas, jsPDF, and Tailwind CSS.",
+  //   images: [
+  //     "https://ik.imagekit.io/nnp1iszdfe/Portfolio/project-media/assign.png?updatedAt=1750187507765",
+  //     "https://res.cloudinary.com/dwdbqwqxk/image/upload/v1735418523/Screenshot_2024-12-29_021122_ewow6o.png",
+  //     "https://res.cloudinary.com/dwdbqwqxk/image/upload/v1730213842/img3_z2yp9j.png"
+  //   ],
+  //   liveLink: "https://assignment-code-to-pdf.vercel.app/",
+  //   githubLink: "https://github.com/idityaGE/Assignment-Code-to-PDF",
+  //   techStack: [
+  //     "Next.js",
+  //     "TypeScript",
+  //     "html2canvas",
+  //     "jsPDF",
+  //     "Tailwind CSS",
+  //     "Shadcn UI",
+  //     "react-syntax-highlighter"
+  //   ]
+  // },
   // {
   //   title: "Polish Bot",
   //   slug: "polish-bot",
@@ -315,4 +319,4 @@ export const ProjectData = [
   //     "Shadcn UI"
   //   ]
   // }
-]
+];

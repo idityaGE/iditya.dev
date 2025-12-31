@@ -1,7 +1,7 @@
 import type { Metadata } from "next/types";
 import { ThemeProvider } from "@/components/theme/theme-provider";
 import { Navbar } from "@/components/navbar/navbar";
-import { Inter, JetBrains_Mono, Doto } from "next/font/google";
+import { Inter, JetBrains_Mono } from "next/font/google";
 import { siteConfig } from "@/config/site.config";
 import { Analytics } from "@vercel/analytics/next";
 import "@/styles/globals.css";
@@ -15,12 +15,6 @@ const fontSans = Inter({
 const fontMono = JetBrains_Mono({
   subsets: ["latin"],
   variable: "--font-mono",
-  display: "swap",
-});
-
-const fontDoto = Doto({
-  subsets: ["latin"],
-  variable: "--font-doto",
   display: "swap",
 });
 
@@ -122,7 +116,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${fontSans.variable} ${fontMono.variable} ${fontDoto.variable} font-sans antialiased bg-background text-foreground`}
+        className={`${fontSans.variable} ${fontMono.variable} font-sans antialiased bg-background text-foreground`}
         suppressHydrationWarning
       >
         <ThemeProvider attribute="class" defaultTheme="dark">

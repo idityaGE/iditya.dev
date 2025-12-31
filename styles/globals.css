@@ -167,7 +167,6 @@
   --font-sans: var(--font-sans);
   --font-mono: var(--font-mono);
   --font-serif: var(--font-serif);
-  --font-dot: var(--font-doto);
   --font-grid: var(--font-grid);
 
   --radius-sm: calc(var(--radius) - 4px);

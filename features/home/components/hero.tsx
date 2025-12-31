@@ -22,7 +22,7 @@ export const Hero = () => {
         </div>
 
         <div className="flex items-baseline gap-2">
-          <h1 className="font-dot text-4xl font-extrabold uppercase leading-8">
+          <h1 className="font-grid text-4xl uppercase leading-8">
             <span className="relative">{PersonalData.name}</span>
           </h1>
           <a

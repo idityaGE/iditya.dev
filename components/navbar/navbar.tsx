@@ -22,7 +22,7 @@ export const NavLinks: NavLinks[] = [
   },
 ];
 
-export const Navbar = () => {
+export const Navbar = ({ children }: { children?: React.ReactNode }) => {
   return (
     <nav className="fixed left-1/2 -translate-x-1/2 w-full max-w-3xl z-50">
       <div className="h-12 bg-background border">
@@ -30,6 +30,7 @@ export const Navbar = () => {
           <Logo />
           <div className="flex items-center space-x-5">
             <DesktopLinks />
+            {children}
             <div className="flex items-center">
               <ModeToggle />
               <MobileDropdown />

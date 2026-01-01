@@ -58,6 +58,7 @@ export const Hero = () => {
       </div>
 
       <div className="absolute -bottom-8 right-4">
+        <span>[&nbsp;</span>
         <a
           href="/resume.pdf"
           download="Aditya_Resume.pdf"
@@ -66,6 +67,7 @@ export const Hero = () => {
         >
           /resume.pdf
         </a>
+        <span>&nbsp;]</span>
       </div>
     </div>
   );

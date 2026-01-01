@@ -1,6 +1,7 @@
 import type { Metadata } from "next/types";
 import { ThemeProvider } from "@/components/theme/theme-provider";
 import { Navbar } from "@/components/navbar/navbar";
+import { CommandMenuWrapper } from "@/components/cmdk/command-menu-wrapper";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import { siteConfig } from "@/config/site.config";
 import { Analytics } from "@vercel/analytics/next";
@@ -121,7 +122,9 @@ export default function RootLayout({
       >
         <ThemeProvider attribute="class" defaultTheme="dark">
           <div className="mx-auto min-h-screen flex flex-col">
-            <Navbar />
+            <Navbar>
+              <CommandMenuWrapper />
+            </Navbar>
             <div className="flex-grow">{children}</div>
           </div>
         </ThemeProvider>

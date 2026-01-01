@@ -71,7 +71,7 @@ export function IconCloud({ iconSlugs }: DynamicCloudProps) {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        width: "96%",
+        width: "100%",
         paddingTop: 14,
       },
     },
@@ -100,7 +100,7 @@ export function IconCloud({ iconSlugs }: DynamicCloudProps) {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          width: "96%",
+          width: "100%",
           paddingTop: 14,
           minHeight: "400px",
         }}

@@ -57,9 +57,5 @@ const slugs = [
 ];
 
 export function SkillCard() {
-  return (
-    <div className="pb-4 w-96 mx-auto">
-      <IconCloud iconSlugs={slugs} />
-    </div>
-  );
+  return <IconCloud iconSlugs={slugs} />
 }

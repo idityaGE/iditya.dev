@@ -69,6 +69,7 @@ function getActionTypeFromValue(value: string): ActionType {
 export function CommandMenu({ blogs = [], projects = [] }: CommandMenuProps) {
   const [open, setOpen] = React.useState(false);
   const [copied, setCopied] = React.useState<string | null>(null);
+  const [value, setValue] = React.useState("");
   const [selectedAction, setSelectedAction] = React.useState<ActionType>("navigate");
   const router = useRouter();
   const { resolvedTheme, setTheme } = useTheme();
@@ -90,14 +91,16 @@ export function CommandMenu({ blogs = [], projects = [] }: CommandMenuProps) {
   }, [selectedAction]);
 
   // Handle selection change from cmdk
-  const handleValueChange = React.useCallback((value: string) => {
-    const actionType = getActionTypeFromValue(value);
+  const handleValueChange = React.useCallback((newValue: string) => {
+    setValue(newValue);
+    const actionType = getActionTypeFromValue(newValue);
     setSelectedAction(actionType);
   }, []);
 
   // Reset to default when dialog opens
   React.useEffect(() => {
     if (open) {
+      setValue("");
       setSelectedAction("navigate");
     }
   }, [open]);
@@ -195,10 +198,8 @@ export function CommandMenu({ blogs = [], projects = [] }: CommandMenuProps) {
   }, []);
 
   const openRssFeed = React.useCallback(() => {
-    runCommand(() => {
-      window.location.href = "/rss.xml";
-    });
-  }, [runCommand]);
+    runCommand(() => router.push("/rss"));
+  }, [router, runCommand]);
 
 
 
@@ -208,15 +209,20 @@ export function CommandMenu({ blogs = [], projects = [] }: CommandMenuProps) {
         onClick={() => setOpen(true)}
         className="inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors"
       >
-        <span className="text-muted-foreground/60 text-lg">[</span>
-        <span className="hidden sm:inline pt-0.5">Press</span>
-        <Kbd className="pointer-events-none mt-0.5">
+        <span className="text-lg pb-1">[</span>
+        <span className="hidden sm:inline">Press</span>
+        <Kbd className="pointer-events-none">
           <span className="text-xs">⌘</span>K
         </Kbd>
-        <span className="text-muted-foreground/60 text-lg">]</span>
+        <span className="text-lg pb-1">]</span>
       </button>
 
-      <CommandDialog open={open} onOpenChange={setOpen} onValueChange={handleValueChange}>
+      <CommandDialog
+        open={open}
+        onOpenChange={setOpen}
+        value={value}
+        onValueChange={handleValueChange}
+      >
         <CommandInput placeholder="Type a command or search..." />
         <CommandList>
           <CommandEmpty>No results found.</CommandEmpty>

@@ -34,7 +34,6 @@ import { Kbd } from "@/components/ui/kbd";
 import { LinkData } from "@/config/links.config";
 import { Separator } from "../ui/separator";
 
-// Types
 interface Blog {
   slug: string;
   title: string;
@@ -52,6 +51,21 @@ interface CommandMenuProps {
 
 type ActionType = "navigate" | "action" | "external" | "copy";
 
+// Map of value prefixes to action types
+const ACTION_TYPE_MAP: Record<string, ActionType> = {
+  "nav:": "navigate",
+  "action:": "action",
+  "ext:": "external",
+  "copy:": "copy",
+};
+
+function getActionTypeFromValue(value: string): ActionType {
+  for (const [prefix, type] of Object.entries(ACTION_TYPE_MAP)) {
+    if (value.startsWith(prefix)) return type;
+  }
+  return "navigate";
+}
+
 export function CommandMenu({ blogs = [], projects = [] }: CommandMenuProps) {
   const [open, setOpen] = React.useState(false);
   const [copied, setCopied] = React.useState<string | null>(null);
@@ -59,10 +73,34 @@ export function CommandMenu({ blogs = [], projects = [] }: CommandMenuProps) {
   const router = useRouter();
   const { resolvedTheme, setTheme } = useTheme();
 
-  // Track what type of action is currently selected
-  const updateSelectedAction = React.useCallback((type: ActionType) => {
-    setSelectedAction(type);
+  // Map action type to display text
+  const actionText = React.useMemo(() => {
+    switch (selectedAction) {
+      case "navigate":
+        return "Go to Page";
+      case "action":
+        return "Run Action";
+      case "external":
+        return "Open Link";
+      case "copy":
+        return "Copy";
+      default:
+        return "Select";
+    }
+  }, [selectedAction]);
+
+  // Handle selection change from cmdk
+  const handleValueChange = React.useCallback((value: string) => {
+    const actionType = getActionTypeFromValue(value);
+    setSelectedAction(actionType);
   }, []);
+
+  // Reset to default when dialog opens
+  React.useEffect(() => {
+    if (open) {
+      setSelectedAction("navigate");
+    }
+  }, [open]);
 
   // Keyboard shortcut: Cmd+K / Ctrl+K and page shortcuts
   React.useEffect(() => {
@@ -162,72 +200,56 @@ export function CommandMenu({ blogs = [], projects = [] }: CommandMenuProps) {
     });
   }, [runCommand]);
 
-  // Get footer action text based on selected action type
-  const getActionText = () => {
-    switch (selectedAction) {
-      case "navigate":
-        return "Go to Page";
-      case "action":
-        return "Run Action";
-      case "external":
-        return "Open Link";
-      case "copy":
-        return "Copy";
-      default:
-        return "Select";
-    }
-  };
+
 
   return (
     <>
       <button
         onClick={() => setOpen(true)}
-        className="hidden sm:inline-flex items-center gap-2 text-xs text-muted-foreground hover:text-foreground transition-colors"
+        className="inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors"
       >
-        <span className="hidden lg:inline">Press</span>
-        <Kbd className="pointer-events-none">
+        <span className="text-muted-foreground/60 text-lg">[</span>
+        <span className="hidden sm:inline pt-0.5">Press</span>
+        <Kbd className="pointer-events-none mt-0.5">
           <span className="text-xs">⌘</span>K
         </Kbd>
+        <span className="text-muted-foreground/60 text-lg">]</span>
       </button>
 
-      <CommandDialog open={open} onOpenChange={setOpen}>
+      <CommandDialog open={open} onOpenChange={setOpen} onValueChange={handleValueChange}>
         <CommandInput placeholder="Type a command or search..." />
         <CommandList>
           <CommandEmpty>No results found.</CommandEmpty>
 
           {/* Pages */}
           <CommandGroup heading="Pages">
-            <CommandItem 
+            <CommandItem
+              value="nav:home"
               onSelect={() => navigate("/")}
-              onMouseEnter={() => updateSelectedAction("navigate")}
-              onFocus={() => updateSelectedAction("navigate")}
             >
               <Home className="mr-2 h-4 w-4" />
               <span>Home</span>
               <Kbd className="ml-auto">H</Kbd>
             </CommandItem>
-            <CommandItem 
+            <CommandItem
+              value="nav:projects"
               onSelect={() => navigate("/projects")}
-              onMouseEnter={() => updateSelectedAction("navigate")}
-              onFocus={() => updateSelectedAction("navigate")}
             >
               <FolderKanban className="mr-2 h-4 w-4" />
               <span>Projects</span>
               <Kbd className="ml-auto">P</Kbd>
             </CommandItem>
-            <CommandItem 
+            <CommandItem
+              value="nav:blogs"
               onSelect={() => navigate("/blogs")}
-              onMouseEnter={() => updateSelectedAction("navigate")}
-              onFocus={() => updateSelectedAction("navigate")}
             >
               <FileText className="mr-2 h-4 w-4" />
               <span>Blogs</span>
               <Kbd className="ml-auto">B</Kbd>
             </CommandItem>
-            <CommandItem 
+            <CommandItem
+              value="nav:pow"
               onSelect={() => navigate("/PoW")}
-              onMouseEnter={() => updateSelectedAction("navigate")}
-              onFocus={() => updateSelectedAction("navigate")}
             >
               <Award className="mr-2 h-4 w-4" />
               <span>Proof of Work</span>
@@ -239,10 +261,9 @@ export function CommandMenu({ blogs = [], projects = [] }: CommandMenuProps) {
 
           {/* Theme */}
           <CommandGroup heading="Theme">
-            <CommandItem 
+            <CommandItem
+              value="action:toggle-theme"
               onSelect={toggleTheme}
-              onMouseEnter={() => updateSelectedAction("action")}
-              onFocus={() => updateSelectedAction("action")}
             >
               {resolvedTheme === "dark" ? (
                 <Sun className="mr-2 h-4 w-4" />
@@ -258,26 +279,23 @@ export function CommandMenu({ blogs = [], projects = [] }: CommandMenuProps) {
 
           {/* Actions */}
           <CommandGroup heading="Actions">
-            <CommandItem 
+            <CommandItem
+              value="action:download-resume"
               onSelect={downloadResume}
-              onMouseEnter={() => updateSelectedAction("action")}
-              onFocus={() => updateSelectedAction("action")}
             >
               <Download className="mr-2 h-4 w-4" />
               <span>Download Resume</span>
             </CommandItem>
-            <CommandItem 
+            <CommandItem
+              value="nav:rss-feed"
               onSelect={openRssFeed}
-              onMouseEnter={() => updateSelectedAction("navigate")}
-              onFocus={() => updateSelectedAction("navigate")}
             >
               <Rss className="mr-2 h-4 w-4" />
               <span>RSS Feed</span>
             </CommandItem>
-            <CommandItem 
+            <CommandItem
+              value="copy:share-portfolio"
               onSelect={sharePortfolio}
-              onMouseEnter={() => updateSelectedAction("copy")}
-              onFocus={() => updateSelectedAction("copy")}
             >
               {copied === "portfolio" ? (
                 <Check className="mr-2 h-4 w-4 text-green-500" />
@@ -292,37 +310,33 @@ export function CommandMenu({ blogs = [], projects = [] }: CommandMenuProps) {
 
           {/* Social Links */}
           <CommandGroup heading="Social">
-            <CommandItem 
+            <CommandItem
+              value="ext:twitter"
               onSelect={() => openExternal(LinkData.twitter)}
-              onMouseEnter={() => updateSelectedAction("external")}
-              onFocus={() => updateSelectedAction("external")}
             >
               <Twitter className="mr-2 h-4 w-4" />
               <span>X (Twitter)</span>
               <ExternalLink className="ml-auto h-3 w-3 text-muted-foreground" />
             </CommandItem>
-            <CommandItem 
+            <CommandItem
+              value="ext:github"
               onSelect={() => openExternal(LinkData.github)}
-              onMouseEnter={() => updateSelectedAction("external")}
-              onFocus={() => updateSelectedAction("external")}
             >
               <Github className="mr-2 h-4 w-4" />
               <span>GitHub</span>
               <ExternalLink className="ml-auto h-3 w-3 text-muted-foreground" />
             </CommandItem>
-            <CommandItem 
+            <CommandItem
+              value="ext:linkedin"
               onSelect={() => openExternal(LinkData.linkedin)}
-              onMouseEnter={() => updateSelectedAction("external")}
-              onFocus={() => updateSelectedAction("external")}
             >
               <Linkedin className="mr-2 h-4 w-4" />
               <span>LinkedIn</span>
               <ExternalLink className="ml-auto h-3 w-3 text-muted-foreground" />
             </CommandItem>
-            <CommandItem 
+            <CommandItem
+              value="copy:email"
               onSelect={copyEmail}
-              onMouseEnter={() => updateSelectedAction("copy")}
-              onFocus={() => updateSelectedAction("copy")}
             >
               {copied === "email" ? (
                 <Check className="mr-2 h-4 w-4 text-green-500" />
@@ -341,9 +355,8 @@ export function CommandMenu({ blogs = [], projects = [] }: CommandMenuProps) {
                 {blogs.map((blog) => (
                   <CommandItem
                     key={blog.slug}
+                    value={`nav:blog-${blog.slug}`}
                     onSelect={() => navigate(`/blogs/${blog.slug}`)}
-                    onMouseEnter={() => updateSelectedAction("navigate")}
-                    onFocus={() => updateSelectedAction("navigate")}
                   >
                     <FileText className="mr-2 h-4 w-4" />
                     <span>{blog.title}</span>
@@ -361,9 +374,8 @@ export function CommandMenu({ blogs = [], projects = [] }: CommandMenuProps) {
                 {projects.map((project) => (
                   <CommandItem
                     key={project.slug}
+                    value={`nav:project-${project.slug}`}
                     onSelect={() => navigate(`/projects/${project.slug}`)}
-                    onMouseEnter={() => updateSelectedAction("navigate")}
-                    onFocus={() => updateSelectedAction("navigate")}
                   >
                     <FolderKanban className="mr-2 h-4 w-4" />
                     <span>{project.title}</span>
@@ -375,9 +387,9 @@ export function CommandMenu({ blogs = [], projects = [] }: CommandMenuProps) {
         </CommandList>
 
         {/* Footer */}
-        <div className="flex items-center justify-end gap-4 border-t px-3 py-2 text-xs text-muted-foreground">
+        <div className="flex items-center justify-end gap-4 border-t px-3 py-2 text-xs text-muted-foreground bg-accent/20">
           <div className="flex items-center gap-1">
-            <span>{getActionText()}</span>
+            <span>{actionText}</span>
             <Kbd>↵</Kbd>
           </div>
           <Separator orientation="vertical" className="h-4" />

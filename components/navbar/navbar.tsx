@@ -29,8 +29,8 @@ export const Navbar = ({ children }: { children?: React.ReactNode }) => {
         <div className="h-full w-full mx-auto flex justify-between items-center px-4">
           <Logo />
           <div className="flex items-center space-x-5">
-            <DesktopLinks />
             {children}
+            <DesktopLinks />
             <div className="flex items-center">
               <ModeToggle />
               <MobileDropdown />

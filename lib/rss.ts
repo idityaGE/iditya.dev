@@ -11,6 +11,7 @@ export function createBaseFeed(options: {
   description: string;
   path: string;
 }) {
+  const basePath = options.path ? `${options.path}/` : '';
   return new Feed({
     title: options.title,
     description: options.description,
@@ -20,9 +21,9 @@ export function createBaseFeed(options: {
     favicon: `${siteConfig.siteUrl}/favicon.png`,
     copyright: `All rights reserved ${new Date().getFullYear()}, ${siteConfig.creator.name}`,
     feedLinks: {
-      rss2: `${siteConfig.siteUrl}/${options.path}/rss.xml`,
-      json: `${siteConfig.siteUrl}/${options.path}/rss.json`,
-      atom: `${siteConfig.siteUrl}/${options.path}/atom.xml`
+      rss2: `${siteConfig.siteUrl}/${basePath}rss.xml`,
+      json: `${siteConfig.siteUrl}/${basePath}rss.json`,
+      atom: `${siteConfig.siteUrl}/${basePath}atom.xml`
     },
     author: {
       name: siteConfig.creator.name,
@@ -41,6 +42,13 @@ export async function addBlogPostsToFeed(feed: Feed, options: { addCategoryPrefi
   blogs.forEach(blog => {
     if (!blog) return;
     
+    // Convert relative image URL to absolute
+    const imageUrl = blog.coverImage?.startsWith('http') 
+      ? blog.coverImage 
+      : blog.coverImage 
+        ? `${siteConfig.siteUrl}${blog.coverImage}` 
+        : undefined;
+    
     feed.addItem({
       title: options.addCategoryPrefix ? `[Blog] ${blog.title}` : blog.title,
       id: `${siteConfig.siteUrl}/blogs/${blog.slug}`,
@@ -55,7 +63,7 @@ export async function addBlogPostsToFeed(feed: Feed, options: { addCategoryPrefi
         }
       ],
       date: new Date(blog.date),
-      image: blog.coverImage,
+      image: imageUrl,
       category: options.addCategoryPrefix ? [{ name: "Blog" }] : undefined,
     });
   });
@@ -66,6 +74,13 @@ export async function addBlogPostsToFeed(feed: Feed, options: { addCategoryPrefi
  */
 export function addProjectsToFeed(feed: Feed, options: { addCategoryPrefix?: boolean } = {}) {
   ProjectData.forEach(project => {
+    // Convert relative image URL to absolute
+    const imageUrl = project.images?.[0]?.startsWith('http') 
+      ? project.images[0] 
+      : project.images?.[0] 
+        ? `${siteConfig.siteUrl}${project.images[0]}` 
+        : undefined;
+    
     feed.addItem({
       title: options.addCategoryPrefix ? `[Project] ${project.title}` : project.title,
       id: `${siteConfig.siteUrl}/projects/${project.slug}`,
@@ -80,7 +95,7 @@ export function addProjectsToFeed(feed: Feed, options: { addCategoryPrefix?: boo
         }
       ],
       date: new Date(), // Since projects don't have dates, use current date
-      image: project.images?.[0],
+      image: imageUrl,
       category: options.addCategoryPrefix 
         ? [{ name: "Project" }, ...project.techStack.map(tech => ({ name: tech }))]
         : project.techStack.map(tech => ({ name: tech })),
@@ -106,7 +121,7 @@ export async function generateBlogsFeed() {
 /**
  * Generates a projects-only feed
  */
-export function generateProjectsFeed() {
+export async function generateProjectsFeed() {
   const feed = createBaseFeed({
     title: `${siteConfig.name} Projects`,
     description: "Check out my latest projects. This feed includes personal projects, freelance work, and other development work I've done.",

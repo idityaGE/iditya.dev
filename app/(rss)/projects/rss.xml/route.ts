@@ -4,6 +4,6 @@ import {
 } from '@/lib/rss';
 
 export async function GET() {
-  const feed = generateProjectsFeed();
+  const feed = await generateProjectsFeed();
   return formatFeedResponse(feed, 'rss');
 }

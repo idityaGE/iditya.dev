@@ -15,7 +15,7 @@ export async function GET(request: NextRequest) {
     const feed = await generateBlogsFeed();
     return formatFeedResponse(feed, 'rss');
   } else if (type === 'projects') {
-    const feed = generateProjectsFeed();
+    const feed = await generateProjectsFeed();
     return formatFeedResponse(feed, 'rss');
   } else {
     const feed = await generateCombinedFeed();

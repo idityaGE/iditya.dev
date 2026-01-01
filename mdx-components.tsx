@@ -89,7 +89,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     ),
     p: ({ children }) => <p className={styles.p}>{children}</p>,
     a: ({ href, children }) => (
-      <a href={href} className={styles.a}>
+      <a href={href} className={styles.a} target="_blank">
         {children}
       </a>
     ),

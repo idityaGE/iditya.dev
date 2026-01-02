@@ -42,11 +42,11 @@ export async function addBlogPostsToFeed(feed: Feed, options: { addCategoryPrefi
   blogs.forEach(blog => {
     if (!blog) return;
     
-    // Convert relative image URL to absolute
-    const imageUrl = blog.coverImage?.startsWith('http') 
-      ? blog.coverImage 
-      : blog.coverImage 
-        ? `${siteConfig.siteUrl}${blog.coverImage}` 
+    // Convert relative image URL to absolute - use lightImage for RSS feeds
+    const imageUrl = blog.lightImage?.startsWith('http') 
+      ? blog.lightImage 
+      : blog.lightImage 
+        ? `${siteConfig.siteUrl}${blog.lightImage}` 
         : undefined;
     
     feed.addItem({

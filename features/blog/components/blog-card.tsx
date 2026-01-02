@@ -1,6 +1,7 @@
 import type { BlogPostMeta } from "@/types";
 import Link from "next/link";
 import Image from "next/image";
+import { getImageSrc } from "@/utils";
 
 export function BlogCard({
   blog,
@@ -9,6 +10,9 @@ export function BlogCard({
     slug: string;
   };
 }) {
+  const darkSrc = getImageSrc(blog.darkImage);
+  const lightSrc = getImageSrc(blog.lightImage);
+
   return (
     <Link href={`/blogs/${blog.slug}`}>
       <div className="relative group/blog-card">
@@ -18,12 +22,21 @@ export function BlogCard({
         {/* Main card that moves on hover */}
         <div className="relative w-full h-full overflow-hidden border bg-background transition-transform duration-200 group-hover/blog-card:-translate-x-1 group-hover/blog-card:-translate-y-1">
           <div className="w-full aspect-[10/5] overflow-hidden border-b">
+            {/* Dark mode image */}
             <Image
-              src={blog.coverImage}
+              src={darkSrc}
               width={200}
               height={111}
               alt={blog.title}
-              className="w-full aspect-[10/5] object-cover"
+              className="w-full aspect-[10/5] object-cover hidden dark:block"
+            />
+            {/* Light mode image */}
+            <Image
+              src={lightSrc}
+              width={200}
+              height={111}
+              alt={blog.title}
+              className="w-full aspect-[10/5] object-cover block dark:hidden"
             />
           </div>
           <div className="p-4">

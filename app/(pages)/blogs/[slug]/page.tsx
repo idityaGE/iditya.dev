@@ -1,10 +1,11 @@
+
 import { getMDXSlugs } from "@/lib/mdx";
 import { TableOfContents } from "@/components/mdx/toc";
 import { BackButton } from "@/components/back-button";
-import Image from "next/image";
 import type { Metadata } from "next/types";
 import { siteConfig } from "@/config/site.config";
 import { ScrollProgress } from "@/components/magicui/scroll-progress";
+import { ThemeImage } from "@/components/theme/theme-image";
 
 export async function generateMetadata({
   params,
@@ -35,7 +36,7 @@ export async function generateMetadata({
       tags: metadata.tags,
       images: [
         {
-          url: metadata.coverImage || siteConfig.ogImage,
+          url: metadata.darkImage || siteConfig.ogImage,
           width: 1200,
           height: 630,
           alt: metadata.title,
@@ -50,7 +51,7 @@ export async function generateMetadata({
       creator: "@" + siteConfig.links.x.split("/").at(-1) || "@idityage",
       images: [
         {
-          url: metadata.coverImage || siteConfig.ogImage,
+          url: metadata.darkImage || siteConfig.ogImage,
           alt: metadata.title,
         },
       ],
@@ -96,13 +97,15 @@ export default async function Page({
             })}
           </p>
           <h1 className="text-4xl mb-2 font-grid">{metadata.title}</h1>
-          {metadata.coverImage && (
-            <Image
-              src={metadata.coverImage}
+          {(metadata.darkImage || metadata.lightImage) && (
+            <ThemeImage
+              darkSrc={metadata.darkImage}
+              lightSrc={metadata.lightImage}
               alt={metadata.title}
               width={1200}
               height={630}
               className="w-full rounded-lg mb-2"
+              priority
             />
           )}
         </div>

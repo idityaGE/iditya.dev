@@ -16,9 +16,10 @@ export interface BlogPostMeta {
   tags: string[];
   author: string;
   excerpt: string;
-  coverImage: string;
-  published: boolean
-};
+  darkImage: string;
+  lightImage: string;
+  published: boolean;
+}
 
 export interface EducationListProps {
   year: string

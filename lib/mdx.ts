@@ -33,7 +33,8 @@ export async function getBlogPostMetaBySlug(slug: string): Promise<BlogPostMetaW
       tags: metadata.tags || [],
       author: metadata.author || "",
       excerpt: metadata.excerpt || '',
-      coverImage: metadata.coverImage || "",
+      darkImage: metadata.darkImage || "",
+      lightImage: metadata.lightImage || "",
       published: metadata.published || false
     };
   } catch (error) {

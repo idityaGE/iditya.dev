@@ -209,12 +209,12 @@ export function CommandMenu({ blogs = [], projects = [] }: CommandMenuProps) {
         onClick={() => setOpen(true)}
         className="inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors"
       >
-        <span className="text-lg pb-1">[</span>
+        <span className="text-lg pb-0.5">[</span>
         <span className="hidden sm:inline">Press</span>
         <Kbd className="pointer-events-none">
           <span className="text-xs">⌘</span>K
         </Kbd>
-        <span className="text-lg pb-1">]</span>
+        <span className="text-lg pb-0.5">]</span>
       </button>
 
       <CommandDialog

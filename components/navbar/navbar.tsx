@@ -10,25 +10,25 @@ interface NavLinks {
 export const NavLinks: NavLinks[] = [
   {
     to: "/projects",
-    label: "PROJECTS",
+    label: "projects",
   },
   {
     to: "/blogs",
-    label: "BLOGS",
+    label: "blogs",
   },
   {
     to: "/PoW",
-    label: "PoW",
+    label: "pow",
   },
 ];
 
 export const Navbar = ({ children }: { children?: React.ReactNode }) => {
   return (
     <nav className="fixed left-1/2 -translate-x-1/2 w-full max-w-3xl z-50">
-      <div className="h-12 bg-background border">
+      <div className="h-10 bg-background border">
         <div className="h-full w-full mx-auto flex justify-between items-center px-4">
           <Logo />
-          <div className="flex items-center space-x-5">
+          <div className="flex items-center gap-4">
             {children}
             <DesktopLinks />
             <div className="flex items-center">
@@ -44,15 +44,18 @@ export const Navbar = ({ children }: { children?: React.ReactNode }) => {
 
 const Logo = () => {
   return (
-    <div className="font-bold text-2xl">
-      <Link href="/">&#119990;&#119993;&#119998;&#119998;&#46;</Link>
+    <div className="font-mono text-sm font-bold">
+      <Link href="/" className="flex items-center gap-1.5">
+        <span className="text-green-500">→</span>
+        <span>iditya</span>
+      </Link>
     </div>
   );
 };
 
 const DesktopLinks = () => {
   return (
-    <div className="space-x-5 hidden sm:flex">
+    <div className="gap-3 hidden sm:flex">
       {NavLinks.map((link) => (
         <NavItem key={link.to} to={link.to} label={link.label} />
       ))}
@@ -64,8 +67,9 @@ export const NavItem = ({ to, label }: NavLinks) => {
   return (
     <Link
       href={to}
-      className="font-light text-xs flex gap-1 items-center hover:underline"
+      className="font-mono text-[12.5px] text-muted-foreground hover:text-foreground transition-colors flex items-center gap-0.5"
     >
+      <span className="text-muted-foreground/50">/</span>
       {label}
     </Link>
   );

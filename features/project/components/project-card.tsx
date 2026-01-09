@@ -23,9 +23,9 @@ const ProjectCard = ({
 
   const cardContent = (
     <div
-      className={`relative flex flex-col border-y hover:border-x overflow-hidden transition-all duration-200 bg-background ${!disableHover
-          ? "group-hover/project-card:-translate-x-1 group-hover/project-card:-translate-y-1"
-          : ""
+      className={`relative flex flex-col overflow-hidden transition-all duration-200 bg-background ${!disableHover
+        ? "group-hover/project-card:-translate-x-1 group-hover/project-card:-translate-y-1 border"
+        : "border-y"
         }`}
     >
       {/* Terminal Header */}
@@ -36,7 +36,7 @@ const ProjectCard = ({
             <span className="w-2 h-2 bg-yellow-500/80" />
             <span className="w-2 h-2 bg-green-500/80" />
           </div>
-          <p className="text-[10px] font-mono text-muted-foreground truncate">~/projects/{slug}</p>
+          <p className="text-[11px] font-mono text-muted-foreground truncate">~/projects/{slug}</p>
         </div>
       </div>
 

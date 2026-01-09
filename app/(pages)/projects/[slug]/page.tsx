@@ -65,58 +65,54 @@ export default async function Page({
 
   if (!project) {
     return (
-      <main className="flex items-center justify-center h-screen">
-        <h1 className="text-2xl font-bold">Project not found</h1>
+      <main className="flex flex-col items-center justify-center h-screen border bg-background">
+        <div className="text-center">
+          <p className="text-xs font-mono text-muted-foreground mb-2">$ find . -name "{slug}"</p>
+          <p className="text-sm font-mono text-red-500">→ error: project not found</p>
+        </div>
       </main>
     );
   }
 
   return (
-    <main className="relative">
+    <main className="relative mt-10">
       <ScrollProgress className="min-[1400px]:hidden" />
-      <div
-        className="h-8"
-        style={{
-          backgroundImage: `repeating-linear-gradient(
-              45deg,
-              transparent,
-              transparent 12px,
-              color-mix(in srgb, currentColor 10%, transparent) 12px,
-              color-mix(in srgb, currentColor 10%, transparent) 13px
-            )`,
-        }}
-      />
-      <div className="fixed top-24 border-t border-b border-l px-4 py-2 right-[calc(50%+24rem)] z-50 hidden lg:inline-flex">
-        <BackButton href="/projects" label="SEE ALL PROJECTS" />
+
+      {/* Fixed Back Button */}
+      <div className="fixed top-22 border-y border-l px-3 py-2 right-[calc(50%+24rem)] z-50 hidden lg:inline-flex bg-background">
+        <BackButton href="/projects" label="← cd .." />
       </div>
+
       <ScrollProgress
         orientation="vertical"
         className="left-[calc(49.9%+24rem)]"
       />
+
       <div className="w-full flex flex-col max-w-4xl mx-auto">
-        {project && <ProjectCard {...project} disableHover />}
-        <div
-          className="h-8 border-b"
-          style={{
-            backgroundImage: `repeating-linear-gradient(
-              45deg,
-              transparent,
-              transparent 12px,
-              color-mix(in srgb, currentColor 10%, transparent) 12px,
-              color-mix(in srgb, currentColor 10%, transparent) 13px
-            )`,
-          }}
-        />
-        <section
-          id="content-section"
-          className="relative w-full p-4"
-          aria-live="polite"
-        >
-          <ProjectMDX />
-          <div className="border-t pt-6 mt-8 flex justify-center">
-            <BackButton href="/projects" label="SEE ALL PROJECTS" />
+
+        {/* Project Card Block */}
+        <div className="border-b bg-background">
+          {project && <ProjectCard {...project} disableHover />}
+        </div>
+
+        {/* Content Block */}
+        <div className="bg-background">
+          <div className="px-3 py-2 border-b bg-muted/20">
+            <span className="text-[10px] font-mono text-muted-foreground">$ cat README.md | render</span>
           </div>
-        </section>
+          <section
+            id="content-section"
+            className="relative w-full p-4"
+            aria-live="polite"
+          >
+            <ProjectMDX />
+          </section>
+        </div>
+
+        {/* Footer */}
+        <div className="border-b bg-background px-3 py-2 flex items-center justify-center">
+          <BackButton href="/projects" label="← cd /projects" />
+        </div>
       </div>
     </main>
   );

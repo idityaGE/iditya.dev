@@ -221,10 +221,6 @@ export function TableOfContents({ toc }: { toc: TocEntry[] }) {
 
   return (
     <div className='max-w-[300px]'>
-      <h2 className="text-md font-bold mb-3">
-        <ListMinusIcon className="inline mr-1" size={16} />
-        Table of Contents
-      </h2>
       <nav aria-label="Table of contents">
         <ul className="space-y-1 max-h-[70vh] overflow-y-auto pr-2" ref={tocListRef}>
           {toc.map((item, index) => (

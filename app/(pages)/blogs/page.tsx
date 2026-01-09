@@ -12,62 +12,72 @@ const Blogs = async () => {
   const posts = await getAllBlogPostsMeta();
 
   return (
-    <div>
-      <div className="mb-8 mt-10 font-light">
-        <div className="px-4">
-          <div className="flex items-center justify-between mb-4">
-            <h1 className="text-3xl font-medium font-grid">Blogs</h1>
-            <Tooltip delayDuration={200}>
-              <TooltipTrigger>
-                <Link
-                  href="/blogs/rss.xml"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Rss size={24} aria-hidden="true" />
-                </Link>
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>Subscribe to RSS Feed</p>
-              </TooltipContent>
-            </Tooltip>
+    <div className="mt-10">
+      {/* Terminal Header */}
+      <div className="border-y bg-background p-3">
+        <div className="flex items-center gap-2 mb-2">
+          <div className="flex gap-1">
+            <span className="w-2 h-2 bg-red-500/80" />
+            <span className="w-2 h-2 bg-yellow-500/80" />
+            <span className="w-2 h-2 bg-green-500/80" />
           </div>
-          <p className="text-md text-muted-foreground">
-            I like to write when I get stuck into some problem or learn
-            something new which might help others. Here you'll find my thoughts,
-            solutions, and discoveries from my coding journey.
-          </p>
+          <span className="text-[10px] font-mono text-muted-foreground">~/blogs</span>
+        </div>
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <h1 className="text-sm font-bold font-mono uppercase tracking-wider">Blogs</h1>
+            <span className="text-[10px] font-mono text-muted-foreground">({posts.length} posts)</span>
+          </div>
+          <Tooltip delayDuration={200}>
+            <TooltipTrigger>
+              <Link
+                href="/blogs/rss.xml"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-foreground transition-colors"
+              >
+                <Rss size={14} aria-hidden="true" />
+              </Link>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p className="text-xs font-mono">$ subscribe --rss</p>
+            </TooltipContent>
+          </Tooltip>
         </div>
       </div>
 
-      <div className="border-b w-full" />
+      {/* Description Block */}
+      <div className="border-b bg-background p-3 mb-8">
+        <div className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider mb-1.5">$ cat readme.md</div>
+        <p className="text-xs font-mono text-muted-foreground leading-relaxed">
+          I like to write when I get stuck into some problem or learn something new which might help others. 
+          Here you'll find my thoughts, solutions, and discoveries from my coding journey.
+        </p>
+      </div>
 
-      <div
-        className="relative border-b"
-        style={{
-          backgroundImage: `repeating-linear-gradient(
-            45deg,
-            transparent,
-            transparent 20px,
-            color-mix(in srgb, currentColor 10%, transparent) 20px,
-            color-mix(in srgb, currentColor 10%, transparent) 21px
-          )`,
-        }}
-      >
+      {/* Blog Grid */}
+      <div className="">
         {posts.length === 0 ? (
-          <div className="text-center py-12 text-gray-500">
-            <p className="text-lg">No blog posts available at the moment.</p>
-            <p className="mt-2">Check back soon for new content!</p>
+          <div className="bg-background p-6 text-center">
+            <p className="text-xs font-mono text-muted-foreground">$ ls -la</p>
+            <p className="text-sm font-mono text-muted-foreground mt-2">→ No blog posts found</p>
+            <p className="text-xs font-mono text-muted-foreground mt-1">Check back soon for new content!</p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-px p-px">
             {posts.map((post, idx) => (
-              <div key={idx} className="blog-grid-item">
+              <div key={idx} className="bg-background p-2">
                 <BlogCard blog={post} />
               </div>
             ))}
           </div>
         )}
+      </div>
+
+      {/* Footer */}
+      <div className="border-b bg-background px-3 py-2 flex items-center justify-between">
+        <span className="text-[10px] font-mono text-muted-foreground">$ total: {posts.length} files</span>
+        <span className="text-[10px] font-mono text-muted-foreground animate-pulse">█</span>
       </div>
     </div>
   );

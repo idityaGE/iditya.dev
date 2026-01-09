@@ -6,6 +6,7 @@ import type { Metadata } from "next/types";
 import { siteConfig } from "@/config/site.config";
 import { ScrollProgress } from "@/components/magicui/scroll-progress";
 import { ThemeImage } from "@/components/theme/theme-image";
+import { Calendar, User } from "lucide-react";
 
 export async function generateMetadata({
   params,
@@ -72,60 +73,116 @@ export default async function Page({
   } = await import(`@/content/blogs/${slug}.mdx`);
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col mt-10">
       <ScrollProgress className="min-[1400px]:hidden" />
-      <div className="fixed top-24 border-y border-l px-4 py-2 right-[calc(50%+24rem)] z-50 hidden lg:inline-flex">
-        <BackButton href="/blogs" label="SEE ALL BLOGS" />
+      
+      {/* Fixed Back Button */}
+      <div className="fixed top-24 border-y border-l px-3 py-1.5 right-[calc(50%+24rem)] z-50 hidden lg:inline-flex bg-background">
+        <BackButton href="/blogs" label="← cd .." />
       </div>
+      
+      {/* Fixed TOC */}
       <aside className="hidden text-sm min-[1400px]:inline-flex">
-        <div className="fixed top-24 left-[calc(50%+24rem)] z-50 border-y border-r p-4">
+        <div className="fixed top-24 left-[calc(50%+24rem)] z-50 border-y border-r bg-background">
+          <div className="px-3 py-2 border-b">
+            <div className="flex items-center gap-2">
+              <div className="flex gap-1">
+                <span className="w-1.5 h-1.5 bg-red-500/80" />
+                <span className="w-1.5 h-1.5 bg-yellow-500/80" />
+                <span className="w-1.5 h-1.5 bg-green-500/80" />
+              </div>
+              <span className="text-[9px] font-mono text-muted-foreground">toc</span>
+            </div>
+          </div>
           <ScrollProgress
             orientation="vertical"
             className="left-[calc(49.9%+24rem)]"
           />
-          <TableOfContents toc={toc} />
+          <div className="p-3">
+            <TableOfContents toc={toc} />
+          </div>
         </div>
       </aside>
 
-      <div className="w-full flex flex-col mt-8">
-        <div className="flex flex-col items-start gap-2 mb-4 px-4">
-          <p className="px-3 py-1.5 font-semibold border text-xs bg-secondary inline-block self-start mb-2">
-            {new Date(metadata.date).toLocaleDateString("en-US", {
-              month: "long",
-              day: "numeric",
-              year: "numeric",
-            })}
-          </p>
-          <h1 className="text-4xl mb-2 font-grid">{metadata.title}</h1>
-          {(metadata.darkImage || metadata.lightImage) && (
-            <ThemeImage
-              darkSrc={metadata.darkImage}
-              lightSrc={metadata.lightImage}
-              alt={metadata.title}
-              width={1200}
-              height={630}
-              className="w-full rounded-lg mb-2"
-              priority
-            />
-          )}
+      {/* Terminal Header */}
+      <div className="border-y bg-background p-3">
+        <div className="flex items-center gap-2">
+          <div className="flex gap-1">
+            <span className="w-2 h-2 bg-red-500/80" />
+            <span className="w-2 h-2 bg-yellow-500/80" />
+            <span className="w-2 h-2 bg-green-500/80" />
+          </div>
+          <span className="text-[10px] font-mono text-muted-foreground">~/blogs/{slug}</span>
         </div>
+      </div>
 
-        <div
-          className="h-8 border-y w-full"
-          style={{
-            backgroundImage: `repeating-linear-gradient(
-              45deg,
-              transparent,
-              transparent 12px,
-              color-mix(in srgb, currentColor 10%, transparent) 12px,
-              color-mix(in srgb, currentColor 10%, transparent) 13px
-            )`,
-          }}
-        />
+      {/* Meta Info Block */}
+      <div className="border-b bg-background p-3">
+        <div className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider mb-2">$ git log --oneline</div>
+        <div className="flex items-center gap-4 text-xs font-mono">
+          <div className="flex items-center gap-1.5">
+            <Calendar size={12} className="text-muted-foreground" />
+            <span className="text-muted-foreground">
+              {new Date(metadata.date).toLocaleDateString("en-US", {
+                month: "long",
+                day: "numeric",
+                year: "numeric",
+              })}
+            </span>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <User size={12} className="text-muted-foreground" />
+            <span className="text-muted-foreground">{metadata.author}</span>
+          </div>
+        </div>
+      </div>
 
-        <article className="w-full leading-relaxed mt-4 px-4">
+      {/* Title Block */}
+      <div className="border-b bg-background p-3">
+        <div className="flex items-start gap-2">
+          <span className="text-green-500 text-sm font-mono flex-shrink-0">→</span>
+          <h1 className="text-xl font-mono font-bold leading-tight">{metadata.title}</h1>
+        </div>
+        {metadata.tags && metadata.tags.length > 0 && (
+          <div className="flex flex-wrap gap-1 mt-2 pl-5">
+            {metadata.tags.map((tag: string) => (
+              <span key={tag} className="px-1.5 py-0.5 text-[10px] font-mono bg-muted border text-muted-foreground">
+                {tag}
+              </span>
+            ))}
+          </div>
+        )}
+      </div>
+
+      {/* Image Block */}
+      {(metadata.darkImage || metadata.lightImage) && (
+        <div className="border-b bg-background p-3">
+          <div className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider mb-2">$ cat cover.png</div>
+          <ThemeImage
+            darkSrc={metadata.darkImage}
+            lightSrc={metadata.lightImage}
+            alt={metadata.title}
+            width={1200}
+            height={630}
+            className="w-full"
+            priority
+          />
+        </div>
+      )}
+
+      {/* Content Block */}
+      <div className="bg-background">
+        <div className="px-3 py-2 border-b bg-muted/20">
+          <span className="text-[10px] font-mono text-muted-foreground">$ cat content.md | render</span>
+        </div>
+        <article className="w-full leading-relaxed p-4">
           <Post />
         </article>
+      </div>
+
+      {/* Footer */}
+      <div className="border-b bg-background px-3 py-2 flex items-center justify-center">
+        <BackButton href="/blogs" label="← cd /blogs" />
       </div>
     </div>
   );

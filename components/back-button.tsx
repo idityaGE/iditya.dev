@@ -9,8 +9,7 @@ export const BackButton = ({
 }) => {
   return (
     <div className="flex items-baseline">
-      &lt;&nbsp;
-      <Link href={href} className="text-xs hover:underline font-mono">
+      <Link href={href} className="text-xs hover:text-green-500 font-mono">
         {label}
       </Link>
     </div>

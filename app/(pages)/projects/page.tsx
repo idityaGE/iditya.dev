@@ -1,9 +1,8 @@
 import { ProjectCard } from "@/features/project/components/project-card";
 import { ProjectData } from "@/config/project.config";
 import { LinkData } from "@/config/links.config";
-import { Mail, AlertTriangle } from "lucide-react";
+import { Mail, AlertTriangle, Rss } from "lucide-react";
 import Link from "next/link";
-import { Rss } from "lucide-react";
 import {
   Tooltip,
   TooltipContent,
@@ -18,92 +17,95 @@ const Projects = () => {
   const twitterUsername = getTwitterUsername(LinkData.twitter);
 
   return (
-    <div>
-      <header className="mb-10 mt-10 font-light">
-        <div className="px-4">
-          <div className="flex items-center justify-between mb-4">
-            <h1 className="text-3xl font-medium font-grid">Projects</h1>
-            <Tooltip delayDuration={200}>
-              <TooltipTrigger>
-                <Link
-                  href="/projects/rss.xml"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Rss size={24} aria-hidden="true" />
-                </Link>
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>Subscribe to RSS Feed</p>
-              </TooltipContent>
-            </Tooltip>
+    <div className="mt-10">
+      {/* Terminal Header */}
+      <div className="border-y  bg-background p-3">
+        <div className="flex items-center gap-2 mb-2">
+          <div className="flex gap-1">
+            <span className="w-2 h-2 bg-red-500/80" />
+            <span className="w-2 h-2 bg-yellow-500/80" />
+            <span className="w-2 h-2 bg-green-500/80" />
           </div>
-
-          <p className="text-base text-muted-foreground mb-5">
-            I love building side projects that solve either my own or someone
-            else's problems. Here is an extensive list of all the stuff I have
-            built.
-          </p>
-
-          <p className="text-base text-muted-foreground mb-6">
-            Want to discuss on projects or collaborate on something? Feel free
-            to&nbsp;
-            <Link
-              href={LinkData.twitter}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="dark:hover:text-white hover:text-black duration-300"
-              aria-label={`Contact me on Twitter @${twitterUsername}`}
-            >
-              @
-              <strong className="font-semibold underline underline-offset-2 px-1">
-                {twitterUsername}
-              </strong>
-            </Link>
-          </p>
+          <span className="text-[10px] font-mono text-muted-foreground">~/projects</span>
         </div>
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <h1 className="text-sm font-bold font-mono uppercase tracking-wider">Projects</h1>
+            <span className="text-[10px] font-mono text-muted-foreground">({ProjectData.length} repos)</span>
+          </div>
+          <Tooltip delayDuration={200}>
+            <TooltipTrigger>
+              <Link
+                href="/projects/rss.xml"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-foreground transition-colors"
+              >
+                <Rss size={14} aria-hidden="true" />
+              </Link>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p className="text-xs font-mono">$ subscribe --rss</p>
+            </TooltipContent>
+          </Tooltip>
+        </div>
+      </div>
 
-        <aside className="bg-muted/50 p-4 flex items-start gap-3" role="note">
-          <AlertTriangle
-            size={20}
-            className="text-amber-500 mt-0.5 flex-shrink-0"
-            aria-hidden="true"
-          />
-          <p className="text-sm text-muted-foreground">
-            These projects are hosted on free services that may occasionally
-            enter hibernation mode.
-            <br />
-            If you encounter any issues, please{" "}
-            <Link
-              href={LinkData.mail}
-              className="inline-flex items-center gap-1 font-semibold underline underline-offset-2 dark:hover:text-white hover:text-black duration-200"
-              aria-label="Send me an email"
-            >
-              contact me
-              <Mail size={18} aria-hidden="true" />
-            </Link>
-          </p>
-        </aside>
-      </header>
+      {/* Description Block */}
+      <div className="border-b  bg-background p-3">
+        <div className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider mb-1.5">$ cat readme.md</div>
+        <p className="text-xs font-mono text-muted-foreground leading-relaxed mb-2">
+          I love building side projects that solve either my own or someone else's problems.
+          Here is an extensive list of all the stuff I have built.
+        </p>
+        <p className="text-xs font-mono text-muted-foreground">
+          <span className="text-green-500">→</span> Want to collaborate?{" "}
+          <Link
+            href={LinkData.twitter}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-foreground hover:text-green-500 transition-colors"
+          >
+            @{twitterUsername}
+          </Link>
+        </p>
+      </div>
 
-      <main>
-        <div
-          className="flex flex-col gap-4"
-          style={{
-            backgroundImage: `repeating-linear-gradient(
-              45deg,
-              transparent,
-              transparent 12px,
-              color-mix(in srgb, currentColor 10%, transparent) 12px,
-              color-mix(in srgb, currentColor 10%, transparent) 13px
-            )`,
-          }}
-        >
+      {/* Warning Block */}
+      <div className="border-b  bg-background p-3">
+        <div className="flex items-start gap-2">
+          <AlertTriangle size={12} className="text-yellow-500 mt-0.5 flex-shrink-0" />
+          <div>
+            <div className="text-[10px] font-mono text-yellow-500 uppercase tracking-wider mb-1">$ warning</div>
+            <p className="text-[11px] font-mono text-muted-foreground">
+              Projects hosted on free services may enter hibernation mode.{" "}
+              <Link
+                href={LinkData.mail}
+                className="inline-flex items-center gap-1 text-foreground hover:text-green-500 transition-colors"
+              >
+                contact me <Mail size={10} />
+              </Link>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Project List */}
+      <div className="mt-8">
+        <div className="flex flex-col gap-px">
           {ProjectData.map((project) => (
-            <ProjectCard key={project.slug || project.title} {...project} />
+            <div key={project.slug || project.title} className="bg-background mb-4 px-2">
+              <ProjectCard {...project} />
+            </div>
           ))}
         </div>
-      </main>
+      </div>
+
+      {/* Footer */}
+      <div className="border-b bg-background px-3 py-2 flex items-center justify-between">
+        <span className="text-[10px] font-mono text-muted-foreground">$ total: {ProjectData.length} repos</span>
+        <span className="text-[10px] font-mono text-muted-foreground animate-pulse">█</span>
+      </div>
     </div>
   );
 };

@@ -61,7 +61,7 @@ const ProjectCard = ({
                 <StepForward size={12} />
               </span>
             </div>
-            <p className="text-sm text-secondary-foreground/80 font-light line-clamp-2">
+            <p className="text-sm text-secondary-foreground/80 font-light line-clamp-2 pr-2">
               {description}
             </p>
           </Link>

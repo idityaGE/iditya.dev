@@ -3,7 +3,7 @@ import { BASE_URL } from "@/utils"
 export const siteConfig = {
   name: "iditya.dev",
   title: "Adi 🍀",
-  description: "Hi, I'm Adii, I'm a software developer based in India. I have a passion for developing software that improves the lives of those around me. Fun fact: Weeb by Heart, Athlete by Skill. Bridging the Gap Between Otaku Passion and Sporting Excellence. (I watch anime too)",
+  description: "Hi, I'm Adii, I'm a software developer based in India. I loves coding, Linux, and breaking stuff to learn.",
   keywords: [
     "Aditya Portfolio",
     "iditya",
@@ -11,13 +11,12 @@ export const siteConfig = {
     "Aditya",
     "adi",
     "adii",
-    "iditya.tech",
+    "iditya.dev",
     "github.com/idityaGE",
     "programmer",
     "developer",
     "engineer",
     "x.com/idityage",
-    "computer science",
   ],
   siteUrl: BASE_URL,
   creator: {

@@ -28,3 +28,16 @@ export interface EducationListProps {
   location: string
   link?: string
 }
+
+export interface ExperienceItemProps {
+  company: string
+  position: string
+  type: "Job" | "Internship" | "Education"
+  location: string
+  startDate: string
+  endDate: string // Use "Present" for current positions
+  description: string[]
+  techStack: string[]
+  logo?: string // Placeholder for company logo
+  companyUrl?: string
+}

@@ -10,7 +10,7 @@ export const getTypeColor = (type: string): string => {
 };
 
 const BUTTON_CLASSES =
-  "inline-flex items-center px-2 py-1 border hover:underline text-xs font-medium transition-colors";
+  "inline-flex items-center px-2 py-1 border hover:text-green-500 text-xs font-medium transition-colors";
 
 interface ProjectTypeTagProps {
   type: string;

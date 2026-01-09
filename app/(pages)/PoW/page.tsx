@@ -8,69 +8,117 @@ export const metadata: Metadata = {
     "My proof of work across different domains - Web3, Open Source, and more.",
 };
 
+interface PoWCategory {
+  title: string;
+  description: string;
+  href?: string;
+  status: "available" | "coming-soon";
+}
+
+const categories: PoWCategory[] = [
+  {
+    title: "web-3/solana",
+    description: "Blockchain projects, smart contracts, and experiments",
+    href: "/PoW/web-3",
+    status: "available",
+  },
+  {
+    title: "open-source",
+    description: "Contributions to open source projects",
+    status: "coming-soon",
+  },
+  {
+    title: "devops",
+    description: "Infrastructure and deployment work",
+    status: "coming-soon",
+  },
+];
+
 const PoWPage = () => {
   return (
-    <div className="mt-10 px-4">
-      <header className="mb-10">
-        <h1 className="text-3xl font-medium font-grid mb-4">Proof of Work</h1>
-        <p className="text-base text-muted-foreground">
-          A collection of my work, contributions, and experiments across
-          different domains.
+    <div className="mt-10">
+      {/* Terminal Header */}
+      <div className="border-y bg-background p-3">
+        <div className="flex items-center gap-2 mb-2">
+          <div className="flex gap-1">
+            <span className="w-2 h-2 bg-red-500/80" />
+            <span className="w-2 h-2 bg-yellow-500/80" />
+            <span className="w-2 h-2 bg-green-500/80" />
+          </div>
+          <span className="text-[10px] font-mono text-muted-foreground">~/pow</span>
+        </div>
+        <div className="flex items-center justify-between">
+          <h1 className="text-sm font-bold font-mono uppercase tracking-wider">Proof of Work</h1>
+          <span className="text-[10px] font-mono text-muted-foreground">({categories.length} categories)</span>
+        </div>
+      </div>
+
+      {/* Description Block */}
+      <div className="border-b bg-background p-3">
+        <div className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider mb-1.5">$ cat readme.md</div>
+        <p className="text-xs font-mono text-muted-foreground leading-relaxed">
+          A collection of my work, contributions, and experiments across different domains.
         </p>
-      </header>
+      </div>
 
-      <main className="flex flex-col gap-4">
-        {/* Web3 - Available */}
-        <Link
-          href="/PoW/web-3"
-          className="group flex items-center justify-between px-4 py-4 border hover:bg-muted/30 transition-colors duration-200"
-        >
-          <div>
-            <h2 className="text-sm font-medium font-mono group-hover:underline underline-offset-2">
-              Web3 / Solana
-            </h2>
-            <p className="text-xs text-muted-foreground mt-1">
-              Blockchain projects, smart contracts, and experiments
-            </p>
-          </div>
-          <span className="text-xs px-2 py-1 bg-emerald-500/10 text-emerald-500 rounded">
-            Available
-          </span>
-        </Link>
-
-        {/* Coming Soon Items */}
-        <div className="flex items-center justify-between px-4 py-4 border opacity-60">
-          <div className="flex items-center gap-3">
-            <Construction size={16} className="text-muted-foreground" />
-            <div>
-              <h2 className="text-sm font-medium font-mono">Open Source</h2>
-              <p className="text-xs text-muted-foreground mt-1">
-                Contributions to open source projects
-              </p>
-            </div>
-          </div>
-          <span className="text-xs px-2 py-1 bg-muted text-muted-foreground rounded">
-            Coming Soon
-          </span>
+      {/* Categories List */}
+      <div className="mt-8 p-2">
+        <div className="flex flex-col gap-2">
+          {categories.map((category) => (
+            <CategoryCard key={category.title} category={category} />
+          ))}
         </div>
+      </div>
 
-        <div className="flex items-center justify-between px-4 py-4 border opacity-60">
-          <div className="flex items-center gap-3">
-            <Construction size={16} className="text-muted-foreground" />
-            <div>
-              <h2 className="text-sm font-medium font-mono">DevOps</h2>
-              <p className="text-xs text-muted-foreground mt-1">
-                Infrastructure and deployment work
-              </p>
-            </div>
-          </div>
-          <span className="text-xs px-2 py-1 bg-muted text-muted-foreground rounded">
-            Coming Soon
-          </span>
-        </div>
-      </main>
+      {/* Footer */}
+      <div className="border-b bg-background px-3 py-2 flex items-center justify-between">
+        <span className="text-[10px] font-mono text-muted-foreground">$ ls -la | wc -l</span>
+        <span className="text-[10px] font-mono text-muted-foreground animate-pulse">█</span>
+      </div>
     </div>
   );
+};
+
+const CategoryCard = ({ category }: { category: PoWCategory }) => {
+  const isAvailable = category.status === "available";
+
+  const content = (
+    <div className={`bg-background p-3 ${isAvailable ? "hover:bg-muted/30" : "opacity-60"} transition-colors border`}>
+      <div className="flex items-start justify-between gap-3">
+        <div className="flex items-start gap-2 min-w-0">
+          {isAvailable ? (
+            <span className="text-green-500 text-xs font-mono flex-shrink-0 mt-0.5">→</span>
+          ) : (
+            <Construction size={12} className="text-muted-foreground flex-shrink-0 mt-0.5" />
+          )}
+          <div className="min-w-0">
+            <h2 className={`text-xs font-mono font-bold ${isAvailable ? "group-hover:text-green-500" : ""} transition-colors`}>
+              {category.title}
+            </h2>
+            <p className="text-[11px] font-mono text-muted-foreground mt-0.5">
+              {category.description}
+            </p>
+          </div>
+        </div>
+        <span className={`px-1.5 py-0.5 text-[9px] font-mono flex-shrink-0 ${isAvailable
+            ? "bg-green-500/10 text-green-500 border border-green-500/20"
+            : "bg-muted text-muted-foreground border"
+          }`}>
+          {isAvailable ? "ready" : "pending"}
+        </span>
+      </div>
+    </div>
+  );
+
+  if (isAvailable && category.href) {
+    return (
+      <Link href={category.href} className="group">
+        {content}
+      </Link>
+    );
+  }
+
+  return content;
 };
 
 export default PoWPage;

@@ -182,15 +182,15 @@ export function SubmissionGraph({
               key={`${month.year}-${month.name}`}
               className="flex flex-col gap-[2px] shrink-0"
             >
-              <div className="flex gap-[1px]">
+              <div className="flex gap-[2.5px]">
                 {month.weeks.map((week, weekIndex) => (
-                  <div key={weekIndex} className="flex flex-col gap-[1px]">
+                  <div key={weekIndex} className="flex flex-col gap-[2.5px]">
                     {week.map((day, dayIndex) => (
                       <Tooltip key={dayIndex}>
                         <TooltipTrigger asChild>
                           <div
                             className={cn(
-                              "h-[8px] w-[8px] transition-colors",
+                              "h-[9px] w-[9px] transition-colors rounded-[1px]",
                               day === null && "invisible",
                               day?.level === 0 && "bg-muted",
                               day?.level === 1 && "bg-green-500/30",

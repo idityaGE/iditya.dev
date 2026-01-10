@@ -44,56 +44,41 @@ function LeetCodeStatsDisplay({
       {/* stats output */}
       <div className="flex-1 bg-border gap-px flex flex-col">
 
+        <div className="bg-background px-3 py-2">
+          <div className="flex items-center justify-between">
+            <span className="text-[10px] text-muted-foreground">$ lc stats --user {LEETCODE_USERNAME}</span>
+            <Link
+              href={`https://leetcode.com/u/${LEETCODE_USERNAME}`}
+              target="_blank"
+              className="text-[10px] text-muted-foreground hover:text-green-500 transition-colors"
+            >
+              view profile →
+            </Link>
+          </div>
+        </div>
+
         {/* main stats */}
-        <div className="bg-background px-3 py-3 flex-1">
-          <div className="grid grid-cols-2 gap-4">
-            {/* solved count */}
-            <div className="space-y-1">
-              <div className="text-[10px] text-muted-foreground uppercase tracking-wider">solved</div>
-              <div className="flex items-baseline gap-1">
-                <span className="text-2xl font-bold text-green-500">{solved}</span>
-                <span className="text-xs text-muted-foreground">/ {total}</span>
-              </div>
-              <div className="text-[10px] text-muted-foreground">{totalSubmissions.toLocaleString()} submissions</div>
-            </div>
-
-            {/* difficulty breakdown */}
-            <div className="space-y-2">
-              <div className="text-[10px] text-muted-foreground uppercase tracking-wider">breakdown</div>
-              
-              {/* easy */}
-              <div className="space-y-0.5">
-                <div className="flex items-center justify-between text-[10px]">
-                  <span className="text-green-500">easy</span>
-                  <span className="text-muted-foreground tabular-nums">{easy}/{easyTotal}</span>
-                </div>
-                <div className="h-1 bg-muted overflow-hidden">
-                  <div className="h-full bg-green-500 transition-all" style={{ width: `${easyPercent}%` }} />
-                </div>
-              </div>
-
-              {/* medium */}
-              <div className="space-y-0.5">
-                <div className="flex items-center justify-between text-[10px]">
-                  <span className="text-yellow-500">medium</span>
-                  <span className="text-muted-foreground tabular-nums">{medium}/{mediumTotal}</span>
-                </div>
-                <div className="h-1 bg-muted overflow-hidden">
-                  <div className="h-full bg-yellow-500 transition-all" style={{ width: `${mediumPercent}%` }} />
-                </div>
-              </div>
-
-              {/* hard */}
-              <div className="space-y-0.5">
-                <div className="flex items-center justify-between text-[10px]">
-                  <span className="text-red-500">hard</span>
-                  <span className="text-muted-foreground tabular-nums">{hard}/{hardTotal}</span>
-                </div>
-                <div className="h-1 bg-muted overflow-hidden">
-                  <div className="h-full bg-red-500 transition-all" style={{ width: `${hardPercent}%` }} />
-                </div>
-              </div>
-            </div>
+        <div className="flex">
+          {/* solved count */}
+          <div className="bg-background px-4 py-2 flex items-center gap-2 border-r border-border">
+            <span className="text-[10px] text-muted-foreground">solved:</span>
+            <span className="text-base font-bold text-green-500">{solved}</span>
+            <span className="text-[10px] text-muted-foreground">/{total}</span>
+          </div>
+          {/* easy */}
+          <div className="bg-background px-3 py-2 flex items-center gap-1.5 border-r border-border">
+            <span className="text-[10px] text-green-500">easy</span>
+            <span className="text-[10px] text-muted-foreground tabular-nums">{easy}/{easyTotal}</span>
+          </div>
+          {/* medium */}
+          <div className="bg-background px-3 py-2 flex items-center gap-1.5 border-r border-border">
+            <span className="text-[10px] text-yellow-500">med</span>
+            <span className="text-[10px] text-muted-foreground tabular-nums">{medium}/{mediumTotal}</span>
+          </div>
+          {/* hard */}
+          <div className="bg-background px-3 py-2 flex items-center gap-1.5 flex-1">
+            <span className="text-[10px] text-red-500">hard</span>
+            <span className="text-[10px] text-muted-foreground tabular-nums">{hard}/{hardTotal}</span>
           </div>
         </div>
       </div>
@@ -105,16 +90,29 @@ function LeetCodeStatsDisplay({
         </div>
       )}
 
-      <div className="bg-background border-y px-3 py-2">
-        <div className="flex items-center justify-between">
-          <span className="text-[10px] text-muted-foreground">$ lc stats --user {LEETCODE_USERNAME}</span>
-          <Link
-            href={`https://leetcode.com/u/${LEETCODE_USERNAME}`}
-            target="_blank"
-            className="text-[10px] text-muted-foreground hover:text-green-500 transition-colors"
-          >
-            view profile →
-          </Link>
+      {/* footer */}
+      <div className="border-y gap-px flex">
+        <div className="bg-background px-3 py-2 flex items-center gap-2 flex-1">
+          <span className="text-[10px] text-muted-foreground">
+            <span className="text-green-500">{totalSubmissions.toLocaleString()} </span>
+            submissions</span>
+        </div>
+        <div className="bg-background px-3 py-2 flex items-center">
+          <div className="flex items-center gap-[3px]">
+            <span className="mr-1 text-muted-foreground text-[10px]">Less</span>
+            {[0, 1, 2, 3, 4].map((level) => (
+              <div
+                key={level}
+                className={`h-2 w-2 ${level === 0 ? "bg-muted" :
+                  level === 1 ? "bg-green-500/30" :
+                    level === 2 ? "bg-green-500/50" :
+                      level === 3 ? "bg-green-500/70" :
+                        "bg-green-500"
+                  }`}
+              />
+            ))}
+            <span className="ml-1 text-muted-foreground text-[10px]">More</span>
+          </div>
         </div>
       </div>
     </div>

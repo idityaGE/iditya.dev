@@ -1,73 +1,97 @@
 import { PersonalData } from "@/config/personal.config";
 import { LinkData } from "@/config/links.config";
+import { FileText } from "lucide-react";
 
 export const Hero = () => {
   return (
-    <div className="ml-4 mb-10 relative">
-      <div className="absolute -top-10 right-0 p-4">
-        <div className="flex items-center gap-1.5">
-          <div className="relative flex h-2.5 w-2.5">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-accent"></span>
+    <div className="mt-10">
+      {/* Terminal Header */}
+      <div className="border-y bg-background p-3">
+        <div className="flex items-center gap-2 mb-2">
+          <div className="flex gap-1">
+            <span className="w-2 h-2 bg-red-500/80" />
+            <span className="w-2 h-2 bg-yellow-500/80" />
+            <span className="w-2 h-2 bg-green-500/80" />
           </div>
-          <span className="text-xs text-muted-foreground uppercase font-light">
-            Available for hire
-          </span>
+          <span className="text-[10px] font-mono text-muted-foreground">~/home</span>
+        </div>
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <span className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider">$ whoami</span>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <span className="relative flex h-1.5 w-1.5">
+              <span className="animate-ping absolute inline-flex h-full w-full bg-green-500 opacity-75" />
+              <span className="relative inline-flex h-1.5 w-1.5 bg-green-500" />
+            </span>
+            <span className="text-[10px] font-mono text-muted-foreground">available</span>
+          </div>
         </div>
       </div>
 
-      <div id="name">
-        <div className="flex items-center gap-1.5 font-mono text-sm tracking-tighter text-muted-foreground">
-          <span>Hey It&apos;s me</span>
+      {/* Name Block */}
+      <div className="border-b bg-background p-3">
+        <div className="flex items-center gap-2 text-xs font-mono text-muted-foreground mb-1">
+          <span className="text-green-500">→</span>
+          <span>hey, it&apos;s me</span>
         </div>
-
-        <div className="flex items-baseline gap-2">
-          <h1 className="font-grid text-4xl uppercase leading-8">
-            <span className="relative">{PersonalData.name}</span>
+        <div className="flex items-baseline gap-2 flex-wrap">
+          <h1 className="text-xl font-mono font-bold uppercase tracking-wide">
+            {PersonalData.name}
           </h1>
           <a
             href={LinkData.twitter}
             target="_blank"
-            className="group flex items-center gap-1 font-mono text-sm font-light tracking-tight text-muted-foreground duration-200 hover:text-foreground -translate-y-0.5"
+            className="flex items-center gap-1 font-mono text-[11px] text-muted-foreground hover:text-green-500 transition-colors"
           >
-            <span className="font-light">/</span>
-            <span className="text-[10px] sm:text-xs">@</span>
-            <span>{LinkData.twitter.split("/").pop()}</span>
+            <span className="text-muted-foreground/50">/</span>
+            <span>@{LinkData.twitter.split("/").pop()}</span>
           </a>
         </div>
       </div>
 
-      <div className="mt-4 max-w-xl">
-        <div className="text-sm text-muted-foreground">
-          <p>
-            Just someone who loves{" "}
-            <span className="font-medium text-foreground">coding</span>,{" "}
-            <span className="font-medium text-foreground">Linux</span>, and{" "}
-            <span className="font-medium text-foreground">breaking stuff</span>{" "}
-            to learn.
+      {/* About Block */}
+      <div className="border-b bg-background p-3">
+        <div className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider mb-2">$ cat about.txt</div>
+        <div className="space-y-2 text-xs font-mono text-muted-foreground">
+          <p className="flex items-start gap-2">
+            <span className="text-green-500 flex-shrink-0">→</span>
+            <span>
+              full-stack developer with a knack for{" "}
+              <span className="text-foreground">devops</span> and currently diving deep into{" "}
+              <span className="text-foreground">web3</span>. i spend most of my time building things,
+              breaking them, and figuring out why they broke.
+            </span>
           </p>
-          <p>
-            Exploring <span className="font-medium text-foreground">tech</span>,{" "}
-            <span className="font-medium text-foreground">devops</span>,{" "}
-            <span className="font-medium text-foreground">web3</span>, and
-            enjoying the{" "}
-            <span className="font-medium text-foreground">chaos</span>.
+          <p className="flex items-start gap-2">
+            <span className="text-green-500 flex-shrink-0">→</span>
+            <span>
+              also have a thing for{" "}
+              <span className="text-foreground">linux</span>,{" "}
+              <span className="text-foreground">networking</span>, and{" "}
+              <span className="text-foreground">system design</span> —
+              basically anything that lets me understand how stuff actually works under the hood.
+            </span>
           </p>
-          <p className="opacity-80">(you know what I&apos;m talking about!)</p>
+          <p className="flex items-start gap-2 opacity-70">
+            <span className="text-green-500 flex-shrink-0">→</span>
+            <span>(you know the rabbit holes... they never end)</span>
+          </p>
         </div>
       </div>
 
-      <div className="absolute -bottom-8 right-4">
-        <span>[&nbsp;</span>
+      {/* Resume Block */}
+      <div className="border-b bg-background px-3 py-2 flex items-center justify-between">
+        <span className="text-[10px] font-mono text-muted-foreground">$ ls ~/docs</span>
         <a
           href="/resume.pdf"
           download="Aditya_Resume.pdf"
-          className="text-sm font-light decoration-1 underline-offset-4 hover:text-primary hover:underline text-muted-foreground"
-          about="Resume Link"
+          className="flex items-center gap-1.5 text-[10px] font-mono text-muted-foreground hover:text-green-500 transition-colors"
         >
-          /resume.pdf
+          <FileText size={12} />
+          <span>resume.pdf</span>
+          <span className="text-green-500">↓</span>
         </a>
-        <span>&nbsp;]</span>
       </div>
     </div>
   );

@@ -45,13 +45,6 @@ export const Bento = () => {
       className: "md:col-start-3 md:col-end-5 md:row-start-2 md:row-end-4",
     },
     {
-      Icon: MapPin,
-      name: `${PersonalData.address.city}, ${PersonalData.address.country}`,
-      terminalCmd: "$ location",
-      background: <GlobeCard />,
-      className: "md:row-start-4 md:row-end-5 md:col-start-3 md:col-end-5",
-    },
-    {
       Icon: Layers,
       name: "tech stack",
       terminalCmd: "$ skills",

@@ -23,8 +23,15 @@ import {
   SiGraphql,
   SiNginx,
   SiApachekafka,
+  SiAstro
 } from "@icons-pack/react-simple-icons";
 import { cn } from "@/lib/utils";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 const skills = [
   { icon: SiTypescript, name: "typescript", color: "#3178C6" },
@@ -51,28 +58,35 @@ const skills = [
   { icon: SiGraphql, name: "graphql", color: "#E10098" },
   { icon: SiNginx, name: "nginx", color: "#009639" },
   { icon: SiApachekafka, name: "kafka", color: "currentColor" },
+  { icon: SiAstro, name: "Astro", color: "currentColor" },
 ];
 
 export function SkillCard() {
   return (
-    <div className="h-full flex flex-col font-mono">
-      <div className="flex-1 bg-border gap-px grid grid-cols-6">
-        {skills.map((skill) => (
-          <div
-            key={skill.name}
-            className={cn(
-              "bg-background flex items-center justify-center p-2",
-              "group transition-colors hover:bg-muted"
-            )}
-            title={skill.name}
-          >
-            <skill.icon
-              className="w-5 h-5 text-muted-foreground group-hover:text-foreground transition-colors"
-              // color={skill.color}
-            />
-          </div>
-        ))}
+    <TooltipProvider>
+      <div className="h-full flex flex-col font-mono">
+        <div className="flex-1 bg-border gap-px grid grid-cols-6">
+          {skills.map((skill) => (
+            <Tooltip key={skill.name}>
+              <TooltipTrigger asChild>
+                <div
+                  className={cn(
+                    "bg-background flex items-center justify-center p-2",
+                    "group transition-colors hover:bg-muted cursor-default"
+                  )}
+                >
+                  <skill.icon
+                    className="w-5 h-5 text-muted-foreground group-hover:text-foreground transition-colors"
+                  />
+                </div>
+              </TooltipTrigger>
+              <TooltipContent className="font-mono text-[10px]">
+                {skill.name}
+              </TooltipContent>
+            </Tooltip>
+          ))}
+        </div>
       </div>
-    </div>
+    </TooltipProvider>
   );
 }

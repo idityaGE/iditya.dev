@@ -1,5 +1,4 @@
 import { ConnectCard } from "./cards/connect";
-import { GlobeCard } from "./cards/globe";
 import { Projects } from "./cards/project";
 import { SkillCard } from "./cards/skills";
 import { BlogCard } from "./cards/blog";
@@ -38,17 +37,17 @@ export const Bento = () => {
       className: "md:col-start-1 md:col-end-3 md:row-start-2 md:row-end-3",
     },
     {
-      Icon: BookIcon,
-      name: "blogs",
-      terminalCmd: "$ cat latest",
-      background: <BlogCard />,
-      className: "md:col-start-3 md:col-end-5 md:row-start-2 md:row-end-4",
-    },
-    {
       Icon: Layers,
       name: "tech stack",
       terminalCmd: "$ skills",
       background: <SkillCard />,
+      className: "md:col-start-3 md:col-end-5 md:row-start-2 md:row-end-5",
+    },
+    {
+      Icon: BookIcon,
+      name: "blogs",
+      terminalCmd: "$ cat latest",
+      background: <BlogCard />,
       className: "md:col-start-1 md:col-end-3 md:row-start-3 md:row-end-5",
     },
     {

@@ -24,7 +24,7 @@ export const Hero = () => {
               <span className="animate-ping absolute inline-flex h-full w-full bg-green-500 opacity-75" />
               <span className="relative inline-flex h-1.5 w-1.5 bg-green-500" />
             </span>
-            <span className="text-[10px] font-mono text-muted-foreground">available</span>
+            <span className="text-[10px] font-mono text-muted-foreground">Ajmer, India</span>
           </div>
         </div>
       </div>

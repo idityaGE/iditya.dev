@@ -67,7 +67,6 @@ export const Bento = () => {
     },
     {
       Icon: LucideSheet,
-      makeAbsolute: true,
       name: "leetcode",
       terminalCmd: "$ lc stats",
       background: <LeetCodeStatsCard />,

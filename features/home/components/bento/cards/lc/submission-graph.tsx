@@ -12,7 +12,6 @@ import { LEETCODE_USERNAME } from "@/config/links.config";
 
 interface SubmissionGraphProps {
   submissionCalendar: string;
-  totalSubmissions: number;
   className?: string;
 }
 
@@ -157,7 +156,6 @@ function generateYearData(submissionMap: Map<string, number>): MonthData[] {
 
 export function SubmissionGraph({
   submissionCalendar,
-  totalSubmissions,
   className,
 }: SubmissionGraphProps) {
   const { monthsData } = useMemo(() => {
@@ -171,38 +169,41 @@ export function SubmissionGraph({
     <TooltipProvider delayDuration={100}>
       <div
         className={cn(
-          "flex w-full max-w-full flex-col gap-2 mx-auto pt-3 pb-2 px-4",
+          "flex w-full max-w-full flex-col gap-1 mx-auto py-2 px-3 font-mono",
           className
         )}
       >
-        <div className="flex gap-1 overflow-x-auto no-scrollbar sm:justify-center">
+        <div className="text-[10px] text-muted-foreground mb-1">
+          <span className="text-green-500">$</span> lc calendar --year
+        </div>
+        <div className="flex gap-[2px] overflow-x-auto no-scrollbar sm:justify-center">
           {monthsData.map((month) => (
             <div
               key={`${month.year}-${month.name}`}
-              className="flex flex-col gap-1 shrink-0"
+              className="flex flex-col gap-[2px] shrink-0"
             >
-              <div className="flex gap-[2px]">
+              <div className="flex gap-[1px]">
                 {month.weeks.map((week, weekIndex) => (
-                  <div key={weekIndex} className="flex flex-col gap-[2px]">
+                  <div key={weekIndex} className="flex flex-col gap-[1px]">
                     {week.map((day, dayIndex) => (
                       <Tooltip key={dayIndex}>
                         <TooltipTrigger asChild>
                           <div
                             className={cn(
-                              "h-[9px] w-[9px] transition-colors",
+                              "h-[8px] w-[8px] transition-colors",
                               day === null && "invisible",
                               day?.level === 0 && "bg-muted",
-                              day?.level === 1 && "bg-muted-foreground/40",
-                              day?.level === 2 && "bg-muted-foreground/50",
-                              day?.level === 3 && "bg-muted-foreground/60",
-                              day?.level === 4 && "bg-muted-foreground/80"
+                              day?.level === 1 && "bg-green-500/30",
+                              day?.level === 2 && "bg-green-500/50",
+                              day?.level === 3 && "bg-green-500/70",
+                              day?.level === 4 && "bg-green-500"
                             )}
                           />
                         </TooltipTrigger>
                         {day && (
                           <TooltipContent
                             side="top"
-                            className="text-xs font-sans"
+                            className="text-[10px] font-mono border-border"
                           >
                             <p>
                               {day.count} submission{day.count !== 1 ? "s" : ""}{" "}
@@ -210,7 +211,6 @@ export function SubmissionGraph({
                               {day.date.toLocaleDateString("en-US", {
                                 month: "short",
                                 day: "numeric",
-                                year: "numeric",
                               })}
                             </p>
                           </TooltipContent>
@@ -220,24 +220,11 @@ export function SubmissionGraph({
                   </div>
                 ))}
               </div>
-              <span className="text-center text-[12px] text-muted-foreground">
-                {month.name}
+              <span className="text-center text-[8px] text-muted-foreground">
+                {month.name.toLowerCase()}
               </span>
             </div>
           ))}
-        </div>
-
-        <div className="text-muted-foreground text-sm pl-0 md:pl-2">
-          {totalSubmissions.toLocaleString("en")} submissions on{" "}
-          <a
-            className="font-medium underline underline-offset-4"
-            href={`https://leetcode.com/u/${LEETCODE_USERNAME}`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            LeetCode
-          </a>
-          .
         </div>
       </div>
     </TooltipProvider>

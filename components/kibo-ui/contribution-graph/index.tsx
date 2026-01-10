@@ -329,10 +329,10 @@ export const ContributionGraphBlock = ({
     <rect
       className={cn(
         'data-[level="0"]:fill-muted',
-        'data-[level="1"]:fill-muted-foreground/30',
-        'data-[level="2"]:fill-muted-foreground/50',
-        'data-[level="3"]:fill-muted-foreground/60',
-        'data-[level="4"]:fill-muted-foreground/80',
+        'data-[level="1"]:fill-green-500/30',
+        'data-[level="2"]:fill-green-500/50',
+        'data-[level="3"]:fill-green-500/70',
+        'data-[level="4"]:fill-green-500',
         className
       )}
       data-count={activity.count}
@@ -496,10 +496,10 @@ export const ContributionGraphLegend = ({
               className={cn(
                 "stroke-[1px] stroke-border",
                 'data-[level="0"]:fill-muted',
-                'data-[level="1"]:fill-muted-foreground/30',
-                'data-[level="2"]:fill-muted-foreground/40',
-                'data-[level="3"]:fill-muted-foreground/60',
-                'data-[level="4"]:fill-muted-foreground/80'
+                'data-[level="1"]:fill-green-500/30',
+                'data-[level="2"]:fill-green-500/50',
+                'data-[level="3"]:fill-green-500/70',
+                'data-[level="4"]:fill-green-500'
               )}
               data-level={level}
               height={blockSize}

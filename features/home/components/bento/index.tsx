@@ -19,7 +19,6 @@ import {
   BentoGrid,
   BentoCardProps,
 } from "@/components/magicui/bento-grid";
-import { PersonalData } from "@/config/personal.config";
 
 export const Bento = () => {
   const features: BentoCardProps[] = [

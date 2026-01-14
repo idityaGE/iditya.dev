@@ -58,7 +58,7 @@ function LeetCodeStatsDisplay({
         </div>
 
         {/* main stats */}
-        <div className="flex">
+        <div className="flex overflow-auto no-scrollbar">
           {/* solved count */}
           <div className="bg-background px-4 py-2 flex items-center gap-2 border-r border-border">
             <span className="text-[10px] text-muted-foreground">solved:</span>

@@ -32,7 +32,6 @@ import {
 } from "@/components/ui/command";
 import { Kbd } from "@/components/ui/kbd";
 import { LinkData } from "@/config/links.config";
-import { Separator } from "../ui/separator";
 
 interface Blog {
   slug: string;
@@ -207,14 +206,13 @@ export function CommandMenu({ blogs = [], projects = [] }: CommandMenuProps) {
     <>
       <button
         onClick={() => setOpen(true)}
-        className="inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors"
+        className="inline-flex items-center gap-1.5 text-[10px] text-muted-foreground hover:text-green-500 transition-colors font-mono"
       >
-        <span className="text-lg pb-0.5">[</span>
-        <span className="hidden sm:inline">Press</span>
-        <Kbd className="pointer-events-none">
-          <span className="text-xs">⌘</span>K
+        <span className="text-green-500">$</span>
+        <span className="hidden sm:inline">cmd</span>
+        <Kbd className="pointer-events-none text-[10px]">
+          ⌘ K
         </Kbd>
-        <span className="text-lg pb-0.5">]</span>
       </button>
 
       <CommandDialog
@@ -223,9 +221,9 @@ export function CommandMenu({ blogs = [], projects = [] }: CommandMenuProps) {
         value={value}
         onValueChange={handleValueChange}
       >
-        <CommandInput placeholder="Type a command or search..." />
+        <CommandInput placeholder="type a command or search..." />
         <CommandList>
-          <CommandEmpty>No results found.</CommandEmpty>
+          <CommandEmpty>command not found.</CommandEmpty>
 
           {/* Pages */}
           <CommandGroup heading="Pages">
@@ -393,15 +391,20 @@ export function CommandMenu({ blogs = [], projects = [] }: CommandMenuProps) {
         </CommandList>
 
         {/* Footer */}
-        <div className="flex items-center justify-end gap-4 border-t px-3 py-2 text-xs text-muted-foreground bg-accent/20">
+        <div className="flex items-center justify-between border-t border-border px-3 py-2 text-[10px] text-muted-foreground bg-background font-mono">
           <div className="flex items-center gap-1">
+            <span className="text-green-500">→</span>
             <span>{actionText}</span>
-            <Kbd>↵</Kbd>
           </div>
-          <Separator orientation="vertical" className="h-4" />
-          <div className="flex items-center gap-1">
-            <span>Exit</span>
-            <Kbd>Esc</Kbd>
+          <div className="flex items-center gap-3">
+            <div className="flex items-center gap-1">
+              <span>run</span>
+              <Kbd className="text-[10px]">↵</Kbd>
+            </div>
+            <div className="flex items-center gap-1">
+              <span>exit</span>
+              <Kbd className="text-[10px]">esc</Kbd>
+            </div>
           </div>
         </div>
       </CommandDialog>

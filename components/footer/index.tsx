@@ -73,7 +73,7 @@ export const Footer = () => {
                 <span className="text-green-500">→</span> blogs
               </Link>
               <Link href="/PoW" className="text-[11px] font-mono text-muted-foreground hover:text-green-500 transition-colors">
-                <span className="text-green-500">→</span> pow
+                <span className="text-green-500">→</span> proof of work
               </Link>
               <Link href="/rss.xml" target="_blank" className="text-[11px] font-mono text-muted-foreground hover:text-green-500 transition-colors">
                 <span className="text-green-500">→</span> rss

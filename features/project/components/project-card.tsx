@@ -29,7 +29,7 @@ const ProjectCard = ({
         }`}
     >
       {/* Terminal Header */}
-      <div className="px-2.5 py-2 border-b bg-background">
+      <div className="px-2.5 py-2 bg-muted/70">
         <div className="flex items-center gap-2">
           <div className="flex gap-1">
             <span className="w-2 h-2 bg-red-500/80" />

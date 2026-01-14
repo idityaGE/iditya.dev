@@ -392,13 +392,9 @@ export function CommandMenu({ blogs = [], projects = [] }: CommandMenuProps) {
 
         {/* Footer */}
         <div className="flex items-center justify-between border-t border-border px-3 py-2 text-[10px] text-muted-foreground bg-background font-mono">
-          <div className="flex items-center gap-1">
-            <span className="text-green-500">→</span>
-            <span>{actionText}</span>
-          </div>
-          <div className="flex items-center gap-3">
+          <div className="flex justify-end w-full gap-3">
             <div className="flex items-center gap-1">
-              <span>run</span>
+              <span>{actionText}</span>
               <Kbd className="text-[10px]">↵</Kbd>
             </div>
             <div className="flex items-center gap-1">

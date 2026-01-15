@@ -28,6 +28,6 @@ export const ExperienceData: ExperienceItemProps[] = [
       "AI SDK",
     ],
     logo: "https://www.hooman.digital/favicon.svg",
-    companyUrl: "https://hoomandigital.com",
+    companyUrl: "https://hooman.digital",
   }
 ];

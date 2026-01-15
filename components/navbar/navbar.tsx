@@ -69,7 +69,7 @@ export const NavItem = ({ to, label }: NavLinks) => {
       href={to}
       className="font-mono text-[12.5px] text-muted-foreground hover:text-foreground transition-colors flex items-center gap-0.5"
     >
-      <span className="text-muted-foreground/50">/</span>
+      <span>/</span>
       {label}
     </Link>
   );

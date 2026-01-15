@@ -8,11 +8,11 @@ import { ListMinusIcon } from 'lucide-react';
 
 const DEPTH_STYLES = {
   1: "",
-  2: "pl-2",
-  3: "pl-4",
-  4: "pl-8",
-  5: "pl-10",
-  6: "pl-12"
+  2: "pl-3",
+  3: "pl-6",
+  4: "pl-9",
+  5: "pl-12",
+  6: "pl-15"
 } as const;
 
 const HEADER_OFFSET = 100; // Offset for fixed header
@@ -34,17 +34,21 @@ const TableOfContentsItem = memo(function TableOfContentsItem({
   }, [id, onItemClick]);
 
   const linkClassName = useMemo(() => cn(
-    "block transition-colors py-0.5 text-[0.85rem] leading-5",
-    "truncate max-w-[220px] hover:text-primary",
+    "block transition-colors py-0.5 text-[11px] leading-4 font-mono",
+    "truncate max-w-[200px] hover:text-green-500",
     isActive
-      ? "text-primary font-semibold"
+      ? "text-green-500"
       : "text-muted-foreground",
     DEPTH_STYLES[item.depth as keyof typeof DEPTH_STYLES] || ""
   ), [isActive, item.depth]);
 
   return (
     <li>
-      <div className="flex">
+      <div className="flex items-center gap-1">
+        <span className={cn(
+          "text-[10px] transition-colors",
+          isActive ? "text-green-500" : "text-transparent"
+        )}>→</span>
         <Link
           href={`#${id}`}
           className={linkClassName}
@@ -220,9 +224,9 @@ export function TableOfContents({ toc }: { toc: TocEntry[] }) {
   }
 
   return (
-    <div className='max-w-[300px]'>
+    <div className='max-w-[300px] bg-background'>
       <nav aria-label="Table of contents">
-        <ul className="space-y-1 max-h-[70vh] overflow-y-auto pr-2" ref={tocListRef}>
+        <ul className="max-h-[60vh] overflow-y-auto no-scrollbar" ref={tocListRef}>
           {toc.map((item, index) => (
             <TableOfContentsItem
               key={`${item.value}-${index}`}

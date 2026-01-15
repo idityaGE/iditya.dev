@@ -109,7 +109,7 @@ export const Footer = () => {
         <p className="text-[10px] font-mono text-muted-foreground flex items-center gap-1">
           <span className="hidden sm:inline">open source on</span>
           <Link
-            href={`https://github.com/${GITHUB_USERNAME}/portfolio`}
+            href={`https://github.com/${GITHUB_USERNAME}/iditya.dev`}
             target="_blank"
             className="hover:text-green-500 transition-colors flex items-center gap-1"
           >

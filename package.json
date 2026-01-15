@@ -25,7 +25,6 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
-    "cobe": "^0.6.4",
     "date-fns": "^4.1.0",
     "feed": "^5.1.0",
     "leetcode-query": "^2.0.1",
@@ -39,15 +38,13 @@
     "prism-react-renderer": "^2.4.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-icon-cloud": "4.1.7",
     "rehype-highlight": "^7.0.2",
     "remark-frontmatter": "^5.0.0",
     "remark-gfm": "^4.0.1",
     "remark-mdx-frontmatter": "^5.2.0",
     "remark-mdx-toc": "^0.3.1",
     "shiki": "^3.6.0",
-    "tailwind-merge": "^3.3.1",
-    "vaul": "^1.1.2"
+    "tailwind-merge": "^3.3.1"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

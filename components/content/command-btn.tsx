@@ -13,8 +13,8 @@ export function CommandBtn({
       <ScriptCopyBtn
         showMultiplePackageOptions={true}
         codeLanguage="shell"
-        lightTheme="min-light"
-        darkTheme="vitesse-dark"
+        lightTheme="one-light"
+        darkTheme="dracula"
         commandMap={command}
       />
     </div>

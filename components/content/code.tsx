@@ -1,6 +1,6 @@
 "use client";
 
-import { CodeSnippet } from "@/components/ui/code-snippets";
+import { CodeSnippet, themes } from "@/components/ui/code-snippets";
 import { CommandBtn } from "@/components/content/command-btn";
 import React, { isValidElement } from "react";
 
@@ -84,6 +84,10 @@ export const Code = ({ children, className }: CodeProps) => {
         code={code.trim()}
         language={language}
         showLineNumbers={true}
+        adaptiveTheme={{
+          light: themes.lightTheme,
+          dark: themes.githubDark,
+        }}
       />
     </div>
   );

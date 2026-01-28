@@ -152,14 +152,12 @@ const CopyButton = ({ value, className, ...props }: InlineCopyButtonProps) => {
     >
       <span className="sr-only">{copied ? "Copied" : "Copy"}</span>
       <Copy
-        className={`h-4 w-4 transition-all duration-300 ${
-          copied ? "scale-0" : "scale-100"
-        }`}
+        className={`h-4 w-4 transition-all duration-300 ${copied ? "scale-0" : "scale-100"
+          }`}
       />
       <Check
-        className={`absolute inset-0 m-auto h-4 w-4 transition-all duration-300 ${
-          copied ? "scale-100" : "scale-0"
-        }`}
+        className={`absolute inset-0 m-auto h-4 w-4 transition-all duration-300 ${copied ? "scale-100" : "scale-0"
+          }`}
       />
     </Button>
   );
@@ -168,6 +166,8 @@ const CopyButton = ({ value, className, ...props }: InlineCopyButtonProps) => {
 /* =========================
    Inline theme definitions
    ========================= */
+
+// Default dark (original)
 const defaultTheme: PrismTheme = {
   plain: { color: "#FFFFFF", backgroundColor: "#151515" },
   styles: [
@@ -178,7 +178,7 @@ const defaultTheme: PrismTheme = {
     },
     {
       types: ["variable"],
-      style: { color: "#77b7d7" }, // Using same color as keywords for consistency
+      style: { color: "#77b7d7" },
     },
     { types: ["tag"], style: { color: "#dfab5c" } },
     { types: ["punctuation", "symbol", "dom"], style: { color: "#ffffff" } },
@@ -187,6 +187,23 @@ const defaultTheme: PrismTheme = {
     { types: ["static", "number", "boolean"], style: { color: "#ff6658" } },
   ],
 };
+
+
+// GitHub Dark theme
+const githubDark: PrismTheme = {
+  plain: { color: "#e6edf3", backgroundColor: "#0d1117" },
+  styles: [
+    { types: ["comment"], style: { color: "#8b949e", fontStyle: "italic" } },
+    { types: ["keyword", "property", "attr-name"], style: { color: "#ff7b72" } },
+    { types: ["variable"], style: { color: "#ffa657" } },
+    { types: ["tag"], style: { color: "#7ee787" } },
+    { types: ["punctuation", "symbol"], style: { color: "#e6edf3" } },
+    { types: ["definition", "function"], style: { color: "#d2a8ff" } },
+    { types: ["string", "char", "attr-value"], style: { color: "#a5d6ff" } },
+    { types: ["number", "boolean"], style: { color: "#79c0ff" } },
+  ],
+};
+
 
 const lightTheme: PrismTheme = {
   plain: { color: "#24292e", backgroundColor: "#FFFFFF" },
@@ -206,6 +223,13 @@ const lightTheme: PrismTheme = {
     { types: ["string", "char", "attr-value"], style: { color: "#032f62" } },
     { types: ["static", "number", "boolean"], style: { color: "#005cc5" } },
   ],
+};
+
+// Export all themes for external use
+export const themes = {
+  githubDark,
+  defaultTheme,
+  lightTheme,
 };
 
 /* =========================
@@ -321,8 +345,8 @@ export const CodeSnippet: React.FC<CodeSnippetProps> = ({
                           : "border-b-zinc-50 text-zinc-50"
                         : selectedTheme.plain?.backgroundColor?.toLowerCase() ===
                           "#ffffff"
-                        ? "text-zinc-600 hover:text-zinc-800"
-                        : "text-zinc-400 hover:text-zinc-200"
+                          ? "text-zinc-600 hover:text-zinc-800"
+                          : "text-zinc-400 hover:text-zinc-200"
                     )}
                   >
                     {key}
@@ -380,11 +404,11 @@ export const CodeSnippet: React.FC<CodeSnippetProps> = ({
                   {...getLineProps({ line })}
                   className="flex items-center py-px px-4"
                   onMouseEnter={(e) =>
-                    (e.currentTarget.style.backgroundColor =
-                      selectedTheme.plain?.backgroundColor?.toLowerCase() ===
+                  (e.currentTarget.style.backgroundColor =
+                    selectedTheme.plain?.backgroundColor?.toLowerCase() ===
                       "#ffffff"
-                        ? "#f5f5f5"
-                        : "#202020")
+                      ? "#f5f5f5"
+                      : "#202020")
                   }
                   onMouseLeave={(e) =>
                     (e.currentTarget.style.backgroundColor = "transparent")

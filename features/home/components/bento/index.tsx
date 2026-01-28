@@ -18,7 +18,7 @@ import {
   BentoCard,
   BentoGrid,
   BentoCardProps,
-} from "@/components/magicui/bento-grid";
+} from "@/components/ui/magicui/bento-grid";
 
 export const Bento = () => {
   const features: BentoCardProps[] = [

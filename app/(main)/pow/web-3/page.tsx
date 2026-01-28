@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { Github } from "lucide-react";
-import { BackButton } from "@/components/back-button";
+import { BackButton } from "@/features/blog/components/back-button";
 
 export const metadata: Metadata = {
   title: "Web3 Proof of Work",
@@ -100,7 +100,7 @@ const PoWPage = () => {
 
       {/* Footer */}
       <div className="border-b bg-background px-3 py-2 flex items-center justify-between">
-        <BackButton href="/PoW" label="← cd .." />
+        <BackButton href="/pow" label="← cd .." />
         <span className="text-[10px] font-mono text-muted-foreground">total: {powItems.length}</span>
       </div>
     </div>

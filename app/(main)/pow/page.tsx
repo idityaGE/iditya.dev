@@ -19,7 +19,7 @@ const categories: PoWCategory[] = [
   {
     title: "web-3/solana",
     description: "Blockchain projects, smart contracts, and experiments",
-    href: "/PoW/web-3",
+    href: "/pow/web-3",
     status: "available",
   },
   {

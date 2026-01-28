@@ -1,4 +1,4 @@
-import { ScriptCopyBtn } from "@/components/magicui/script-copy-btn";
+import { ScriptCopyBtn } from "@/components/ui/magicui/script-copy-btn";
 
 export function CommandBtn({
   command,

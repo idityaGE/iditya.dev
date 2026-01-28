@@ -1,6 +1,6 @@
 import React from "react";
-import { LinkData, GITHUB_USERNAME } from "@/config/links.config";
-import { Mail, Github, Twitter, Linkedin, Heart } from "lucide-react";
+import { LinkData, GITHUB_USERNAME } from "@/config/personal.config";
+import { Mail, Github, Twitter, Linkedin } from "lucide-react";
 import Link from "next/link";
 
 const currentYear = new Date().getFullYear();
@@ -35,10 +35,10 @@ export const Footer = () => {
                 <Github size={14} />
               </Link>
               <Link
-                href={LinkData.twitter}
+                href={LinkData.x}
                 target="_blank"
                 className="text-muted-foreground hover:text-foreground transition-colors"
-                aria-label="Twitter"
+                aria-label="X"
               >
                 <Twitter size={14} />
               </Link>
@@ -72,7 +72,7 @@ export const Footer = () => {
               <Link href="/blogs" className="text-[11px] font-mono text-muted-foreground hover:text-green-500 transition-colors">
                 <span className="text-green-500">→</span> blogs
               </Link>
-              <Link href="/PoW" className="text-[11px] font-mono text-muted-foreground hover:text-green-500 transition-colors">
+              <Link href="/pow" className="text-[11px] font-mono text-muted-foreground hover:text-green-500 transition-colors">
                 <span className="text-green-500">→</span> proof of work
               </Link>
               <Link href="/rss.xml" target="_blank" className="text-[11px] font-mono text-muted-foreground hover:text-green-500 transition-colors">
@@ -102,8 +102,8 @@ export const Footer = () => {
           <span>© {currentYear}</span>
           <span className="text-muted-foreground/50">|</span>
           <span>built by </span>
-          <Link href={LinkData.twitter} target="_blank" className="hover:text-green-500 transition-colors">
-            @{LinkData.twitter.split("/").pop()}
+          <Link href={LinkData.x} target="_blank" className="hover:text-green-500 transition-colors">
+            @{LinkData.x.split("/").pop()}
           </Link>
         </p>
         <p className="text-[10px] font-mono text-muted-foreground flex items-center gap-1">

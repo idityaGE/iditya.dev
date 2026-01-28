@@ -1,10 +1,10 @@
 
 import { getMDXSlugs } from "@/lib/mdx";
-import { TableOfContents } from "@/components/mdx/toc";
-import { BackButton } from "@/components/back-button";
+import { TableOfContents } from "@/components/content/toc";
+import { BackButton } from "@/features/blog/components/back-button";
 import type { Metadata } from "next/types";
 import { siteConfig } from "@/config/site.config";
-import { ScrollProgress } from "@/components/magicui/scroll-progress";
+import { ScrollProgress } from "@/components/ui/magicui/scroll-progress";
 import { ThemeImage } from "@/components/theme/theme-image";
 import { Calendar, User } from "lucide-react";
 
@@ -75,12 +75,12 @@ export default async function Page({
   return (
     <div className="flex flex-col mt-10">
       <ScrollProgress className="min-[1400px]:hidden" />
-      
+
       {/* Fixed Back Button */}
       <div className="fixed top-24 border-y border-l px-3 py-1.5 right-[calc(50%+24rem)] z-50 hidden lg:inline-flex bg-background">
         <BackButton href="/blogs" label="← cd .." />
       </div>
-      
+
       {/* Fixed TOC */}
       <aside className="hidden text-sm min-[1400px]:inline-flex">
         <div className="fixed top-24 left-[calc(50%+24rem)] z-50 border-y border-r bg-background">

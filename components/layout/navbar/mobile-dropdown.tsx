@@ -7,7 +7,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Terminal } from "lucide-react";
-import { NavLinks } from "@/components/navbar/navbar";
+import { NavLinks } from "@/components/layout/navbar";
 import Link from "next/link";
 
 export const MobileDropdown = () => {

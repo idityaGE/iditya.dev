@@ -2,9 +2,7 @@
 import { useEffect, useState, memo, useCallback, useMemo, useRef } from 'react';
 import type { TocEntry } from 'remark-mdx-toc';
 import Link from 'next/link';
-import { cn } from '@/lib/utils';
-import { generateSlug } from '@/utils';
-import { ListMinusIcon } from 'lucide-react';
+import { cn, generateSlug } from '@/lib/utils';
 
 const DEPTH_STYLES = {
   1: "",

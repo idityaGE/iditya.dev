@@ -1,8 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { cn } from "@/lib/utils";
-import { getImageSrc } from "@/utils";
+import { cn, getImageSrc } from "@/lib/utils";
 
 interface ThemeImageProps {
   darkSrc: string;

@@ -1,4 +1,4 @@
-import { LinkData } from "@/config/links.config";
+import { LinkData } from "@/config/personal.config";
 import { Github, Twitter, Linkedin, Mail } from "lucide-react";
 import Link from "next/link";
 
@@ -10,10 +10,10 @@ const socialLinks = [
     handle: "idityaGE",
   },
   {
-    name: "twitter",
-    url: LinkData.twitter,
+    name: "x",
+    url: LinkData.x,
     icon: Twitter,
-    handle: "@" + LinkData.twitter.split("/").pop(),
+    handle: "@" + LinkData.x.split("/").pop(),
   },
   {
     name: "linkedin",

@@ -31,7 +31,7 @@ import {
   CommandSeparator,
 } from "@/components/ui/command";
 import { Kbd } from "@/components/ui/kbd";
-import { LinkData } from "@/config/links.config";
+import { LinkData } from "@/config/personal.config";
 
 interface Blog {
   slug: string;
@@ -140,7 +140,7 @@ export function CommandMenu({ blogs = [], projects = [] }: CommandMenuProps) {
             break;
           case "w":
             e.preventDefault();
-            router.push("/PoW");
+            router.push("/pow");
             break;
         }
       }
@@ -253,7 +253,7 @@ export function CommandMenu({ blogs = [], projects = [] }: CommandMenuProps) {
             </CommandItem>
             <CommandItem
               value="nav:pow"
-              onSelect={() => navigate("/PoW")}
+              onSelect={() => navigate("/pow")}
             >
               <Award className="mr-2 h-4 w-4" />
               <span>Proof of Work</span>

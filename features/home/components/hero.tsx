@@ -1,5 +1,4 @@
-import { PersonalData } from "@/config/personal.config";
-import { LinkData } from "@/config/links.config";
+import { PersonalData, LinkData } from "@/config/personal.config";
 import { FileText } from "lucide-react";
 
 export const Hero = () => {
@@ -40,12 +39,12 @@ export const Hero = () => {
             {PersonalData.name}
           </h1>
           <a
-            href={LinkData.twitter}
+            href={LinkData.x}
             target="_blank"
             className="flex items-center gap-1 font-mono text-[11px] text-muted-foreground hover:text-green-500 transition-colors"
           >
             <span className="text-muted-foreground/50">/</span>
-            <span>@{LinkData.twitter.split("/").pop()}</span>
+            <span>@{LinkData.x.split("/").pop()}</span>
           </a>
         </div>
       </div>

@@ -1,7 +1,7 @@
 import { Bento } from "@/features/home/components/bento";
 import { Hero } from "@/features/home/components/hero";
 import { ExperienceSection } from "@/features/home/components/experience-card";
-import { ExperienceData } from "@/config/experience.config";
+
 
 const Home = () => {
   return (
@@ -22,7 +22,7 @@ const Home = () => {
         }}
       />
 
-      <ExperienceSection experiences={ExperienceData} />
+      <ExperienceSection />
     </div>
   );
 };

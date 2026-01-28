@@ -1,5 +1,5 @@
 import { ModeToggle } from "@/components/theme/theme-toggle";
-import { MobileDropdown } from "@/components/navbar/mobile-dropdown";
+import { MobileDropdown } from "@/components/layout/navbar/mobile-dropdown";
 import Link from "next/link";
 
 interface NavLinks {

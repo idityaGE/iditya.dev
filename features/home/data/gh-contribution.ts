@@ -1,5 +1,5 @@
-import type { Activity } from "@/components/kibo-ui/contribution-graph";
-import { GITHUB_USERNAME } from "@/config/links.config";
+import type { Activity } from "@/components/ui/kibo-ui/contribution-graph";
+import { GITHUB_USERNAME } from "@/config/personal.config";
 
 type GitHubContributionsResponse = {
   contributions: Activity[];

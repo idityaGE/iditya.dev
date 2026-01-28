@@ -3,8 +3,8 @@ import { ProjectCard } from "@/features/project/components/project-card";
 import { ProjectData } from "@/config/project.config";
 import type { Metadata } from "next/types";
 import { siteConfig } from "@/config/site.config";
-import { BackButton } from "@/components/back-button";
-import { ScrollProgress } from "@/components/magicui/scroll-progress";
+import { BackButton } from "@/features/blog/components/back-button";
+import { ScrollProgress } from "@/components/ui/magicui/scroll-progress";
 
 const getProjectFromSlug = (slug: string) => {
   return ProjectData.find((project) => project.slug === slug);

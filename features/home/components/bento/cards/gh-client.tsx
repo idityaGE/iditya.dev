@@ -8,14 +8,14 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import type { Activity } from "@/components/kibo-ui/contribution-graph";
+import type { Activity } from "@/components/ui/kibo-ui/contribution-graph";
 import {
   ContributionGraph,
   ContributionGraphBlock,
   ContributionGraphCalendar,
   ContributionGraphLegend,
-} from "@/components/kibo-ui/contribution-graph";
-import { GITHUB_USERNAME } from "@/config/links.config";
+} from "@/components/ui/kibo-ui/contribution-graph";
+import { GITHUB_USERNAME } from "@/config/personal.config";
 import Link from "next/link";
 
 export function GitHubContributionGraph({ data }: { data: Activity[] }) {

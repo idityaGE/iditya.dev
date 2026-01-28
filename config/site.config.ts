@@ -1,9 +1,9 @@
-import { BASE_URL } from "@/utils"
+import { BASE_URL, LinkData, PersonalData } from "@/config/personal.config"
 
 export const siteConfig = {
   name: "iditya.dev",
   title: "Adi 🍀",
-  description: "Hi, I'm Adii, I'm a software developer based in India. I loves coding, Linux, and breaking stuff to learn.",
+  description: "Hi, I'm Adii, I'm a software engineer based in India. I loves coding, Linux, and breaking stuff to learn.",
   keywords: [
     "Aditya Portfolio",
     "iditya",
@@ -20,14 +20,14 @@ export const siteConfig = {
   ],
   siteUrl: BASE_URL,
   creator: {
-    name: "Aditya",
+    name: PersonalData.name,
     url: BASE_URL,
-    email: "adiimaurya02@gmail.com"
+    email: LinkData.gmail
   },
   ogImage: "https://res.cloudinary.com/dwdbqwqxk/image/upload/v1732530896/Hi_vf73cf.png",
   links: {
-    x: "https://x.com/idityage",
-    github: "https://github.com/idityaGE",
+    x: LinkData.x,
+    github: LinkData.github,
   },
   favicon: {
     icon: "https://res.cloudinary.com/dwdbqwqxk/image/upload/v1730215181/favicon-32x32_cgdyy8.png",

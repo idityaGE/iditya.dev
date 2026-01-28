@@ -1,6 +1,6 @@
 import type { Metadata } from "next/types";
 import { ThemeProvider } from "@/components/theme/theme-provider";
-import { Navbar } from "@/components/navbar/navbar";
+import { Navbar } from "@/components/layout/navbar";
 import { CommandMenuWrapper } from "@/components/cmdk/command-menu-wrapper";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import { siteConfig } from "@/config/site.config";

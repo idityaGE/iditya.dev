@@ -1,6 +1,6 @@
 import { ProjectCard } from "@/features/project/components/project-card";
 import { ProjectData } from "@/config/project.config";
-import { LinkData } from "@/config/links.config";
+import { LinkData } from "@/config/personal.config";
 import { Mail, AlertTriangle, Rss } from "lucide-react";
 import Link from "next/link";
 import {
@@ -14,7 +14,7 @@ const getTwitterUsername = (url: string): string => {
 };
 
 const Projects = () => {
-  const twitterUsername = getTwitterUsername(LinkData.twitter);
+  const twitterUsername = getTwitterUsername(LinkData.x);
 
   return (
     <div className="mt-10">
@@ -61,7 +61,7 @@ const Projects = () => {
         <p className="text-xs font-mono text-muted-foreground">
           <span className="text-green-500">→</span> Want to collaborate?{" "}
           <Link
-            href={LinkData.twitter}
+            href={LinkData.x}
             target="_blank"
             rel="noopener noreferrer"
             className="text-foreground hover:text-green-500 transition-colors"

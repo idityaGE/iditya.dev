@@ -5,12 +5,7 @@ import { Calendar, MapPin, Globe, Briefcase } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
-
-const TechBadge = ({ tech }: { tech: string }) => (
-  <span className="px-2 py-0.5 text-xs bg-muted border text-muted-foreground">
-    {tech}
-  </span>
-);
+import { ExperienceData } from "@/config/personal.config";
 
 function ExperienceDetails({ experience }: { experience: ExperienceItemProps }) {
   const duration = `${experience.startDate} - ${experience.endDate}`;
@@ -35,7 +30,7 @@ function ExperienceDetails({ experience }: { experience: ExperienceItemProps }) 
                 alt={`${experience.company} logo`}
                 width={40}
                 height={40}
-                className="object-contain w-full h-full p-1.5"
+                className="object-contain w-full h-full p-1.5 bg-indigo-950"
               />
             ) : (
               <span className="text-sm font-bold font-mono">{experience.company.charAt(0)}</span>
@@ -103,9 +98,9 @@ function ExperienceDetails({ experience }: { experience: ExperienceItemProps }) 
   );
 }
 
-export function ExperienceSection({ experiences }: { experiences: ExperienceItemProps[] }) {
+export function ExperienceSection() {
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const selectedExperience = experiences[selectedIndex];
+  const selectedExperience = ExperienceData[selectedIndex];
 
   return (
     <div className="mt-10">
@@ -122,7 +117,7 @@ export function ExperienceSection({ experiences }: { experiences: ExperienceItem
         <div className="flex items-center gap-2">
           <Briefcase size={16} className="text-muted-foreground" />
           <h2 className="text-sm font-bold font-mono uppercase tracking-wider">Experience</h2>
-          <span className="text-[10px] font-mono text-muted-foreground">({experiences.length} entries)</span>
+          <span className="text-[10px] font-mono text-muted-foreground">({ExperienceData.length} entries)</span>
         </div>
       </div>
 
@@ -133,7 +128,7 @@ export function ExperienceSection({ experiences }: { experiences: ExperienceItem
           <div className="hidden md:block px-2 py-1 border-b">
             <p className="text-[10px] font-mono text-muted-foreground">$ ls companies/</p>
           </div>
-          {experiences.map((exp, idx) => (
+          {ExperienceData.map((exp, idx) => (
             <button
               key={idx}
               onClick={() => setSelectedIndex(idx)}

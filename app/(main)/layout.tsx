@@ -1,4 +1,4 @@
-import { Footer } from "@/components/footer";
+import { Footer } from "@/components/layout/footer";
 import React from "react";
 import { BorderContainer } from "@/components/layout/border-container";
 

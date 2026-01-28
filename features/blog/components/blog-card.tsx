@@ -1,7 +1,7 @@
 import type { BlogPostMeta } from "@/types";
 import Link from "next/link";
 import Image from "next/image";
-import { getImageSrc } from "@/utils";
+import { getImageSrc } from "@/lib/utils";
 
 export function BlogCard({
   blog,

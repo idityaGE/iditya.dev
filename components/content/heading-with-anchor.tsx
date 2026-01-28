@@ -1,7 +1,6 @@
 "use client";
 
-import { cn } from "@/lib/utils";
-import { generateSlug } from "@/utils";
+import { cn, generateSlug } from "@/lib/utils";
 import { Check, Link } from "lucide-react";
 import React, { useState } from "react";
 

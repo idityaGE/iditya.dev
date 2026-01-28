@@ -1,7 +1,7 @@
 import type { MDXComponents } from "mdx/types";
-import { Callout } from "@/components/mdx/callout";
-import { YouTube } from "@/components/mdx/youtube";
-import { CommandBtn } from "@/components/mdx/command-btn";
+import { Callout } from "@/components/content/callout";
+import { YouTube } from "@/components/content/youtube";
+import { CommandBtn } from "@/components/content/command-btn";
 import Image from "next/image";
 import {
   Table,
@@ -11,10 +11,10 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { HeadingWithAnchor } from "@/components/mdx/heading-with-anchor";
-import { OgLink } from "@/components/mdx/og-link";
-import { Code } from "@/components/mdx/code";
-import { MorphingImage } from "@/components/mdx/morphing-image";
+import { HeadingWithAnchor } from "@/components/content/heading-with-anchor";
+import { OgLink } from "@/components/content/og-link";
+import { Code } from "@/components/content/code";
+import { MorphingImage } from "@/components/content/morphing-image";
 
 //* ref: https://www.gatsbyjs.com/docs/how-to/routing/customizing-components/
 const styles = {

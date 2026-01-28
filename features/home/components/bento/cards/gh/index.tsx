@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { getGitHubContributions } from "@/server/gh-contribution";
+import { getGitHubContributions } from "@/features/home/data/gh-contribution";
 import { GitHubContributionGraph, GitHubContributionFallback } from "./gh-client";
 
 export async function GitHubContributions() {

@@ -1,6 +1,6 @@
 import { Suspense } from "react";
-import { getLeetCodeStats } from "@/server/lc-stats";
-import { LEETCODE_USERNAME } from "@/config/links.config";
+import { getLeetCodeStats } from "@/features/home/data/lc-stats";
+import { LEETCODE_USERNAME } from "@/config/personal.config";
 import Link from "next/link";
 
 import { SubmissionGraph } from "./submission-graph";

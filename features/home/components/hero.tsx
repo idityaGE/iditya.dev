@@ -34,17 +34,27 @@ export const Hero = () => {
           <span className="text-green-500">→</span>
           <span>hey, it&apos;s me</span>
         </div>
-        <div className="flex items-baseline gap-2 flex-wrap">
-          <h1 className="text-xl font-mono font-bold uppercase tracking-wide">
-            {PersonalData.name}
-          </h1>
+        <div className="flex items-center justify-between">
+          <div className="flex items-baseline gap-2 flex-wrap">
+            <h1 className="text-xl font-mono font-bold uppercase tracking-wide">
+              {PersonalData.name}
+            </h1>
+            <a
+              href={LinkData.x}
+              target="_blank"
+              className="flex items-center gap-1 font-mono text-[11px] text-muted-foreground hover:text-green-500 transition-colors"
+            >
+              <span className="text-muted-foreground/50">/</span>
+              <span>@{LinkData.x.split("/").pop()}</span>
+            </a>
+          </div>
           <a
-            href={LinkData.x}
-            target="_blank"
-            className="flex items-center gap-1 font-mono text-[11px] text-muted-foreground hover:text-green-500 transition-colors"
+            href="/resume.pdf"
+            download="Aditya_Resume.pdf"
+            className="flex items-center gap-1 pl-1.5 border-l-2 border-green-500 text-muted-foreground hover:text-green-500 font-mono text-xs transition-colors"
           >
-            <span className="text-muted-foreground/50">/</span>
-            <span>@{LinkData.x.split("/").pop()}</span>
+            <FileText size={14} />
+            <span>resume.pdf</span>
           </a>
         </div>
       </div>
@@ -77,20 +87,6 @@ export const Hero = () => {
             <span>(you know the rabbit holes... they never end)</span>
           </p>
         </div>
-      </div>
-
-      {/* Resume Block */}
-      <div className="border-b bg-background px-3 py-2 flex items-center justify-between">
-        <span className="text-[10px] font-mono text-muted-foreground">$ ls ~/docs</span>
-        <a
-          href="/resume.pdf"
-          download="Aditya_Resume.pdf"
-          className="flex items-center gap-1.5 text-[10px] font-mono text-muted-foreground hover:text-green-500 transition-colors"
-        >
-          <FileText size={12} />
-          <span>resume.pdf</span>
-          <span className="text-green-500">↓</span>
-        </a>
       </div>
     </div>
   );

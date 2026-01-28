@@ -316,7 +316,7 @@ export function CommandMenu({ blogs = [], projects = [] }: CommandMenuProps) {
           <CommandGroup heading="Social">
             <CommandItem
               value="ext:twitter"
-              onSelect={() => openExternal(LinkData.twitter)}
+              onSelect={() => openExternal(LinkData.x)}
             >
               <Twitter className="mr-2 h-4 w-4" />
               <span>X (Twitter)</span>

@@ -8,7 +8,6 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
-import { LEETCODE_USERNAME } from "@/config/links.config";
 
 interface SubmissionGraphProps {
   submissionCalendar: string;

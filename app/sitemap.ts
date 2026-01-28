@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next'
 import { getMDXSlugs } from '@/lib/mdx'
-import { BASE_URL } from '@/utils'
+import { BASE_URL } from '@/config/personal.config'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticRoutes = [

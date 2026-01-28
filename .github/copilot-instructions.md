@@ -123,7 +123,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 **Config-driven UI**:
 ```tsx
 import { LinkData } from "@/config/links.config";
-<a href={LinkData.twitter}>@{LinkData.twitter.split("/").pop()}</a>
+<a href={LinkData.x}>@{LinkData.x.split("/").pop()}</a>
 ```
 
 **Custom MDX styling**: See `mdx-components.tsx` for style objects applied to native HTML elements.

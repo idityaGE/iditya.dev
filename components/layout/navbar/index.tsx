@@ -17,8 +17,8 @@ export const NavLinks: NavLinks[] = [
     label: "blogs",
   },
   {
-    to: "/PoW",
-    label: "pow",
+    to: "/pow",
+    label: "PoW",
   },
 ];
 

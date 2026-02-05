@@ -11,21 +11,28 @@ const BentoGrid = ({
   return (
     <div className="border-t mt-8">
       {/* Terminal Header */}
-      <div className="bg-background px-3 py-2 border-b">
-        <div className="flex items-center gap-2 mb-1">
+      <div className="bg-background p-3 border-b">
+        <div className="flex items-center gap-2 mb-2">
           <div className="flex gap-1">
             <span className="w-2 h-2 bg-red-500/80" />
             <span className="w-2 h-2 bg-yellow-500/80" />
             <span className="w-2 h-2 bg-green-500/80" />
           </div>
-          <span className="text-[10px] font-mono text-muted-foreground">~/dashboard</span>
+          <span className="text-[10px] font-mono text-muted-foreground">
+            ~/dashboard
+          </span>
         </div>
         <div className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider">
           $ neofetch --components
         </div>
       </div>
       {/* Grid Content */}
-      <div className={cn("grid w-full auto-rows-auto grid-cols-3 bg-border gap-px", className)}>
+      <div
+        className={cn(
+          "grid w-full auto-rows-auto grid-cols-3 bg-border gap-px",
+          className
+        )}
+      >
         {children}
       </div>
     </div>
@@ -67,9 +74,13 @@ const BentoCard = ({
       )}
     >
       <Icon className="h-3 w-3 text-muted-foreground" />
-      <h3 className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider">{name}</h3>
+      <h3 className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider">
+        {name}
+      </h3>
       {terminalCmd && (
-        <span className="ml-auto text-[9px] font-mono text-muted-foreground/60">{terminalCmd}</span>
+        <span className="ml-auto text-[9px] font-mono text-muted-foreground/60">
+          {terminalCmd}
+        </span>
       )}
     </div>
     <div className="flex-1">{background}</div>

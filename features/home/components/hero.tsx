@@ -12,18 +12,24 @@ export const Hero = () => {
             <span className="w-2 h-2 bg-yellow-500/80" />
             <span className="w-2 h-2 bg-green-500/80" />
           </div>
-          <span className="text-[10px] font-mono text-muted-foreground">~/home</span>
+          <span className="text-[10px] font-mono text-muted-foreground">
+            ~/home
+          </span>
         </div>
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <span className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider">$ whoami</span>
+            <span className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider">
+              $ whoami
+            </span>
           </div>
           <div className="flex items-center gap-1.5">
             <span className="relative flex h-1.5 w-1.5">
               <span className="animate-ping absolute inline-flex h-full w-full bg-green-500 opacity-75" />
               <span className="relative inline-flex h-1.5 w-1.5 bg-green-500" />
             </span>
-            <span className="text-[10px] font-mono text-muted-foreground">Ajmer, India</span>
+            <span className="text-[10px] font-mono text-muted-foreground">
+              Ajmer, India
+            </span>
           </div>
         </div>
       </div>
@@ -51,9 +57,12 @@ export const Hero = () => {
           <a
             href="/resume.pdf"
             download="Aditya_Resume.pdf"
-            className="flex items-center gap-1 pl-1.5 border-l-2 border-green-500 text-muted-foreground hover:text-green-500 font-mono text-xs transition-colors"
+            className="flex items-center gap-1 pl-2 pr-1 py-0.5 border-l-2 border-green-500 bg-green-500/5 hover:bg-green-500/10 text-muted-foreground hover:text-green-500 font-mono text-xs transition-colors group"
           >
-            <FileText size={14} />
+            <FileText
+              size={14}
+              className="group-hover:scale-110 transition-transform"
+            />
             <span>resume.pdf</span>
           </a>
         </div>
@@ -61,15 +70,18 @@ export const Hero = () => {
 
       {/* About Block */}
       <div className="border-b bg-background p-3">
-        <div className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider mb-2">$ cat about.txt</div>
+        <div className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider mb-2">
+          $ cat about.txt
+        </div>
         <div className="space-y-2 text-xs font-mono text-muted-foreground">
           <p className="flex items-start gap-2">
             <span className="text-green-500 flex-shrink-0">→</span>
             <span>
               full-stack developer with a knack for{" "}
-              <span className="text-foreground">devops</span> and currently diving deep into{" "}
-              <span className="text-foreground">web3</span>. i spend most of my time building things,
-              breaking them, and figuring out why they broke.
+              <span className="text-foreground">devops</span> and currently
+              diving deep into <span className="text-foreground">web3</span>. i
+              spend most of my time building things, breaking them, and figuring
+              out why they broke.
             </span>
           </p>
           <p className="flex items-start gap-2">
@@ -78,8 +90,9 @@ export const Hero = () => {
               also have a thing for{" "}
               <span className="text-foreground">linux</span>,{" "}
               <span className="text-foreground">networking</span>, and{" "}
-              <span className="text-foreground">system design</span> —
-              basically anything that lets me understand how stuff actually works under the hood.
+              <span className="text-foreground">system design</span> — basically
+              anything that lets me understand how stuff actually works under
+              the hood.
             </span>
           </p>
           <p className="flex items-start gap-2 opacity-70">

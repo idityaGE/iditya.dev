@@ -37,7 +37,7 @@ export const ProjectButtons: React.FC<ProjectButtonsProps> = ({
   liveLink,
   title,
 }) => (
-  <div className="flex flex-wrap items-center gap-1.5 mt-auto flex-shrink-0 py-2 md:py-0">
+  <div className="flex flex-wrap items-center gap-2 mt-auto flex-shrink-0 py-1 md:py-0">
     {githubLink && (
       <a
         href={githubLink}

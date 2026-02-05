@@ -23,20 +23,23 @@ const ProjectCard = ({
 
   const cardContent = (
     <div
-      className={`relative flex flex-col overflow-hidden transition-all duration-200 bg-background ${!disableHover
-        ? "group-hover/project-card:-translate-x-1 group-hover/project-card:-translate-y-1 border"
-        : "border-y"
-        }`}
+      className={`relative flex flex-col overflow-hidden transition-all duration-200 bg-background ${
+        !disableHover
+          ? "group-hover/project-card:-translate-x-1 group-hover/project-card:-translate-y-1 border"
+          : "border-y"
+      }`}
     >
       {/* Terminal Header */}
-      <div className="px-2.5 py-2 bg-muted/70">
+      <div className="px-2 py-1.5 bg-muted/70">
         <div className="flex items-center gap-2">
           <div className="flex gap-1">
             <span className="w-2 h-2 bg-red-500/80" />
             <span className="w-2 h-2 bg-yellow-500/80" />
             <span className="w-2 h-2 bg-green-500/80" />
           </div>
-          <p className="text-[11px] font-mono text-muted-foreground truncate">~/projects/{slug}</p>
+          <p className="text-[11px] font-mono text-muted-foreground truncate">
+            ~/projects/{slug}
+          </p>
         </div>
       </div>
 
@@ -44,23 +47,37 @@ const ProjectCard = ({
         {/* Content Section */}
         <div className="flex flex-col w-full md:w-2/3 min-h-0 gap-px">
           {/* Title & Description Block */}
-          <div className="bg-background p-2">
-            <div className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider mb-1">$ info</div>
+          <div className="bg-background p-1.5 h-full">
+            <div className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider mb-1">
+              $ info
+            </div>
             {disableHover ? (
               <div>
                 <div className="flex items-start gap-2 mb-1">
-                  <span className="text-green-500 text-xs font-mono flex-shrink-0">→</span>
-                  <h2 className="text-sm font-mono font-bold line-clamp-1">{title}</h2>
+                  <span className="text-green-500 text-xs font-mono flex-shrink-0">
+                    →
+                  </span>
+                  <h2 className="text-sm font-mono font-bold line-clamp-1">
+                    {title}
+                  </h2>
                 </div>
                 <p className="text-[11px] font-mono text-muted-foreground line-clamp-2 pl-4">
                   {description}
                 </p>
               </div>
             ) : (
-              <Link href={projectUrl} className="block group/link" aria-label={projectAriaLabel}>
+              <Link
+                href={projectUrl}
+                className="block group/link"
+                aria-label={projectAriaLabel}
+              >
                 <div className="flex items-start gap-2 mb-1">
-                  <span className="text-green-500 text-xs font-mono flex-shrink-0">→</span>
-                  <h2 className="text-sm font-mono font-bold line-clamp-1 group-hover/link:text-green-500 transition-colors">{title}</h2>
+                  <span className="text-green-500 text-xs font-mono flex-shrink-0">
+                    →
+                  </span>
+                  <h2 className="text-sm font-mono font-bold line-clamp-1 group-hover/project-card:text-green-500 transition-colors">
+                    {title}
+                  </h2>
                 </div>
                 <p className="text-[11px] font-mono text-muted-foreground line-clamp-2 pl-4">
                   {description}
@@ -69,20 +86,26 @@ const ProjectCard = ({
             )}
           </div>
 
-          {/* Tech Stack Block */}
-          <div className="bg-background p-2 border-y">
-            <div className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider mb-1">$ stack</div>
-            <TechStackList techStack={techStack} maxVisible={4} />
-          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-px border-t">
+            {/* Tech Stack Block */}
+            <div className="bg-background p-1.5 border-r">
+              <div className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider mb-1">
+                $ stack
+              </div>
+              <TechStackList techStack={techStack} maxVisible={3} />
+            </div>
 
-          {/* Actions Block */}
-          <div className="bg-background p-2">
-            <div className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider mb-1">$ links</div>
-            <ProjectButtons
-              githubLink={githubLink}
-              liveLink={liveLink}
-              title={title}
-            />
+            {/* Actions Block */}
+            <div className="bg-background p-1.5 border-t md:border-t-0">
+              <div className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider mb-1">
+                $ links
+              </div>
+              <ProjectButtons
+                githubLink={githubLink}
+                liveLink={liveLink}
+                title={title}
+              />
+            </div>
           </div>
         </div>
 
@@ -100,7 +123,11 @@ const ProjectCard = ({
               />
             </div>
           ) : (
-            <Link href={projectUrl} aria-label={projectAriaLabel} className="block w-full h-full">
+            <Link
+              href={projectUrl}
+              aria-label={projectAriaLabel}
+              className="block w-full h-full"
+            >
               <div className="relative w-full h-full min-h-[120px]">
                 <Image
                   src={images[0]}
@@ -118,8 +145,13 @@ const ProjectCard = ({
 
       {/* Footer */}
       {!disableHover && (
-        <Link href={projectUrl} className="border-t px-2.5 py-1.5 flex items-center justify-between bg-muted/20 hover:bg-muted/40 transition-colors">
-          <span className="text-[10px] font-mono text-muted-foreground">$ cd {slug}</span>
+        <Link
+          href={projectUrl}
+          className="border-t px-2 py-1 flex items-center justify-between bg-muted/20 hover:bg-muted/40 transition-colors"
+        >
+          <span className="text-[10px] font-mono text-muted-foreground">
+            $ cd {slug}
+          </span>
           <span className="text-[10px] font-mono text-green-500">enter →</span>
         </Link>
       )}

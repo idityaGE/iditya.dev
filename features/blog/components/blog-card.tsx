@@ -55,7 +55,7 @@ export function BlogCard({
           <div className="p-2.5">
             <div className="flex items-start gap-2 mb-2">
               <span className="text-green-500 text-xs font-mono flex-shrink-0 mt-0.5">→</span>
-              <h2 className="text-sm font-mono font-bold leading-tight">{blog.title}</h2>
+              <h2 className="text-sm font-mono font-bold leading-tight group-hover/blog-card:text-green-500 transition-colors">{blog.title}</h2>
             </div>
             <p className="text-[11px] font-mono text-muted-foreground mb-2.5 line-clamp-2 pl-4">
               {blog.excerpt}

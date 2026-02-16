@@ -30,7 +30,7 @@ const BentoGrid = ({
       <div
         className={cn(
           "grid w-full auto-rows-auto grid-cols-3 bg-border gap-px",
-          className
+          className,
         )}
       >
         {children}
@@ -61,8 +61,8 @@ const BentoCard = ({
   <div
     key={name}
     className={cn(
-      "group relative col-span-3 flex flex-col justify-start overflow-hidden bg-background",
-      className
+      "group relative col-span-3 flex flex-col justify-start overflow-hidden bg-background hover:border-green-500/30 transition-colors duration-300",
+      className,
     )}
   >
     {/* Card Header */}
@@ -70,7 +70,7 @@ const BentoCard = ({
       className={cn(
         "pointer-events-none z-10 flex gap-2 px-2.5 py-1.5 items-center w-full border-b bg-muted/70",
         isIconHidden && "hidden",
-        makeAbsolute && "absolute"
+        makeAbsolute && "absolute",
       )}
     >
       <Icon className="h-3 w-3 text-muted-foreground" />

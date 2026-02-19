@@ -423,9 +423,9 @@ export const ContributionGraphCalendar = ({
   );
 };
 
-export type ContributionGraphFooterProps = HTMLAttributes<HTMLDivElement>;
+type ContributionGraphFooterProps = HTMLAttributes<HTMLDivElement>;
 
-export const ContributionGraphFooter = ({
+const ContributionGraphFooter = ({
   className,
   ...props
 }: ContributionGraphFooterProps) => (
@@ -438,14 +438,14 @@ export const ContributionGraphFooter = ({
   />
 );
 
-export type ContributionGraphTotalCountProps = Omit<
+type ContributionGraphTotalCountProps = Omit<
   HTMLAttributes<HTMLDivElement>,
   "children"
 > & {
   children?: (props: { totalCount: number; year: number }) => ReactNode;
 };
 
-export const ContributionGraphTotalCount = ({
+const ContributionGraphTotalCount = ({
   className,
   children,
   ...props

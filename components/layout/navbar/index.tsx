@@ -63,7 +63,7 @@ const DesktopLinks = () => {
   );
 };
 
-export const NavItem = ({ to, label }: NavLinks) => {
+const NavItem = ({ to, label }: NavLinks) => {
   return (
     <Link
       href={to}

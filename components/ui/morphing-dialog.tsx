@@ -425,8 +425,5 @@ export {
   MorphingDialogContainer,
   MorphingDialogContent,
   MorphingDialogClose,
-  MorphingDialogTitle,
-  MorphingDialogSubtitle,
-  MorphingDialogDescription,
   MorphingDialogImage,
 };

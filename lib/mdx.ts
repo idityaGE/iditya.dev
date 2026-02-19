@@ -18,7 +18,7 @@ export async function getMDXSlugs(folder: string) {
     .map(file => file.replace(/\.mdx$/, ''));
 }
 
-export async function getBlogPostMetaBySlug(slug: string): Promise<BlogPostMetaWithSlug | null> {
+async function getBlogPostMetaBySlug(slug: string): Promise<BlogPostMetaWithSlug | null> {
   try {
     const { metadata } = await import(`@/content/blogs/${slug}.mdx`);
     if (!metadata) {

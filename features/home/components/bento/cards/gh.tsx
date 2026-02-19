@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import { getGitHubContributions } from "@/features/home/data/gh-contribution";
 import { GitHubContributionGraph, GitHubContributionFallback } from "./gh-client";
 
-export async function GitHubContributions() {
+async function GitHubContributions() {
   const contributions = await getGitHubContributions();
   return <GitHubContributionGraph data={contributions} />;
 }

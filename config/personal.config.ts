@@ -27,7 +27,7 @@ export const PersonalData = {
   }
 }
 
-export const EducationData = [
+const EducationData = [
   {
     year: "2023 - 2027",
     title: "Bachelor's Degree in Computer Science & Engineering",
@@ -94,7 +94,7 @@ export const LEETCODE_USERNAME = "idityage";
 export const BASE_URL = "https://iditya.dev"
 
 
-export const skillList = {
+const skillList = {
   Librarys: [
     "React", "Next.js", "Expo", "TailwindCSS", "SCSS", "ShadCN UI", "Redux", "Recoil", "TanStack Query", "Turborepo", "Motion", "Three.js", "ESLint", "Vitest", "Jest", "Cypress", "Socket.io", "Hugging Face 🤗", "LangChain 🔗", "Crew AI"
   ],

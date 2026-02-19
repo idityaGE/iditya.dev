@@ -1,7 +1,7 @@
 import { ExternalLink, Github } from "lucide-react";
 import React from "react";
 
-export const getTypeColor = (type: string): string => {
+const getTypeColor = (type: string): string => {
   const colorMap: Record<string, string> = {
     personal: "bg-sky-600",
     freelance: "bg-emerald-600",
@@ -16,7 +16,7 @@ interface ProjectTypeTagProps {
   type: string;
 }
 
-export const ProjectTypeTag: React.FC<ProjectTypeTagProps> = ({ type }) => (
+const ProjectTypeTag: React.FC<ProjectTypeTagProps> = ({ type }) => (
   <span
     className={`inline-flex items-center px-2 py-1 text-xs font-light rounded-sm text-white ${getTypeColor(
       type

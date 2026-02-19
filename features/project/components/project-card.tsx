@@ -2,7 +2,6 @@ import type { ProjectCardProps } from "@/types";
 import Link from "next/link";
 import Image from "next/image";
 import {
-  getTypeColor,
   ProjectButtons,
   TechStackList,
 } from "../utils/project-card-utils";
@@ -173,4 +172,4 @@ const ProjectCard = ({
   );
 };
 
-export { ProjectCard, getTypeColor };
+export { ProjectCard };

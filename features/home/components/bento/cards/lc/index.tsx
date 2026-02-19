@@ -120,7 +120,7 @@ function LeetCodeStatsDisplay({
 }
 
 // Fallback loading component
-export function LeetCodeStatsFallback() {
+function LeetCodeStatsFallback() {
   return (
     <div className="flex h-full w-full items-center justify-center font-mono">
       <div className="text-[10px] text-muted-foreground animate-pulse">

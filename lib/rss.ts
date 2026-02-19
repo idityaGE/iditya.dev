@@ -6,7 +6,7 @@ import { ProjectData } from '@/config/project.config';
 /**
  * Creates a base feed with common settings
  */
-export function createBaseFeed(options: {
+function createBaseFeed(options: {
   title: string;
   description: string;
   path: string;
@@ -36,7 +36,7 @@ export function createBaseFeed(options: {
 /**
  * Adds blog posts to a feed
  */
-export async function addBlogPostsToFeed(feed: Feed, options: { addCategoryPrefix?: boolean } = {}) {
+async function addBlogPostsToFeed(feed: Feed, options: { addCategoryPrefix?: boolean } = {}) {
   const blogs = await getAllBlogPostsMeta();
   
   blogs.forEach(blog => {
@@ -72,7 +72,7 @@ export async function addBlogPostsToFeed(feed: Feed, options: { addCategoryPrefi
 /**
  * Adds projects to a feed
  */
-export function addProjectsToFeed(feed: Feed, options: { addCategoryPrefix?: boolean } = {}) {
+function addProjectsToFeed(feed: Feed, options: { addCategoryPrefix?: boolean } = {}) {
   ProjectData.forEach(project => {
     // Convert relative image URL to absolute
     const imageUrl = project.images?.[0]?.startsWith('http') 

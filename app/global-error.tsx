@@ -17,7 +17,7 @@ const GlobalError = ({
   }, [error]);
 
   return (
-    <html>
+    <html lang="en">
       <body>
         <div className="h-screen w-full flex flex-col items-center justify-center p-4">
           <div className="max-w-md w-full space-y-6 text-center">

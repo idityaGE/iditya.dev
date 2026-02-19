@@ -5,9 +5,30 @@ import type { MDXRemoteOptions } from "next-mdx-remote-client/rsc";
 import remarkGfm from 'remark-gfm'
 import { Suspense } from "react";
 import { RefreshCw } from "lucide-react";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "To-Do List",
+  description: "My personal to-do list synced from Notion",
+};
 
 export const revalidate = 300; // revalidate every 5 minutes
 export const dynamic = 'force-dynamic';
+
+// Define MDX components at module level to avoid hook-like call in async function
+const todoComponents = useMDXComponents({
+  ul: ({ children }) => <ul className="list-none pl-4 space-y-1">{children}</ul>,
+  li: ({ children }) => <li className="text-xs font-mono flex items-start gap-2"><span className="text-green-500 flex-shrink-0">-&gt;</span><span>{children}</span></li>,
+  p: ({ children }) => <p className="mb-3 text-xs font-mono text-muted-foreground">{children}</p>
+});
+
+const mdxOptions: MDXRemoteOptions = {
+  mdxOptions: {
+    remarkPlugins: [
+      remarkGfm,
+    ],
+  }
+};
 
 const TodoSkeleton = () => (
   <div className="space-y-2 p-3">
@@ -48,20 +69,6 @@ const ErrorState = () => (
 const ToDoPage = async () => {
   const pageId = process.env.NOTION_PAGE_ID || '23967c3fabda806f826aef58366068e3';
 
-  const components = useMDXComponents({
-    ul: ({ children }) => <ul className="list-none pl-4 space-y-1">{children}</ul>,
-    li: ({ children }) => <li className="text-xs font-mono flex items-start gap-2"><span className="text-green-500 flex-shrink-0">→</span><span>{children}</span></li>,
-    p: ({ children }) => <p className="mb-3 text-xs font-mono text-muted-foreground">{children}</p>
-  });
-
-  const options: MDXRemoteOptions = {
-    mdxOptions: {
-      remarkPlugins: [
-        remarkGfm,
-      ],
-    }
-  }
-
   try {
     const content = await getNotionPage(pageId);
     const today = new Date();
@@ -98,9 +105,9 @@ const ToDoPage = async () => {
           <div className="p-3">
             <Suspense fallback={<TodoSkeleton />}>
               <MDXRemote
-                components={components}
+                components={todoComponents}
                 source={content}
-                options={options}
+                options={mdxOptions}
               />
             </Suspense>
           </div>

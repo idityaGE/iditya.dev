@@ -59,9 +59,9 @@ const TableOfContentsItem = memo(function TableOfContentsItem({
       </div>
       {item.children?.length > 0 && (
         <ul className="space-y-1 mt-1">
-          {item.children.map((child, index) => (
+          {item.children.map((child) => (
             <TableOfContentsItem
-              key={`${child.value}-${index}`}
+              key={generateSlug(child.value)}
               item={child}
               activeItemId={activeItemId}
               onItemClick={onItemClick}
@@ -225,9 +225,9 @@ export function TableOfContents({ toc }: { toc: TocEntry[] }) {
     <div className='max-w-[300px] bg-background'>
       <nav aria-label="Table of contents">
         <ul className="max-h-[60vh] overflow-y-auto no-scrollbar" ref={tocListRef}>
-          {toc.map((item, index) => (
+          {toc.map((item) => (
             <TableOfContentsItem
-              key={`${item.value}-${index}`}
+              key={generateSlug(item.value)}
               item={item}
               activeItemId={activeId}
               onItemClick={handleItemClick}

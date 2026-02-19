@@ -1,5 +1,6 @@
 import { PersonalData, LinkData } from "@/config/personal.config";
 import { FileText } from "lucide-react";
+import Link from "next/link";
 
 export const Hero = () => {
   return (
@@ -54,7 +55,7 @@ export const Hero = () => {
               <span>@{LinkData.x.split("/").pop()}</span>
             </a>
           </div>
-          <a
+          <Link
             href="/resume.pdf"
             download="Aditya_Resume.pdf"
             className="flex items-center gap-1 pl-2 pr-1 py-0.5 border-l-2 border-green-500 bg-green-500/5 hover:bg-green-500/10 text-muted-foreground hover:text-green-500 font-mono text-xs transition-colors group"
@@ -64,7 +65,7 @@ export const Hero = () => {
               className="group-hover:scale-110 transition-transform"
             />
             <span>resume.pdf</span>
-          </a>
+          </Link>
         </div>
       </div>
 

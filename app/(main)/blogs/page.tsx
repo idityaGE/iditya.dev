@@ -7,6 +7,12 @@ import {
 } from "@/components/ui/tooltip";
 import { Rss } from "lucide-react";
 import Link from "next/link";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Blogs",
+  description: "My thoughts, solutions, and discoveries from my coding journey - technical articles and tutorials",
+};
 
 const Blogs = async () => {
   const posts = await getAllBlogPostsMeta();
@@ -65,8 +71,8 @@ const Blogs = async () => {
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-px p-px">
-            {posts.map((post, idx) => (
-              <div key={idx} className="bg-background p-2">
+            {posts.map((post) => (
+              <div key={post.slug} className="bg-background p-2">
                 <BlogCard blog={post} />
               </div>
             ))}

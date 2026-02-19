@@ -8,6 +8,12 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Projects",
+  description: "Explore my portfolio of side projects - web applications, tools, and open source contributions",
+};
 
 const getTwitterUsername = (url: string): string => {
   return url.split("/").pop() || "";

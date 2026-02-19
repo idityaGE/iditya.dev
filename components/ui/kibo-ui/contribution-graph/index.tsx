@@ -71,6 +71,9 @@ const DEFAULT_LABELS: Labels = {
   },
 };
 
+// Empty style object as module-level constant to prevent re-renders
+const EMPTY_STYLE: CSSProperties = {};
+
 type ContributionGraphContextType = {
   data: Activity[];
   weeks: Week[];
@@ -245,7 +248,7 @@ export const ContributionGraph = ({
   fontSize = 14,
   labels: labelsProp = undefined,
   maxLevel: maxLevelProp = 4,
-  style = {},
+  style = EMPTY_STYLE,
   totalCount: totalCountProp = undefined,
   weekStart = 0,
   className,

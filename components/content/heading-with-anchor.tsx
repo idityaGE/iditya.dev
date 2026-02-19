@@ -34,12 +34,25 @@ export const HeadingWithAnchor = ({
     }
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      scrollToHeading();
+    }
+  };
+
   return (
     <Component
       id={slug}
       className={cn("flex items-center gap-2 group", className)}
     >
-      <span onClick={scrollToHeading} className="cursor-pointer">
+      <span
+        onClick={scrollToHeading}
+        onKeyDown={handleKeyDown}
+        role="button"
+        tabIndex={0}
+        className="cursor-pointer"
+      >
         {children}
       </span>
       {level >= 1 && content && (

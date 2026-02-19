@@ -86,8 +86,8 @@ function ExperienceDetails({ experience }: { experience: ExperienceItemProps }) 
       <div className="bg-background p-3 md:col-span-2">
         <div className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider mb-1.5">$ output</div>
         <ul className="space-y-1 text-xs font-mono text-muted-foreground">
-          {experience.description.map((item, idx) => (
-            <li key={idx} className="flex gap-2">
+          {experience.description.map((item) => (
+            <li key={item} className="flex gap-2">
               <span className="text-green-500 flex-shrink-0">→</span>
               <span className="leading-relaxed">{item}</span>
             </li>
@@ -130,7 +130,7 @@ export function ExperienceSection() {
           </div>
           {ExperienceData.map((exp, idx) => (
             <button
-              key={idx}
+              key={exp.company}
               onClick={() => setSelectedIndex(idx)}
               className={`
                 px-3 py-2.5 text-left text-xs font-mono transition-all flex-shrink-0 border-b md:border-b-0 border-r md:border-r-0

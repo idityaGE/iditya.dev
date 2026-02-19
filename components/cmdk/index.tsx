@@ -58,6 +58,10 @@ const ACTION_TYPE_MAP: Record<string, ActionType> = {
   "copy:": "copy",
 };
 
+// Empty arrays as module-level constants to prevent re-renders
+const EMPTY_BLOGS: Blog[] = [];
+const EMPTY_PROJECTS: Project[] = [];
+
 function getActionTypeFromValue(value: string): ActionType {
   for (const [prefix, type] of Object.entries(ACTION_TYPE_MAP)) {
     if (value.startsWith(prefix)) return type;
@@ -65,7 +69,7 @@ function getActionTypeFromValue(value: string): ActionType {
   return "navigate";
 }
 
-export function CommandMenu({ blogs = [], projects = [] }: CommandMenuProps) {
+export function CommandMenu({ blogs = EMPTY_BLOGS, projects = EMPTY_PROJECTS }: CommandMenuProps) {
   const [open, setOpen] = React.useState(false);
   const [copied, setCopied] = React.useState<string | null>(null);
   const [value, setValue] = React.useState("");

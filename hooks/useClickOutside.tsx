@@ -12,7 +12,7 @@ export function useClickOutside<T extends HTMLElement = HTMLElement>(
     };
 
     document.addEventListener("mousedown", handleClickOutside);
-    document.addEventListener("touchstart", handleClickOutside);
+    document.addEventListener("touchstart", handleClickOutside, { passive: true });
 
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
@@ -20,5 +20,3 @@ export function useClickOutside<T extends HTMLElement = HTMLElement>(
     };
   }, [ref, callback]);
 }
-
-export default useClickOutside;

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, MotionProps, useScroll } from "motion/react";
+import { LazyMotion, domAnimation, m, MotionProps, useScroll } from "motion/react";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 
@@ -34,33 +34,37 @@ export function ScrollProgress({
 
   if (orientation === "vertical") {
     return (
-      <motion.div
-        ref={ref}
-        className={cn(
-          "fixed inset-y-0 left-0 z-50 w-[2px] origin-top",
-          isDark ? "bg-white" : "bg-black",
-          className
-        )}
-        style={{
-          scaleY: scrollYProgress,
-        }}
-        {...props}
-      />
+      <LazyMotion features={domAnimation}>
+        <m.div
+          ref={ref}
+          className={cn(
+            "fixed inset-y-0 left-0 z-50 w-[2px] origin-top",
+            isDark ? "bg-white" : "bg-black",
+            className
+          )}
+          style={{
+            scaleY: scrollYProgress,
+          }}
+          {...props}
+        />
+      </LazyMotion>
     );
   }
 
   return (
-    <motion.div
-      ref={ref}
-      className={cn(
-        "fixed inset-x-0 top-0 z-50 h-[2px] origin-left",
-        isDark ? "bg-white" : "bg-black",
-        className
-      )}
-      style={{
-        scaleX: scrollYProgress,
-      }}
-      {...props}
-    />
+    <LazyMotion features={domAnimation}>
+      <m.div
+        ref={ref}
+        className={cn(
+          "fixed inset-x-0 top-0 z-50 h-[2px] origin-left",
+          isDark ? "bg-white" : "bg-black",
+          className
+        )}
+        style={{
+          scaleX: scrollYProgress,
+        }}
+        {...props}
+      />
+    </LazyMotion>
   );
 }

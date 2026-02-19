@@ -21,14 +21,6 @@ export interface BlogPostMeta {
   published: boolean;
 }
 
-export interface EducationListProps {
-  year: string
-  title: string
-  institution: string
-  location: string
-  link?: string
-}
-
 export interface ExperienceItemProps {
   company: string
   position: string

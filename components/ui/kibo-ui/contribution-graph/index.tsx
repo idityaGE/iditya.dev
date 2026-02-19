@@ -31,7 +31,7 @@ export type Activity = {
 
 type Week = Array<Activity | undefined>;
 
-export type Labels = {
+type Labels = {
   months?: string[];
   weekdays?: string[];
   totalCount?: string;
@@ -225,7 +225,7 @@ const getMonthLabels = (
     });
 };
 
-export type ContributionGraphProps = HTMLAttributes<HTMLDivElement> & {
+type ContributionGraphProps = HTMLAttributes<HTMLDivElement> & {
   data: Activity[];
   blockMargin?: number;
   blockRadius?: number;
@@ -306,7 +306,7 @@ export const ContributionGraph = ({
   );
 };
 
-export type ContributionGraphBlockProps = HTMLAttributes<SVGRectElement> & {
+type ContributionGraphBlockProps = HTMLAttributes<SVGRectElement> & {
   activity: Activity;
   dayIndex: number;
   weekIndex: number;
@@ -352,7 +352,7 @@ export const ContributionGraphBlock = ({
   );
 };
 
-export type ContributionGraphCalendarProps = Omit<
+type ContributionGraphCalendarProps = Omit<
   HTMLAttributes<HTMLDivElement>,
   "children"
 > & {
@@ -467,7 +467,7 @@ const ContributionGraphTotalCount = ({
   );
 };
 
-export type ContributionGraphLegendProps = Omit<
+type ContributionGraphLegendProps = Omit<
   HTMLAttributes<HTMLDivElement>,
   "children"
 > & {

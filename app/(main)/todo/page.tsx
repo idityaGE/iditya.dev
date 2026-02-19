@@ -1,7 +1,7 @@
 import { getNotionPage } from "@/server/notion-to-mdx";
 import { MDXRemote } from 'next-mdx-remote-client/rsc'
-import { useMDXComponents } from "@/mdx-components";
 import type { MDXRemoteOptions } from "next-mdx-remote-client/rsc";
+import type { MDXComponents } from "mdx/types";
 import remarkGfm from 'remark-gfm'
 import { Suspense } from "react";
 import { RefreshCw } from "lucide-react";
@@ -15,12 +15,12 @@ export const metadata: Metadata = {
 export const revalidate = 300; // revalidate every 5 minutes
 export const dynamic = 'force-dynamic';
 
-// Define MDX components at module level to avoid hook-like call in async function
-const todoComponents = useMDXComponents({
+// Define MDX components directly to avoid calling hook-named function at module level
+const todoComponents: MDXComponents = {
   ul: ({ children }) => <ul className="list-none pl-4 space-y-1">{children}</ul>,
   li: ({ children }) => <li className="text-xs font-mono flex items-start gap-2"><span className="text-green-500 flex-shrink-0">-&gt;</span><span>{children}</span></li>,
   p: ({ children }) => <p className="mb-3 text-xs font-mono text-muted-foreground">{children}</p>
-});
+};
 
 const mdxOptions: MDXRemoteOptions = {
   mdxOptions: {
@@ -30,13 +30,15 @@ const mdxOptions: MDXRemoteOptions = {
   }
 };
 
+const SKELETON_ITEMS = ["skeleton-1", "skeleton-2", "skeleton-3", "skeleton-4", "skeleton-5"] as const;
+
 const TodoSkeleton = () => (
   <div className="space-y-2 p-3">
     <div className="h-4 w-32 bg-muted" />
     <div className="h-4 w-48 bg-muted" />
     <div className="space-y-1.5 mt-3">
-      {[...Array(5)].map((_, i) => (
-        <div key={i} className="flex items-center gap-2">
+      {SKELETON_ITEMS.map((id) => (
+        <div key={id} className="flex items-center gap-2">
           <div className="h-3 w-3 bg-muted" />
           <div className="h-4 w-full bg-muted" />
         </div>

@@ -1,0 +1,86 @@
+## Foccus — Minimal Pomodoro timer with retro flip-clock
+
+A distraction-free Pomodoro timer built as a native desktop app with Tauri. Features a retro flip-clock display, customizable sessions, and system tray integration.
+
+---
+
+![Foccus main view](https://raw.githubusercontent.com/idityaGE/foccus/main/.github/image0.png)
+
+---
+
+## Features
+
+- Retro flip-clock animation for a satisfying visual experience
+- Built-in presets: Classic Pomodoro, Short Focus, Deep Work
+- Customizable work/break session durations
+- Desktop notifications with sound alerts
+- System tray integration for background operation
+- Mini mode for a compact, unobtrusive view
+- Always-on-top option to keep the timer visible
+- Full keyboard shortcut support
+
+---
+
+## Keyboard Shortcuts
+
+| Key | Action |
+|---|---|
+| `Space` | Start / Pause |
+| `S` | Skip segment |
+| `Esc` | Stop timer |
+| `F` | Toggle fullscreen |
+| `M` | Toggle mini mode |
+| `P` | Pin on top |
+
+---
+
+![Foccus settings](https://raw.githubusercontent.com/idityaGE/foccus/main/.github/image1.png)
+<div align="center">
+  <em>Session presets and customization</em>
+</div>
+
+---
+
+## Installation
+
+### One-line install (Linux/macOS)
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/idityaGE/foccus/main/scripts/install.sh | bash
+```
+
+The script auto-detects your distro and either downloads a pre-built package or builds from source.
+
+### Build from source
+
+```bash
+git clone https://github.com/idityaGE/foccus.git
+cd foccus
+bun install
+bun run tauri build
+```
+
+Requires Rust, Bun, and platform-specific Tauri dependencies.
+
+---
+
+![Foccus mini mode](https://raw.githubusercontent.com/idityaGE/foccus/main/.github/image2.png)
+<div align="center">
+  <em>Mini mode — compact timer view</em>
+</div>
+
+---
+
+## Tech stack
+
+- **Tauri 2** — Rust backend with native window management and system tray
+- **React + Vite** — Fast frontend with hot module replacement
+- **TypeScript** — Type-safe component logic
+- **ShadCN UI** — UI components for settings and controls
+- **GitHub Actions** — CI/CD with automated `.deb` and `.rpm` builds
+
+---
+
+## Why Tauri?
+
+Tauri produces tiny binaries (compared to Electron), uses the system webview, and gives full access to native APIs through Rust. For a timer app that sits in your system tray all day, the low memory footprint matters.

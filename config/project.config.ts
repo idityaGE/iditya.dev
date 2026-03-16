@@ -1,5 +1,19 @@
 export const ProjectData = [
   {
+    title: "Foccus",
+    type: "personal",
+    slug: "foccus",
+    description:
+      "A minimal Pomodoro timer with a retro flip-clock display. Built with Tauri (Rust + React), it features customizable work/break sessions, desktop notifications, system tray integration, mini mode, and always-on-top support.",
+    images: [
+      "https://raw.githubusercontent.com/idityaGE/foccus/main/.github/image0.png",
+      "https://raw.githubusercontent.com/idityaGE/foccus/main/.github/image1.png",
+      "https://raw.githubusercontent.com/idityaGE/foccus/main/.github/image2.png",
+    ],
+    githubLink: "https://github.com/idityaGE/foccus",
+    techStack: ["Tauri", "React", "TypeScript", "Rust", "Vite", "ShadCN UI"],
+  },
+  {
     title: "TypeCast",
     type: "personal",
     slug: "typecast",

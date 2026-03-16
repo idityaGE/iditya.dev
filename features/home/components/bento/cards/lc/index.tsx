@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import { getLeetCodeStats } from "@/features/home/data/lc-stats";
 import { LEETCODE_USERNAME } from "@/config/personal.config";
 import Link from "next/link";
+import { TerminalLoadingFallback } from "@/components/ui/terminal";
 
 import { SubmissionGraph } from "./submission-graph";
 import type { SubmissionStats, QuestionCount } from "./types";
@@ -121,13 +122,7 @@ function LeetCodeStatsDisplay({
 
 // Fallback loading component
 function LeetCodeStatsFallback() {
-  return (
-    <div className="flex h-full w-full items-center justify-center font-mono">
-      <div className="text-[10px] text-muted-foreground animate-pulse">
-        <span className="text-green-500">$</span> fetching leetcode stats...
-      </div>
-    </div>
-  );
+  return <TerminalLoadingFallback message="fetching leetcode stats..." />;
 }
 
 // Server component that fetches data

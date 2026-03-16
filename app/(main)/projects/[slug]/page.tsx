@@ -5,6 +5,7 @@ import type { Metadata } from "next/types";
 import { siteConfig } from "@/config/site.config";
 import { BackButton } from "@/features/blog/components/back-button";
 import { ScrollProgress } from "@/components/ui/magicui/scroll-progress";
+import { TerminalPath } from "@/components/ui/terminal";
 
 const getProjectFromSlug = (slug: string) => {
   return ProjectData.find((project) => project.slug === slug);
@@ -67,7 +68,7 @@ export default async function Page({
     return (
       <main className="flex flex-col items-center justify-center h-screen border bg-background">
         <div className="text-center">
-          <p className="text-xs font-mono text-muted-foreground mb-2">$ find . -name "{slug}"</p>
+          <p className="text-xs font-mono text-muted-foreground mb-2">$ find . -name &quot;{slug}&quot;</p>
           <p className="text-sm font-mono text-red-500">→ error: project not found</p>
         </div>
       </main>
@@ -79,7 +80,7 @@ export default async function Page({
       <ScrollProgress className="min-[1400px]:hidden" />
 
       {/* Fixed Back Button */}
-      <div className="fixed top-22 border-y border-l px-3 py-2 right-[calc(50%+24rem)] z-50 hidden lg:inline-flex bg-background">
+      <div className="fixed top-24 border-y border-l px-3 py-1.5 right-[calc(50%+24rem)] z-50 hidden lg:inline-flex bg-background">
         <BackButton href="/projects" label="← cd .." />
       </div>
 
@@ -98,7 +99,7 @@ export default async function Page({
         {/* Content Block */}
         <div className="bg-background">
           <div className="px-3 py-2 border-b bg-muted/20">
-            <span className="text-[10px] font-mono text-muted-foreground">$ cat README.md | render</span>
+            <TerminalPath>$ cat README.md | render</TerminalPath>
           </div>
           <section
             id="content-section"

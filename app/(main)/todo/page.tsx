@@ -6,6 +6,13 @@ import remarkGfm from 'remark-gfm'
 import { Suspense } from "react";
 import { RefreshCw } from "lucide-react";
 import type { Metadata } from "next";
+import {
+  TrafficLightDots,
+  TerminalPath,
+  TerminalCommand,
+  AvailabilityDot,
+  Tag,
+} from "@/components/ui/terminal";
 
 export const metadata: Metadata = {
   title: "To-Do List",
@@ -80,29 +87,25 @@ const ToDoPage = async () => {
         {/* Terminal Header */}
         <div className="border-y bg-background p-3">
           <div className="flex items-center gap-2 mb-2">
-            <div className="flex gap-1">
-              <span className="w-2 h-2 bg-red-500/80" />
-              <span className="w-2 h-2 bg-yellow-500/80" />
-              <span className="w-2 h-2 bg-green-500/80" />
-            </div>
-            <span className="text-[10px] font-mono text-muted-foreground">~/todo</span>
+            <TrafficLightDots />
+            <TerminalPath>~/todo</TerminalPath>
           </div>
           <div className="flex items-center justify-between">
             <h1 className="text-sm font-bold font-mono uppercase tracking-wider">To-Do List</h1>
-            <span className="px-1.5 py-0.5 text-[10px] font-mono bg-muted border text-muted-foreground">
+            <Tag>
               {today.toLocaleDateString("en-US", {
                 weekday: "short",
                 month: "short",
                 day: "numeric",
               })}
-            </span>
+            </Tag>
           </div>
         </div>
 
         {/* Content Block */}
         <div className="bg-background">
           <div className="px-3 py-2 border-b bg-muted/20">
-            <span className="text-[10px] font-mono text-muted-foreground">$ cat tasks.md | render</span>
+            <TerminalPath>$ cat tasks.md | render</TerminalPath>
           </div>
           <div className="p-3">
             <Suspense fallback={<TodoSkeleton />}>
@@ -117,11 +120,11 @@ const ToDoPage = async () => {
 
         {/* Footer */}
         <div className="border-y bg-background px-3 py-2 flex items-center justify-between">
-          <p className="text-[10px] font-mono text-muted-foreground flex items-center gap-1">
-            <span className="inline-block w-1.5 h-1.5 bg-green-500 animate-pulse" />
+          <TerminalPath className="flex items-center gap-1">
+            <AvailabilityDot />
             synced from notion
-          </p>
-          <span className="text-[10px] font-mono text-muted-foreground">ttl: 5min</span>
+          </TerminalPath>
+          <TerminalPath>ttl: 5min</TerminalPath>
         </div>
       </div>
     );
@@ -132,12 +135,8 @@ const ToDoPage = async () => {
         {/* Terminal Header */}
         <div className="border border-b-0 bg-background p-3">
           <div className="flex items-center gap-2 mb-2">
-            <div className="flex gap-1">
-              <span className="w-2 h-2 bg-red-500/80" />
-              <span className="w-2 h-2 bg-yellow-500/80" />
-              <span className="w-2 h-2 bg-green-500/80" />
-            </div>
-            <span className="text-[10px] font-mono text-muted-foreground">~/todo</span>
+            <TrafficLightDots />
+            <TerminalPath>~/todo</TerminalPath>
           </div>
         </div>
         <ErrorState />

@@ -1,6 +1,7 @@
 "use client";
 
 import { format } from "date-fns";
+import { TerminalLoadingFallback } from "@/components/ui/terminal";
 
 import {
   Tooltip,
@@ -103,11 +104,5 @@ export function GitHubContributionGraph({ data }: { data: Activity[] }) {
 }
 
 export function GitHubContributionFallback() {
-  return (
-    <div className="flex h-full w-full items-center justify-center font-mono">
-      <div className="text-[10px] text-muted-foreground animate-pulse">
-        <span className="text-green-500">$</span> fetching github contributions...
-      </div>
-    </div>
-  );
+  return <TerminalLoadingFallback message="fetching github contributions..." />;
 }

@@ -5,6 +5,12 @@ import {
   ProjectButtons,
   TechStackList,
 } from "../utils/project-card-utils";
+import {
+  TrafficLightDots,
+  TerminalPath,
+  TerminalCommand,
+  GreenArrow,
+} from "@/components/ui/terminal";
 
 const ProjectCard = ({
   title,
@@ -31,14 +37,8 @@ const ProjectCard = ({
       {/* Terminal Header */}
       <div className="px-2 py-1.5 bg-muted/70">
         <div className="flex items-center gap-2">
-          <div className="flex gap-1">
-            <span className="w-2 h-2 bg-red-500/80" />
-            <span className="w-2 h-2 bg-yellow-500/80" />
-            <span className="w-2 h-2 bg-green-500/80" />
-          </div>
-          <p className="text-[11px] font-mono text-muted-foreground truncate">
-            ~/projects/{slug}
-          </p>
+          <TrafficLightDots />
+          <TerminalPath className="truncate">~/projects/{slug}</TerminalPath>
         </div>
       </div>
 
@@ -47,15 +47,11 @@ const ProjectCard = ({
         <div className="flex flex-col w-full md:w-2/3 min-h-0 gap-px">
           {/* Title & Description Block */}
           <div className="bg-background p-1.5 h-full">
-            <div className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider mb-1">
-              $ info
-            </div>
+            <TerminalCommand className="mb-1">$ info</TerminalCommand>
             {disableHover ? (
               <div>
                 <div className="flex items-start gap-2 mb-1">
-                  <span className="text-green-500 text-xs font-mono flex-shrink-0">
-                    →
-                  </span>
+                  <GreenArrow />
                   <h2 className="text-sm font-mono font-bold line-clamp-1">
                     {title}
                   </h2>
@@ -71,9 +67,7 @@ const ProjectCard = ({
                 aria-label={projectAriaLabel}
               >
                 <div className="flex items-start gap-2 mb-1">
-                  <span className="text-green-500 text-xs font-mono flex-shrink-0">
-                    →
-                  </span>
+                  <GreenArrow />
                   <h2 className="text-sm font-mono font-bold line-clamp-1 group-hover/project-card:text-green-500 transition-colors">
                     {title}
                   </h2>
@@ -88,17 +82,13 @@ const ProjectCard = ({
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-px border-t">
             {/* Tech Stack Block */}
             <div className="bg-background p-1.5 border-r">
-              <div className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider mb-1">
-                $ stack
-              </div>
+              <TerminalCommand className="mb-1">$ stack</TerminalCommand>
               <TechStackList techStack={techStack} maxVisible={3} />
             </div>
 
             {/* Actions Block */}
             <div className="bg-background p-1.5 border-t md:border-t-0">
-              <div className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider mb-1">
-                $ links
-              </div>
+              <TerminalCommand className="mb-1">$ links</TerminalCommand>
               <ProjectButtons
                 githubLink={githubLink}
                 liveLink={liveLink}
@@ -146,11 +136,9 @@ const ProjectCard = ({
       {!disableHover && (
         <Link
           href={projectUrl}
-          className="border-t px-2 py-1 flex items-center justify-between bg-muted/20 hover:bg-muted/40 transition-colors"
+          className="border-t px-2.5 py-1.5 flex items-center justify-between bg-muted/20 hover:bg-muted/40 transition-colors"
         >
-          <span className="text-[10px] font-mono text-muted-foreground">
-            $ cd {slug}
-          </span>
+          <TerminalPath>$ cd {slug}</TerminalPath>
           <span className="text-[10px] font-mono text-green-500">enter →</span>
         </Link>
       )}

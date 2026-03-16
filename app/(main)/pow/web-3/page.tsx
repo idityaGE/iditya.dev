@@ -2,6 +2,13 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { Github } from "lucide-react";
 import { BackButton } from "@/features/blog/components/back-button";
+import {
+  TrafficLightDots,
+  TerminalPath,
+  TerminalCommand,
+  GreenArrow,
+  Tag,
+} from "@/components/ui/terminal";
 
 export const metadata: Metadata = {
   title: "Web3 Proof of Work",
@@ -67,22 +74,18 @@ const PoWPage = () => {
       {/* Terminal Header */}
       <div className="border-y bg-background p-3">
         <div className="flex items-center gap-2 mb-2">
-          <div className="flex gap-1">
-            <span className="w-2 h-2 bg-red-500/80" />
-            <span className="w-2 h-2 bg-yellow-500/80" />
-            <span className="w-2 h-2 bg-green-500/80" />
-          </div>
-          <span className="text-[10px] font-mono text-muted-foreground">~/pow/web-3</span>
+          <TrafficLightDots />
+          <TerminalPath>~/pow/web-3</TerminalPath>
         </div>
         <div className="flex items-center justify-between">
           <h1 className="text-sm font-bold font-mono uppercase tracking-wider">Web3 / Solana</h1>
-          <span className="text-[10px] font-mono text-muted-foreground">({powItems.length} repos)</span>
+          <TerminalPath>({powItems.length} repos)</TerminalPath>
         </div>
       </div>
 
       {/* Description Block */}
       <div className="border-b bg-background p-3">
-        <div className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider mb-1.5">$ cat readme.md</div>
+        <TerminalCommand className="mb-1.5">$ cat readme.md</TerminalCommand>
         <p className="text-xs font-mono text-muted-foreground leading-relaxed">
           My journey into the Solana ecosystem — from learning the fundamentals to building 
           real-world applications and experimenting with cutting-edge blockchain technology.
@@ -101,7 +104,7 @@ const PoWPage = () => {
       {/* Footer */}
       <div className="border-b bg-background px-3 py-2 flex items-center justify-between">
         <BackButton href="/pow" label="← cd .." />
-        <span className="text-[10px] font-mono text-muted-foreground">total: {powItems.length}</span>
+        <TerminalPath>total: {powItems.length}</TerminalPath>
       </div>
     </div>
   );
@@ -117,15 +120,13 @@ const PoWCard = ({ item }: { item: PoWItem }) => {
     >
       <div className="flex items-start justify-between gap-3">
         <div className="flex items-start gap-2 min-w-0">
-          <span className="text-green-500 text-xs font-mono flex-shrink-0 mt-0.5">→</span>
+          <GreenArrow className="mt-0.5" />
           <div className="min-w-0">
             <div className="flex items-center gap-2 flex-wrap">
               <h2 className="text-xs font-mono font-bold group-hover:text-green-500 transition-colors">
                 {item.title}
               </h2>
-              <span className="px-1.5 py-0.5 text-[9px] font-mono bg-muted border text-muted-foreground">
-                {item.tag}
-              </span>
+              <Tag size="sm">{item.tag}</Tag>
             </div>
             <p className="text-[11px] font-mono text-muted-foreground mt-1 line-clamp-2">
               {item.description}

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Calendar, ExternalLink } from "lucide-react";
 import { getAllBlogPostsMeta } from "@/lib/mdx";
+import { GreenArrow, Tag } from "@/components/ui/terminal";
 
 export const BlogCard = async () => {
   const blogs = await getAllBlogPostsMeta();
@@ -16,7 +17,7 @@ export const BlogCard = async () => {
             className="group bg-background p-2.5 hover:bg-muted/30 transition-colors flex flex-col"
           >
             <div className="flex items-start gap-2 mb-1">
-              <span className="text-green-500 text-xs font-mono flex-shrink-0">→</span>
+              <GreenArrow />
               <h4 className="text-xs font-mono font-bold group-hover:text-green-500 transition-colors line-clamp-1">
                 {blog.title}
               </h4>
@@ -32,12 +33,7 @@ export const BlogCard = async () => {
                 </span>
               </div>
               {blog.tags?.slice(0, 1).map((tag) => (
-                <span
-                  key={tag}
-                  className="px-1 py-0.5 text-[8px] font-mono bg-muted border text-muted-foreground"
-                >
-                  {tag}
-                </span>
+                <Tag key={tag} size="xs">{tag}</Tag>
               ))}
             </div>
           </Link>

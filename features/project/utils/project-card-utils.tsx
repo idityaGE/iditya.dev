@@ -1,30 +1,9 @@
 import { ExternalLink, Github } from "lucide-react";
 import React from "react";
-
-const getTypeColor = (type: string): string => {
-  const colorMap: Record<string, string> = {
-    personal: "bg-sky-600",
-    freelance: "bg-emerald-600",
-  };
-  return colorMap[type] || "bg-neutral-600";
-};
+import { Tag } from "@/components/ui/terminal";
 
 const BUTTON_CLASSES =
   "inline-flex items-center px-2 py-1 border hover:text-green-500 text-xs font-medium transition-colors";
-
-interface ProjectTypeTagProps {
-  type: string;
-}
-
-const ProjectTypeTag: React.FC<ProjectTypeTagProps> = ({ type }) => (
-  <span
-    className={`inline-flex items-center px-2 py-1 text-xs font-light rounded-sm text-white ${getTypeColor(
-      type
-    )} bg-opacity-80 flex-shrink-0`}
-  >
-    {type.charAt(0).toUpperCase() + type.slice(1)}
-  </span>
-);
 
 interface ProjectButtonsProps {
   githubLink?: string;
@@ -83,18 +62,11 @@ export const TechStackList: React.FC<TechStackListProps> = ({
       <div className="flex items-start gap-1 flex-wrap">
         {techStack.map((tag, index) =>
           showAll || index < maxVisible ? (
-            <span
-              key={tag}
-              className="px-1.5 py-0.5 rounded-sm bg-muted text-muted-foreground text-[10px] cursor-default"
-            >
-              {tag}
-            </span>
+            <Tag key={tag} className="cursor-default">{tag}</Tag>
           ) : null
         )}
         {!showAll && techStack.length > maxVisible && (
-          <span className="px-1.5 py-0.5 bg-muted text-muted-foreground text-[10px] rounded-sm">
-            +{techStack.length - maxVisible}
-          </span>
+          <Tag className="cursor-default">+{techStack.length - maxVisible}</Tag>
         )}
       </div>
     </div>

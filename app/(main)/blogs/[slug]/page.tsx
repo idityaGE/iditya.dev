@@ -7,6 +7,13 @@ import { siteConfig } from "@/config/site.config";
 import { ScrollProgress } from "@/components/ui/magicui/scroll-progress";
 import { ThemeImage } from "@/components/theme/theme-image";
 import { Calendar, User } from "lucide-react";
+import {
+  TrafficLightDots,
+  TerminalPath,
+  TerminalCommand,
+  GreenArrow,
+  Tag,
+} from "@/components/ui/terminal";
 
 export async function generateMetadata({
   params,
@@ -86,12 +93,8 @@ export default async function Page({
         <div className="fixed top-24 left-[calc(50%+24rem)] z-50 border-y border-r bg-background">
           <div className="px-3 py-2 border-b">
             <div className="flex items-center gap-2">
-              <div className="flex gap-1">
-                <span className="w-1.5 h-1.5 bg-red-500/80" />
-                <span className="w-1.5 h-1.5 bg-yellow-500/80" />
-                <span className="w-1.5 h-1.5 bg-green-500/80" />
-              </div>
-              <span className="text-[9px] font-mono text-muted-foreground">toc</span>
+              <TrafficLightDots size="sm" />
+              <TerminalPath className="text-[9px]">toc</TerminalPath>
             </div>
           </div>
           <ScrollProgress
@@ -107,18 +110,14 @@ export default async function Page({
       {/* Terminal Header */}
       <div className="border-y bg-background p-3">
         <div className="flex items-center gap-2">
-          <div className="flex gap-1">
-            <span className="w-2 h-2 bg-red-500/80" />
-            <span className="w-2 h-2 bg-yellow-500/80" />
-            <span className="w-2 h-2 bg-green-500/80" />
-          </div>
-          <span className="text-[10px] font-mono text-muted-foreground">~/blogs/{slug}</span>
+          <TrafficLightDots />
+          <TerminalPath>~/blogs/{slug}</TerminalPath>
         </div>
       </div>
 
       {/* Meta Info Block */}
       <div className="border-b bg-background p-3">
-        <div className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider mb-2">$ git log --oneline</div>
+        <TerminalCommand className="mb-2">$ git log --oneline</TerminalCommand>
         <div className="flex items-center gap-4 text-xs font-mono">
           <div className="flex items-center gap-1.5">
             <Calendar size={12} className="text-muted-foreground" />
@@ -140,15 +139,13 @@ export default async function Page({
       {/* Title Block */}
       <div className="border-b bg-background p-3">
         <div className="flex items-start gap-2">
-          <span className="text-green-500 text-sm font-mono flex-shrink-0">→</span>
+          <GreenArrow className="text-sm" />
           <h1 className="text-xl font-mono font-bold leading-tight">{metadata.title}</h1>
         </div>
         {metadata.tags && metadata.tags.length > 0 && (
           <div className="flex flex-wrap gap-1 mt-2 pl-5">
             {metadata.tags.map((tag: string) => (
-              <span key={tag} className="px-1.5 py-0.5 text-[10px] font-mono bg-muted border text-muted-foreground">
-                {tag}
-              </span>
+              <Tag key={tag}>{tag}</Tag>
             ))}
           </div>
         )}
@@ -157,7 +154,7 @@ export default async function Page({
       {/* Image Block */}
       {(metadata.darkImage || metadata.lightImage) && (
         <div className="border-b bg-background p-3">
-          <div className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider mb-2">$ cat cover.png</div>
+          <TerminalCommand className="mb-2">$ cat cover.png</TerminalCommand>
           <ThemeImage
             darkSrc={metadata.darkImage}
             lightSrc={metadata.lightImage}
@@ -173,7 +170,7 @@ export default async function Page({
       {/* Content Block */}
       <div className="bg-background">
         <div className="px-3 py-2 border-b bg-muted/20">
-          <span className="text-[10px] font-mono text-muted-foreground">$ cat content.md | render</span>
+          <TerminalPath>$ cat content.md | render</TerminalPath>
         </div>
         <article className="w-full leading-relaxed p-4">
           <Post />

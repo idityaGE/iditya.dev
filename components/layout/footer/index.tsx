@@ -2,6 +2,13 @@ import React from "react";
 import { LinkData, GITHUB_USERNAME } from "@/config/personal.config";
 import { Mail, Github, Twitter, Linkedin } from "lucide-react";
 import Link from "next/link";
+import {
+  TrafficLightDots,
+  TerminalPath,
+  TerminalCommand,
+  GreenArrow,
+  AvailabilityDot,
+} from "@/components/ui/terminal";
 
 const currentYear = new Date().getFullYear();
 
@@ -11,12 +18,8 @@ export const Footer = () => {
       {/* Terminal Header */}
       <div className="border-y bg-background px-3 py-2">
         <div className="flex items-center gap-2">
-          <div className="flex gap-1">
-            <span className="w-2 h-2 bg-red-500/80" />
-            <span className="w-2 h-2 bg-yellow-500/80" />
-            <span className="w-2 h-2 bg-green-500/80" />
-          </div>
-          <span className="text-[10px] font-mono text-muted-foreground">~/footer</span>
+          <TrafficLightDots />
+          <TerminalPath>~/footer</TerminalPath>
         </div>
       </div>
 
@@ -24,7 +27,7 @@ export const Footer = () => {
       <div className="">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-px">
           <div className="bg-background p-3 border-b md:border-r md:border-b-0">
-            <div className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider mb-2">$ connect</div>
+            <TerminalCommand className="mb-2">$ connect</TerminalCommand>
             <div className="flex items-center gap-3">
               <Link
                 href={LinkData.github}
@@ -61,35 +64,35 @@ export const Footer = () => {
           </div>
 
           <div className="bg-background p-3 border-b md:border-r md:border-b-0">
-            <div className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider mb-2">$ sitemap</div>
+            <TerminalCommand className="mb-2">$ sitemap</TerminalCommand>
             <div className="flex flex-wrap gap-x-3 gap-y-1">
               <Link href="/" className="text-[11px] font-mono text-muted-foreground hover:text-green-500 transition-colors">
-                <span className="text-green-500">→</span> home
+                <GreenArrow /> home
               </Link>
               <Link href="/projects" className="text-[11px] font-mono text-muted-foreground hover:text-green-500 transition-colors">
-                <span className="text-green-500">→</span> projects
+                <GreenArrow /> projects
               </Link>
               <Link href="/blogs" className="text-[11px] font-mono text-muted-foreground hover:text-green-500 transition-colors">
-                <span className="text-green-500">→</span> blogs
+                <GreenArrow /> blogs
               </Link>
               <Link href="/pow" className="text-[11px] font-mono text-muted-foreground hover:text-green-500 transition-colors">
-                <span className="text-green-500">→</span> proof of work
+                <GreenArrow /> proof of work
               </Link>
               <Link href="/rss.xml" target="_blank" className="text-[11px] font-mono text-muted-foreground hover:text-green-500 transition-colors">
-                <span className="text-green-500">→</span> rss
+                <GreenArrow /> rss
               </Link>
             </div>
           </div>
 
           <div className="bg-background p-3">
-            <div className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider mb-2">$ status</div>
+            <TerminalCommand className="mb-2">$ status</TerminalCommand>
             <div className="space-y-1">
-              <p className="text-[11px] font-mono text-muted-foreground">
-                <span className="inline-block w-1.5 h-1.5 bg-green-500 mr-1.5 animate-pulse" />
+              <p className="text-[11px] font-mono text-muted-foreground flex items-center gap-1.5">
+                <AvailabilityDot />
                 available for work
               </p>
               <p className="text-[11px] font-mono text-muted-foreground">
-                <span className="text-green-500">→</span> {LinkData.gmail}
+                <GreenArrow /> {LinkData.gmail}
               </p>
             </div>
           </div>

@@ -9,6 +9,12 @@ import {
 import { Terminal } from "lucide-react";
 import { NavLinks } from "@/components/layout/navbar";
 import Link from "next/link";
+import {
+  TrafficLightDots,
+  TerminalPath,
+  GreenArrow,
+  BlinkingCursor,
+} from "@/components/ui/terminal";
 
 export const MobileDropdown = () => {
   return (
@@ -24,12 +30,8 @@ export const MobileDropdown = () => {
           {/* Terminal Header */}
           <div className="px-2 py-1.5 border-b bg-muted/30">
             <div className="flex items-center gap-2">
-              <div className="flex gap-1">
-                <span className="w-1.5 h-1.5 bg-red-500/80" />
-                <span className="w-1.5 h-1.5 bg-yellow-500/80" />
-                <span className="w-1.5 h-1.5 bg-green-500/80" />
-              </div>
-              <span className="text-[9px] font-mono text-muted-foreground">nav</span>
+              <TrafficLightDots size="sm" />
+              <TerminalPath className="text-[9px]">nav</TerminalPath>
             </div>
           </div>
           {/* Links */}
@@ -37,7 +39,7 @@ export const MobileDropdown = () => {
             {NavLinks.map((link) => (
               <DropdownMenuItem key={link.to} className="px-2 py-2 rounded-none focus:bg-muted/50">
                 <Link href={link.to} className="flex items-center gap-2 w-full font-mono text-xs">
-                  <span className="text-green-500">→</span>
+                  <GreenArrow />
                   <div className="flex gap-0.5">
                     <span className="text-muted-foreground">/</span>
                     <span>{link.label}</span>
@@ -48,7 +50,7 @@ export const MobileDropdown = () => {
           </div>
           {/* Footer */}
           <div className="px-2 py-1 border-t bg-muted/20">
-            <span className="text-[9px] font-mono text-muted-foreground animate-pulse">█</span>
+            <BlinkingCursor className="text-[9px]" />
           </div>
         </DropdownMenuContent>
       </DropdownMenu>

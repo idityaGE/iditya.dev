@@ -1,5 +1,10 @@
 import { ReactNode } from "react";
 import { cn } from "@/lib/utils";
+import {
+  TrafficLightDots,
+  TerminalPath,
+  TerminalCommand,
+} from "@/components/ui/terminal";
 
 const BentoGrid = ({
   children,
@@ -13,18 +18,10 @@ const BentoGrid = ({
       {/* Terminal Header */}
       <div className="bg-background p-3 border-b">
         <div className="flex items-center gap-2 mb-2">
-          <div className="flex gap-1">
-            <span className="w-2 h-2 bg-red-500/80" />
-            <span className="w-2 h-2 bg-yellow-500/80" />
-            <span className="w-2 h-2 bg-green-500/80" />
-          </div>
-          <span className="text-[10px] font-mono text-muted-foreground">
-            ~/dashboard
-          </span>
+          <TrafficLightDots />
+          <TerminalPath>~/dashboard</TerminalPath>
         </div>
-        <div className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider">
-          $ neofetch --components
-        </div>
+        <TerminalCommand>$ neofetch --components</TerminalCommand>
       </div>
       {/* Grid Content */}
       <div

@@ -8,6 +8,12 @@ import {
 import { Rss } from "lucide-react";
 import Link from "next/link";
 import type { Metadata } from "next";
+import {
+  TrafficLightDots,
+  TerminalPath,
+  TerminalCommand,
+  BlinkingCursor,
+} from "@/components/ui/terminal";
 
 export const metadata: Metadata = {
   title: "Blogs",
@@ -22,17 +28,13 @@ const Blogs = async () => {
       {/* Terminal Header */}
       <div className="border-y bg-background p-3">
         <div className="flex items-center gap-2 mb-2">
-          <div className="flex gap-1">
-            <span className="w-2 h-2 bg-red-500/80" />
-            <span className="w-2 h-2 bg-yellow-500/80" />
-            <span className="w-2 h-2 bg-green-500/80" />
-          </div>
-          <span className="text-[10px] font-mono text-muted-foreground">~/blogs</span>
+          <TrafficLightDots />
+          <TerminalPath>~/blogs</TerminalPath>
         </div>
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <h1 className="text-sm font-bold font-mono uppercase tracking-wider">Blogs</h1>
-            <span className="text-[10px] font-mono text-muted-foreground">({posts.length} posts)</span>
+            <TerminalPath>({posts.length} posts)</TerminalPath>
           </div>
           <Tooltip delayDuration={200}>
             <TooltipTrigger>
@@ -54,7 +56,7 @@ const Blogs = async () => {
 
       {/* Description Block */}
       <div className="border-b bg-background p-3 mb-8">
-        <div className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider mb-1.5">$ cat readme.md</div>
+        <TerminalCommand className="mb-1.5">$ cat readme.md</TerminalCommand>
         <p className="text-xs font-mono text-muted-foreground leading-relaxed">
           I like to write when I get stuck into some problem or learn something new which might help others. 
           Here you'll find my thoughts, solutions, and discoveries from my coding journey.
@@ -82,8 +84,8 @@ const Blogs = async () => {
 
       {/* Footer */}
       <div className="border-b bg-background px-3 py-2 flex items-center justify-between">
-        <span className="text-[10px] font-mono text-muted-foreground">$ total: {posts.length} files</span>
-        <span className="text-[10px] font-mono text-muted-foreground animate-pulse">█</span>
+        <TerminalPath>$ total: {posts.length} files</TerminalPath>
+        <BlinkingCursor />
       </div>
     </div>
   );

@@ -32,7 +32,7 @@ export function MorphingImage({
           alt={alt}
           width={width}
           height={height}
-          className="max-w-xs rounded-[4px]"
+          className="max-w-xs"
         />
       </MorphingDialogTrigger>
       <MorphingDialogContainer>
@@ -40,7 +40,7 @@ export function MorphingImage({
           <MorphingDialogImage
             src={src}
             alt={alt}
-            className="h-auto w-full max-w-[90vw] rounded-[4px] object-contain lg:h-[90vh]"
+            className="h-auto w-full max-w-[90vw] object-contain lg:h-[90vh]"
           />
         </MorphingDialogContent>
         <MorphingDialogClose

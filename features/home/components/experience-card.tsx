@@ -6,6 +6,14 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import { ExperienceData } from "@/config/personal.config";
+import {
+  TrafficLightDots,
+  TerminalPath,
+  TerminalCommand,
+  GreenArrow,
+  Tag,
+  BlinkingCursor,
+} from "@/components/ui/terminal";
 
 function ExperienceDetails({ experience }: { experience: ExperienceItemProps }) {
   const duration = `${experience.startDate} - ${experience.endDate}`;
@@ -15,12 +23,8 @@ function ExperienceDetails({ experience }: { experience: ExperienceItemProps }) 
       {/* Terminal Header Block */}
       <div className="bg-background p-3 md:col-span-2 border-b">
         <div className="flex items-center gap-2 mb-2">
-          <div className="flex gap-1">
-            <span className="w-2 h-2 bg-red-500/80" />
-            <span className="w-2 h-2 bg-yellow-500/80" />
-            <span className="w-2 h-2 bg-green-500/80" />
-          </div>
-          <span className="text-[10px] font-mono text-muted-foreground">~/career/{experience.company.toLowerCase().replace(/\s+/g, '-')}</span>
+          <TrafficLightDots />
+          <TerminalPath>~/career/{experience.company.toLowerCase().replace(/\s+/g, '-')}</TerminalPath>
         </div>
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 bg-muted border flex items-center justify-center flex-shrink-0">
@@ -57,7 +61,7 @@ function ExperienceDetails({ experience }: { experience: ExperienceItemProps }) 
 
       {/* Meta Info Block */}
       <div className="bg-background p-3 border-b md:border-r">
-        <div className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider mb-1.5">$ info</div>
+        <TerminalCommand className="mb-1.5">$ info</TerminalCommand>
         <div className="space-y-1 text-xs font-mono">
           <div className="flex items-center gap-2">
             <Calendar size={11} className="text-muted-foreground" />
@@ -72,23 +76,21 @@ function ExperienceDetails({ experience }: { experience: ExperienceItemProps }) 
 
       {/* Tech Stack Block */}
       <div className="bg-background p-3 border-b">
-        <div className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider mb-1.5">$ stack</div>
+        <TerminalCommand className="mb-1.5">$ stack</TerminalCommand>
         <div className="flex flex-wrap gap-1">
           {experience.techStack.slice(0, 8).map((tech) => (
-            <span key={tech} className="px-1.5 py-0.5 text-[10px] font-mono bg-muted border text-muted-foreground">
-              {tech}
-            </span>
+            <Tag key={tech}>{tech}</Tag>
           ))}
         </div>
       </div>
 
       {/* Description Block */}
       <div className="bg-background p-3 md:col-span-2">
-        <div className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider mb-1.5">$ output</div>
+        <TerminalCommand className="mb-1.5">$ output</TerminalCommand>
         <ul className="space-y-1 text-xs font-mono text-muted-foreground">
           {experience.description.map((item) => (
             <li key={item} className="flex gap-2">
-              <span className="text-green-500 flex-shrink-0">→</span>
+              <GreenArrow />
               <span className="leading-relaxed">{item}</span>
             </li>
           ))}
@@ -107,17 +109,13 @@ export function ExperienceSection() {
       {/* Terminal-style Section Header */}
       <div className="border-t bg-background p-3">
         <div className="flex items-center gap-2 mb-2">
-          <div className="flex gap-1">
-            <span className="w-2 h-2 bg-red-500/80" />
-            <span className="w-2 h-2 bg-yellow-500/80" />
-            <span className="w-2 h-2 bg-green-500/80" />
-          </div>
-          <span className="text-[10px] font-mono text-muted-foreground">~/experience | wc -l</span>
+          <TrafficLightDots />
+          <TerminalPath>~/experience | wc -l</TerminalPath>
         </div>
         <div className="flex items-center gap-2">
           <Briefcase size={16} className="text-muted-foreground" />
           <h2 className="text-sm font-bold font-mono uppercase tracking-wider">Experience</h2>
-          <span className="text-[10px] font-mono text-muted-foreground">({ExperienceData.length} entries)</span>
+          <TerminalPath>({ExperienceData.length} entries)</TerminalPath>
         </div>
       </div>
 
@@ -126,7 +124,7 @@ export function ExperienceSection() {
         {/* Left Sidebar - Company Tabs */}
         <div className="w-full md:w-44 flex md:flex-col overflow-x-auto md:overflow-x-visible bg-background border-r">
           <div className="hidden md:block px-2 py-1 border-b">
-            <p className="text-[10px] font-mono text-muted-foreground">$ ls companies/</p>
+            <TerminalPath>$ ls companies/</TerminalPath>
           </div>
           {ExperienceData.map((exp, idx) => (
             <button
@@ -145,7 +143,7 @@ export function ExperienceSection() {
             </button>
           ))}
           <div className="hidden md:flex flex-1 items-end p-3">
-            <span className="text-[10px] font-mono text-muted-foreground animate-pulse">█</span>
+            <BlinkingCursor />
           </div>
         </div>
 

@@ -11,7 +11,7 @@ export const YouTube = ({ id }: { id: string }) => {
           overflow: "hidden",
           maxWidth: "100%",
           background: "#000",
-          borderRadius: "8px",
+          borderRadius: 0,
           margin: "1rem 0",
         }}
       >

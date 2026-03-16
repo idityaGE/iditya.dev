@@ -189,7 +189,7 @@ export function SubmissionGraph({
                         <TooltipTrigger asChild>
                           <div
                             className={cn(
-                              "h-[9px] w-[9px] transition-colors rounded-[1px]",
+                              "h-[9px] w-[9px] transition-colors",
                               day === null && "invisible",
                               day?.level === 0 && "bg-muted",
                               day?.level === 1 && "bg-green-500/30",

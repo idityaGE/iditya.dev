@@ -9,6 +9,13 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import type { Metadata } from "next";
+import {
+  TrafficLightDots,
+  TerminalPath,
+  TerminalCommand,
+  GreenArrow,
+  BlinkingCursor,
+} from "@/components/ui/terminal";
 
 export const metadata: Metadata = {
   title: "Projects",
@@ -25,19 +32,15 @@ const Projects = () => {
   return (
     <div className="mt-10">
       {/* Terminal Header */}
-      <div className="border-y  bg-background p-3">
+      <div className="border-y bg-background p-3">
         <div className="flex items-center gap-2 mb-2">
-          <div className="flex gap-1">
-            <span className="w-2 h-2 bg-red-500/80" />
-            <span className="w-2 h-2 bg-yellow-500/80" />
-            <span className="w-2 h-2 bg-green-500/80" />
-          </div>
-          <span className="text-[10px] font-mono text-muted-foreground">~/projects</span>
+          <TrafficLightDots />
+          <TerminalPath>~/projects</TerminalPath>
         </div>
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <h1 className="text-sm font-bold font-mono uppercase tracking-wider">Projects</h1>
-            <span className="text-[10px] font-mono text-muted-foreground">({ProjectData.length} repos)</span>
+            <TerminalPath>({ProjectData.length} repos)</TerminalPath>
           </div>
           <Tooltip delayDuration={200}>
             <TooltipTrigger>
@@ -58,14 +61,14 @@ const Projects = () => {
       </div>
 
       {/* Description Block */}
-      <div className="border-b  bg-background p-3">
-        <div className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider mb-1.5">$ cat readme.md</div>
+      <div className="border-b bg-background p-3">
+        <TerminalCommand className="mb-1.5">$ cat readme.md</TerminalCommand>
         <p className="text-xs font-mono text-muted-foreground leading-relaxed mb-2">
           I love building side projects that solve either my own or someone else's problems.
           Here is an extensive list of all the stuff I have built.
         </p>
         <p className="text-xs font-mono text-muted-foreground">
-          <span className="text-green-500">→</span> Want to collaborate?{" "}
+          <GreenArrow /> Want to collaborate?{" "}
           <Link
             href={LinkData.x}
             target="_blank"
@@ -78,11 +81,11 @@ const Projects = () => {
       </div>
 
       {/* Warning Block */}
-      <div className="border-b  bg-background p-3">
+      <div className="border-b bg-background p-3">
         <div className="flex items-start gap-2">
           <AlertTriangle size={12} className="text-yellow-500 mt-0.5 flex-shrink-0" />
           <div>
-            <div className="text-[10px] font-mono text-yellow-500 uppercase tracking-wider mb-1">$ warning</div>
+            <TerminalCommand className="text-yellow-500 mb-1">$ warning</TerminalCommand>
             <p className="text-[11px] font-mono text-muted-foreground">
               Projects hosted on free services may enter hibernation mode.{" "}
               <Link
@@ -109,8 +112,8 @@ const Projects = () => {
 
       {/* Footer */}
       <div className="border-b bg-background px-3 py-2 flex items-center justify-between">
-        <span className="text-[10px] font-mono text-muted-foreground">$ total: {ProjectData.length} repos</span>
-        <span className="text-[10px] font-mono text-muted-foreground animate-pulse">█</span>
+        <TerminalPath>$ total: {ProjectData.length} repos</TerminalPath>
+        <BlinkingCursor />
       </div>
     </div>
   );

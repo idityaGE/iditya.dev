@@ -1,6 +1,14 @@
 import { Construction } from "lucide-react";
 import Link from "next/link";
 import type { Metadata } from "next";
+import {
+  TrafficLightDots,
+  TerminalPath,
+  TerminalCommand,
+  GreenArrow,
+  BlinkingCursor,
+  Tag,
+} from "@/components/ui/terminal";
 
 export const metadata: Metadata = {
   title: "Proof of Work",
@@ -40,22 +48,18 @@ const PoWPage = () => {
       {/* Terminal Header */}
       <div className="border-y bg-background p-3">
         <div className="flex items-center gap-2 mb-2">
-          <div className="flex gap-1">
-            <span className="w-2 h-2 bg-red-500/80" />
-            <span className="w-2 h-2 bg-yellow-500/80" />
-            <span className="w-2 h-2 bg-green-500/80" />
-          </div>
-          <span className="text-[10px] font-mono text-muted-foreground">~/pow</span>
+          <TrafficLightDots />
+          <TerminalPath>~/pow</TerminalPath>
         </div>
         <div className="flex items-center justify-between">
           <h1 className="text-sm font-bold font-mono uppercase tracking-wider">Proof of Work</h1>
-          <span className="text-[10px] font-mono text-muted-foreground">({categories.length} categories)</span>
+          <TerminalPath>({categories.length} categories)</TerminalPath>
         </div>
       </div>
 
       {/* Description Block */}
       <div className="border-b bg-background p-3">
-        <div className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider mb-1.5">$ cat readme.md</div>
+        <TerminalCommand className="mb-1.5">$ cat readme.md</TerminalCommand>
         <p className="text-xs font-mono text-muted-foreground leading-relaxed">
           A collection of my work, contributions, and experiments across different domains.
         </p>
@@ -72,8 +76,8 @@ const PoWPage = () => {
 
       {/* Footer */}
       <div className="border-b bg-background px-3 py-2 flex items-center justify-between">
-        <span className="text-[10px] font-mono text-muted-foreground">$ ls -la | wc -l</span>
-        <span className="text-[10px] font-mono text-muted-foreground animate-pulse">█</span>
+        <TerminalPath>$ ls -la | wc -l</TerminalPath>
+        <BlinkingCursor />
       </div>
     </div>
   );
@@ -87,7 +91,7 @@ const CategoryCard = ({ category }: { category: PoWCategory }) => {
       <div className="flex items-start justify-between gap-3">
         <div className="flex items-start gap-2 min-w-0">
           {isAvailable ? (
-            <span className="text-green-500 text-xs font-mono flex-shrink-0 mt-0.5">→</span>
+            <GreenArrow className="mt-0.5" />
           ) : (
             <Construction size={12} className="text-muted-foreground flex-shrink-0 mt-0.5" />
           )}
@@ -100,12 +104,15 @@ const CategoryCard = ({ category }: { category: PoWCategory }) => {
             </p>
           </div>
         </div>
-        <span className={`px-1.5 py-0.5 text-[9px] font-mono flex-shrink-0 ${isAvailable
-            ? "bg-green-500/10 text-green-500 border border-green-500/20"
-            : "bg-muted text-muted-foreground border"
-          }`}>
+        <Tag
+          size="sm"
+          className={isAvailable
+            ? "bg-green-500/10 text-green-500 border-green-500/20 flex-shrink-0"
+            : "flex-shrink-0"
+          }
+        >
           {isAvailable ? "ready" : "pending"}
-        </span>
+        </Tag>
       </div>
     </div>
   );

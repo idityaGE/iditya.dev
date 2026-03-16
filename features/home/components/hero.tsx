@@ -1,6 +1,13 @@
 import { PersonalData, LinkData } from "@/config/personal.config";
 import { FileText } from "lucide-react";
 import Link from "next/link";
+import {
+  TrafficLightDots,
+  TerminalPath,
+  TerminalCommand,
+  AvailabilityDot,
+  GreenArrow,
+} from "@/components/ui/terminal";
 
 export const Hero = () => {
   return (
@@ -8,29 +15,16 @@ export const Hero = () => {
       {/* Terminal Header */}
       <div className="border-y bg-background p-3">
         <div className="flex items-center gap-2 mb-2">
-          <div className="flex gap-1">
-            <span className="w-2 h-2 bg-red-500/80" />
-            <span className="w-2 h-2 bg-yellow-500/80" />
-            <span className="w-2 h-2 bg-green-500/80" />
-          </div>
-          <span className="text-[10px] font-mono text-muted-foreground">
-            ~/home
-          </span>
+          <TrafficLightDots />
+          <TerminalPath>~/home</TerminalPath>
         </div>
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <span className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider">
-              $ whoami
-            </span>
+            <TerminalCommand>$ whoami</TerminalCommand>
           </div>
           <div className="flex items-center gap-1.5">
-            <span className="relative flex h-1.5 w-1.5">
-              <span className="animate-ping absolute inline-flex h-full w-full bg-green-500 opacity-75" />
-              <span className="relative inline-flex h-1.5 w-1.5 bg-green-500" />
-            </span>
-            <span className="text-[10px] font-mono text-muted-foreground">
-              Ajmer, India
-            </span>
+            <AvailabilityDot ping />
+            <TerminalPath>Ajmer, India</TerminalPath>
           </div>
         </div>
       </div>
@@ -38,7 +32,7 @@ export const Hero = () => {
       {/* Name Block */}
       <div className="border-b bg-background p-3">
         <div className="flex items-center gap-2 text-xs font-mono text-muted-foreground mb-1">
-          <span className="text-green-500">→</span>
+          <GreenArrow />
           <span>hey, it&apos;s me</span>
         </div>
         <div className="flex items-center justify-between">
@@ -71,12 +65,10 @@ export const Hero = () => {
 
       {/* About Block */}
       <div className="border-b bg-background p-3">
-        <div className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider mb-2">
-          $ cat about.txt
-        </div>
+        <TerminalCommand className="mb-2">$ cat about.txt</TerminalCommand>
         <div className="space-y-2 text-xs font-mono text-muted-foreground">
           <p className="flex items-start gap-2">
-            <span className="text-green-500 flex-shrink-0">→</span>
+            <GreenArrow />
             <span>
               full-stack developer with a knack for{" "}
               <span className="text-foreground">devops</span> and currently
@@ -86,7 +78,7 @@ export const Hero = () => {
             </span>
           </p>
           <p className="flex items-start gap-2">
-            <span className="text-green-500 flex-shrink-0">→</span>
+            <GreenArrow />
             <span>
               also have a thing for{" "}
               <span className="text-foreground">linux</span>,{" "}
@@ -97,7 +89,7 @@ export const Hero = () => {
             </span>
           </p>
           <p className="flex items-start gap-2 opacity-70">
-            <span className="text-green-500 flex-shrink-0">→</span>
+            <GreenArrow />
             <span>(you know the rabbit holes... they never end)</span>
           </p>
         </div>

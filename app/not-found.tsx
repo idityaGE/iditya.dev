@@ -1,22 +1,49 @@
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { ArrowLeft } from "lucide-react";
+import {
+  TrafficLightDots,
+  TerminalPath,
+  TerminalCommand,
+  GreenArrow,
+  BlinkingCursor,
+} from "@/components/ui/terminal";
 
 const NotFound = () => {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center space-y-6">
-      <div className="flex flex-col items-center">
-        <h1 className="text-8xl font-bold text-neutral-900 dark:text-neutral-100">404</h1>
-        <div className="h-px w-32 bg-muted my-6"></div>
-        <h2 className="text-xl text-neutral-600 dark:text-neutral-400 font-light tracking-wide">Page not found</h2>
-      </div>
+    <div className="min-h-screen flex flex-col items-center justify-center px-3">
+      <div className="w-full max-w-sm border bg-background">
+        {/* Terminal Header */}
+        <div className="px-3 py-2 border-b bg-muted/70">
+          <div className="flex items-center gap-2">
+            <TrafficLightDots />
+            <TerminalPath>~/404</TerminalPath>
+          </div>
+        </div>
 
-      <Button variant="outline" asChild className="mt-8 group transition-all">
-        <Link href="/" className="flex items-center gap-2">
-          <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
-          <span>Return home</span>
-        </Link>
-      </Button>
+        {/* Error Output */}
+        <div className="p-3 space-y-3">
+          <TerminalCommand>$ cd /page</TerminalCommand>
+          <p className="text-xs font-mono text-red-500">
+            bash: cd: /page: No such file or directory
+          </p>
+          <div className="flex items-center gap-2 text-xs font-mono text-muted-foreground">
+            <GreenArrow />
+            <span>
+              the page you requested does not exist.
+            </span>
+          </div>
+        </div>
+
+        {/* Action */}
+        <div className="border-t px-3 py-2 flex items-center justify-between bg-muted/20">
+          <Link
+            href="/"
+            className="text-[10px] font-mono text-muted-foreground hover:text-green-500 transition-colors flex items-center gap-1.5"
+          >
+            <span className="text-green-500">$</span> cd /home
+          </Link>
+          <BlinkingCursor />
+        </div>
+      </div>
     </div>
   );
 };

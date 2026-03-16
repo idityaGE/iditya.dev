@@ -101,7 +101,7 @@ export function Callout({
       className={cn(
         config.bgColor,
         config.borderColor,
-        "border rounded-lg p-4 my-6",
+        "border p-4 my-6",
         className
       )}
       {...props}

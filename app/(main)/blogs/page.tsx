@@ -43,6 +43,7 @@ const Blogs = async () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-foreground transition-colors"
+                aria-label="Subscribe to blog RSS feed"
               >
                 <Rss size={14} aria-hidden="true" />
               </Link>

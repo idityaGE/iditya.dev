@@ -49,6 +49,7 @@ const Projects = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-foreground transition-colors"
+                aria-label="Subscribe to projects RSS feed"
               >
                 <Rss size={14} aria-hidden="true" />
               </Link>
@@ -101,13 +102,21 @@ const Projects = () => {
 
       {/* Project List */}
       <div className="mt-8">
-        <div className="flex flex-col gap-px">
-          {ProjectData.map((project) => (
-            <div key={project.slug || project.title} className="bg-background mb-4 px-2">
-              <ProjectCard {...project} />
-            </div>
-          ))}
-        </div>
+        {ProjectData.length === 0 ? (
+          <div className="bg-background p-6 text-center">
+            <p className="text-xs font-mono text-muted-foreground">$ ls -la</p>
+            <p className="text-sm font-mono text-muted-foreground mt-2">→ No projects found</p>
+            <p className="text-xs font-mono text-muted-foreground mt-1">Check back soon for new builds!</p>
+          </div>
+        ) : (
+          <div className="flex flex-col gap-px">
+            {ProjectData.map((project) => (
+              <div key={project.slug || project.title} className="bg-background mb-4 px-2">
+                <ProjectCard {...project} />
+              </div>
+            ))}
+          </div>
+        )}
       </div>
 
       {/* Footer */}

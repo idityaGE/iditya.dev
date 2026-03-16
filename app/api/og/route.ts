@@ -1,6 +1,42 @@
 import { NextResponse } from 'next/server';
 import { parse } from 'node-html-parser';
 
+function isAllowedUrl(urlString: string): boolean {
+  try {
+    const url = new URL(urlString);
+
+    if (url.protocol !== 'http:' && url.protocol !== 'https:') return false;
+
+    const hostname = url.hostname.toLowerCase();
+    if (
+      hostname === 'localhost' ||
+      hostname === '127.0.0.1' ||
+      hostname === '::1' ||
+      hostname === '0.0.0.0' ||
+      hostname === 'metadata.google.internal' ||
+      hostname.endsWith('.local') ||
+      hostname.endsWith('.internal')
+    ) {
+      return false;
+    }
+
+    // Block private/reserved IP ranges
+    const parts = hostname.split('.').map(Number);
+    if (parts.length === 4 && parts.every((p) => !isNaN(p) && p >= 0 && p <= 255)) {
+      if (parts[0] === 10) return false;                                    // 10.0.0.0/8
+      if (parts[0] === 172 && parts[1] >= 16 && parts[1] <= 31) return false; // 172.16.0.0/12
+      if (parts[0] === 192 && parts[1] === 168) return false;               // 192.168.0.0/16
+      if (parts[0] === 169 && parts[1] === 254) return false;               // 169.254.0.0/16
+      if (parts[0] === 127) return false;                                    // 127.0.0.0/8
+      if (parts[0] === 0) return false;                                      // 0.0.0.0/8
+    }
+
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const url = searchParams.get('url');
@@ -9,6 +45,13 @@ export async function GET(request: Request) {
     return NextResponse.json(
       { error: 'URL parameter is required' },
       { status: 400 }
+    );
+  }
+
+  if (!isAllowedUrl(url)) {
+    return NextResponse.json(
+      { error: 'URL not allowed' },
+      { status: 403 }
     );
   }
 

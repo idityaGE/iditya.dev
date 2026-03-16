@@ -1,5 +1,5 @@
-
 import { getMDXSlugs } from "@/lib/mdx";
+import { notFound } from "next/navigation";
 import { TableOfContents } from "@/components/content/toc";
 import { BackButton } from "@/features/blog/components/back-button";
 import type { Metadata } from "next/types";
@@ -55,8 +55,8 @@ export async function generateMetadata({
       card: "summary",
       title: `${metadata.title} | ${siteConfig.name}`,
       description: metadata.excerpt || metadata.description,
-      site: "@" + siteConfig.links.x.split("/").at(-1) || "@idityage",
-      creator: "@" + siteConfig.links.x.split("/").at(-1) || "@idityage",
+      site: `@${siteConfig.links.x.split("/").at(-1) ?? "idityage"}`,
+      creator: `@${siteConfig.links.x.split("/").at(-1) ?? "idityage"}`,
       images: [
         {
           url: metadata.darkImage || siteConfig.ogImage,
@@ -73,11 +73,18 @@ export default async function Page({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const {
-    default: Post,
-    metadata,
-    toc,
-  } = await import(`@/content/blogs/${slug}.mdx`);
+
+  let Post: React.ComponentType;
+  let metadata: Record<string, any>;
+  let toc: any;
+  try {
+    const mod = await import(`@/content/blogs/${slug}.mdx`);
+    Post = mod.default;
+    metadata = mod.metadata;
+    toc = mod.toc;
+  } catch {
+    notFound();
+  }
 
   return (
     <div className="flex flex-col mt-10">
@@ -140,7 +147,7 @@ export default async function Page({
       <div className="border-b bg-background p-3">
         <div className="flex items-start gap-2">
           <GreenArrow className="text-sm" />
-          <h1 className="text-xl font-mono font-bold leading-tight">{metadata.title}</h1>
+          <h1 className="text-xl font-mono font-bold leading-tight break-words min-w-0">{metadata.title}</h1>
         </div>
         {metadata.tags && metadata.tags.length > 0 && (
           <div className="flex flex-wrap gap-1 mt-2 pl-5">

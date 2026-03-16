@@ -1,13 +1,17 @@
-import { useEffect, RefObject } from "react";
+import { useEffect, useRef, RefObject } from "react";
 
 export function useClickOutside<T extends HTMLElement = HTMLElement>(
   ref: RefObject<T | null>,
   callback: () => void
 ): void {
+  // Store callback in a ref to avoid re-registering listeners when callback identity changes
+  const callbackRef = useRef(callback);
+  callbackRef.current = callback;
+
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent | TouchEvent) => {
       if (ref.current && !ref.current.contains(event.target as Node)) {
-        callback();
+        callbackRef.current();
       }
     };
 
@@ -18,5 +22,5 @@ export function useClickOutside<T extends HTMLElement = HTMLElement>(
       document.removeEventListener("mousedown", handleClickOutside);
       document.removeEventListener("touchstart", handleClickOutside);
     };
-  }, [ref, callback]);
+  }, [ref]);
 }

@@ -16,9 +16,9 @@ export const BlogCard = async () => {
             key={blog.slug}
             className="group bg-background p-2.5 hover:bg-muted/30 transition-colors flex flex-col"
           >
-            <div className="flex items-start gap-2 mb-1">
+            <div className="flex items-start gap-2 mb-1 min-w-0">
               <GreenArrow />
-              <h4 className="text-xs font-mono font-bold group-hover:text-green-500 transition-colors line-clamp-1">
+              <h4 className="text-xs font-mono font-bold group-hover:text-green-500 transition-colors line-clamp-1 min-w-0">
                 {blog.title}
               </h4>
             </div>

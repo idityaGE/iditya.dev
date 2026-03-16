@@ -33,7 +33,7 @@ function LeetCodeStatsDisplay({
   const hard = submitStats.find((s) => s.difficulty === "Hard")?.count ?? 0;
   const hardTotal = allQuestions.find((q) => q.difficulty === "Hard")?.count ?? 0;
 
-  const totalSubmissions = stats.matchedUser?.submitStats.totalSubmissionNum[0].submissions ?? 0;
+  const totalSubmissions = stats.matchedUser?.submitStats?.totalSubmissionNum?.[0]?.submissions ?? 0;
   const submissionCalendar = stats.matchedUser?.submissionCalendar;
 
   const easyPercent = easyTotal > 0 ? Math.round((easy / easyTotal) * 100) : 0;
@@ -51,6 +51,8 @@ function LeetCodeStatsDisplay({
             <Link
               href={`https://leetcode.com/u/${LEETCODE_USERNAME}`}
               target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`View ${LEETCODE_USERNAME} on LeetCode`}
               className="text-[10px] text-muted-foreground hover:text-green-500 transition-colors"
             >
               view profile →

@@ -35,6 +35,8 @@ export function GitHubContributionGraph({ data }: { data: Activity[] }) {
             <Link
               href={`https://github.com/${GITHUB_USERNAME}`}
               target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`View ${GITHUB_USERNAME} on GitHub`}
               className="text-[10px] text-muted-foreground hover:text-green-500 transition-colors"
             >
               @{GITHUB_USERNAME} →

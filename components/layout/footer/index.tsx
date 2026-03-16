@@ -32,6 +32,7 @@ export const Footer = () => {
               <Link
                 href={LinkData.github}
                 target="_blank"
+                rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-foreground transition-colors"
                 aria-label="GitHub"
               >
@@ -40,14 +41,16 @@ export const Footer = () => {
               <Link
                 href={LinkData.x}
                 target="_blank"
+                rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-foreground transition-colors"
-                aria-label="X"
+                aria-label="X (Twitter)"
               >
                 <Twitter size={14} />
               </Link>
               <Link
                 href={LinkData.linkedin}
                 target="_blank"
+                rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-foreground transition-colors"
                 aria-label="LinkedIn"
               >
@@ -78,7 +81,7 @@ export const Footer = () => {
               <Link href="/pow" className="text-[11px] font-mono text-muted-foreground hover:text-green-500 transition-colors">
                 <GreenArrow /> proof of work
               </Link>
-              <Link href="/rss.xml" target="_blank" className="text-[11px] font-mono text-muted-foreground hover:text-green-500 transition-colors">
+              <Link href="/rss.xml" target="_blank" rel="noopener noreferrer" className="text-[11px] font-mono text-muted-foreground hover:text-green-500 transition-colors">
                 <GreenArrow /> rss
               </Link>
             </div>
@@ -105,7 +108,7 @@ export const Footer = () => {
           <span>© {currentYear}</span>
           <span className="text-muted-foreground/50">|</span>
           <span>built by </span>
-          <Link href={LinkData.x} target="_blank" className="hover:text-green-500 transition-colors">
+          <Link href={LinkData.x} target="_blank" rel="noopener noreferrer" className="hover:text-green-500 transition-colors">
             @{LinkData.x.split("/").pop()}
           </Link>
         </p>
@@ -114,6 +117,7 @@ export const Footer = () => {
           <Link
             href={`https://github.com/${GITHUB_USERNAME}/iditya.dev`}
             target="_blank"
+            rel="noopener noreferrer"
             className="hover:text-green-500 transition-colors flex items-center gap-1"
           >
             <Github size={10} />

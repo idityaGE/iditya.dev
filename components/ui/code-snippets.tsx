@@ -5,6 +5,7 @@ import { Highlight, PrismTheme, Prism } from "prism-react-renderer";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Check, Copy } from "lucide-react";
+import { useTheme } from "next-themes";
 
 // Add HCL (Terraform) language definition
 // @ts-ignore
@@ -268,29 +269,8 @@ export const CodeSnippet: React.FC<CodeSnippetProps> = ({
     currentTab && tabs ? tabs[currentTab].language || language : language;
 
   const lines = currentCode.trim().split("\n");
-  const [isDark, setIsDark] = useState(false);
-
-  useEffect(() => {
-    const checkDarkMode = () => {
-      setIsDark(document.documentElement.classList.contains("dark"));
-    };
-    checkDarkMode();
-    const observer = new MutationObserver((mutations) => {
-      mutations.forEach((mutation) => {
-        if (
-          mutation.type === "attributes" &&
-          mutation.attributeName === "class"
-        ) {
-          checkDarkMode();
-        }
-      });
-    });
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ["class"],
-    });
-    return () => observer.disconnect();
-  }, []);
+  const { resolvedTheme } = useTheme();
+  const isDark = resolvedTheme === "dark";
 
   const selectedTheme = adaptiveTheme
     ? isDark

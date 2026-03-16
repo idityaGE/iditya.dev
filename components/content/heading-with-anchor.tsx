@@ -19,10 +19,14 @@ export const HeadingWithAnchor = ({
   const [copied, setCopied] = useState(false);
 
   const copyToClipboard = () => {
-    const url = `${window.location.origin}${window.location.pathname}#${slug}`;
-    navigator.clipboard.writeText(url);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    try {
+      const url = `${window.location.origin}${window.location.pathname}#${slug}`;
+      navigator.clipboard.writeText(url);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // Clipboard API unavailable
+    }
   };
 
   const scrollToHeading = () => {

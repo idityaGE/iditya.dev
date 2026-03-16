@@ -11,6 +11,7 @@ interface ThemeImageProps {
   height: number;
   className?: string;
   priority?: boolean;
+  sizes?: string;
 }
 
 export function ThemeImage({
@@ -21,6 +22,7 @@ export function ThemeImage({
   height,
   className,
   priority = false,
+  sizes = "(max-width: 768px) 100vw, 768px",
 }: ThemeImageProps) {
 
   const resolvedDarkSrc = getImageSrc(darkSrc);
@@ -34,6 +36,7 @@ export function ThemeImage({
         alt={alt}
         width={width}
         height={height}
+        sizes={sizes}
         className={cn(className, "hidden dark:block")}
         priority={priority}
       />
@@ -43,6 +46,7 @@ export function ThemeImage({
         alt={alt}
         width={width}
         height={height}
+        sizes={sizes}
         className={cn(className, "block dark:hidden")}
         priority={priority}
       />

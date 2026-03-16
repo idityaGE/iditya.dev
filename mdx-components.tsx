@@ -50,6 +50,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
           alt={alt || ""}
           width={Number(width) || 800}
           height={Number(height) || 450}
+          sizes="(max-width: 768px) 100vw, 768px"
           className="my-4 border"
           style={{ maxWidth: "100%", height: "auto" }}
           quality={90}
@@ -88,7 +89,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     ),
     p: ({ children }) => <p className={styles.p}>{children}</p>,
     a: ({ href, children }) => (
-      <a href={href} className={styles.a} target="_blank">
+      <a href={href} className={styles.a} target="_blank" rel="noopener noreferrer">
         {children}
       </a>
     ),

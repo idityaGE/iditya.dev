@@ -65,12 +65,12 @@ const ErrorState = () => (
       </div>
       <p className="text-xs font-mono text-muted-foreground mb-1">→ error: failed to fetch notion data</p>
       <p className="text-[10px] font-mono text-muted-foreground mb-3">unable to sync with remote source</p>
-      <button
-        onClick={() => window.location.reload()}
-        className="px-3 py-1.5 text-[10px] font-mono border bg-muted hover:bg-muted/80 transition-colors"
+      <a
+        href="/todo"
+        className="px-3 py-1.5 text-[10px] font-mono border bg-muted hover:bg-muted/80 transition-colors inline-block"
       >
         $ retry
-      </button>
+      </a>
     </div>
   </div>
 );

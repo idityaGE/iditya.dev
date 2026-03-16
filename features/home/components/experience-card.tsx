@@ -34,7 +34,7 @@ function ExperienceDetails({ experience }: { experience: ExperienceItemProps }) 
                 alt={`${experience.company} logo`}
                 width={40}
                 height={40}
-                className="object-contain w-full h-full p-1.5 bg-indigo-950"
+                className="object-contain w-full h-full p-1.5 bg-foreground dark:bg-card"
               />
             ) : (
               <span className="text-sm font-bold font-mono">{experience.company.charAt(0)}</span>
@@ -91,7 +91,7 @@ function ExperienceDetails({ experience }: { experience: ExperienceItemProps }) 
           {experience.description.map((item) => (
             <li key={item} className="flex gap-2">
               <GreenArrow />
-              <span className="leading-relaxed">{item}</span>
+              <span className="leading-relaxed break-words min-w-0">{item}</span>
             </li>
           ))}
         </ul>
@@ -102,6 +102,9 @@ function ExperienceDetails({ experience }: { experience: ExperienceItemProps }) 
 
 export function ExperienceSection() {
   const [selectedIndex, setSelectedIndex] = useState(0);
+
+  if (ExperienceData.length === 0) return null;
+
   const selectedExperience = ExperienceData[selectedIndex];
 
   return (

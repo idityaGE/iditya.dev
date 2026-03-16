@@ -54,9 +54,13 @@ export function ScriptCopyBtn({
   }, [command, theme, codeLanguage, lightTheme, darkTheme]);
 
   const copyToClipboard = () => {
-    navigator.clipboard.writeText(command);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    try {
+      navigator.clipboard.writeText(command);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // Clipboard API unavailable
+    }
   };
 
   return (
@@ -90,7 +94,7 @@ export function ScriptCopyBtn({
 
         {/* Code Container */}
         <div className="relative group">
-          <div className="font-mono overflow-hidden border border-border bg-zinc-100 dark:bg-[#0d1117]">
+          <div className="font-mono overflow-hidden border border-border bg-muted dark:bg-card">
             <div className="flex items-start py-3 px-4 pr-10">
               <span className="text-green-500 font-mono text-sm mr-2 select-none flex-shrink-0">$</span>
               {highlightedCode ? (
@@ -99,7 +103,7 @@ export function ScriptCopyBtn({
                   dangerouslySetInnerHTML={{ __html: highlightedCode }}
                 />
               ) : (
-                <pre className="overflow-x-auto font-mono text-sm text-zinc-700 dark:text-zinc-300 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+                <pre className="overflow-x-auto font-mono text-sm text-foreground/80 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
                   {command}
                 </pre>
               )}

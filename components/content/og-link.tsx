@@ -68,7 +68,7 @@ export async function OgLink({ url }: { url: string }) {
         href={url}
         target="_blank"
         rel="noopener noreferrer"
-        className="text-blue-500 hover:text-blue-700 underline flex items-center gap-2 my-6"
+        className="text-green-500 hover:text-green-400 underline underline-offset-4 decoration-green-500/30 flex items-center gap-2 my-6 font-mono text-sm"
       >
         <Link2 size={16} />
         <span>{url}</span>
@@ -112,7 +112,7 @@ export async function OgLink({ url }: { url: string }) {
           </CardContent>
 
           {ogData.image && (
-            <div className="relative w-24 sm:w-28 md:w-32 lg:w-36 flex-shrink-0 m-2 ml-1 overflow-hidden rounded-md">
+            <div className="relative w-24 sm:w-28 md:w-32 lg:w-36 flex-shrink-0 m-2 ml-1 overflow-hidden">
               <Image
                 src={ogData.image}
                 alt={ogData.title || url}

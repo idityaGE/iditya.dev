@@ -20,7 +20,7 @@ export const MobileDropdown = () => {
   return (
     <div className="sm:hidden">
       <DropdownMenu>
-        <DropdownMenuTrigger className="w-10 h-10 flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors">
+        <DropdownMenuTrigger className="w-10 h-10 flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors" aria-label="Open navigation menu">
           <Terminal size={16} />
         </DropdownMenuTrigger>
         <DropdownMenuContent

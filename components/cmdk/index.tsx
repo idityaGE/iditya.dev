@@ -187,17 +187,25 @@ export function CommandMenu({ blogs = EMPTY_BLOGS, projects = EMPTY_PROJECTS }: 
   }, [runCommand]);
 
   const copyEmail = React.useCallback(() => {
-    const email = "am44910606@gmail.com";
-    navigator.clipboard.writeText(email);
-    setCopied("email");
-    setTimeout(() => setCopied(null), 2000);
+    try {
+      const email = LinkData.mail.replace("mailto:", "").split("?")[0];
+      navigator.clipboard.writeText(email);
+      setCopied("email");
+      setTimeout(() => setCopied(null), 2000);
+    } catch {
+      // Clipboard API unavailable
+    }
   }, []);
 
   const sharePortfolio = React.useCallback(() => {
-    const url = window.location.origin;
-    navigator.clipboard.writeText(url);
-    setCopied("portfolio");
-    setTimeout(() => setCopied(null), 2000);
+    try {
+      const url = window.location.origin;
+      navigator.clipboard.writeText(url);
+      setCopied("portfolio");
+      setTimeout(() => setCopied(null), 2000);
+    } catch {
+      // Clipboard API unavailable
+    }
   }, []);
 
   const openRssFeed = React.useCallback(() => {

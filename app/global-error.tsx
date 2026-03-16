@@ -2,8 +2,6 @@
 
 import Link from "next/link";
 import { useEffect } from "react";
-import { Button } from "@/components/ui/button";
-import { AlertTriangle } from "lucide-react";
 
 const GlobalError = ({
   error,
@@ -17,42 +15,59 @@ const GlobalError = ({
   }, [error]);
 
   return (
-    <html lang="en">
-      <body>
-        <div className="h-screen w-full flex flex-col items-center justify-center p-4">
-          <div className="max-w-md w-full space-y-6 text-center">
-            <AlertTriangle className="h-12 w-12 text-red-500 mx-auto" />
+    <html lang="en" className="dark">
+      <body className="bg-[oklch(0.145_0_0)] text-[oklch(0.985_0_0)] font-[JetBrains_Mono,monospace] antialiased">
+        <div className="h-screen w-full flex flex-col items-center justify-center px-3">
+          <div className="w-full max-w-sm border border-[rgb(255_255_255/0.18)]">
+            {/* Terminal Header */}
+            <div className="px-3 py-2 border-b border-[rgb(255_255_255/0.18)] bg-[oklch(0.21_0_0)]">
+              <div className="flex items-center gap-2">
+                <div className="flex gap-1">
+                  <span className="w-2 h-2 bg-red-500/80" />
+                  <span className="w-2 h-2 bg-yellow-500/80" />
+                  <span className="w-2 h-2 bg-green-500/80" />
+                </div>
+                <span className="text-[10px] text-[oklch(0.75_0_0)]">~/error</span>
+              </div>
+            </div>
 
-            <div className="space-y-2">
-              <h2 className="text-xl font-medium text-neutral-900 dark:text-neutral-100">
-                Something went wrong
-              </h2>
-
-              <p className="text-sm text-neutral-500 dark:text-neutral-400">
-                {process.env.NODE_ENV === 'development' ? (
-                  <span className="font-mono text-xs overflow-x-auto block p-2 bg-neutral-100 dark:bg-neutral-800 rounded">
-                    {error.message || "An unexpected error occurred"}
-                  </span>
-                ) : (
-                  "An unexpected error occurred. Please try again later."
-                )}
+            {/* Error Output */}
+            <div className="p-3 space-y-3">
+              <div className="text-[10px] text-[oklch(0.75_0_0)] uppercase tracking-wider">
+                $ process status
+              </div>
+              <p className="text-xs text-red-500">
+                error: segmentation fault (core dumped)
               </p>
-
+              <div className="flex items-center gap-2 text-xs text-[oklch(0.75_0_0)]">
+                <span className="text-green-500">→</span>
+                <span>
+                  {process.env.NODE_ENV === "development"
+                    ? error.message || "an unexpected error occurred"
+                    : "something went wrong. please try again."}
+                </span>
+              </div>
               {error.digest && (
-                <p className="text-xs text-neutral-500 mt-2">
-                  Error ID: {error.digest}
+                <p className="text-[10px] text-[oklch(0.75_0_0)]">
+                  digest: {error.digest}
                 </p>
               )}
             </div>
 
-            <div className="flex gap-3 justify-center">
-              <Button variant="outline" asChild>
-                <Link href="/">Return home</Link>
-              </Button>
-
-              <Button variant="default" onClick={() => reset()}>
-                Try again
-              </Button>
+            {/* Actions */}
+            <div className="border-t border-[rgb(255_255_255/0.18)] px-3 py-2 flex items-center justify-between bg-[oklch(0.21_0_0)]/20">
+              <Link
+                href="/"
+                className="text-[10px] text-[oklch(0.75_0_0)] hover:text-green-500 transition-colors flex items-center gap-1.5"
+              >
+                <span className="text-green-500">$</span> cd /home
+              </Link>
+              <button
+                onClick={() => reset()}
+                className="text-[10px] text-[oklch(0.75_0_0)] hover:text-green-500 transition-colors flex items-center gap-1.5"
+              >
+                <span className="text-green-500">$</span> retry
+              </button>
             </div>
           </div>
         </div>

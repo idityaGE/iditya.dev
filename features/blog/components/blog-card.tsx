@@ -39,16 +39,18 @@ export function BlogCard({
           <div className="w-full aspect-[10/5] overflow-hidden border-b">
             <Image
               src={darkSrc}
-              width={200}
-              height={111}
+              width={400}
+              height={200}
               alt={blog.title}
+              sizes="(max-width: 768px) 100vw, 50vw"
               className="w-full aspect-[10/5] object-cover hidden dark:block"
             />
             <Image
               src={lightSrc}
-              width={200}
-              height={111}
+              width={400}
+              height={200}
               alt={blog.title}
+              sizes="(max-width: 768px) 100vw, 50vw"
               className="w-full aspect-[10/5] object-cover block dark:hidden"
             />
           </div>
@@ -57,7 +59,7 @@ export function BlogCard({
           <div className="p-2.5">
             <div className="flex items-start gap-2 mb-2">
               <GreenArrow className="mt-0.5" />
-              <h2 className="text-sm font-mono font-bold leading-tight group-hover/blog-card:text-green-500 transition-colors">{blog.title}</h2>
+              <h2 className="text-sm font-mono font-bold leading-tight group-hover/blog-card:text-green-500 transition-colors line-clamp-2">{blog.title}</h2>
             </div>
             <p className="text-[11px] font-mono text-muted-foreground mb-2.5 line-clamp-2 pl-4">
               {blog.excerpt}

@@ -85,7 +85,7 @@ export const LinkData = {
   x: "https://x.com/idityage",
   github: "https://github.com/idityaGE",
   linkedin: "https://www.linkedin.com/in/idityage/",
-  gmail: "adiimaurya02@gamil.com",
+  gmail: "adiimaurya02@gmail.com",
   mail: "mailto:am44910606@gmail.com?subject=Hello%20!"
 }
 

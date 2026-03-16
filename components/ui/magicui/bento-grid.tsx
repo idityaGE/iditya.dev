@@ -75,7 +75,7 @@ const BentoCard = ({
         {name}
       </h3>
       {terminalCmd && (
-        <span className="ml-auto text-[9px] font-mono text-muted-foreground/60">
+        <span className="ml-auto text-[9px] font-mono text-muted-foreground">
           {terminalCmd}
         </span>
       )}

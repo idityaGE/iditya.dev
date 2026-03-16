@@ -44,7 +44,7 @@ export function MorphingImage({
           />
         </MorphingDialogContent>
         <MorphingDialogClose
-          className="fixed right-6 top-6 h-fit w-fit rounded-full bg-white p-1"
+          className="fixed right-6 top-6 h-fit w-fit bg-background border p-1"
           variants={{
             initial: { opacity: 0 },
             animate: {
@@ -54,7 +54,7 @@ export function MorphingImage({
             exit: { opacity: 0, transition: { duration: 0 } },
           }}
         >
-          <XIcon className="h-5 w-5 text-zinc-500" />
+          <XIcon className="h-5 w-5 text-muted-foreground" />
         </MorphingDialogClose>
       </MorphingDialogContainer>
     </MorphingDialog>

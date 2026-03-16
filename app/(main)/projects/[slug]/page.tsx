@@ -6,6 +6,7 @@ import { siteConfig } from "@/config/site.config";
 import { BackButton } from "@/features/blog/components/back-button";
 import { ScrollProgress } from "@/components/ui/magicui/scroll-progress";
 import { TerminalPath } from "@/components/ui/terminal";
+import { notFound } from "next/navigation";
 
 const getProjectFromSlug = (slug: string) => {
   return ProjectData.find((project) => project.slug === slug);
@@ -28,27 +29,19 @@ export async function generateMetadata({
     openGraph: {
       title: `${project.title} | ${siteConfig.name} | ${siteConfig.creator.name}`,
       description: project.description,
-      images: [
-        {
-          url: project.images[0],
-          width: 1200,
-          height: 630,
-          alt: project.title,
-        },
-      ],
+      images: project.images?.[0]
+        ? [{ url: project.images[0], width: 1200, height: 630, alt: project.title }]
+        : undefined,
     },
     twitter: {
       card: "summary",
       title: `${project.title} | ${siteConfig.name}`,
       description: project.description,
-      site: "@" + siteConfig.links.x.split("/").at(-1) || "@idityage",
-      creator: "@" + siteConfig.links.x.split("/").at(-1) || "@idityage",
-      images: [
-        {
-          url: project.images[0],
-          alt: project.title,
-        },
-      ],
+      site: `@${siteConfig.links.x.split("/").at(-1) ?? "idityage"}`,
+      creator: `@${siteConfig.links.x.split("/").at(-1) ?? "idityage"}`,
+      images: project.images?.[0]
+        ? [{ url: project.images[0], alt: project.title }]
+        : undefined,
     },
   };
 }
@@ -59,20 +52,18 @@ export default async function Page({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const { default: ProjectMDX } = await import(
-    `@/content/projects/${slug}.mdx`
-  );
   const project = getProjectFromSlug(slug);
 
   if (!project) {
-    return (
-      <main className="flex flex-col items-center justify-center h-screen border bg-background">
-        <div className="text-center">
-          <p className="text-xs font-mono text-muted-foreground mb-2">$ find . -name &quot;{slug}&quot;</p>
-          <p className="text-sm font-mono text-red-500">→ error: project not found</p>
-        </div>
-      </main>
-    );
+    notFound();
+  }
+
+  let ProjectMDX: React.ComponentType;
+  try {
+    const mod = await import(`@/content/projects/${slug}.mdx`);
+    ProjectMDX = mod.default;
+  } catch {
+    notFound();
   }
 
   return (

@@ -77,18 +77,6 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         <meta name="ocs-site-verification" content="83b607414cec1c074aa5415fd4c01d5d" />
-        {/* Note: Bitcount Grid Double is loaded via link tag as it's not available in next/font/google index.
-            This font is used sparingly for decorative purposes. The main fonts (Inter, JetBrains Mono) use next/font. */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Bitcount+Grid+Double&display=swap"
-          rel="stylesheet"
-        />
         <link
           rel="alternate"
           type="application/rss+xml"

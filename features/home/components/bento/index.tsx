@@ -4,10 +4,10 @@ import { SkillCard } from "./cards/skills";
 import { BlogCard } from "./cards/blog";
 import { LeetCodeStatsCard } from "./cards/lc";
 import { GitHubContributionsWithSuspense } from "./cards/gh";
+import { MobileExpandable } from "./mobile-expandable";
 
 import {
   Layers,
-  MapPin,
   Link,
   Atom,
   BookIcon,
@@ -21,7 +21,7 @@ import {
 } from "@/components/ui/magicui/bento-grid";
 
 export const Bento = () => {
-  const features: BentoCardProps[] = [
+  const primaryFeatures: BentoCardProps[] = [
     {
       Icon: Atom,
       name: "projects",
@@ -49,6 +49,9 @@ export const Bento = () => {
       background: <BlogCard />,
       className: "md:col-start-1 md:col-end-3 md:row-start-3 md:row-end-5",
     },
+  ];
+
+  const expandableFeatures: BentoCardProps[] = [
     {
       Icon: Github,
       name: "github",
@@ -67,7 +70,7 @@ export const Bento = () => {
 
   return (
     <BentoGrid className="md:grid-cols-4">
-      {features.map((feature) => (
+      {primaryFeatures.map((feature) => (
         <BentoCard
           key={feature.name}
           name={feature.name}
@@ -79,6 +82,22 @@ export const Bento = () => {
           terminalCmd={feature.terminalCmd}
         />
       ))}
+
+      {/* GitHub + LeetCode: always visible on desktop, toggled on mobile */}
+      <MobileExpandable>
+        {expandableFeatures.map((feature) => (
+          <BentoCard
+            key={feature.name}
+            name={feature.name}
+            background={feature.background}
+            Icon={feature.Icon}
+            className={feature.className}
+            isIconHidden={feature.isIconHidden}
+            makeAbsolute={feature.makeAbsolute}
+            terminalCmd={feature.terminalCmd}
+          />
+        ))}
+      </MobileExpandable>
     </BentoGrid>
   );
 };

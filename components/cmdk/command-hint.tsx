@@ -77,7 +77,7 @@ export function CommandHint() {
         </div>
         <button
           onClick={dismiss}
-          className="text-muted-foreground hover:text-foreground transition-colors p-0.5"
+          className="text-muted-foreground hover:text-foreground transition-colors p-2 -mr-1"
           aria-label="Dismiss hint"
         >
           <X size={10} />

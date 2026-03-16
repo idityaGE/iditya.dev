@@ -16,7 +16,7 @@ export function TrafficLightDots({
 }) {
   const dotSize = size === "sm" ? "w-1.5 h-1.5" : "w-2 h-2";
   return (
-    <div className={cn("flex gap-1", className)}>
+    <div className={cn("flex gap-1", className)} aria-hidden="true">
       <span className={cn(dotSize, "bg-red-500/80")} />
       <span className={cn(dotSize, "bg-yellow-500/80")} />
       <span className={cn(dotSize, "bg-green-500/80")} />

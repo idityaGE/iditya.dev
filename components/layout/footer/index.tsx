@@ -28,12 +28,12 @@ export const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-px">
           <div className="bg-background p-3 border-b md:border-r md:border-b-0">
             <TerminalCommand className="mb-2">$ connect</TerminalCommand>
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-1">
               <Link
                 href={LinkData.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-foreground transition-colors"
+                className="text-muted-foreground hover:text-foreground transition-colors p-2"
                 aria-label="GitHub"
               >
                 <Github size={14} />
@@ -42,7 +42,7 @@ export const Footer = () => {
                 href={LinkData.x}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-foreground transition-colors"
+                className="text-muted-foreground hover:text-foreground transition-colors p-2"
                 aria-label="X (Twitter)"
               >
                 <Twitter size={14} />
@@ -51,14 +51,14 @@ export const Footer = () => {
                 href={LinkData.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-foreground transition-colors"
+                className="text-muted-foreground hover:text-foreground transition-colors p-2"
                 aria-label="LinkedIn"
               >
                 <Linkedin size={14} />
               </Link>
               <Link
                 href={LinkData.mail}
-                className="text-muted-foreground hover:text-foreground transition-colors"
+                className="text-muted-foreground hover:text-foreground transition-colors p-2"
                 aria-label="Email"
               >
                 <Mail size={14} />
@@ -106,7 +106,7 @@ export const Footer = () => {
       <div className="border-y bg-background px-3 py-2 flex items-center justify-between">
         <p className="text-[10px] font-mono text-muted-foreground flex items-center gap-1">
           <span>© {currentYear}</span>
-          <span className="text-muted-foreground/50">|</span>
+          <span className="text-muted-foreground">|</span>
           <span>built by </span>
           <Link href={LinkData.x} target="_blank" rel="noopener noreferrer" className="hover:text-green-500 transition-colors">
             @{LinkData.x.split("/").pop()}

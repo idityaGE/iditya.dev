@@ -48,7 +48,8 @@ function ExperienceDetails({ experience }: { experience: ExperienceItemProps }) 
                   href={experience.companyUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-muted-foreground hover:text-foreground"
+                  className="text-muted-foreground hover:text-foreground p-1"
+                  aria-label={`Visit ${experience.company} website`}
                 >
                   <Globe size={12} />
                 </Link>

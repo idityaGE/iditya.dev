@@ -29,12 +29,12 @@ export function MobileExpandable({
         {expanded ? (
           <span>
             show less{" "}
-            <span className="text-muted-foreground/50">--quiet</span>
+            <span className="text-muted-foreground">--quiet</span>
           </span>
         ) : (
           <span>
             show more{" "}
-            <span className="text-muted-foreground/50">--verbose (2)</span>
+            <span className="text-muted-foreground">--verbose (2)</span>
           </span>
         )}
       </button>

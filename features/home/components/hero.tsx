@@ -47,7 +47,7 @@ export const Hero = () => {
               aria-label={`X profile @${LinkData.x.split("/").pop()}`}
               className="flex items-center gap-1 font-mono text-[11px] text-muted-foreground hover:text-green-500 transition-colors"
             >
-              <span className="text-muted-foreground/50">/</span>
+              <span className="text-muted-foreground">/</span>
               <span>@{LinkData.x.split("/").pop()}</span>
             </a>
           </div>

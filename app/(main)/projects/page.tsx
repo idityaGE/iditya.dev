@@ -87,7 +87,7 @@ const Projects = () => {
           <AlertTriangle size={12} className="text-yellow-500 mt-0.5 flex-shrink-0" />
           <div>
             <TerminalCommand className="text-yellow-500 mb-1">$ warning</TerminalCommand>
-            <p className="text-[11px] font-mono text-muted-foreground">
+            <p className="text-xs font-mono text-muted-foreground">
               Projects hosted on free services may enter hibernation mode.{" "}
               <Link
                 href={LinkData.mail}

@@ -50,7 +50,7 @@ export const YouTube = ({ id }: { id: string }) => {
             </div>
             {/* Terminal label */}
             <div className="absolute bottom-0 left-0 right-0 px-3 py-1.5 bg-background/80">
-              <span className="text-[10px] font-mono text-muted-foreground">
+              <span className="text-xs font-mono text-muted-foreground">
                 <span className="text-green-500">$</span> play --id {id}
               </span>
             </div>

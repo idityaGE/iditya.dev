@@ -23,7 +23,7 @@ export function MobileExpandable({
       <button
         onClick={() => setExpanded(!expanded)}
         aria-expanded={expanded}
-        className="col-span-3 md:hidden bg-background px-3 py-2.5 flex items-center justify-center gap-1.5 text-[10px] font-mono text-muted-foreground hover:text-green-500 transition-colors"
+        className="col-span-3 md:hidden bg-background px-3 py-2.5 flex items-center justify-center gap-1.5 text-xs font-mono text-muted-foreground hover:text-green-500 transition-colors"
       >
         <span className="text-green-500">$</span>
         {expanded ? (

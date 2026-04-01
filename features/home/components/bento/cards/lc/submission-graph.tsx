@@ -172,7 +172,7 @@ export function SubmissionGraph({
           className
         )}
       >
-        <div className="text-[10px] text-muted-foreground mb-1">
+        <div className="text-xs text-muted-foreground mb-1">
           <span className="text-green-500">$</span> lc calendar --year
         </div>
         <div className="flex gap-[2px] overflow-x-auto no-scrollbar sm:justify-center">
@@ -202,7 +202,7 @@ export function SubmissionGraph({
                         {day && (
                           <TooltipContent
                             side="top"
-                            className="text-[10px] font-mono border-border"
+                            className="text-xs font-mono border-border"
                           >
                             <p>
                               {day.count} submission{day.count !== 1 ? "s" : ""}{" "}
@@ -219,7 +219,7 @@ export function SubmissionGraph({
                   </div>
                 ))}
               </div>
-              <span className="text-center text-[8px] text-muted-foreground">
+              <span className="text-center text-xs text-muted-foreground">
                 {month.name.toLowerCase()}
               </span>
             </div>

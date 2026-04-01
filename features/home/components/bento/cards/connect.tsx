@@ -44,11 +44,11 @@ export function ConnectCard() {
           >
             <div className="flex items-center gap-2 mb-1">
               <link.icon size={12} className="text-muted-foreground group-hover:text-green-500 transition-colors" />
-              <span className="text-[10px] font-mono text-muted-foreground uppercase">{link.name}</span>
+              <span className="text-xs font-mono text-muted-foreground uppercase">{link.name}</span>
             </div>
             <div className="flex items-center gap-1.5 pl-5">
-              <span className="text-green-500 text-[10px] font-mono">→</span>
-              <span className="text-[10px] font-mono text-foreground group-hover:text-green-500 transition-colors truncate">
+              <span className="text-green-500 text-xs font-mono">→</span>
+              <span className="text-xs font-mono text-foreground group-hover:text-green-500 transition-colors truncate">
                 {link.handle}
               </span>
             </div>

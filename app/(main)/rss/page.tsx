@@ -62,7 +62,7 @@ function FeedGroup({
                 {feed.label}
               </span>
             </div>
-            <span className="text-[10px] font-mono text-muted-foreground">
+            <span className="text-xs font-mono text-muted-foreground">
               {feed.format}
             </span>
           </Link>

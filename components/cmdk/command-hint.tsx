@@ -69,10 +69,10 @@ export function CommandHint() {
             : "opacity-100 translate-y-0"
         }`}
       >
-        <div className="flex items-center gap-1.5 text-[10px] font-mono text-muted-foreground">
+        <div className="flex items-center gap-1.5 text-xs font-mono text-muted-foreground">
           <span className="text-green-500">→</span>
           <span>press</span>
-          <Kbd className="text-[10px]">⌘ K</Kbd>
+          <Kbd className="text-xs">⌘ K</Kbd>
           <span>to navigate, search, and more</span>
         </div>
         <button

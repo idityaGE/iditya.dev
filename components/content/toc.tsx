@@ -32,7 +32,7 @@ const TableOfContentsItem = memo(function TableOfContentsItem({
   }, [id, onItemClick]);
 
   const linkClassName = useMemo(() => cn(
-    "block transition-colors py-0.5 text-[11px] leading-4 font-mono",
+    "block transition-colors py-0.5 text-xs leading-4 font-mono",
     "truncate max-w-[200px] hover:text-green-500",
     isActive
       ? "text-green-500"
@@ -44,7 +44,7 @@ const TableOfContentsItem = memo(function TableOfContentsItem({
     <li>
       <div className="flex items-center gap-1">
         <span className={cn(
-          "text-[10px] transition-colors",
+          "text-xs transition-colors",
           isActive ? "text-green-500" : "text-transparent"
         )}>→</span>
         <Link

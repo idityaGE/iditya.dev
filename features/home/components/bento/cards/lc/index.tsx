@@ -18,7 +18,7 @@ function LeetCodeStatsDisplay({
 
   if (!submitStats || !allQuestions) {
     return (
-      <div className="flex h-full items-center justify-center font-mono text-[10px] text-muted-foreground">
+      <div className="flex h-full items-center justify-center font-mono text-xs text-muted-foreground">
         <span className="text-red-500">error:</span> unable to fetch stats
       </div>
     );
@@ -47,13 +47,13 @@ function LeetCodeStatsDisplay({
 
         <div className="bg-background px-3 py-2">
           <div className="flex items-center justify-between">
-            <span className="text-[10px] text-muted-foreground">$ lc stats --user {LEETCODE_USERNAME}</span>
+            <span className="text-xs text-muted-foreground">$ lc stats --user {LEETCODE_USERNAME}</span>
             <Link
               href={`https://leetcode.com/u/${LEETCODE_USERNAME}`}
               target="_blank"
               rel="noopener noreferrer"
               aria-label={`View ${LEETCODE_USERNAME} on LeetCode`}
-              className="text-[10px] text-muted-foreground hover:text-green-500 transition-colors"
+              className="text-xs text-muted-foreground hover:text-green-500 transition-colors"
             >
               view profile →
             </Link>
@@ -64,24 +64,24 @@ function LeetCodeStatsDisplay({
         <div className="flex overflow-auto no-scrollbar">
           {/* solved count */}
           <div className="bg-background px-4 py-2 flex items-center gap-2 border-r border-border">
-            <span className="text-[10px] text-muted-foreground">solved:</span>
+            <span className="text-xs text-muted-foreground">solved:</span>
             <span className="text-base font-bold text-green-500">{solved}</span>
-            <span className="text-[10px] text-muted-foreground">/{total}</span>
+            <span className="text-xs text-muted-foreground">/{total}</span>
           </div>
           {/* easy */}
           <div className="bg-background px-3 py-2 flex items-center gap-1.5 border-r border-border">
-            <span className="text-[10px] text-green-500">easy</span>
-            <span className="text-[10px] text-muted-foreground tabular-nums">{easy}/{easyTotal}</span>
+            <span className="text-xs text-green-500">easy</span>
+            <span className="text-xs text-muted-foreground tabular-nums">{easy}/{easyTotal}</span>
           </div>
           {/* medium */}
           <div className="bg-background px-3 py-2 flex items-center gap-1.5 border-r border-border">
-            <span className="text-[10px] text-yellow-500">med</span>
-            <span className="text-[10px] text-muted-foreground tabular-nums">{medium}/{mediumTotal}</span>
+            <span className="text-xs text-yellow-500">med</span>
+            <span className="text-xs text-muted-foreground tabular-nums">{medium}/{mediumTotal}</span>
           </div>
           {/* hard */}
           <div className="bg-background px-3 py-2 flex items-center gap-1.5 flex-1">
-            <span className="text-[10px] text-red-500">hard</span>
-            <span className="text-[10px] text-muted-foreground tabular-nums">{hard}/{hardTotal}</span>
+            <span className="text-xs text-red-500">hard</span>
+            <span className="text-xs text-muted-foreground tabular-nums">{hard}/{hardTotal}</span>
           </div>
         </div>
       </div>
@@ -96,13 +96,13 @@ function LeetCodeStatsDisplay({
       {/* footer */}
       <div className="border-y gap-px flex">
         <div className="bg-background px-3 py-2 flex items-center gap-2 flex-1">
-          <span className="text-[10px] text-muted-foreground">
+          <span className="text-xs text-muted-foreground">
             <span className="text-green-500">{totalSubmissions.toLocaleString()} </span>
             submissions</span>
         </div>
         <div className="bg-background px-3 py-2 flex items-center">
           <div className="flex items-center gap-[3px]">
-            <span className="mr-1 text-muted-foreground text-[10px]">Less</span>
+            <span className="mr-1 text-muted-foreground text-xs">Less</span>
             {[0, 1, 2, 3, 4].map((level) => (
               <div
                 key={level}
@@ -114,7 +114,7 @@ function LeetCodeStatsDisplay({
                   }`}
               />
             ))}
-            <span className="ml-1 text-muted-foreground text-[10px]">More</span>
+            <span className="ml-1 text-muted-foreground text-xs">More</span>
           </div>
         </div>
       </div>

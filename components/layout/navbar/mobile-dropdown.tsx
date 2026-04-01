@@ -31,7 +31,7 @@ export const MobileDropdown = () => {
           <div className="px-2 py-1.5 border-b bg-muted/30">
             <div className="flex items-center gap-2">
               <TrafficLightDots size="sm" />
-              <TerminalPath className="text-[9px]">nav</TerminalPath>
+              <TerminalPath className="text-xs">nav</TerminalPath>
             </div>
           </div>
           {/* Links */}
@@ -50,7 +50,7 @@ export const MobileDropdown = () => {
           </div>
           {/* Footer */}
           <div className="px-2 py-1 border-t bg-muted/20">
-            <BlinkingCursor className="text-[9px]" />
+            <BlinkingCursor className="text-xs" />
           </div>
         </DropdownMenuContent>
       </DropdownMenu>

@@ -37,7 +37,7 @@ const NotFound = () => {
         <div className="border-t px-3 py-2 flex items-center justify-between bg-muted/20">
           <Link
             href="/"
-            className="text-[10px] font-mono text-muted-foreground hover:text-green-500 transition-colors flex items-center gap-1.5"
+            className="text-xs font-mono text-muted-foreground hover:text-green-500 transition-colors flex items-center gap-1.5"
           >
             <span className="text-green-500">$</span> cd /home
           </Link>

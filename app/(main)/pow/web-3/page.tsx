@@ -128,7 +128,7 @@ const PoWCard = ({ item }: { item: PoWItem }) => {
               </h2>
               <Tag size="sm">{item.tag}</Tag>
             </div>
-            <p className="text-[11px] font-mono text-muted-foreground mt-1 line-clamp-2">
+            <p className="text-xs font-mono text-muted-foreground mt-1 line-clamp-2">
               {item.description}
             </p>
           </div>

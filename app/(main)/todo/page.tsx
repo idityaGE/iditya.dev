@@ -57,17 +57,17 @@ const TodoSkeleton = () => (
 const ErrorState = () => (
   <div className="border bg-background">
     <div className="px-3 py-2 border-b bg-muted/20">
-      <span className="text-[10px] font-mono text-red-500">$ error</span>
+      <span className="text-xs font-mono text-red-500">$ error</span>
     </div>
     <div className="flex flex-col items-center justify-center py-8 text-center p-3">
       <div className="w-10 h-10 border bg-red-500/10 flex items-center justify-center mb-3">
         <RefreshCw className="h-5 w-5 text-red-500" />
       </div>
       <p className="text-xs font-mono text-muted-foreground mb-1">→ error: failed to fetch notion data</p>
-      <p className="text-[10px] font-mono text-muted-foreground mb-3">unable to sync with remote source</p>
+      <p className="text-xs font-mono text-muted-foreground mb-3">unable to sync with remote source</p>
       <a
         href="/todo"
-        className="px-3 py-1.5 text-[10px] font-mono border bg-muted hover:bg-muted/80 transition-colors inline-block"
+        className="px-3 py-1.5 text-xs font-mono border bg-muted hover:bg-muted/80 transition-colors inline-block"
       >
         $ retry
       </a>

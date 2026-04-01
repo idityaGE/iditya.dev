@@ -99,7 +99,7 @@ const CategoryCard = ({ category }: { category: PoWCategory }) => {
             <h2 className={`text-xs font-mono font-bold ${isAvailable ? "group-hover:text-green-500" : ""} transition-colors`}>
               {category.title}
             </h2>
-            <p className="text-[11px] font-mono text-muted-foreground mt-0.5">
+            <p className="text-xs font-mono text-muted-foreground mt-0.5">
               {category.description}
             </p>
           </div>

@@ -33,7 +33,7 @@ const styles = {
   strong: "font-semibold text-foreground",
   em: "italic text-muted-foreground",
   del: "line-through opacity-60",
-  code: "relative bg-muted px-1.5 py-0.5 font-mono text-[13px] text-green-500",
+  code: "relative bg-muted px-1.5 py-0.5 font-mono text-sm text-green-500",
 };
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {

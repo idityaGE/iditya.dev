@@ -29,7 +29,7 @@ export function GitHubContributionGraph({ data }: { data: Activity[] }) {
         {/* header stats row */}
         <div className="border-b border-border flex">
           <div className="bg-background px-3 py-2 flex items-center flex-1">
-            <span className="text-[10px] text-muted-foreground">$ gh contrib --user {GITHUB_USERNAME}</span>
+            <span className="text-xs text-muted-foreground">$ gh contrib --user {GITHUB_USERNAME}</span>
           </div>
           <div className="bg-background px-3 py-2 flex items-center">
             <Link
@@ -37,7 +37,7 @@ export function GitHubContributionGraph({ data }: { data: Activity[] }) {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={`View ${GITHUB_USERNAME} on GitHub`}
-              className="text-[10px] text-muted-foreground hover:text-green-500 transition-colors"
+              className="text-xs text-muted-foreground hover:text-green-500 transition-colors"
             >
               @{GITHUB_USERNAME} →
             </Link>
@@ -69,7 +69,7 @@ export function GitHubContributionGraph({ data }: { data: Activity[] }) {
                     </g>
                   </TooltipTrigger>
 
-                  <TooltipContent className="font-mono text-[10px]">
+                  <TooltipContent className="font-mono text-xs">
                     <p>
                       {activity.count} contribution{activity.count !== 1 ? "s" : ""}{" "}
                       on {format(new Date(activity.date), "MMM d")}
@@ -84,9 +84,9 @@ export function GitHubContributionGraph({ data }: { data: Activity[] }) {
         {/* footer */}
         <div className="border-t border-border flex">
           <div className="bg-background px-3 py-1.5 flex items-center gap-2 flex-1">
-            <span className="text-[10px] text-muted-foreground">contributions:</span>
+            <span className="text-xs text-muted-foreground">contributions:</span>
             <span className="text-xs font-bold text-green-500">{totalCount.toLocaleString()}</span>
-            <span className="text-[10px] text-muted-foreground">in {currentYear}</span>
+            <span className="text-xs text-muted-foreground">in {currentYear}</span>
           </div>
           <div className="bg-background px-3 py-1.5 flex items-center">
             <ContributionGraph
@@ -94,7 +94,7 @@ export function GitHubContributionGraph({ data }: { data: Activity[] }) {
               blockSize={8}
               blockMargin={2}
               blockRadius={0}
-              className="text-[8px]"
+              className="text-xs"
             >
               <ContributionGraphLegend className="gap-1" />
             </ContributionGraph>

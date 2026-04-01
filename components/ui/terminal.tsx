@@ -38,7 +38,7 @@ export function TerminalPath({
   return (
     <span
       className={cn(
-        "text-[10px] font-mono text-muted-foreground",
+        "text-xs font-mono text-muted-foreground",
         className,
       )}
     >
@@ -61,7 +61,7 @@ export function TerminalCommand({
   return (
     <div
       className={cn(
-        "text-[10px] font-mono text-muted-foreground uppercase tracking-wider",
+        "text-xs font-mono text-muted-foreground uppercase tracking-wider",
         className,
       )}
     >
@@ -103,9 +103,9 @@ export function Tag({
   className?: string;
 }) {
   const sizeClasses = {
-    xs: "px-1 py-0.5 text-[8px]",
-    sm: "px-1.5 py-0.5 text-[9px]",
-    md: "px-1.5 py-0.5 text-[10px]",
+    xs: "px-1.5 py-0.5 text-xs",
+    sm: "px-1.5 py-0.5 text-xs",
+    md: "px-2 py-0.5 text-xs",
   }[size];
 
   return (
@@ -129,7 +129,7 @@ export function BlinkingCursor({ className }: { className?: string }) {
   return (
     <span
       className={cn(
-        "text-[10px] font-mono text-muted-foreground animate-pulse",
+        "text-xs font-mono text-muted-foreground animate-pulse",
         className,
       )}
     >
@@ -187,7 +187,7 @@ export function TerminalLoadingFallback({
         className,
       )}
     >
-      <div className="text-[10px] text-muted-foreground animate-pulse">
+      <div className="text-xs text-muted-foreground animate-pulse">
         <span className="text-green-500">$</span> {message}
       </div>
     </div>

@@ -22,13 +22,13 @@ export const BlogCard = async () => {
                 {blog.title}
               </h4>
             </div>
-            <p className="text-[10px] font-mono text-muted-foreground line-clamp-2 pl-4 flex-1">
+            <p className="text-xs font-mono text-muted-foreground line-clamp-2 pl-4 flex-1">
               {blog.excerpt}
             </p>
             <div className="flex items-center gap-2 mt-1.5 pl-4">
               <div className="flex items-center gap-1">
                 <Calendar className="h-2.5 w-2.5 text-muted-foreground" />
-                <span className="text-[9px] font-mono text-muted-foreground">
+                <span className="text-xs font-mono text-muted-foreground">
                   {new Date(blog.date).toLocaleDateString()}
                 </span>
               </div>
@@ -45,12 +45,12 @@ export const BlogCard = async () => {
         href="/blogs"
         className="px-2.5 py-1.5 border-t flex items-center justify-between bg-muted/10 hover:bg-muted/30 transition-colors group"
       >
-        <span className="text-[10px] font-mono text-muted-foreground">$ cd /blogs</span>
+        <span className="text-xs font-mono text-muted-foreground">$ cd /blogs</span>
         <div className="flex items-center gap-1">
-          <span className="text-[10px] font-mono text-muted-foreground group-hover:text-green-500 transition-colors">
+          <span className="text-xs font-mono text-muted-foreground group-hover:text-green-500 transition-colors">
             show all ({blogs.length})
           </span>
-          <ExternalLink size={10} className="text-muted-foreground group-hover:text-green-500 transition-colors" />
+          <ExternalLink size={12} className="text-muted-foreground group-hover:text-green-500 transition-colors" />
         </div>
       </Link>
     </div>

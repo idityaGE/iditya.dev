@@ -124,7 +124,7 @@ export function SkillCard() {
                   />
                 </div>
               </TooltipTrigger>
-              <TooltipContent className="font-mono text-[10px]">
+              <TooltipContent className="font-mono text-xs">
                 {skill.name}
               </TooltipContent>
             </Tooltip>

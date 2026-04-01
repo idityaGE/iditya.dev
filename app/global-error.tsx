@@ -27,13 +27,13 @@ const GlobalError = ({
                   <span className="w-2 h-2 bg-yellow-500/80" />
                   <span className="w-2 h-2 bg-green-500/80" />
                 </div>
-                <span className="text-[10px] text-[oklch(0.75_0_0)]">~/error</span>
+                <span className="text-xs text-[oklch(0.75_0_0)]">~/error</span>
               </div>
             </div>
 
             {/* Error Output */}
             <div className="p-3 space-y-3">
-              <div className="text-[10px] text-[oklch(0.75_0_0)] uppercase tracking-wider">
+              <div className="text-xs text-[oklch(0.75_0_0)] uppercase tracking-wider">
                 $ process status
               </div>
               <p className="text-xs text-red-500">
@@ -48,7 +48,7 @@ const GlobalError = ({
                 </span>
               </div>
               {error.digest && (
-                <p className="text-[10px] text-[oklch(0.75_0_0)]">
+                <p className="text-xs text-[oklch(0.75_0_0)]">
                   digest: {error.digest}
                 </p>
               )}
@@ -58,13 +58,13 @@ const GlobalError = ({
             <div className="border-t border-[rgb(255_255_255/0.18)] px-3 py-2 flex items-center justify-between bg-[oklch(0.21_0_0)]/20">
               <Link
                 href="/"
-                className="text-[10px] text-[oklch(0.75_0_0)] hover:text-green-500 transition-colors flex items-center gap-1.5"
+                className="text-xs text-[oklch(0.75_0_0)] hover:text-green-500 transition-colors flex items-center gap-1.5"
               >
                 <span className="text-green-500">$</span> cd /home
               </Link>
               <button
                 onClick={() => reset()}
-                className="text-[10px] text-[oklch(0.75_0_0)] hover:text-green-500 transition-colors flex items-center gap-1.5"
+                className="text-xs text-[oklch(0.75_0_0)] hover:text-green-500 transition-colors flex items-center gap-1.5"
               >
                 <span className="text-green-500">$</span> retry
               </button>

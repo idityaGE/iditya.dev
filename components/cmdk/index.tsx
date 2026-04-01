@@ -218,11 +218,11 @@ export function CommandMenu({ blogs = EMPTY_BLOGS, projects = EMPTY_PROJECTS }: 
     <>
       <button
         onClick={() => setOpen(true)}
-        className="inline-flex items-center gap-1.5 text-[10px] text-muted-foreground hover:text-green-500 transition-colors font-mono"
+        className="inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-green-500 transition-colors font-mono"
       >
         <span className="text-green-500">$</span>
         <span className="hidden sm:inline">cmd</span>
-        <Kbd className="pointer-events-none text-[10px]">
+        <Kbd className="pointer-events-none text-xs">
           ⌘ K
         </Kbd>
       </button>
@@ -403,15 +403,15 @@ export function CommandMenu({ blogs = EMPTY_BLOGS, projects = EMPTY_PROJECTS }: 
         </CommandList>
 
         {/* Footer */}
-        <div className="flex items-center justify-between border-t border-border px-3 py-2 text-[10px] text-muted-foreground bg-background font-mono">
+        <div className="flex items-center justify-between border-t border-border px-3 py-2 text-xs text-muted-foreground bg-background font-mono">
           <div className="flex justify-end w-full gap-3">
             <div className="flex items-center gap-1">
               <span>{actionText}</span>
-              <Kbd className="text-[10px]">↵</Kbd>
+              <Kbd className="text-xs">↵</Kbd>
             </div>
             <div className="flex items-center gap-1">
               <span>exit</span>
-              <Kbd className="text-[10px]">esc</Kbd>
+              <Kbd className="text-xs">esc</Kbd>
             </div>
           </div>
         </div>

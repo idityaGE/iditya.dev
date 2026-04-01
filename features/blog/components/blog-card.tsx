@@ -61,7 +61,7 @@ export function BlogCard({
               <GreenArrow className="mt-0.5" />
               <h2 className="text-sm font-mono font-bold leading-tight group-hover/blog-card:text-green-500 transition-colors line-clamp-2">{blog.title}</h2>
             </div>
-            <p className="text-[11px] font-mono text-muted-foreground mb-2.5 line-clamp-2 pl-4">
+            <p className="text-xs font-mono text-muted-foreground mb-2.5 line-clamp-2 pl-4">
               {blog.excerpt}
             </p>
             <div className="flex items-center justify-between gap-2 flex-wrap">
@@ -85,7 +85,7 @@ export function BlogCard({
           {/* Footer */}
           <div className="border-t px-2.5 py-1.5 flex items-center justify-between bg-muted/20">
             <TerminalPath>$ cat readme.md</TerminalPath>
-            <span className="text-[10px] font-mono text-green-500">enter →</span>
+            <span className="text-xs font-mono text-green-500">enter →</span>
           </div>
         </div>
       </div>

@@ -79,7 +79,7 @@ export function ScriptCopyBtn({
               <button
                 key={pm}
                 className={cn(
-                  "px-2 py-0.5 text-[10px] font-mono transition-colors",
+                  "px-2 py-0.5 text-xs font-mono transition-colors",
                   packageManager === pm
                     ? "text-green-500 bg-background/50"
                     : "text-muted-foreground hover:text-foreground"

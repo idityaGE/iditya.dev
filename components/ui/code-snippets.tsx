@@ -375,7 +375,7 @@ export const CodeSnippet: React.FC<CodeSnippetProps> = ({
         >
           {({ className, style, tokens, getLineProps, getTokenProps }) => (
             <pre
-              className={`${className} text-[13px] overflow-x-auto overflow-y-auto max-h-[600px] font-mono font-normal`}
+              className={`${className} text-sm overflow-x-auto overflow-y-auto max-h-[600px] font-mono font-normal`}
               style={style}
             >
               {tokens.map((line, i) => (
@@ -396,7 +396,7 @@ export const CodeSnippet: React.FC<CodeSnippetProps> = ({
                 >
                   {showLineNumbers && (
                     <span
-                      className="mr-4 select-none text-right text-[10px] items-center flex shrink-0"
+                      className="mr-4 select-none text-right text-xs items-center flex shrink-0"
                       style={{
                         color:
                           selectedTheme.plain?.backgroundColor === "#FFFFFF"

@@ -56,7 +56,7 @@ const ProjectCard = ({
                     {title}
                   </h2>
                 </div>
-                <p className="text-[11px] font-mono text-muted-foreground line-clamp-2 pl-4">
+                <p className="text-xs font-mono text-muted-foreground line-clamp-2 pl-4">
                   {description}
                 </p>
               </div>
@@ -72,7 +72,7 @@ const ProjectCard = ({
                     {title}
                   </h2>
                 </div>
-                <p className="text-[11px] font-mono text-muted-foreground line-clamp-2 pl-4">
+                <p className="text-xs font-mono text-muted-foreground line-clamp-2 pl-4">
                   {description}
                 </p>
               </Link>
@@ -139,7 +139,7 @@ const ProjectCard = ({
           className="border-t px-2.5 py-1.5 flex items-center justify-between bg-muted/20 hover:bg-muted/40 transition-colors"
         >
           <TerminalPath>$ cd {slug}</TerminalPath>
-          <span className="text-[10px] font-mono text-green-500">enter →</span>
+          <span className="text-xs font-mono text-green-500">enter →</span>
         </Link>
       )}
     </div>

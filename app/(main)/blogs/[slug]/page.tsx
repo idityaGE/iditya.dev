@@ -101,7 +101,7 @@ export default async function Page({
           <div className="px-3 py-2 border-b">
             <div className="flex items-center gap-2">
               <TrafficLightDots size="sm" />
-              <TerminalPath className="text-[9px]">toc</TerminalPath>
+              <TerminalPath className="text-xs">toc</TerminalPath>
             </div>
           </div>
           <ScrollProgress

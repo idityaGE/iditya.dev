@@ -71,11 +71,11 @@ const BentoCard = ({
       )}
     >
       <Icon className="h-3 w-3 text-muted-foreground" />
-      <h3 className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider">
+      <h3 className="text-xs font-mono text-muted-foreground uppercase tracking-wider">
         {name}
       </h3>
       {terminalCmd && (
-        <span className="ml-auto text-[9px] font-mono text-muted-foreground">
+        <span className="ml-auto text-xs font-mono text-muted-foreground">
           {terminalCmd}
         </span>
       )}

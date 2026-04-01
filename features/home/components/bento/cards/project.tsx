@@ -23,7 +23,7 @@ export function Projects() {
                   {project.title}
                 </h3>
               </div>
-              <p className="text-[10px] font-mono text-muted-foreground line-clamp-2 pl-4 flex-1">
+              <p className="text-xs font-mono text-muted-foreground line-clamp-2 pl-4 flex-1">
                 {project.description}
               </p>
               <div className="flex items-center gap-1 mt-1.5 pl-4 flex-wrap">
@@ -31,7 +31,7 @@ export function Projects() {
                   <Tag key={tech} size="xs">{tech}</Tag>
                 ))}
                 {project.techStack.length > 2 && (
-                  <span className="text-[8px] font-mono text-muted-foreground">+{project.techStack.length - 2}</span>
+                  <span className="text-xs font-mono text-muted-foreground">+{project.techStack.length - 2}</span>
                 )}
               </div>
             </Link>
@@ -44,12 +44,12 @@ export function Projects() {
         href="/projects"
         className="px-2.5 py-1.5 border-t flex items-center justify-between bg-muted/10 hover:bg-muted/30 transition-colors group"
       >
-        <span className="text-[10px] font-mono text-muted-foreground">$ cd /projects</span>
+        <span className="text-xs font-mono text-muted-foreground">$ cd /projects</span>
         <div className="flex items-center gap-1">
-          <span className="text-[10px] font-mono text-muted-foreground group-hover:text-green-500 transition-colors">
+          <span className="text-xs font-mono text-muted-foreground group-hover:text-green-500 transition-colors">
             show all ({ProjectData.length})
           </span>
-          <ExternalLink size={10} className="text-muted-foreground group-hover:text-green-500 transition-colors" />
+          <ExternalLink size={12} className="text-muted-foreground group-hover:text-green-500 transition-colors" />
         </div>
       </Link>
     </div>

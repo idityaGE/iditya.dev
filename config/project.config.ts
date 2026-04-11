@@ -1,5 +1,33 @@
 export const ProjectData = [
   {
+    title: "Redyx",
+    type: "personal",
+    slug: "redyx",
+    description:
+      "An anonymous, community-driven discussion platform inspired by Reddit, built from scratch as a distributed system. 12 Go microservices communicating over gRPC, fronted by Envoy, with Kafka for async workflows, consistent-hashing-based database sharding, and full Kubernetes deployment with observability.",
+    images: [
+      "https://raw.githubusercontent.com/idityaGE/redyx/main/.github/images/Screenshot_20260411_225027.png",
+    ],
+    githubLink: "https://github.com/idityaGE/redyx",
+    techStack: [
+      "Go",
+      "gRPC",
+      "Envoy",
+      "Apache Kafka",
+      "PostgreSQL",
+      "ScyllaDB",
+      "Redis",
+      "Meilisearch",
+      "MinIO",
+      "Kubernetes",
+      "Prometheus",
+      "Grafana",
+      "OpenTelemetry",
+      "Astro",
+      "Svelte",
+    ],
+  },
+  {
     title: "Foccus",
     type: "personal",
     slug: "foccus",

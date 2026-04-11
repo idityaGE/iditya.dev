@@ -2,6 +2,7 @@ import type { MDXComponents } from "mdx/types";
 import { Callout } from "@/components/content/callout";
 import { YouTube } from "@/components/content/youtube";
 import { CommandBtn } from "@/components/content/command-btn";
+import { Toggle } from "@/components/content/toggle";
 import Image from "next/image";
 import {
   Table,
@@ -42,6 +43,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     YouTube,
     CommandBtn,
     OgLink,
+    Toggle,
     Image: ({ src, alt, width, height }) => {
       if (!src) return null;
       return (

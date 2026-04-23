@@ -14,6 +14,7 @@ import {
   GreenArrow,
   Tag,
 } from "@/components/ui/terminal";
+import { BASE_URL } from "@/config/personal.config";
 
 export async function generateMetadata({
   params,
@@ -35,6 +36,8 @@ export async function generateMetadata({
         url: siteConfig.creator.url,
       },
     ],
+    creator: metadata.author || siteConfig.creator.name,
+    icons: metadata.favicon || siteConfig.favicon,
     openGraph: {
       title: `${metadata.title} | ${siteConfig.name} | ${siteConfig.creator.name}`,
       description: metadata.excerpt || metadata.description,
@@ -55,11 +58,12 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: `${metadata.title} | ${siteConfig.name}`,
       description: metadata.excerpt || metadata.description,
-      site: `@${siteConfig.links.x.split("/").at(-1) ?? "idityage"}`,
-      creator: `@${siteConfig.links.x.split("/").at(-1) ?? "idityage"}`,
+      site: `${BASE_URL}/blogs/${slug}`,
       images: [
         {
           url: metadata.darkImage || siteConfig.ogImage,
+          width: 1800,
+          height: 1000,
           alt: metadata.title,
         },
       ],

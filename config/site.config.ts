@@ -24,14 +24,14 @@ export const siteConfig = {
     url: BASE_URL,
     email: LinkData.gmail
   },
-  ogImage: "https://ik.imagekit.io/nnp1iszdfe/og-portfolio.png",
+  ogImage: "https://ik.imagekit.io/nnp1iszdfe/og-portfolio.webp",
   links: {
     x: LinkData.x,
     github: LinkData.github,
   },
   favicon: {
-    icon: "https://ik.imagekit.io/nnp1iszdfe/favicon_io%20(1)/favicon-32x32.png",
-    shortcut: "https://ik.imagekit.io/nnp1iszdfe/favicon_io%20(1)/favicon-16x16.png",
+    icon: "https://ik.imagekit.io/nnp1iszdfe/favicon_io%20(1)/apple-touch-icon.png",
+    shortcut: "https://ik.imagekit.io/nnp1iszdfe/favicon_io%20(1)/favicon-32x32.png",
     apple: "https://ik.imagekit.io/nnp1iszdfe/favicon_io%20(1)/apple-touch-icon.png",
   }
 }

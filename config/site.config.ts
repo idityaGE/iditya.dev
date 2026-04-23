@@ -2,7 +2,7 @@ import { BASE_URL, LinkData, PersonalData } from "@/config/personal.config"
 
 export const siteConfig = {
   name: "iditya.dev",
-  title: "Adi 🍀",
+  title: "Adi",
   description: "Hi, I'm Adii, I'm a software engineer based in India. I loves coding, Linux, and breaking stuff to learn.",
   keywords: [
     "Aditya Portfolio",
@@ -24,14 +24,14 @@ export const siteConfig = {
     url: BASE_URL,
     email: LinkData.gmail
   },
-  ogImage: "https://res.cloudinary.com/dwdbqwqxk/image/upload/v1732530896/Hi_vf73cf.png",
+  ogImage: "https://ik.imagekit.io/nnp1iszdfe/og-portfolio.png",
   links: {
     x: LinkData.x,
     github: LinkData.github,
   },
   favicon: {
-    icon: "https://res.cloudinary.com/dwdbqwqxk/image/upload/v1730215181/favicon-32x32_cgdyy8.png",
-    shortcut: "https://res.cloudinary.com/dwdbqwqxk/image/upload/v1730215179/favicon-16x16_xajjgn.png",
-    apple: "https://res.cloudinary.com/dwdbqwqxk/image/upload/v1730215177/apple-touch-icon_fdqynk.png",
+    icon: "https://ik.imagekit.io/nnp1iszdfe/favicon_io%20(1)/favicon-32x32.png",
+    shortcut: "https://ik.imagekit.io/nnp1iszdfe/favicon_io%20(1)/favicon-16x16.png",
+    apple: "https://ik.imagekit.io/nnp1iszdfe/favicon_io%20(1)/apple-touch-icon.png",
   }
 }

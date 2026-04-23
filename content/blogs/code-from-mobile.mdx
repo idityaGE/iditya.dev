@@ -196,6 +196,28 @@ opencode # In your project directory
 
 From there it's the same experience as sitting at your desk. The context is your machine, the compute is your machine, the AI API calls go out from your machine. Your phone is just the input terminal.
 
+## Going Further: Make It Always-On
+
+There's one real limitation to this setup **your computer has to be on and connected to the internet.** Lose power, or kill your home internet, and the connection drops.
+
+If you want true anywhere-at-any-time access, the next step is obvious: move your dev environment to a VPS.
+
+Spin up a cloud machine [AWS EC2](https://aws.amazon.com/ec2/), [Hetzner](https://www.hetzner.com/cloud/) (cheap and fast), [DigitalOcean](https://www.digitalocean.com/), pick your poison. Then just install Tailscale on it the same way you did on your local machine:
+
+```bash
+# On your VPS
+curl -fsSL https://tailscale.com/install.sh | sh
+sudo tailscale up
+```
+
+That's it. It joins your Tailscale network, gets a private IP, and you SSH into it from Termux exactly the same as before. Except now it's running 24/7, on a real connection, regardless of what your local machine is doing.
+
+<Callout type="info">
+A Hetzner CX22 (2 vCPU, 4GB RAM) runs around $4/month. That's a persistent dev environment for the price of a coffee.
+</Callout>
+
+Your `tmux` sessions survive indefinitely. Your dev server stays up. Your builds don't get interrupted. It's the same workflow phone to terminal, except the terminal is now a machine that never sleeps.
+
 ## Conclusion
 
 Tailscale handles the networking. Termux handles the terminal. SSH ties it together. Once this is set up, your phone becomes a thin client into your full dev environment with all your tools, your configs, your git history.

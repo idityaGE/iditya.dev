@@ -52,7 +52,7 @@ export async function generateMetadata({
       ],
     },
     twitter: {
-      card: "summary",
+      card: "summary_large_image",
       title: `${metadata.title} | ${siteConfig.name}`,
       description: metadata.excerpt || metadata.description,
       site: `@${siteConfig.links.x.split("/").at(-1) ?? "idityage"}`,

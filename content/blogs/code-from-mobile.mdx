@@ -1,0 +1,203 @@
+---
+title: "Code from Anywhere: Your Mobile as a Dev Environment"
+date: "2026-04-23"
+tags:
+  [
+    "opencode",
+    "mobile coding",
+    "remote development",
+    "claude code",
+    "ssh",
+    "termux",
+    "tailscale",
+  ]
+author: "Aditya"
+published: true
+excerpt: "How I turned my phone into a full dev environment using Termux and Tailscale and used it to ship an entire hackathon project from my pocket."
+darkImage: "/images/blogs/tt-dark.webp"
+lightImage: "/images/blogs/tt-light.webp"
+---
+
+> TLDR; SSH into your computer from your phone using Termux + Tailscale. Full terminal access, anywhere, over an encrypted tunnel.
+
+I used this exact setup during a hackathon where external AI tools were restricted. I coded, wrote documentation, and even built presentations - entirely from my phone using `opencode`.
+
+Here's how to replicate it.
+
+## The Problem: You're Away From Your Machine
+
+You're on the train. You get a Slack message about a critical bug in production. Or you just had a great idea and want to prototype it before you forget. Your laptop is at home.
+
+Being tethered to a physical machine is a real productivity bottleneck. But here's the thing: if you have terminal access, you have everything. Your editor, your git history, your dev server - all of it.
+
+## The Solution: A Secure Tunnel to Your Code
+
+Two tools, zero complexity:
+
+- **[Tailscale](https://tailscale.com/)**: Creates a secure peer-to-peer VPN. Every device on your Tailscale network gets a stable private IP regardless of what network it's connected to. No port forwarding, no dynamic DNS.
+- **[Termux](https://termux.dev/en/)**: A full Linux terminal emulator for Android. It's not an emulator in the traditional sense - it's a real Linux environment with its own package manager.
+
+Together, they let your phone SSH directly into your computer as if they're on the same local network - even if one's on mobile data and the other's behind a corporate firewall.
+
+## Step 1: Setting Up Your Accounts and Tools
+
+### 1.1. Create a Tailscale Account
+
+Head to [tailscale.com](https://tailscale.com/login) and sign up. The free tier supports up to 3 devices which is plenty for this. The onboarding flow walks you through connecting your first device, so just follow along.
+
+### 1.2. Install the Software
+
+<Toggle title="On Your Computer (Linux / macOS / Windows)">
+    1. **Install Tailscale** : Download from the [official site](https://tailscale.com/download) for your OS.
+
+    2. **Connect to your Tailscale network:**
+        ```bash
+        sudo tailscale up
+        ```
+        Follow the printed URL to authenticate in your browser.
+
+    3. **Enable the SSH server** : Linux and macOS come with OpenSSH pre-installed. You just need to make sure the daemon is running:
+        ```bash
+        # Linux (systemd)
+        sudo systemctl enable --now ssh
+
+        # macOS
+        sudo systemsetup -setremotelogin on
+        ```
+        On Windows, follow [Microsoft's guide](https://learn.microsoft.com/en-us/windows-server/administration/openssh/openssh_install_firstuse).
+
+    4. **Note your Tailscale IP:**
+        ```bash
+        tailscale ip -4
+        ```
+        Keep this handy as it's your phone's dial-in number.
+
+</Toggle>
+
+<Toggle title="On Your Mobile Device (Android)">
+    1. **Install Termux** : Get it from [F-Droid](https://f-droid.org/packages/com.termux/) or [GitHub Releases](https://github.com/termux/termux-app/releases).
+        <Callout type="warning">
+        The Play Store version of Termux is severely outdated. Do not use it. Use F-Droid or the GitHub release.
+        </Callout>
+
+    2. **Install Tailscale** : From the [Google Play Store](https://play.google.com/store/apps/details?id=com.tailscale.ipn). Open it, sign in with the same account you used on your computer.
+
+    3. **Install OpenSSH in Termux:**
+        ```bash
+        pkg install openssh
+        ```
+
+</Toggle>
+
+## Step 2: Verify the Connection
+
+Before you try to SSH in, confirm that both devices appear in your Tailscale network.
+
+**Option 1 : Check the admin panel:**
+
+Go to the [Tailscale admin console](https://login.tailscale.com/admin/machines). You should see both devices listed as connected.
+
+![tailscale admin panel](/images/blogs/devices.webp)
+
+**Option 2 : Check via terminal:**
+
+```bash
+tailscale status
+```
+
+Make sure both your computer and phone show as online.
+
+<Toggle title="Mobile screenshots">
+  ![mobile not connected](/images/blogs/mobile-not-conn.webp) ![mobile
+  connected](/images/blogs/mobile-conn.webp)
+</Toggle>
+
+<Callout type="info">
+  If your computer shows as offline, run `sudo tailscale up` and
+  re-authenticate.
+</Callout>
+
+## Step 3: Connecting In
+
+Get two pieces of info from your computer first:
+
+```bash
+whoami          # your username, e.g. "idityage"
+```
+
+```bash
+tailscale ip -4 # your Tailscale IP, e.g. "100.x.x.x"
+```
+
+Then from Termux on your phone:
+
+```bash
+ssh your_username@YOUR_TAILSCALE_IP
+```
+
+The first time you connect, you'll be prompted to verify the host fingerprint. Type `yes` to continue and it'll be saved for future connections.
+
+![mobile-ssh](/images/blogs/mobile-ssh.webp)
+
+You're in. That's it.
+
+### Why this is secure (and why you don't need SSH keys)
+
+You might be thinking: "I'm SSHing with just a password, isn't that risky?"
+
+No, and here's why.
+
+Tailscale builds a private WireGuard mesh between your devices. Your machine's Tailscale IP (`100.x.x.x`) is **not a public IP** — it only exists inside your Tailscale network. No one on the internet can route packets to it. It's invisible to the outside world.
+
+<Callout type="info">
+  Even if someone knows your Tailscale IP and your username, they cannot
+  connect. Your SSH port is completely unreachable to anyone not authenticated
+  into your Tailscale account. The attack surface simply doesn't exist.
+</Callout>
+
+Every device on Tailscale has its own cryptographic WireGuard key pair, generated on-device and never shared. When you log into Tailscale on a new device, it gets its own key. Authentication happens at the network level — before any SSH traffic is even possible. SSH keys are a great practice in general, but they're solving a problem this setup doesn't have.
+
+## Step 4: Make It Useful
+
+A raw SSH session is powerful, but a few extra tools take it to a different level.
+
+### Persistent sessions with tmux
+
+If you close Termux or your connection drops, `tmux` keeps your session alive on the remote machine:
+
+```bash
+# Start a named session
+tmux new -s dev
+
+# Detach (keeps running in background)
+# Ctrl+B, then D
+
+# Reattach from a fresh SSH session
+tmux attach -t dev
+```
+
+No more losing your running dev server because you switched apps on your phone.
+
+### AI-assisted coding
+
+Once you're in a `tmux` session, you have full access to any CLI tool installed on your machine including `opencode`. This is exactly how I used it during that hackathon:
+
+```bash
+opencode # In your project directory
+```
+
+<Toggle title="screenshots">
+![opencode](/images/blogs/mobile-opencode-in-action.webp)
+
+> Yeah, hit the limit
+> ![claude code](/images/blogs/mobile-claude.webp)
+
+</Toggle>
+
+From there it's the same experience as sitting at your desk. The context is your machine, the compute is your machine, the AI API calls go out from your machine. Your phone is just the input terminal.
+
+## Conclusion
+
+Tailscale handles the networking. Termux handles the terminal. SSH ties it together. Once this is set up, your phone becomes a thin client into your full dev environment with all your tools, your configs, your git history.
+
+The question isn't _can_ you code from your phone. It's why you haven't set this up already.

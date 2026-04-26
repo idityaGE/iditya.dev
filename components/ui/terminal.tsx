@@ -58,6 +58,17 @@ export function TerminalCommand({
   children: React.ReactNode;
   className?: string;
 }) {
+  // If children is a string that starts with $, wrap the $ in a green span
+  const content =
+    typeof children === "string" && children.startsWith("$") ? (
+      <>
+        <span className="text-green-500">$</span>
+        {children.slice(1)}
+      </>
+    ) : (
+      children
+    );
+
   return (
     <div
       className={cn(
@@ -65,7 +76,7 @@ export function TerminalCommand({
         className,
       )}
     >
-      {children}
+      {content}
     </div>
   );
 }

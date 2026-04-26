@@ -40,6 +40,7 @@ export const Hero = () => {
             <h1 className="text-xl font-mono font-bold uppercase tracking-wide">
               {PersonalData.name}
             </h1>
+            <span className="animate-pulse bg-foreground w-2 h-4 inline-block ml-1"></span>
             <a
               href={LinkData.x}
               target="_blank"

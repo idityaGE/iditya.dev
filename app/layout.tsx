@@ -109,7 +109,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${fontSans.variable} ${fontMono.variable} font-sans antialiased bg-background text-foreground`}
+        className={`${fontSans.variable} ${fontMono.variable} font-mono antialiased bg-background text-foreground`}
         suppressHydrationWarning
       >
         <ThemeProvider attribute="class" defaultTheme="dark">

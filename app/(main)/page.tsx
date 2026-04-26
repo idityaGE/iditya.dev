@@ -10,22 +10,11 @@ export const metadata: Metadata = {
 
 const Home = () => {
   return (
-    <div className="mt-10">
+    <div className="mt-10 font-mono">
       <Hero />
       <Bento />
 
-      <div
-        className="relative border-b h-8"
-        style={{
-          backgroundImage: `repeating-linear-gradient(
-            45deg,
-            transparent,
-            transparent 20px,
-            color-mix(in srgb, currentColor 10%, transparent) 20px,
-            color-mix(in srgb, currentColor 10%, transparent) 21px
-          )`,
-        }}
-      />
+      <div className="h-10 border-b border-border mb-10" />
 
       <ExperienceSection />
     </div>

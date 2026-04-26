@@ -3,6 +3,7 @@ import { Callout } from "@/components/content/callout";
 import { YouTube } from "@/components/content/youtube";
 import { CommandBtn } from "@/components/content/command-btn";
 import { Toggle } from "@/components/content/toggle";
+import { Sandbox } from "@/components/content/sandbox";
 import Image from "next/image";
 import {
   Table,
@@ -39,6 +40,7 @@ const styles = {
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
+    Sandbox,
     Callout,
     YouTube,
     CommandBtn,

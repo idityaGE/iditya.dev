@@ -11,6 +11,12 @@ lightImage: "test-light.png"
 
 # Main Heading (H1)
 
+<Sandbox
+  title="Hello World"
+  html={`<h1 style="color: #22c55e; font-family: monospace">Hello</h1>`}
+/>
+
+
 ## Og Image
 <OgLink url="https://iditya.dev" />
 
@@ -18,6 +24,17 @@ lightImage: "test-light.png"
 * [x] done
 
 `Hello`
+
+<Sandbox
+  title="flexbox-demo.html"
+  height={700}
+  showSource
+  html={`<div class="container"><div class="box">A</div><div class="box">B</div></div>`}
+  css={`.container { display: flex; gap: 1rem; }
+.box { padding: 2rem; background: #22c55e; color: #000; font-family: monospace; }`}
+  js={`document.querySelectorAll('.box').forEach(b =>
+  b.addEventListener('click', () => b.style.opacity = '0.5'))`}
+/>
 
 ---
 

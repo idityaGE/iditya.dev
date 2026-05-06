@@ -37,9 +37,7 @@ const Projects = () => {
         path="~/projects"
         title="Projects"
         subtitle={`(${ProjectData.length} repos)`}
-      />
-      <div className="border-b bg-background p-3 flex justify-end -mt-[45px] relative z-10 pointer-events-none">
-         <div className="pointer-events-auto">
+        actions={
           <Tooltip delayDuration={200}>
             <TooltipTrigger>
               <Link
@@ -56,8 +54,8 @@ const Projects = () => {
               <p className="text-xs font-mono">$ subscribe --rss</p>
             </TooltipContent>
           </Tooltip>
-        </div>
-      </div>
+        }
+      />
 
       {/* Description Block */}
       <div className="border-b bg-background p-3">

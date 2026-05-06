@@ -31,9 +31,7 @@ const Blogs = async () => {
         path="~/blogs"
         title="Blogs"
         subtitle={`(${posts.length} posts)`}
-      />
-      <div className="border-b bg-background p-3 flex justify-end -mt-[45px] relative z-10 pointer-events-none">
-         <div className="pointer-events-auto">
+        actions={
           <Tooltip delayDuration={200}>
             <TooltipTrigger>
               <Link
@@ -50,8 +48,8 @@ const Blogs = async () => {
               <p className="text-xs font-mono">$ subscribe --rss</p>
             </TooltipContent>
           </Tooltip>
-        </div>
-      </div>
+        }
+      />
 
       {/* Description Block */}
       <div className="border-b bg-background p-3 mb-8">

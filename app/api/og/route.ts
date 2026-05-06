@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { parse } from 'node-html-parser';
-import { getMetaContent, getTitle } from '@/lib/og';
+import { extractOgData } from '@/lib/og';
 
 function isAllowedUrl(urlString: string): boolean {
   try {
@@ -76,13 +76,7 @@ export async function GET(request: Request) {
     const root = parse(html);
 
     // Extract Open Graph metadata
-    const ogData = {
-      title: getMetaContent(root, 'og:title') || getTitle(root),
-      description: getMetaContent(root, 'og:description') || getMetaContent(root, 'description'),
-      image: getMetaContent(root, 'og:image'),
-      url: getMetaContent(root, 'og:url') || url,
-      siteName: getMetaContent(root, 'og:site_name'),
-    };
+    const ogData = extractOgData(root, url);
 
     return NextResponse.json(ogData);
   } catch (error) {

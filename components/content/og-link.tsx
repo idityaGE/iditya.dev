@@ -2,15 +2,7 @@ import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
 import { ExternalLink, Link2 } from "lucide-react";
 import { parse } from "node-html-parser";
-import { getMetaContent, getTitle } from "@/lib/og";
-
-interface OgData {
-  title: string | null;
-  description: string | null;
-  image: string | null;
-  url: string;
-  siteName: string | null;
-}
+import { extractOgData, type OgData } from "@/lib/og";
 
 async function fetchOgData(url: string): Promise<OgData | null> {
   try {
@@ -32,13 +24,7 @@ async function fetchOgData(url: string): Promise<OgData | null> {
     const html = await response.text();
     const root = parse(html);
 
-    return {
-      title: getMetaContent(root, "og:title") || getTitle(root),
-      description: getMetaContent(root, "og:description") || getMetaContent(root, "description"),
-      image: getMetaContent(root, "og:image"),
-      url: getMetaContent(root, "og:url") || url,
-      siteName: getMetaContent(root, "og:site_name"),
-    };
+    return extractOgData(root, url);
   } catch (error) {
     console.error("Error fetching OG data:", error);
     return null;

@@ -15,7 +15,7 @@ const GlobalError = ({
   }, [error]);
 
   return (
-    <html lang="en" className="dark">
+    <html lang="en" className="dark" data-scroll-behavior="smooth">
       <body className="bg-[oklch(0.145_0_0)] text-[oklch(0.985_0_0)] font-[JetBrains_Mono,monospace] antialiased">
         <div className="h-screen w-full flex flex-col items-center justify-center px-3">
           <div className="w-full max-w-sm border border-[rgb(255_255_255/0.18)]">

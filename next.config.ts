@@ -10,6 +10,7 @@ const nextConfig: NextConfig = {
   pageExtensions: ['mdx', 'tsx', 'ts'],
   reactCompiler: true,
   images: {
+    dangerouslyAllowLocalIP: true,
     remotePatterns: [
       {
         protocol: "https",

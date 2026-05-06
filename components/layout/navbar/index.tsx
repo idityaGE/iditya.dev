@@ -1,26 +1,7 @@
 import { ModeToggle } from "@/components/theme/theme-toggle";
 import { MobileDropdown } from "@/components/layout/navbar/mobile-dropdown";
 import Link from "next/link";
-
-interface NavLinks {
-  to: string;
-  label: string;
-}
-
-export const NavLinks: NavLinks[] = [
-  {
-    to: "/projects",
-    label: "projects",
-  },
-  {
-    to: "/blogs",
-    label: "blogs",
-  },
-  {
-    to: "/pow",
-    label: "PoW",
-  },
-];
+import { NAV_LINKS, type NavLink } from "./config";
 
 export const Navbar = ({ children }: { children?: React.ReactNode }) => {
   return (
@@ -56,14 +37,14 @@ const Logo = () => {
 const DesktopLinks = () => {
   return (
     <div className="gap-3 hidden sm:flex">
-      {NavLinks.map((link) => (
+      {NAV_LINKS.map((link) => (
         <NavItem key={link.to} to={link.to} label={link.label} />
       ))}
     </div>
   );
 };
 
-const NavItem = ({ to, label }: NavLinks) => {
+const NavItem = ({ to, label }: NavLink) => {
   return (
     <Link
       href={to}

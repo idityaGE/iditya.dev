@@ -7,7 +7,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Terminal } from "lucide-react";
-import { NavLinks } from "@/components/layout/navbar";
+import { NAV_LINKS } from "./config";
 import Link from "next/link";
 import {
   TrafficLightDots,
@@ -36,7 +36,7 @@ export const MobileDropdown = () => {
           </div>
           {/* Links */}
           <div className="py-1">
-            {NavLinks.map((link) => (
+            {NAV_LINKS.map((link) => (
               <DropdownMenuItem key={link.to} className="px-2 py-2 rounded-none focus:bg-muted/50">
                 <Link href={link.to} className="flex items-center gap-2 w-full font-mono text-xs">
                   <GreenArrow />

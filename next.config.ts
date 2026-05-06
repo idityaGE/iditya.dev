@@ -8,6 +8,7 @@ import { remarkMdxToc } from "remark-mdx-toc";
 
 const nextConfig: NextConfig = {
   pageExtensions: ['mdx', 'tsx', 'ts'],
+  reactCompiler: true,
   images: {
     remotePatterns: [
       {

@@ -1,5 +1,6 @@
 import { getAllBlogPostsMeta } from "@/lib/mdx";
 import { BlogCard } from "@/features/blog/components/blog-card";
+import { TerminalHeader } from "@/components/shared/TerminalHeader";
 import {
   Tooltip,
   TooltipContent,
@@ -26,16 +27,13 @@ const Blogs = async () => {
   return (
     <div className="mt-10">
       {/* Terminal Header */}
-      <div className="border-y bg-background p-3">
-        <div className="flex items-center gap-2 mb-2">
-          <TrafficLightDots />
-          <TerminalPath>~/blogs</TerminalPath>
-        </div>
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <h1 className="text-sm font-bold font-mono uppercase tracking-wider">Blogs</h1>
-            <TerminalPath>({posts.length} posts)</TerminalPath>
-          </div>
+      <TerminalHeader 
+        path="~/blogs"
+        title="Blogs"
+        subtitle={`(${posts.length} posts)`}
+      />
+      <div className="border-b bg-background p-3 flex justify-end -mt-[45px] relative z-10 pointer-events-none">
+         <div className="pointer-events-auto">
           <Tooltip delayDuration={200}>
             <TooltipTrigger>
               <Link

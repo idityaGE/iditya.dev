@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
 import { ExternalLink, Link2 } from "lucide-react";
 import { parse } from "node-html-parser";
+import { getMetaContent, getTitle } from "@/lib/og";
 
 interface OgData {
   title: string | null;
@@ -9,17 +10,6 @@ interface OgData {
   image: string | null;
   url: string;
   siteName: string | null;
-}
-
-// Helper functions to extract metadata
-function getMetaContent(root: ReturnType<typeof parse>, property: string): string | null {
-  const meta = root.querySelector(`meta[property="${property}"], meta[name="${property}"]`);
-  return meta?.getAttribute("content") ?? null;
-}
-
-function getTitle(root: ReturnType<typeof parse>): string | null {
-  const titleTag = root.querySelector("title");
-  return titleTag ? titleTag.text : null;
 }
 
 async function fetchOgData(url: string): Promise<OgData | null> {

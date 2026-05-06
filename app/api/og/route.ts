@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { parse } from 'node-html-parser';
+import { getMetaContent, getTitle } from '@/lib/og';
 
 function isAllowedUrl(urlString: string): boolean {
   try {
@@ -91,15 +92,4 @@ export async function GET(request: Request) {
       { status: 500 }
     );
   }
-}
-
-// Helper functions to extract metadata
-function getMetaContent(root: any, property: string): string | null {
-  const meta = root.querySelector(`meta[property="${property}"], meta[name="${property}"]`);
-  return meta ? meta.getAttribute('content') : null;
-}
-
-function getTitle(root: any): string | null {
-  const titleTag = root.querySelector('title');
-  return titleTag ? titleTag.text : null;
 }

@@ -1,6 +1,7 @@
 import { Construction } from "lucide-react";
 import Link from "next/link";
 import type { Metadata } from "next";
+import { TerminalHeader } from "@/components/shared/TerminalHeader";
 import {
   TrafficLightDots,
   TerminalPath,
@@ -46,16 +47,11 @@ const PoWPage = () => {
   return (
     <div className="mt-10">
       {/* Terminal Header */}
-      <div className="border-y bg-background p-3">
-        <div className="flex items-center gap-2 mb-2">
-          <TrafficLightDots />
-          <TerminalPath>~/pow</TerminalPath>
-        </div>
-        <div className="flex items-center justify-between">
-          <h1 className="text-sm font-bold font-mono uppercase tracking-wider">Proof of Work</h1>
-          <TerminalPath>({categories.length} categories)</TerminalPath>
-        </div>
-      </div>
+      <TerminalHeader 
+        path="~/pow"
+        title="Proof of Work"
+        subtitle={`(${categories.length} categories)`}
+      />
 
       {/* Description Block */}
       <div className="border-b bg-background p-3">

@@ -68,35 +68,26 @@ export const Bento = () => {
     },
   ];
 
+  const renderBentoCard = (feature: BentoCardProps) => (
+    <BentoCard
+      key={feature.name}
+      name={feature.name}
+      background={feature.background}
+      Icon={feature.Icon}
+      className={feature.className}
+      isIconHidden={feature.isIconHidden}
+      makeAbsolute={feature.makeAbsolute}
+      terminalCmd={feature.terminalCmd}
+    />
+  );
+
   return (
     <BentoGrid className="md:grid-cols-4">
-      {primaryFeatures.map((feature) => (
-        <BentoCard
-          key={feature.name}
-          name={feature.name}
-          background={feature.background}
-          Icon={feature.Icon}
-          className={feature.className}
-          isIconHidden={feature.isIconHidden}
-          makeAbsolute={feature.makeAbsolute}
-          terminalCmd={feature.terminalCmd}
-        />
-      ))}
+      {primaryFeatures.map(renderBentoCard)}
 
       {/* GitHub + LeetCode: always visible on desktop, toggled on mobile */}
       <MobileExpandable>
-        {expandableFeatures.map((feature) => (
-          <BentoCard
-            key={feature.name}
-            name={feature.name}
-            background={feature.background}
-            Icon={feature.Icon}
-            className={feature.className}
-            isIconHidden={feature.isIconHidden}
-            makeAbsolute={feature.makeAbsolute}
-            terminalCmd={feature.terminalCmd}
-          />
-        ))}
+        {expandableFeatures.map(renderBentoCard)}
       </MobileExpandable>
     </BentoGrid>
   );

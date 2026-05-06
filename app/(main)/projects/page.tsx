@@ -3,6 +3,7 @@ import { ProjectData } from "@/config/project.config";
 import { LinkData } from "@/config/personal.config";
 import { Mail, AlertTriangle, Rss } from "lucide-react";
 import Link from "next/link";
+import { TerminalHeader } from "@/components/shared/TerminalHeader";
 import {
   Tooltip,
   TooltipContent,
@@ -32,16 +33,13 @@ const Projects = () => {
   return (
     <div className="mt-10">
       {/* Terminal Header */}
-      <div className="border-y bg-background p-3">
-        <div className="flex items-center gap-2 mb-2">
-          <TrafficLightDots />
-          <TerminalPath>~/projects</TerminalPath>
-        </div>
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <h1 className="text-sm font-bold font-mono uppercase tracking-wider">Projects</h1>
-            <TerminalPath>({ProjectData.length} repos)</TerminalPath>
-          </div>
+      <TerminalHeader 
+        path="~/projects"
+        title="Projects"
+        subtitle={`(${ProjectData.length} repos)`}
+      />
+      <div className="border-b bg-background p-3 flex justify-end -mt-[45px] relative z-10 pointer-events-none">
+         <div className="pointer-events-auto">
           <Tooltip delayDuration={200}>
             <TooltipTrigger>
               <Link

@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { Github } from "lucide-react";
 import { BackButton } from "@/features/blog/components/back-button";
+import { TerminalHeader } from "@/components/shared/TerminalHeader";
 import {
   TrafficLightDots,
   TerminalPath,
@@ -72,16 +73,11 @@ const PoWPage = () => {
   return (
     <div className="mt-10">
       {/* Terminal Header */}
-      <div className="border-y bg-background p-3">
-        <div className="flex items-center gap-2 mb-2">
-          <TrafficLightDots />
-          <TerminalPath>~/pow/web-3</TerminalPath>
-        </div>
-        <div className="flex items-center justify-between">
-          <h1 className="text-sm font-bold font-mono uppercase tracking-wider">Web3 / Solana</h1>
-          <TerminalPath>({powItems.length} repos)</TerminalPath>
-        </div>
-      </div>
+      <TerminalHeader 
+        path="~/pow/web-3"
+        title="Web3 / Solana"
+        subtitle={`(${powItems.length} repos)`}
+      />
 
       {/* Description Block */}
       <div className="border-b bg-background p-3">

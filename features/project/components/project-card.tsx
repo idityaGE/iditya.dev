@@ -10,6 +10,7 @@ import {
   TerminalPath,
   TerminalCommand,
   GreenArrow,
+  Tag,
 } from "@/components/ui/terminal";
 
 const ProjectCard = ({
@@ -28,107 +29,78 @@ const ProjectCard = ({
 
   const cardContent = (
     <div
-      className={`relative flex flex-col overflow-hidden transition-all duration-200 bg-background ${
+      className={`relative w-full h-full overflow-hidden bg-background transition-transform duration-200 ${
         !disableHover
           ? "group-hover/project-card:-translate-x-1 group-hover/project-card:-translate-y-1 border"
           : "border-y"
       }`}
     >
       {/* Terminal Header */}
-      <div className="px-2 py-1.5 bg-muted/70">
+      <div className="px-2.5 py-2 bg-muted/70">
         <div className="flex items-center gap-2">
           <TrafficLightDots />
           <TerminalPath className="truncate">~/projects/{slug}</TerminalPath>
         </div>
       </div>
 
-      <div className="flex flex-col-reverse md:flex-row">
-        {/* Content Section */}
-        <div className="flex flex-col w-full md:w-2/3 min-h-0 gap-px">
-          {/* Title & Description Block */}
-          <div className="bg-background p-1.5 h-full">
-            <TerminalCommand className="mb-1">$ info</TerminalCommand>
-            {disableHover ? (
-              <div>
-                <div className="flex items-start gap-2 mb-1">
-                  <GreenArrow />
-                  <h2 className="text-sm font-mono font-bold line-clamp-1">
-                    {title}
-                  </h2>
-                </div>
-                <p className="text-xs font-mono text-muted-foreground line-clamp-2 pl-4">
-                  {description}
-                </p>
-              </div>
-            ) : (
-              <Link
-                href={projectUrl}
-                className="block group/link"
-                aria-label={projectAriaLabel}
-              >
-                <div className="flex items-start gap-2 mb-1">
-                  <GreenArrow />
-                  <h2 className="text-sm font-mono font-bold line-clamp-1 group-hover/project-card:text-green-500 transition-colors">
-                    {title}
-                  </h2>
-                </div>
-                <p className="text-xs font-mono text-muted-foreground line-clamp-2 pl-4">
-                  {description}
-                </p>
-              </Link>
-            )}
-          </div>
+      {/* Image Section */}
+      <div className="w-full aspect-[10/5] overflow-hidden border-b">
+        {disableHover ? (
+          <Image
+            src={images[0]}
+            width={400}
+            height={200}
+            alt={`${title} project screenshot`}
+            sizes="(max-width: 768px) 100vw, 50vw"
+            className="w-full aspect-[10/5] object-cover"
+          />
+        ) : (
+          <Link href={projectUrl} aria-label={projectAriaLabel}>
+            <Image
+              src={images[0]}
+              width={400}
+              height={200}
+              alt={`${title} project screenshot`}
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="w-full aspect-[10/5] object-cover"
+            />
+          </Link>
+        )}
+      </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-px border-t">
-            {/* Tech Stack Block */}
-            <div className="bg-background p-1.5 border-r">
-              <TerminalCommand className="mb-1">$ stack</TerminalCommand>
-              <TechStackList techStack={techStack} maxVisible={3} />
-            </div>
-
-            {/* Actions Block */}
-            <div className="bg-background p-1.5 border-t md:border-t-0">
-              <TerminalCommand className="mb-1">$ links</TerminalCommand>
-              <ProjectButtons
-                githubLink={githubLink}
-                liveLink={liveLink}
-                title={title}
-              />
-            </div>
-          </div>
-        </div>
-
-        {/* Image Section */}
-        <div className="w-full md:w-1/3 h-40 md:h-auto flex-shrink-0 border-b md:border-b-0 md:border-l">
+      {/* Content */}
+      <div className="p-2.5">
+        <div className="flex items-start gap-2 mb-2">
+          <GreenArrow className="mt-0.5" />
           {disableHover ? (
-            <div className="relative w-full h-full min-h-[120px]">
-              <Image
-                src={images[0]}
-                alt={`${title} project screenshot`}
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 40vw"
-                priority={false}
-              />
-            </div>
+            <h2 className="text-sm font-mono font-bold leading-tight line-clamp-2">
+              {title}
+            </h2>
           ) : (
-            <Link
-              href={projectUrl}
-              aria-label={projectAriaLabel}
-              className="block w-full h-full"
-            >
-              <div className="relative w-full h-full min-h-[120px]">
-                <Image
-                  src={images[0]}
-                  alt={`${title} project screenshot`}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 40vw"
-                  priority={false}
-                />
-              </div>
+            <Link href={projectUrl} aria-label={projectAriaLabel}>
+              <h2 className="text-sm font-mono font-bold leading-tight group-hover/project-card:text-green-500 transition-colors line-clamp-2">
+                {title}
+              </h2>
             </Link>
           )}
+        </div>
+        <p className="text-xs font-mono text-muted-foreground mb-2.5 line-clamp-2 pl-4">
+          {description}
+        </p>
+        <div className="flex items-center justify-between gap-2 flex-wrap">
+          <div className="flex items-center gap-1 flex-wrap">
+            {techStack.slice(0, 2).map((tag) => (
+              <Tag key={tag}>{tag}</Tag>
+            ))}
+            {techStack.length > 2 && (
+              <Tag>+{techStack.length - 2}</Tag>
+            )}
+          </div>
+          <ProjectButtons
+            githubLink={githubLink}
+            liveLink={liveLink}
+            title={title}
+          />
         </div>
       </div>
 

@@ -82,7 +82,7 @@ const Projects = () => {
         <div className="flex items-start gap-2">
           <AlertTriangle size={12} className="text-yellow-500 mt-0.5 flex-shrink-0" />
           <div>
-            <TerminalCommand className="text-yellow-500 mb-1">$ warning</TerminalCommand>
+            <TerminalCommand className="text-yellow-500 mb-1"> warning</TerminalCommand>
             <p className="text-xs font-mono text-muted-foreground">
               Projects hosted on free services may enter hibernation mode.{" "}
               <Link
@@ -105,9 +105,9 @@ const Projects = () => {
             <p className="text-xs font-mono text-muted-foreground mt-1">Check back soon for new builds!</p>
           </div>
         ) : (
-          <div className="flex flex-col gap-px">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-px p-px">
             {ProjectData.map((project) => (
-              <div key={project.slug || project.title} className="bg-background mb-4 px-2">
+              <div key={project.slug || project.title} className="bg-background p-2">
                 <ProjectCard {...project} />
               </div>
             ))}

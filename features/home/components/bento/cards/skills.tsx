@@ -17,7 +17,6 @@ import {
   SiTailwindcss,
   SiGit,
   SiLinux,
-  // SiAmazonwebservices, // Not available in @icons-pack/react-simple-icons - use simple-icons instead
   SiVercel,
   SiCloudflare,
   SiSolidity,

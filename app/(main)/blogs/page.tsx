@@ -69,9 +69,9 @@ const Blogs = async () => {
             <p className="text-xs font-mono text-muted-foreground mt-1">Check back soon for new content!</p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-px p-px">
+          <div className="flex flex-col gap-px">
             {posts.map((post) => (
-              <div key={post.slug} className="bg-background p-2">
+              <div key={post.slug} className="bg-background mb-4 px-2">
                 <BlogCard blog={post} />
               </div>
             ))}

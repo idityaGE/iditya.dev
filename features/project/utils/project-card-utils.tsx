@@ -3,7 +3,7 @@ import React from "react";
 import { Tag } from "@/components/ui/terminal";
 
 const BUTTON_CLASSES =
-  "inline-flex items-center px-2 py-1 border hover:text-green-500 text-xs font-medium transition-colors";
+  "inline-flex items-center px-3 py-1.5 border hover:text-green-500 text-sm font-medium font-mono transition-colors";
 
 interface ProjectButtonsProps {
   githubLink?: string;
@@ -25,7 +25,7 @@ export const ProjectButtons: React.FC<ProjectButtonsProps> = ({
         aria-label={`GitHub repository for ${title}`}
         className={BUTTON_CLASSES}
       >
-        <Github className="mr-1.5 h-3 w-3" />
+        <Github className="mr-1.5 h-3.5 w-3.5" />
         GitHub
       </a>
     )}
@@ -37,7 +37,7 @@ export const ProjectButtons: React.FC<ProjectButtonsProps> = ({
         aria-label={`Live demo of ${title}`}
         className={`${BUTTON_CLASSES} group/demo`}
       >
-        <ExternalLink className="mr-1.5 h-3 w-3 transition-transform duration-300 group-hover/demo:rotate-45" />
+        <ExternalLink className="mr-1.5 h-3.5 w-3.5 transition-transform duration-300 group-hover/demo:rotate-45" />
         Live
       </a>
     )}
@@ -62,8 +62,10 @@ export const TechStackList: React.FC<TechStackListProps> = ({
       <div className="flex items-start gap-1 flex-wrap">
         {techStack.map((tag, index) =>
           showAll || index < maxVisible ? (
-            <Tag key={tag} className="cursor-default">{tag}</Tag>
-          ) : null
+            <Tag key={tag} className="cursor-default">
+              {tag}
+            </Tag>
+          ) : null,
         )}
         {!showAll && techStack.length > maxVisible && (
           <Tag className="cursor-default">+{techStack.length - maxVisible}</Tag>

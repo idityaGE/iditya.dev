@@ -1,5 +1,5 @@
 import { getMDXSlugs } from "@/lib/mdx";
-import { ProjectCard } from "@/features/project/components/project-card";
+import { ProjectDetailCard } from "@/features/project/components/project-detail-card";
 import { ProjectData } from "@/config/project.config";
 import type { Metadata } from "next/types";
 import { siteConfig } from "@/config/site.config";
@@ -84,7 +84,7 @@ export default async function Page({
 
         {/* Project Card Block */}
         <div className="border-b bg-background">
-          {project && <ProjectCard {...project} disableHover />}
+          {project && <ProjectDetailCard {...project} />}
         </div>
 
         {/* Content Block */}

@@ -203,6 +203,11 @@ html.dark {
   mix-blend-mode: normal;
 }
 
+::view-transition-group(*) {
+  animation-duration: 0.5s;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
 body {
   letter-spacing: var(--tracking-normal);
 }

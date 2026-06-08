@@ -27,7 +27,12 @@ const ProjectDetailCard = ({
       <div className="px-2 py-1.5 bg-muted/70">
         <div className="flex items-center gap-2">
           <TrafficLightDots />
-          <TerminalPath className="truncate">~/projects/{slug}</TerminalPath>
+          <TerminalPath
+            className="truncate"
+            style={{ viewTransitionName: `project-path-${slug}` } as React.CSSProperties}
+          >
+            ~/projects/{slug}
+          </TerminalPath>
         </div>
       </div>
 
@@ -40,11 +45,17 @@ const ProjectDetailCard = ({
             <div>
               <div className="flex items-start gap-2 mb-1">
                 <GreenArrow />
-                <h2 className="text-sm font-mono font-bold line-clamp-1">
+                <h2
+                  className="text-sm font-mono font-bold line-clamp-1"
+                  style={{ viewTransitionName: `project-title-${slug}` } as React.CSSProperties}
+                >
                   {title}
                 </h2>
               </div>
-              <p className="text-xs font-mono text-muted-foreground line-clamp-2 pl-4">
+              <p
+                className="text-xs font-mono text-muted-foreground line-clamp-2 pl-4"
+                style={{ viewTransitionName: `project-desc-${slug}` } as React.CSSProperties}
+              >
                 {description}
               </p>
             </div>
@@ -54,7 +65,7 @@ const ProjectDetailCard = ({
             {/* Tech Stack Block */}
             <div className="bg-background p-1.5 border-r">
               <TerminalCommand className="mb-1">$ stack</TerminalCommand>
-              <TechStackList techStack={techStack} maxVisible={3} />
+              <TechStackList techStack={techStack} maxVisible={3} slug={slug} />
             </div>
 
             {/* Actions Block */}
@@ -64,6 +75,7 @@ const ProjectDetailCard = ({
                 githubLink={githubLink}
                 liveLink={liveLink}
                 title={title}
+                slug={slug}
               />
             </div>
           </div>
@@ -79,6 +91,7 @@ const ProjectDetailCard = ({
               className="object-cover"
               sizes="(max-width: 768px) 100vw, 40vw"
               priority={false}
+              style={{ viewTransitionName: `project-image-${slug}` } as React.CSSProperties}
             />
           </div>
         </div>

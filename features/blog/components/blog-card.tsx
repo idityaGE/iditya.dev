@@ -1,5 +1,5 @@
 import type { BlogPostMeta } from "@/types";
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import Image from "next/image";
 import { getImageSrc } from "@/lib/utils";
 import {
@@ -33,7 +33,10 @@ export function BlogCard({
         <div className="px-2 py-1.5 bg-muted/70">
           <div className="flex items-center gap-2">
             <TrafficLightDots />
-            <TerminalPath className="truncate">
+            <TerminalPath
+              className="truncate"
+              style={{ viewTransitionName: `blog-path-${blog.slug}` } as React.CSSProperties}
+            >
               ~/blogs/{blog.slug}
             </TerminalPath>
           </div>
@@ -52,7 +55,10 @@ export function BlogCard({
               >
                 <div className="flex items-start gap-2 mb-1">
                   <GreenArrow />
-                  <h2 className="text-md font-mono font-bold line-clamp-1 group-hover/blog-card:text-green-500 transition-colors">
+                  <h2
+                    className="text-md font-mono font-bold line-clamp-1 group-hover/blog-card:text-green-500 transition-colors"
+                    style={{ viewTransitionName: `blog-title-${blog.slug}` } as React.CSSProperties}
+                  >
                     {blog.title}
                   </h2>
                 </div>
@@ -67,7 +73,10 @@ export function BlogCard({
               <div className="bg-background p-1.5 border-r">
                 <TerminalCommand className="mb-1">$ tags</TerminalCommand>
                 <div className="relative max-h-[52px] overflow-hidden">
-                  <div className="flex items-start gap-1 flex-wrap">
+                  <div
+                    className="flex items-start gap-1 flex-wrap"
+                    style={{ viewTransitionName: `blog-tags-${blog.slug}` } as React.CSSProperties}
+                  >
                     {blog.tags.slice(0, 3).map((tag) => (
                       <Tag key={tag} className="cursor-default">
                         {tag}
@@ -85,7 +94,10 @@ export function BlogCard({
               {/* Meta Block */}
               <div className="bg-background p-1.5 border-t md:border-t-0">
                 <TerminalCommand className="mb-1">$ meta</TerminalCommand>
-                <div className="flex flex-col gap-1 mt-auto flex-shrink-0 py-1 md:py-0">
+                <div
+                  className="flex flex-col gap-1 mt-auto flex-shrink-0 py-1 md:py-0"
+                  style={{ viewTransitionName: `blog-meta-${blog.slug}` } as React.CSSProperties}
+                >
                   <span className="text-xs font-mono text-muted-foreground">
                     <span className="text-green-500">→</span>{" "}
                     {new Date(blog.date).toLocaleDateString("en-US", {
@@ -109,7 +121,10 @@ export function BlogCard({
               aria-label={blogAriaLabel}
               className="block w-full h-full"
             >
-              <div className="relative w-full h-full min-h-[120px]">
+              <div
+                className="relative w-full h-full min-h-[120px]"
+                style={{ viewTransitionName: `blog-image-${blog.slug}` } as React.CSSProperties}
+              >
                 <Image
                   src={darkSrc}
                   alt={blog.title}

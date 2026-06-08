@@ -122,14 +122,19 @@ export default async function Page({
       <div className="border-y bg-background p-3">
         <div className="flex items-center gap-2">
           <TrafficLightDots />
-          <TerminalPath>~/blogs/{slug}</TerminalPath>
+          <TerminalPath style={{ viewTransitionName: `blog-path-${slug}` } as React.CSSProperties}>
+            ~/blogs/{slug}
+          </TerminalPath>
         </div>
       </div>
 
       {/* Meta Info Block */}
       <div className="border-b bg-background p-3">
         <TerminalCommand className="mb-2">$ git log --oneline</TerminalCommand>
-        <div className="flex items-center gap-4 text-xs font-mono">
+        <div
+          className="flex items-center gap-4 text-xs font-mono"
+          style={{ viewTransitionName: `blog-meta-${slug}` } as React.CSSProperties}
+        >
           <div className="flex items-center gap-1.5">
             <Calendar size={12} className="text-muted-foreground" />
             <span className="text-muted-foreground">
@@ -151,10 +156,18 @@ export default async function Page({
       <div className="border-b bg-background p-3">
         <div className="flex items-start gap-2">
           <GreenArrow className="text-sm" />
-          <h1 className="text-xl font-mono font-bold leading-tight break-words min-w-0">{metadata.title}</h1>
+          <h1
+            className="text-xl font-mono font-bold leading-tight break-words min-w-0"
+            style={{ viewTransitionName: `blog-title-${slug}` } as React.CSSProperties}
+          >
+            {metadata.title}
+          </h1>
         </div>
         {metadata.tags && metadata.tags.length > 0 && (
-          <div className="flex flex-wrap gap-1 mt-2 pl-5">
+          <div
+            className="flex flex-wrap gap-1 mt-2 pl-5"
+            style={{ viewTransitionName: `blog-tags-${slug}` } as React.CSSProperties}
+          >
             {metadata.tags.map((tag: string) => (
               <Tag key={tag}>{tag}</Tag>
             ))}
@@ -166,15 +179,17 @@ export default async function Page({
       {(metadata.darkImage || metadata.lightImage) && (
         <div className="border-b bg-background p-3">
           <TerminalCommand className="mb-2">$ cat cover.png</TerminalCommand>
-          <ThemeImage
-            darkSrc={metadata.darkImage}
-            lightSrc={metadata.lightImage}
-            alt={metadata.title}
-            width={1200}
-            height={630}
-            className="w-full"
-            priority
-          />
+          <div style={{ viewTransitionName: `blog-image-${slug}` } as React.CSSProperties}>
+            <ThemeImage
+              darkSrc={metadata.darkImage}
+              lightSrc={metadata.lightImage}
+              alt={metadata.title}
+              width={1200}
+              height={630}
+              className="w-full"
+              priority
+            />
+          </div>
         </div>
       )}
 

@@ -7,6 +7,7 @@ import { Inter, JetBrains_Mono } from "next/font/google";
 import { siteConfig } from "@/config/site.config";
 import { Analytics } from "@vercel/analytics/next";
 import "@/styles/globals.css";
+import { ViewTransitions } from "next-view-transitions";
 
 const fontSans = Inter({
   subsets: ["latin"],
@@ -74,55 +75,57 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning data-scroll-behavior="smooth">
-      <head>
-        <meta name="ocs-site-verification" content="83b607414cec1c074aa5415fd4c01d5d" />
-        <link
-          rel="alternate"
-          type="application/rss+xml"
-          title={`${siteConfig.name} RSS Feed`}
-          href="/rss.xml"
-        />
-        <link
-          rel="alternate"
-          type="application/atom+xml"
-          title={`${siteConfig.name} Atom Feed`}
-          href="/atom.xml"
-        />
-        <link
-          rel="alternate"
-          type="application/json"
-          title={`${siteConfig.name} JSON Feed`}
-          href="/rss.json"
-        />
-        <link
-          rel="alternate"
-          type="application/rss+xml"
-          title={`${siteConfig.name} Blogs RSS Feed`}
-          href="/blogs/rss.xml"
-        />
-        <link
-          rel="alternate"
-          type="application/rss+xml"
-          title={`${siteConfig.name} Projects RSS Feed`}
-          href="/projects/rss.xml"
-        />
-      </head>
-      <body
-        className={`${fontSans.variable} ${fontMono.variable} font-mono antialiased bg-background text-foreground`}
-        suppressHydrationWarning
-      >
-        <ThemeProvider attribute="class" defaultTheme="dark">
-          <div className="mx-auto min-h-screen flex flex-col">
-            <Navbar>
-              <CommandMenuWrapper />
-            </Navbar>
-            <CommandHint />
-            <div className="flex-grow">{children}</div>
-          </div>
-        </ThemeProvider>
-        <Analytics />
-      </body>
-    </html>
+    <ViewTransitions>
+      <html lang="en" suppressHydrationWarning data-scroll-behavior="smooth">
+        <head>
+          <meta name="ocs-site-verification" content="83b607414cec1c074aa5415fd4c01d5d" />
+          <link
+            rel="alternate"
+            type="application/rss+xml"
+            title={`${siteConfig.name} RSS Feed`}
+            href="/rss.xml"
+          />
+          <link
+            rel="alternate"
+            type="application/atom+xml"
+            title={`${siteConfig.name} Atom Feed`}
+            href="/atom.xml"
+          />
+          <link
+            rel="alternate"
+            type="application/json"
+            title={`${siteConfig.name} JSON Feed`}
+            href="/rss.json"
+          />
+          <link
+            rel="alternate"
+            type="application/rss+xml"
+            title={`${siteConfig.name} Blogs RSS Feed`}
+            href="/blogs/rss.xml"
+          />
+          <link
+            rel="alternate"
+            type="application/rss+xml"
+            title={`${siteConfig.name} Projects RSS Feed`}
+            href="/projects/rss.xml"
+          />
+        </head>
+        <body
+          className={`${fontSans.variable} ${fontMono.variable} font-mono antialiased bg-background text-foreground`}
+          suppressHydrationWarning
+        >
+          <ThemeProvider attribute="class" defaultTheme="dark">
+            <div className="mx-auto min-h-screen flex flex-col">
+              <Navbar>
+                <CommandMenuWrapper />
+              </Navbar>
+              <CommandHint />
+              <div className="flex-grow">{children}</div>
+            </div>
+          </ThemeProvider>
+          <Analytics />
+        </body>
+      </html>
+    </ViewTransitions>
   );
 }

@@ -31,9 +31,11 @@ export function TrafficLightDots({
 export function TerminalPath({
   children,
   className,
+  style,
 }: {
   children: React.ReactNode;
   className?: string;
+  style?: React.CSSProperties;
 }) {
   return (
     <span
@@ -41,6 +43,7 @@ export function TerminalPath({
         "text-xs font-mono text-muted-foreground",
         className,
       )}
+      style={style}
     >
       {children}
     </span>

@@ -1,6 +1,6 @@
 import { ModeToggle } from "@/components/theme/theme-toggle";
 import { MobileDropdown } from "@/components/layout/navbar/mobile-dropdown";
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import { NAV_LINKS, type NavLink } from "./config";
 
 export const Navbar = ({ children }: { children?: React.ReactNode }) => {

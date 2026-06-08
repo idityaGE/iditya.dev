@@ -1,5 +1,5 @@
 import type { ProjectCardProps } from "@/types";
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import Image from "next/image";
 import { ProjectButtons } from "../utils/project-card-utils";
 import {
@@ -32,7 +32,12 @@ const ProjectCard = ({
         <div className="px-2.5 py-2 bg-muted/70">
           <div className="flex items-center gap-2">
             <TrafficLightDots />
-            <TerminalPath className="truncate">~/projects/{slug}</TerminalPath>
+            <TerminalPath
+              className="truncate"
+              style={{ viewTransitionName: `project-path-${slug}` } as React.CSSProperties}
+            >
+              ~/projects/{slug}
+            </TerminalPath>
           </div>
         </div>
 
@@ -46,6 +51,7 @@ const ProjectCard = ({
               alt={`${title} project screenshot`}
               sizes="(max-width: 768px) 100vw, 50vw"
               className="w-full aspect-[10/5] object-cover"
+              style={{ viewTransitionName: `project-image-${slug}` } as React.CSSProperties}
             />
           </Link>
         </div>
@@ -55,12 +61,18 @@ const ProjectCard = ({
           <div className="flex items-start gap-2 mb-2">
             <GreenArrow className="mt-0.5" />
             <Link href={projectUrl} aria-label={projectAriaLabel}>
-              <h2 className="text-sm font-mono font-bold leading-tight group-hover/project-card:text-green-500 transition-colors line-clamp-2">
+              <h2
+                className="text-sm font-mono font-bold leading-tight group-hover/project-card:text-green-500 transition-colors line-clamp-2"
+                style={{ viewTransitionName: `project-title-${slug}` } as React.CSSProperties}
+              >
                 {title}
               </h2>
             </Link>
           </div>
-          <p className="text-xs font-mono text-muted-foreground line-clamp-2 pl-4">
+          <p
+            className="text-xs font-mono text-muted-foreground line-clamp-2 pl-4"
+            style={{ viewTransitionName: `project-desc-${slug}` } as React.CSSProperties}
+          >
             {description}
           </p>
         </div>
@@ -69,7 +81,10 @@ const ProjectCard = ({
         <div className="flex flex-col gap-px border-t">
           {/* Tags Block */}
           <div className="bg-background p-2 border-b">
-            <div className="flex items-center gap-1 flex-wrap">
+            <div
+              className="flex items-center gap-1 flex-wrap"
+              style={{ viewTransitionName: `project-tags-${slug}` } as React.CSSProperties}
+            >
               {techStack.slice(0, 4).map((tag) => (
                 <Tag key={tag}>{tag}</Tag>
               ))}
@@ -83,6 +98,7 @@ const ProjectCard = ({
               githubLink={githubLink}
               liveLink={liveLink}
               title={title}
+              slug={slug}
             />
           </div>
         </div>

@@ -9,14 +9,19 @@ interface ProjectButtonsProps {
   githubLink?: string;
   liveLink?: string;
   title: string;
+  slug?: string;
 }
 
 export const ProjectButtons: React.FC<ProjectButtonsProps> = ({
   githubLink,
   liveLink,
   title,
+  slug,
 }) => (
-  <div className="flex flex-wrap items-center gap-2 mt-auto flex-shrink-0 py-1 md:py-0">
+  <div
+    className="flex flex-wrap items-center gap-2 mt-auto flex-shrink-0 py-1 md:py-0"
+    style={slug ? ({ viewTransitionName: `project-buttons-${slug}` } as React.CSSProperties) : undefined}
+  >
     {githubLink && (
       <a
         href={githubLink}
@@ -48,18 +53,23 @@ interface TechStackListProps {
   techStack: string[];
   maxVisible?: number;
   showAll?: boolean;
+  slug?: string;
 }
 
 export const TechStackList: React.FC<TechStackListProps> = ({
   techStack,
   maxVisible = 7,
   showAll = false,
+  slug,
 }) => {
   if (!techStack || techStack.length === 0) return null;
 
   return (
     <div className="relative max-h-[40px] overflow-hidden">
-      <div className="flex items-start gap-1 flex-wrap">
+      <div
+        className="flex items-start gap-1 flex-wrap"
+        style={slug ? ({ viewTransitionName: `project-tags-${slug}` } as React.CSSProperties) : undefined}
+      >
         {techStack.map((tag, index) =>
           showAll || index < maxVisible ? (
             <Tag key={tag} className="cursor-default">

@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Terminal } from "lucide-react";
 import { NAV_LINKS } from "./config";
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import {
   TrafficLightDots,
   TerminalPath,

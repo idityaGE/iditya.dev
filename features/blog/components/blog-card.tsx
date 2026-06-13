@@ -35,7 +35,11 @@ export function BlogCard({
             <TrafficLightDots />
             <TerminalPath
               className="truncate"
-              style={{ viewTransitionName: `blog-path-${blog.slug}` } as React.CSSProperties}
+              style={
+                {
+                  viewTransitionName: `blog-path-${blog.slug}`,
+                } as React.CSSProperties
+              }
             >
               ~/blogs/{blog.slug}
             </TerminalPath>
@@ -57,7 +61,11 @@ export function BlogCard({
                   <GreenArrow />
                   <h2
                     className="text-md font-mono font-bold line-clamp-1 group-hover/blog-card:text-green-500 transition-colors"
-                    style={{ viewTransitionName: `blog-title-${blog.slug}` } as React.CSSProperties}
+                    style={
+                      {
+                        viewTransitionName: `blog-title-${blog.slug}`,
+                      } as React.CSSProperties
+                    }
                   >
                     {blog.title}
                   </h2>
@@ -75,7 +83,11 @@ export function BlogCard({
                 <div className="relative max-h-[52px] overflow-hidden">
                   <div
                     className="flex items-start gap-1 flex-wrap"
-                    style={{ viewTransitionName: `blog-tags-${blog.slug}` } as React.CSSProperties}
+                    style={
+                      {
+                        viewTransitionName: `blog-tags-${blog.slug}`,
+                      } as React.CSSProperties
+                    }
                   >
                     {blog.tags.slice(0, 3).map((tag) => (
                       <Tag key={tag} className="cursor-default">
@@ -95,8 +107,12 @@ export function BlogCard({
               <div className="bg-background p-1.5 border-t md:border-t-0">
                 <TerminalCommand className="mb-1">$ meta</TerminalCommand>
                 <div
-                  className="flex flex-col gap-1 mt-auto flex-shrink-0 py-1 md:py-0"
-                  style={{ viewTransitionName: `blog-meta-${blog.slug}` } as React.CSSProperties}
+                  className="flex flex-col gap-1 mt-auto shrink-0 py-1 md:py-0"
+                  style={
+                    {
+                      viewTransitionName: `blog-meta-${blog.slug}`,
+                    } as React.CSSProperties
+                  }
                 >
                   <span className="text-xs font-mono text-muted-foreground">
                     <span className="text-green-500">→</span>{" "}
@@ -115,7 +131,7 @@ export function BlogCard({
           </div>
 
           {/* Image Section */}
-          <div className="w-full md:w-1/3 h-40 md:h-auto flex-shrink-0 border-b md:border-b-0 md:border-l">
+          <div className="w-full md:w-1/3 h-40 md:h-auto shrink-0 border-b md:border-b-0 md:border-l">
             <Link
               href={blogUrl}
               aria-label={blogAriaLabel}
@@ -123,7 +139,11 @@ export function BlogCard({
             >
               <div
                 className="relative w-full h-full min-h-[120px]"
-                style={{ viewTransitionName: `blog-image-${blog.slug}` } as React.CSSProperties}
+                style={
+                  {
+                    viewTransitionName: `blog-image-${blog.slug}`,
+                  } as React.CSSProperties
+                }
               >
                 <Image
                   src={darkSrc}

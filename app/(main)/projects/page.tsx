@@ -11,7 +11,6 @@ import {
 } from "@/components/ui/tooltip";
 import type { Metadata } from "next";
 import {
-  TrafficLightDots,
   TerminalPath,
   TerminalCommand,
   GreenArrow,
@@ -20,7 +19,8 @@ import {
 
 export const metadata: Metadata = {
   title: "Projects",
-  description: "Explore my portfolio of side projects - web applications, tools, and open source contributions",
+  description:
+    "Explore my portfolio of side projects - web applications, tools, and open source contributions",
 };
 
 const getTwitterUsername = (url: string): string => {
@@ -33,7 +33,7 @@ const Projects = () => {
   return (
     <div className="mt-10">
       {/* Terminal Header */}
-      <TerminalHeader 
+      <TerminalHeader
         path="~/projects"
         title="Projects"
         subtitle={`(${ProjectData.length} repos)`}
@@ -61,8 +61,9 @@ const Projects = () => {
       <div className="border-b bg-background p-3">
         <TerminalCommand className="mb-1.5">$ cat readme.md</TerminalCommand>
         <p className="text-xs font-mono text-muted-foreground leading-relaxed mb-2">
-          I love building side projects that solve either my own or someone else's problems.
-          Here is an extensive list of all the stuff I have built.
+          I love building side projects that solve either my own or someone
+          else's problems. Here is an extensive list of all the stuff I have
+          built.
         </p>
         <p className="text-xs font-mono text-muted-foreground">
           <GreenArrow /> Want to collaborate?{" "}
@@ -80,9 +81,15 @@ const Projects = () => {
       {/* Warning Block */}
       <div className="border-b bg-background p-3">
         <div className="flex items-start gap-2">
-          <AlertTriangle size={12} className="text-yellow-500 mt-0.5 flex-shrink-0" />
+          <AlertTriangle
+            size={12}
+            className="text-yellow-500 mt-0.5 shrink-0"
+          />
           <div>
-            <TerminalCommand className="text-yellow-500 mb-1"> warning</TerminalCommand>
+            <TerminalCommand className="text-yellow-500 mb-1">
+              {" "}
+              warning
+            </TerminalCommand>
             <p className="text-xs font-mono text-muted-foreground">
               Projects hosted on free services may enter hibernation mode.{" "}
               <Link
@@ -101,13 +108,20 @@ const Projects = () => {
         {ProjectData.length === 0 ? (
           <div className="bg-background p-6 text-center">
             <p className="text-xs font-mono text-muted-foreground">$ ls -la</p>
-            <p className="text-sm font-mono text-muted-foreground mt-2">→ No projects found</p>
-            <p className="text-xs font-mono text-muted-foreground mt-1">Check back soon for new builds!</p>
+            <p className="text-sm font-mono text-muted-foreground mt-2">
+              → No projects found
+            </p>
+            <p className="text-xs font-mono text-muted-foreground mt-1">
+              Check back soon for new builds!
+            </p>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-px p-px">
             {ProjectData.map((project) => (
-              <div key={project.slug || project.title} className="bg-background p-2">
+              <div
+                key={project.slug || project.title}
+                className="bg-background p-2"
+              >
                 <ProjectCard {...project} />
               </div>
             ))}

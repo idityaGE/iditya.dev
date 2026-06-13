@@ -98,36 +98,6 @@ export const ModeToggle = ({
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [toggleTheme]);
 
-  // Prevent rendering during SSR to avoid hydration mismatch
-  if (!mounted) {
-    return (
-      <TooltipProvider>
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Button
-              size="icon"
-              variant="ghost"
-              className={cn(className)}
-              disabled
-              {...props}
-            >
-              <Sun className="opacity-0" />
-              <span className="sr-only">Toggle theme</span>
-            </Button>
-          </TooltipTrigger>
-          <TooltipContent>
-            <p>
-              Toggle theme{" "}
-              <kbd className="ml-1 px-1.5 py-0.5 text-xs bg-muted rounded">
-                D
-              </kbd>
-            </p>
-          </TooltipContent>
-        </Tooltip>
-      </TooltipProvider>
-    );
-  }
-
   return (
     <TooltipProvider>
       <Tooltip>
@@ -136,11 +106,17 @@ export const ModeToggle = ({
             size="icon"
             variant="ghost"
             ref={buttonRef}
-            onClick={toggleTheme}
+            onClick={mounted ? toggleTheme : undefined}
             className={cn(className)}
+            disabled={!mounted}
+            suppressHydrationWarning
             {...props}
           >
-            {isDark ? <Sun /> : <Moon />}
+            {mounted ? (
+              isDark ? <Sun /> : <Moon />
+            ) : (
+              <Sun className="opacity-0" />
+            )}
             <span className="sr-only">Toggle theme (D)</span>
           </Button>
         </TooltipTrigger>

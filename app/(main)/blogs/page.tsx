@@ -1,5 +1,4 @@
 import { getAllBlogPostsMeta } from "@/lib/mdx";
-import { BlogCard } from "@/features/blog/components/blog-card";
 import { TerminalHeader } from "@/components/shared/TerminalHeader";
 import {
   Tooltip,
@@ -9,25 +8,27 @@ import {
 import { Rss } from "lucide-react";
 import Link from "next/link";
 import type { Metadata } from "next";
-import {
-  TrafficLightDots,
-  TerminalPath,
-  TerminalCommand,
-  BlinkingCursor,
-} from "@/components/ui/terminal";
+import { TerminalCommand } from "@/components/ui/terminal";
+import { BlogSearchView } from "@/features/blog/components/blog-search-view";
 
 export const metadata: Metadata = {
   title: "Blogs",
-  description: "My thoughts, solutions, and discoveries from my coding journey - technical articles and tutorials",
+  description:
+    "My thoughts, solutions, and discoveries from my coding journey - technical articles and tutorials",
 };
 
 const Blogs = async () => {
   const posts = await getAllBlogPostsMeta();
 
+  // Extract unique tags across all posts, sorted alphabetically
+  const allTags = Array.from(
+    new Set(posts.flatMap((post) => post.tags)),
+  ).sort();
+
   return (
     <div className="mt-10">
       {/* Terminal Header */}
-      <TerminalHeader 
+      <TerminalHeader
         path="~/blogs"
         title="Blogs"
         subtitle={`(${posts.length} posts)`}
@@ -52,38 +53,17 @@ const Blogs = async () => {
       />
 
       {/* Description Block */}
-      <div className="border-b bg-background p-3 mb-8">
+      <div className="border-b bg-background p-3 mb-4">
         <TerminalCommand className="mb-1.5">$ cat readme.md</TerminalCommand>
         <p className="text-xs font-mono text-muted-foreground leading-relaxed">
-          I like to write when I get stuck into some problem or learn something new which might help others. 
-          Here you'll find my thoughts, solutions, and discoveries from my coding journey.
+          I like to write when I get stuck into some problem or learn something
+          new which might help others. Here you'll find my thoughts, solutions,
+          and discoveries from my coding journey.
         </p>
       </div>
 
-      {/* Blog Grid */}
-      <div className="">
-        {posts.length === 0 ? (
-          <div className="bg-background p-6 text-center">
-            <p className="text-xs font-mono text-muted-foreground">$ ls -la</p>
-            <p className="text-sm font-mono text-muted-foreground mt-2">→ No blog posts found</p>
-            <p className="text-xs font-mono text-muted-foreground mt-1">Check back soon for new content!</p>
-          </div>
-        ) : (
-          <div className="flex flex-col gap-px">
-            {posts.map((post) => (
-              <div key={post.slug} className="bg-background mb-4 px-2">
-                <BlogCard blog={post} />
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
-
-      {/* Footer */}
-      <div className="border-b bg-background px-3 py-2 flex items-center justify-between">
-        <TerminalPath>$ total: {posts.length} files</TerminalPath>
-        <BlinkingCursor />
-      </div>
+      {/* Search, Filter & Blog List */}
+      <BlogSearchView posts={posts} allTags={allTags} />
     </div>
   );
 };

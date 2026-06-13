@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { cn, getImageSrc } from "@/lib/utils";
+import { cn, getImageSrc, BLUR_DATA_URL } from "@/lib/utils";
 
 interface ThemeImageProps {
   darkSrc: string;
@@ -39,6 +39,8 @@ export function ThemeImage({
         sizes={sizes}
         className={cn(className, "hidden dark:block")}
         priority={priority}
+        placeholder="blur"
+        blurDataURL={BLUR_DATA_URL}
       />
       {/* Light mode image - hidden in dark mode */}
       <Image
@@ -49,6 +51,8 @@ export function ThemeImage({
         sizes={sizes}
         className={cn(className, "block dark:hidden")}
         priority={priority}
+        placeholder="blur"
+        blurDataURL={BLUR_DATA_URL}
       />
     </>
   );

@@ -7,6 +7,7 @@ import {
   TerminalCommand,
   GreenArrow,
 } from "@/components/ui/terminal";
+import { BLUR_DATA_URL } from "@/lib/utils";
 
 /**
  * Horizontal detail card used on the /projects/[slug] page.
@@ -92,6 +93,8 @@ const ProjectDetailCard = ({
               sizes="(max-width: 768px) 100vw, 40vw"
               priority={false}
               style={{ viewTransitionName: `project-image-${slug}` } as React.CSSProperties}
+              placeholder="blur"
+              blurDataURL={BLUR_DATA_URL}
             />
           </div>
         </div>

@@ -8,6 +8,7 @@ import {
   GreenArrow,
   Tag,
 } from "@/components/ui/terminal";
+import { BLUR_DATA_URL } from "@/lib/utils";
 
 const ProjectCard = ({
   title,
@@ -52,6 +53,8 @@ const ProjectCard = ({
               sizes="(max-width: 768px) 100vw, 50vw"
               className="w-full aspect-[10/5] object-cover"
               style={{ viewTransitionName: `project-image-${slug}` } as React.CSSProperties}
+              placeholder="blur"
+              blurDataURL={BLUR_DATA_URL}
             />
           </Link>
         </div>

@@ -1,7 +1,7 @@
 import type { BlogPostMeta } from "@/types";
 import { Link } from "next-view-transitions";
 import Image from "next/image";
-import { getImageSrc } from "@/lib/utils";
+import { getImageSrc, BLUR_DATA_URL } from "@/lib/utils";
 import {
   TrafficLightDots,
   TerminalPath,
@@ -132,6 +132,8 @@ export function BlogCard({
                   className="object-cover hidden dark:block"
                   sizes="(max-width: 768px) 100vw, 40vw"
                   priority={false}
+                  placeholder="blur"
+                  blurDataURL={BLUR_DATA_URL}
                 />
                 <Image
                   src={lightSrc}
@@ -140,6 +142,8 @@ export function BlogCard({
                   className="object-cover block dark:hidden"
                   sizes="(max-width: 768px) 100vw, 40vw"
                   priority={false}
+                  placeholder="blur"
+                  blurDataURL={BLUR_DATA_URL}
                 />
               </div>
             </Link>

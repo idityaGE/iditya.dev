@@ -5,6 +5,7 @@ import { BackButton } from "@/features/blog/components/back-button";
 import type { Metadata } from "next/types";
 import { siteConfig } from "@/config/site.config";
 import { ScrollProgress } from "@/components/ui/magicui/scroll-progress";
+import { ScrollToTop } from "@/components/ui/scroll-to-top";
 import { ThemeImage } from "@/components/theme/theme-image";
 import { Calendar, User } from "lucide-react";
 import {
@@ -207,6 +208,9 @@ export default async function Page({
       <div className="border-b bg-background px-3 py-2 flex items-center justify-center">
         <BackButton href="/blogs" label="← cd /blogs" />
       </div>
+
+      {/* Scroll to top */}
+      <ScrollToTop />
     </div>
   );
 }

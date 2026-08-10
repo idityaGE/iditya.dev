@@ -1,5 +1,29 @@
 export const ProjectData = [
   {
+    title: "QuickEdit",
+    type: "personal",
+    slug: "quick-edit",
+    description:
+      "A local-first video editing CLI that removes silence and inactive sections with speech and motion analysis, generates subtitles, writes timeline JSON, and optionally uses transcript-aware LLM cuts only when explicitly enabled.",
+    images: [
+      "https://framerusercontent.com/images/ffaqSL56A5YWJbWfN6F5yjH31xQ.png?width=1200&height=723",
+    ],
+    githubLink: "https://github.com/idityaGE/quick-edit",
+    liveLink: "https://idityaGE.github.io/quick-edit/",
+    techStack: [
+      "Python",
+      "FFmpeg",
+      "FFprobe",
+      "faster-whisper",
+      "OpenCV",
+      "NumPy",
+      "Click",
+      "Rich",
+      "Anthropic",
+      "Gemini",
+    ],
+  },
+  {
     title: "Redyx",
     type: "personal",
     slug: "redyx",

@@ -1,0 +1,145 @@
+## QuickEdit -- Local-first video editing CLI
+
+QuickEdit is a local-first video editing CLI for turning raw screen recordings, lectures, and demos into tighter cuts. It removes silence and inactive sections with speech and motion analysis, then can generate animated ASS subtitles or SRT sidecars. Optional semantic editing uses an LLM only when you explicitly enable it.
+
+The project is designed around a clear boundary: normal editing stays on your machine. Transcript-aware LLM cuts are opt-in, and QuickEdit sends transcript data instead of uploading the source video.
+
+---
+
+## Demo
+
+**Before:** `demo.mp4`
+
+<video
+  autoPlay
+  muted
+  controls
+  src="https://github.com/user-attachments/assets/e22e5336-6cb6-4203-9d0e-411609a4b312"
+  type="video/mp4"
+/>
+
+Run:
+
+```bash
+uv run quickedit ./test-videos/demo.mp4 --subtitle-style none --motion-backend ffmpeg --vad-threshold 0.2 --motion-threshold 0.001 --overwrite -o ./test-videos/demo-edited.mp4
+```
+
+**After:** `demo-edited.mp4`
+
+<video
+  autoPlay
+  muted
+  controls
+  src="https://github.com/user-attachments/assets/5660835c-f146-469c-83ff-f6fd84a98f84"
+  type="video/mp4"
+/>
+
+```text
+Original duration: 03:48.77
+Output duration:   03:18.52
+Time saved:        00:30.25 (13.2%)
+Clips: 14
+Cuts:  13
+Total processing:  62.6s
+```
+
+---
+
+## Features
+
+- Removes silence with faster-whisper VAD
+- Detects inactive screen sections through frame-level motion analysis
+- Combines detectors with `speech`, `motion`, `words`, `or`, `and`, `xor`, and `not` rules
+- Adds margins, minimum clip lengths, and minimum cut lengths to keep edits watchable
+- Generates timeline JSON sidecars for every edit
+- Renders output through FFmpeg with configurable codec, CRF, preset, and audio settings
+- Generates animated ASS subtitles or simple SRT subtitles
+- Caches expensive analysis in `.quickedit_cache/` beside each input video
+- Supports batch inputs and dry runs for previewing timelines before rendering
+- Can use Anthropic or Gemini for optional transcript-aware semantic cuts
+
+---
+
+## Processing Pipeline
+
+QuickEdit turns each input video into three artifacts: an edited video, a timeline JSON file, and optional subtitle sidecars.
+
+```text
+input video
+  -> ffprobe metadata
+  -> speech detection
+  -> motion detection
+  -> optional transcription
+  -> detector combine rules
+  -> margin and smoothing pass
+  -> timeline JSON
+  -> optional subtitles
+  -> ffmpeg render
+```
+
+Speech detection extracts 16 kHz mono audio with FFmpeg, runs Silero VAD through faster-whisper, and converts speech segments into a frame-aligned keep mask.
+
+Motion detection downscales frames, converts them to grayscale, compares each analyzed frame to the previous frame, and marks activity when enough pixels change. The default FFmpeg backend handles frame decoding efficiently, while OpenCV backends are available when more local preprocessing control is useful.
+
+---
+
+## CLI Shape
+
+```text
+quickedit INPUT_PATHS... [OPTIONS]
+```
+
+Common examples:
+
+```bash
+quickedit recording.mp4 --dry-run
+quickedit recording.mp4 --combine speech --subtitle-style srt
+quickedit recording.mp4 --combine or:speech,motion --motion-backend ffmpeg
+quickedit recording.mp4 --llm --prompt-template tutorial
+```
+
+Configuration priority is CLI option, environment variable, JSON config file, then built-in default. Environment variables use the `QUICKEDIT_` prefix, so `QUICKEDIT_WHISPER_MODEL=small` is equivalent to `--whisper-model small`.
+
+---
+
+## Local-first LLM Boundary
+
+QuickEdit does not call an LLM unless `--llm` is passed. Standard speech analysis, motion analysis, subtitle generation, timeline building, and rendering remain local.
+
+When enabled, the LLM pass receives word-level transcript data, prompt instructions, and classified silent segments. It does not receive the source video itself. Returned cuts are filtered by `--confidence` before they are merged into the timeline.
+
+---
+
+## Tech Stack
+
+| Layer | Technology | Purpose |
+| --- | --- | --- |
+| CLI | Python 3.11+ + Click | Stable command interface and config handling |
+| Terminal UX | Rich | Progress output and readable run summaries |
+| Speech | faster-whisper + Silero VAD | Speech detection and word timestamps |
+| Motion | FFmpeg + OpenCV + NumPy | Frame decoding, preprocessing, and detector arrays |
+| Rendering | FFmpeg + FFprobe | Metadata inspection and final video output |
+| Optional AI | Anthropic + Gemini | Transcript-aware semantic cut suggestions |
+| Docs | GitHub Pages | Install, CLI reference, and usage guides |
+
+---
+
+## Install
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/idityaGE/quick-edit/main/scripts/install.sh | bash
+~/.local/bin/quickedit myvideo.mp4 --dry-run
+```
+
+Manual source setup:
+
+```bash
+git clone https://github.com/idityaGE/quick-edit.git
+cd quick-edit
+python3 -m venv .venv
+. .venv/bin/activate
+python -m pip install -e .
+quickedit --version
+```
+
+[GitHub Repository](https://github.com/idityaGE/quick-edit) | [Documentation](https://idityaGE.github.io/quick-edit/)

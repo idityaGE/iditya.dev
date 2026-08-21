@@ -247,7 +247,7 @@ const OpenSourcePage = async () => {
 
 const PullRequestRepoGroup = ({ group }: { group: PullRequestGroup }) => {
   return (
-    <details open className="group/repo border bg-background">
+    <details className="group/repo border bg-background">
       <summary className="block cursor-pointer list-none bg-muted/20 px-3 py-2 transition-colors hover:bg-muted/35 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring [&::-webkit-details-marker]:hidden [&::marker]:content-['']">
         <div className="flex min-w-0 items-center justify-between gap-3">
           <div className="flex min-w-0 items-center gap-2">

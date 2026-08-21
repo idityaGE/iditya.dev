@@ -34,7 +34,8 @@ const categories: PoWCategory[] = [
   {
     title: "open-source",
     description: "Contributions to open source projects",
-    status: "coming-soon",
+    href: "/pow/open-source",
+    status: "available",
   },
   {
     title: "devops",

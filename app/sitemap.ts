@@ -29,6 +29,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.4,
     },
     {
+      url: `${BASE_URL}/pow/open-source`,
+      lastModified: new Date(),
+      changeFrequency: 'daily' as const,
+      priority: 0.4,
+    },
+    {
       url: `${BASE_URL}/todo`,
       lastModified: new Date(),
       changeFrequency: 'daily' as const,

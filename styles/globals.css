@@ -272,12 +272,14 @@ body {
 }
 
 /* MDX Details and Summary styling */
-details summary > * {
+article details summary > *,
+section details summary > * {
   display: inline;
   margin: 0;
 }
 
-details summary {
+article details summary,
+section details summary {
   cursor: pointer;
   list-style: none;
   display: list-item;
@@ -285,7 +287,8 @@ details summary {
   padding-left: 1rem;
 }
 
-details summary::before {
+article details summary::before,
+section details summary::before {
   content: "›";
   position: absolute;
   left: 0;
@@ -296,19 +299,23 @@ details summary::before {
   color: var(--muted-foreground);
 }
 
-details[open] summary::before {
+article details[open] summary::before,
+section details[open] summary::before {
   transform: rotate(90deg);
 }
 
-details summary::-webkit-details-marker {
+article details summary::-webkit-details-marker,
+section details summary::-webkit-details-marker {
   display: none;
 }
 
-details {
+article details,
+section details {
   margin-bottom: 1rem;
 }
 
-details[open] summary {
+article details[open] summary,
+section details[open] summary {
   margin-bottom: 0.5rem;
 }
 

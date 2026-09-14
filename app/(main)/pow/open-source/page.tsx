@@ -109,6 +109,22 @@ const formatComments = (count: number) => {
   return `${count} ${count === 1 ? "comment" : "comments"}`;
 };
 
+const EXCLUDED_REPOSITORIES = new Set(
+  [
+    "Evalixa-AI/.github",
+    "zzzzshawn/gitwrapped",
+    "Pradeep434680/DSA",
+    "its-id/100x-Cohort-Programs",
+    "Exp-Intro-to-GitHub-Flow-Cohort-2/series-intro-to-github-flow-idityaGE",
+    "idityaGE/discord-app",
+    "idityaGE/Class-Codes",
+  ].map((repo) => repo.toLowerCase()),
+);
+
+const isExcludedRepository = (repo: string) => {
+  return EXCLUDED_REPOSITORIES.has(repo.toLowerCase());
+};
+
 const groupPullRequests = (pullRequests: PullRequestItem[]) => {
   const groups = new Map<string, PullRequestItem[]>();
 
@@ -154,9 +170,8 @@ const fetchPullRequests = async (): Promise<PullRequestResult> => {
 
     const data = (await response.json()) as GitHubSearchResponse;
 
-    return {
-      totalCount: data.total_count,
-      pullRequests: data.items.map((item) => ({
+    const pullRequests = data.items
+      .map((item) => ({
         title: item.title,
         repo: getRepoName(item.repository_url),
         number: item.number,
@@ -166,7 +181,12 @@ const fetchPullRequests = async (): Promise<PullRequestResult> => {
         comments: item.comments,
         createdAt: item.created_at,
         updatedAt: item.updated_at,
-      })),
+      }))
+      .filter((pullRequest) => !isExcludedRepository(pullRequest.repo));
+
+    return {
+      totalCount: pullRequests.length,
+      pullRequests,
     };
   } catch (error) {
     return {
